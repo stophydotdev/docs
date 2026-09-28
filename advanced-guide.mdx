@@ -1,0 +1,113 @@
+---
+title: "Advanced guide"
+description: "Choose an endpoint, get markdown, and page through results."
+---
+
+## Choosing an endpoint
+
+Every endpoint is `POST https://api.stophy.dev/v1/<source>/<endpoint>`, and its id is the same path with dots: `/v1/youtube/comments/replies` is `youtube.comments.replies`.
+
+To find one, ask the catalog. It is free to call:
+
+```bash
+curl https://api.stophy.dev/v1/endpoints
+```
+
+Each entry has:
+
+| Field | What it is |
+| --- | --- |
+| `id`, `path` | The endpoint id and its path |
+| `credits`, `perItems` | What a call costs. See [Credits](/billing). |
+| `input` | The input as JSON Schema. Read it before you call. |
+| `example` | A real input, or `null` when there is none |
+| `cacheTtlSeconds` | For how many seconds the same input can return the same result |
+
+Unknown input fields are rejected with `400`. The same data is in the [OpenAPI document](https://api.stophy.dev/openapi.json) and in the [API reference](/api-reference/introduction). Over MCP, the `stophy_search_endpoints` tool does this search for you.
+
+## Markdown output
+
+Send `Accept: text/markdown` to get the same result as a readable page. It is shorter than JSON and easy for a model to read.
+
+```bash
+curl -X POST https://api.stophy.dev/v1/youtube/search \
+  -H "Authorization: Bearer $STOPHY_API_KEY" \
+  -H "content-type: application/json" \
+  -H "accept: text/markdown" \
+  -d '{"query":"rust tutorial","limit":2}'
+```
+
+```markdown
+**youtube.search**: 2 results
+
+## Results
+
+| Title | Duration | Views | Created at | Channel | Thumbnail |
+| --- | --- | --- | --- | --- | --- |
+| [The Ultimate Rust Beginners Guide (2026)](https://www.youtube.com/watch?v=Wc0ZJo06oAw) | 7:02 | 542,826 | Sep 28, 2025, 04:22 UTC | @SBJake | [thumbnail](https://i.ytimg.com/vi/Wc0ZJo06oAw/hqdefault.jpg) |
+| [Rust in 100 Seconds](https://www.youtube.com/watch?v=5C_HPTJg5ek) | 2:29 | 2,517,643 | Sep 28, 2022, 10:54 UTC | @Fireship | [thumbnail](https://i.ytimg.com/vi/5C_HPTJg5ek/hqdefault.jpg) |
+```
+
+- Short rows become tables. Empty values are left out.
+- The response is `content-type: text/markdown; charset=utf-8`.
+- The cost is in the `x-credits-used` header.
+- Errors are still JSON.
+
+## Paging
+
+Endpoints that page take a `cursor` input. The [API reference](/api-reference/introduction) marks each one.
+
+When a response has `data.cursor`, send the same input again with that `cursor` to get the next page. When there is no `cursor`, you have everything.
+
+<CodeGroup>
+
+```ts Node.js
+let cursor: string | undefined;
+do {
+  const response = await fetch("https://api.stophy.dev/v1/reddit/search", {
+    method: "POST",
+    headers: {
+      authorization: `Bearer ${process.env.STOPHY_API_KEY}`,
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({ query: "bun runtime", cursor }),
+  });
+  const { data } = await response.json();
+  console.log(data);
+  cursor = data.cursor;
+} while (cursor);
+```
+
+```python Python
+import os
+import httpx
+
+cursor = None
+while True:
+    body = {"query": "bun runtime"}
+    if cursor:
+        body["cursor"] = cursor
+    response = httpx.post(
+        "https://api.stophy.dev/v1/reddit/search",
+        headers={"Authorization": f"Bearer {os.environ['STOPHY_API_KEY']}"},
+        json=body,
+        timeout=30,
+    )
+    data = response.json()["data"]
+    print(data)
+    cursor = data.get("cursor")
+    if not cursor:
+        break
+```
+
+</CodeGroup>
+
+With markdown, the last line tells you the `cursor` to send:
+
+```text
+More results: add "cursor": "..." to your request
+```
+
+## Timeouts
+
+Every call answers or fails within 25 seconds. Set your client timeout a little above that, for example 30 seconds.

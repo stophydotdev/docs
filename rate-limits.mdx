@@ -1,0 +1,27 @@
+---
+title: "Rate limits"
+description: "How fast you can call Stophy."
+---
+
+| | Limit |
+| --- | --- |
+| Requests | 600 a minute per account |
+| Running at once | 10 per account |
+
+Every call answers or fails within 25 seconds.
+
+## Headers
+
+Responses include:
+
+- `X-RateLimit-Limit`: your limit
+- `X-RateLimit-Remaining`: what is left
+
+## When you go over
+
+| Code | Status | What to do |
+| --- | --- | --- |
+| `rateLimited` | `429` | Wait for the `Retry-After` header (also `retryAfterSeconds` in the body), then retry. |
+| `tooManyInFlight` | `429` | Too many of your calls are running at once. Wait for one to finish, then retry. |
+
+Both are marked `retryable: true`. See [Errors](/api-reference/errors) for a retry loop.

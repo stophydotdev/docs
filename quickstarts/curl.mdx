@@ -1,0 +1,53 @@
+---
+title: "cURL"
+description: "Call Stophy from the command line."
+---
+
+## Prerequisites
+
+- `curl`
+- An API key. [Get one](https://stophy.dev/signup) and store it as `STOPHY_API_KEY`.
+
+## Search the web
+
+```bash
+export STOPHY_API_KEY="your key"
+
+curl -X POST https://api.stophy.dev/v1/web/search \
+  -H "Authorization: Bearer $STOPHY_API_KEY" \
+  -H "content-type: application/json" \
+  -d '{"query":"bun runtime","limit":3}'
+```
+
+## Get markdown
+
+Add an `accept` header to get a readable page instead of JSON:
+
+```bash
+curl -X POST https://api.stophy.dev/v1/youtube/search \
+  -H "Authorization: Bearer $STOPHY_API_KEY" \
+  -H "content-type: application/json" \
+  -H "accept: text/markdown" \
+  -d '{"query":"rust tutorial","limit":2}'
+```
+
+## Call any endpoint
+
+```bash
+curl -X POST https://api.stophy.dev/v1/maps/search \
+  -H "Authorization: Bearer $STOPHY_API_KEY" \
+  -H "content-type: application/json" \
+  -d '{"query":"coffee","near":"Austin, TX","limit":20}'
+```
+
+## Find an endpoint
+
+```bash
+curl https://api.stophy.dev/v1/endpoints
+```
+
+With `jq`, list the endpoints for one source:
+
+```bash
+curl -s https://api.stophy.dev/v1/endpoints | jq -r '.endpoints[] | select(.id | startswith("reddit.")) | "\(.id)  \(.credits) credits"'
+```

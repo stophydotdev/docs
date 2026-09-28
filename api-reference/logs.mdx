@@ -1,0 +1,84 @@
+---
+title: "Logs"
+description: "Your recent paid calls, newest first."
+api: "GET https://api.stophy.dev/v1/logs"
+authMethod: "bearer"
+---
+
+Returns your recent paid calls, 50 per page, newest first. Needs an API key. Free.
+
+<ParamField query="days" type="integer" default="7">
+  How many days back to look, from 1 to 90.
+</ParamField>
+
+<ParamField query="page" type="integer" default="0">
+  The page to return, from 0.
+</ParamField>
+
+<ParamField query="endpoint" type="string">
+  Only calls to this endpoint id, such as `web.search`.
+</ParamField>
+
+<ParamField query="apiKeyId" type="string">
+  Only calls made with this API key.
+</ParamField>
+
+<ResponseField name="logs" type="object[]" required>
+  The calls on this page.
+  <Expandable title="properties">
+    <ResponseField name="id" type="string">The log entry ID.</ResponseField>
+    <ResponseField name="createdAt" type="string">When the call was made, as an ISO 8601 time.</ResponseField>
+    <ResponseField name="endpoint" type="string">The endpoint id, such as `web.search`.</ResponseField>
+    <ResponseField name="credits" type="integer">Credits the call used.</ResponseField>
+    <ResponseField name="apiKeyId" type="string | null">The API key used.</ResponseField>
+    <ResponseField name="apiKeyName" type="string | null">That key's name.</ResponseField>
+    <ResponseField name="method" type="string">Always `POST`.</ResponseField>
+    <ResponseField name="status" type="integer">Always `200`: only paid calls are logged.</ResponseField>
+    <ResponseField name="response" type="string">Always `success`.</ResponseField>
+    <ResponseField name="durationMs" type="integer | null">Not recorded yet. Always `null`.</ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="endpoints" type="string[]" required>
+  Every endpoint id, for building a filter.
+</ResponseField>
+
+<ResponseField name="page" type="integer" required>The page returned.</ResponseField>
+<ResponseField name="pageSize" type="integer" required>Calls per page: 50.</ResponseField>
+<ResponseField name="total" type="integer" required>Calls that match, across all pages.</ResponseField>
+<ResponseField name="totalPages" type="integer" required>How many pages there are.</ResponseField>
+
+<RequestExample>
+```bash cURL
+curl "https://api.stophy.dev/v1/logs?days=7&page=0&endpoint=web.search" \
+  -H "Authorization: Bearer $STOPHY_API_KEY"
+```
+</RequestExample>
+
+<ResponseExample>
+```json 200
+{
+  "endpoints": ["web.search", "web.news"],
+  "logs": [
+    {
+      "apiKeyId": "string",
+      "apiKeyName": "string",
+      "createdAt": "2026-09-28T00:00:00.000Z",
+      "credits": 1,
+      "durationMs": null,
+      "endpoint": "web.search",
+      "id": "string",
+      "method": "POST",
+      "response": "success",
+      "status": 200
+    }
+  ],
+  "page": 0,
+  "pageSize": 50,
+  "total": 1,
+  "totalPages": 1
+}
+```
+</ResponseExample>
+
+`days` outside 1 to 90, or a negative `page`, answers `400` with code `invalidRequest`. This response is not wrapped in `success` and `data`.

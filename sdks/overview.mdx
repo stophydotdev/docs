@@ -1,0 +1,28 @@
+---
+title: "Overview"
+description: "Official Stophy SDKs for Node.js and Python."
+---
+
+<Note>
+  Version 1.0.0 of both SDKs is being released. Until it is out, `npm install stophy` and `pip install stophy` give you an older version that does not match these pages. You can call the [REST API](/quickstart) directly in the meantime.
+</Note>
+
+The SDKs wrap the Stophy API. Every endpoint is a typed method named after its id: `POST /v1/reddit/search` is `stophy.reddit.search(...)`. They handle auth, retries, timeouts and errors for you.
+
+<CardGroup cols={2}>
+  <Card title="Node SDK" icon="node" href="/sdks/node">
+    For Node.js and TypeScript. Types for every input and response.
+  </Card>
+  <Card title="Python SDK" icon="python" href="/sdks/python">
+    For Python 3.9 and newer, with sync and async clients.
+  </Card>
+</CardGroup>
+
+## What both SDKs do
+
+- **Your key from the environment.** The client reads `STOPHY_API_KEY` unless you pass a key.
+- **Markdown on request.** Pass `format: "markdown"` (`format="markdown"` in Python) to get a string instead of JSON.
+- **Retries.** Network errors and `429`, `500`, `502`, `503`, `504` are retried with backoff, 2 times by default. `Retry-After` is honored. If the API asks to wait more than 60 seconds, the SDK raises right away with the wait in `retryAfterSeconds`.
+- **Timeouts.** 30 seconds per attempt by default.
+- **Errors.** Failed calls raise `StophyError` with `status`, `code`, `message`, `retryable`, `retryAfterSeconds` and `requestId`.
+- **Account.** `usage()` and `logs()` read your balance and recent calls.

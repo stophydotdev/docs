@@ -1,0 +1,52 @@
+---
+title: "Python"
+description: "Call Stophy from Python with httpx."
+---
+
+## Prerequisites
+
+- Python 3.9 or newer
+- `pip install httpx`
+- An API key. [Get one](https://stophy.dev/signup) and store it as `STOPHY_API_KEY`.
+
+## A small client
+
+```python stophy_client.py
+from __future__ import annotations
+
+import os
+
+import httpx
+
+
+def stophy(endpoint_id: str, payload: dict | None = None) -> dict:
+    headers = {"Authorization": f"Bearer {os.environ['STOPHY_API_KEY']}"}
+    response = httpx.post(
+        f"https://api.stophy.dev/v1/{endpoint_id.replace('.', '/')}",
+        headers=headers,
+        json=payload or {},
+        timeout=30,
+    )
+    body = response.json()
+    if not body["success"]:
+        raise RuntimeError(f"{body['error']['code']}: {body['error']['message']}")
+    return body["data"]
+```
+
+## Search the web
+
+```python
+from stophy_client import stophy
+
+data = stophy("web.search", {"query": "bun runtime", "limit": 3})
+for result in data["results"]:
+    print(result["title"], result["url"])
+```
+
+## Call any endpoint with a key
+
+```python
+places = stophy("maps.search", {"query": "coffee", "near": "Austin, TX", "limit": 20})
+```
+
+<Tip>The official Python SDK wraps all of this, with sync and async clients. See [Python SDK](/sdks/python).</Tip>

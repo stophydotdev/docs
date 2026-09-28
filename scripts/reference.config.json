@@ -1,0 +1,492 @@
+{
+  "sources": {
+    "web": "Web",
+    "youtube": "YouTube",
+    "reddit": "Reddit",
+    "maps": "Maps",
+    "instagram": "Instagram",
+    "tiktok": "TikTok",
+    "bluesky": "Bluesky",
+    "mastodon": "Mastodon",
+    "threads": "Threads",
+    "telegram": "Telegram",
+    "meta": "Meta",
+    "linkedin": "LinkedIn",
+    "zillow": "Zillow",
+    "google": "Google",
+    "upwork": "Upwork",
+    "amazon": "Amazon",
+    "site": "Site",
+    "domain": "Domain",
+    "email": "Email",
+    "crypto": "Crypto",
+    "indeed": "Indeed",
+    "tripadvisor": "Tripadvisor",
+    "googletravel": "Google Travel",
+    "shopify": "Shopify",
+    "walmart": "Walmart",
+    "aliexpress": "AliExpress",
+    "appstore": "App Store",
+    "googleplay": "Google Play",
+    "airbnb": "Airbnb",
+    "redfin": "Redfin",
+    "realtor": "Realtor.com",
+    "rightmove": "Rightmove",
+    "immoscout": "ImmoScout24",
+    "pinterest": "Pinterest",
+    "x": "X",
+    "kick": "Kick",
+    "finance": "Finance",
+    "microsoft": "Microsoft",
+    "snapchat": "Snapchat",
+    "tumblr": "Tumblr",
+    "quora": "Quora"
+  },
+  "areas": [
+    {
+      "title": "Web and SEO",
+      "slug": "web",
+      "icon": "globe",
+      "intro": "Search the web and the news, and pull the emails, phone numbers and social profiles a website lists.",
+      "endpoints": [
+        "web.search",
+        "web.news",
+        "web.contacts"
+      ],
+      "example": "web.search",
+      "live": {
+        "input": {
+          "query": "bun runtime",
+          "limit": 2
+        },
+        "response": {
+          "success": true,
+          "data": {
+            "results": [
+              {
+                "title": "Bun — A fast all-in-one JavaScript runtime",
+                "url": "https://bun.com/",
+                "description": "Bundle, install, and run JavaScript & TypeScript — all in Bun. Bun is a fast JavaScript runtime & toolkit with a bundler, test runner, and npm-compatible package manager built in.",
+                "domain": "bun.com",
+                "position": 1
+              },
+              {
+                "title": "GitHub - oven-sh/bun: Incredibly fast JavaScript runtime, bundler, test runner, and package manager – all in one",
+                "url": "https://github.com/oven-sh/bun",
+                "description": "3 days ago - At its core is the Bun runtime, a fast JavaScript runtime designed as a drop-in replacement for Node.js.",
+                "domain": "github.com",
+                "position": 2
+              }
+            ]
+          },
+          "creditsUsed": 0,
+          "requestId": "7db121ac-d8e6-479a-b17c-59e3fe5fabd8"
+        }
+      }
+    },
+    {
+      "title": "YouTube",
+      "slug": "youtube",
+      "icon": "youtube",
+      "intro": "Search YouTube and get videos, transcripts, comments, channels and playlists.",
+      "endpoints": [
+        "youtube.search",
+        "youtube.video",
+        "youtube.transcript",
+        "youtube.comments",
+        "youtube.comments.replies",
+        "youtube.channel",
+        "youtube.playlist"
+      ],
+      "example": "youtube.search",
+      "live": {
+        "input": {
+          "query": "rust tutorial",
+          "limit": 2
+        },
+        "response": {
+          "success": true,
+          "data": {
+            "results": [
+              {
+                "type": "video",
+                "id": "Wc0ZJo06oAw",
+                "url": "https://www.youtube.com/watch?v=Wc0ZJo06oAw",
+                "title": "The Ultimate Rust Beginners Guide (2026)",
+                "channel": {
+                  "id": "UCt6XPuD8u3YjvybuT-Xnj5A",
+                  "username": "SBJake",
+                  "name": "SBJake",
+                  "url": "https://www.youtube.com/channel/UCt6XPuD8u3YjvybuT-Xnj5A"
+                },
+                "durationSeconds": 422,
+                "views": 542826,
+                "thumbnail": "https://i.ytimg.com/vi/Wc0ZJo06oAw/hqdefault.jpg",
+                "isShort": false,
+                "isLive": false,
+                "createdAt": "2025-09-28T04:22:27.000Z"
+              },
+              {
+                "type": "video",
+                "id": "5C_HPTJg5ek",
+                "url": "https://www.youtube.com/watch?v=5C_HPTJg5ek",
+                "title": "Rust in 100 Seconds",
+                "channel": {
+                  "id": "UCsBjURrPoezykLs9EqgamOA",
+                  "username": "Fireship",
+                  "name": "Fireship",
+                  "url": "https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA"
+                },
+                "durationSeconds": 149,
+                "views": 2517643,
+                "thumbnail": "https://i.ytimg.com/vi/5C_HPTJg5ek/hqdefault.jpg",
+                "isShort": false,
+                "isLive": false,
+                "createdAt": "2022-09-28T10:54:51.000Z"
+              }
+            ],
+            "cursor": "2~"
+          },
+          "creditsUsed": 0,
+          "requestId": "b43ee2e9-cbfd-42c3-919e-dfb28878a054"
+        }
+      }
+    },
+    {
+      "title": "Reddit",
+      "slug": "reddit",
+      "icon": "reddit",
+      "intro": "Search Reddit and read posts, comment threads, subreddits, users and the links shared from a domain.",
+      "endpoints": [
+        "reddit.search",
+        "reddit.post",
+        "reddit.comments.more",
+        "reddit.subreddit",
+        "reddit.user",
+        "reddit.domain"
+      ],
+      "example": "reddit.search"
+    },
+    {
+      "title": "Instagram",
+      "slug": "instagram",
+      "icon": "instagram",
+      "intro": "Get Instagram profiles, posts, transcripts and comments, or look up any Instagram link.",
+      "endpoints": [
+        "instagram.profile",
+        "instagram.posts",
+        "instagram.post",
+        "instagram.url",
+        "instagram.search",
+        "instagram.transcript",
+        "instagram.comments",
+        "instagram.comments.replies"
+      ],
+      "example": "instagram.profile"
+    },
+    {
+      "title": "TikTok",
+      "slug": "tiktok",
+      "icon": "tiktok",
+      "intro": "Get TikTok profiles, videos, transcripts, hashtags, comments and search results, or look up any TikTok link.",
+      "endpoints": [
+        "tiktok.profile",
+        "tiktok.video",
+        "tiktok.url",
+        "tiktok.transcript",
+        "tiktok.posts",
+        "tiktok.hashtag",
+        "tiktok.comments",
+        "tiktok.comments.replies",
+        "tiktok.search"
+      ],
+      "example": "tiktok.profile"
+    },
+    {
+      "title": "Bluesky",
+      "slug": "bluesky",
+      "icon": "bluesky",
+      "intro": "Get Bluesky profiles, posts with their replies, and followers.",
+      "endpoints": [
+        "bluesky.profile",
+        "bluesky.posts",
+        "bluesky.post",
+        "bluesky.followers"
+      ],
+      "example": "bluesky.profile"
+    },
+    {
+      "title": "Mastodon",
+      "slug": "mastodon",
+      "icon": "mastodon",
+      "intro": "Get Mastodon profiles, posts and hashtag timelines.",
+      "endpoints": [
+        "mastodon.profile",
+        "mastodon.posts",
+        "mastodon.post",
+        "mastodon.hashtag"
+      ],
+      "example": "mastodon.profile"
+    },
+    {
+      "title": "Threads",
+      "slug": "threads",
+      "icon": "threads",
+      "intro": "Get Threads profiles and posts, and search Threads.",
+      "endpoints": [
+        "threads.profile",
+        "threads.posts",
+        "threads.post",
+        "threads.search"
+      ],
+      "example": "threads.search"
+    },
+    {
+      "title": "Telegram",
+      "slug": "telegram",
+      "icon": "telegram",
+      "intro": "Read public Telegram channels and their posts.",
+      "endpoints": [
+        "telegram.channel",
+        "telegram.posts",
+        "telegram.post"
+      ],
+      "example": "telegram.channel"
+    },
+    {
+      "title": "Local and leads",
+      "slug": "local-and-leads",
+      "icon": "map-location-dot",
+      "intro": "Find local businesses with their contact details, and read their reviews.",
+      "endpoints": [
+        "maps.search",
+        "maps.place",
+        "maps.reviews"
+      ],
+      "example": "maps.search"
+    },
+    {
+      "title": "Ad libraries",
+      "slug": "ad-libraries",
+      "icon": "rectangle-ad",
+      "intro": "See the ads that advertisers run on Meta, Google, TikTok and LinkedIn.",
+      "endpoints": [
+        "meta.ads.search",
+        "meta.ads.page",
+        "meta.ads.ad",
+        "google.ads.advertisers",
+        "google.ads.search",
+        "google.ads.ad",
+        "tiktok.ads.search",
+        "tiktok.ads.ad",
+        "linkedin.ads.search",
+        "linkedin.ads.ad"
+      ],
+      "example": "meta.ads.search"
+    },
+    {
+      "title": "Jobs",
+      "slug": "jobs",
+      "icon": "briefcase",
+      "intro": "Search job posts on LinkedIn, Upwork and Indeed, and read each post in full.",
+      "endpoints": [
+        "linkedin.jobs.search",
+        "linkedin.jobs.job",
+        "upwork.search",
+        "upwork.job",
+        "indeed.search",
+        "indeed.job"
+      ],
+      "example": "linkedin.jobs.search"
+    },
+    {
+      "title": "Keywords",
+      "slug": "keywords",
+      "icon": "key",
+      "intro": "See what people type into Google, YouTube and Amazon, and how interest in a topic changes over time.",
+      "endpoints": [
+        "google.suggest",
+        "youtube.suggest",
+        "amazon.suggest",
+        "google.trends.interest",
+        "google.trends.regions",
+        "google.trends.related",
+        "google.trends.trending"
+      ],
+      "example": "google.suggest"
+    },
+    {
+      "title": "Site and domain",
+      "slug": "site-and-domain",
+      "icon": "sitemap",
+      "intro": "List a site's pages, check its SEO, and look up a domain's owner, DNS records and technology. Check whether an email address can receive mail.",
+      "endpoints": [
+        "site.map",
+        "site.seo",
+        "domain.whois",
+        "domain.dns",
+        "domain.tech",
+        "email.check"
+      ],
+      "example": "domain.whois"
+    },
+    {
+      "title": "Crypto",
+      "slug": "crypto",
+      "icon": "bitcoin",
+      "intro": "Get coin prices, history and market movers, DEX pairs and tokens, wallet balances, token holders and exchange announcements.",
+      "endpoints": [
+        "crypto.coins",
+        "crypto.coin",
+        "crypto.history",
+        "crypto.trending",
+        "crypto.categories",
+        "crypto.movers",
+        "crypto.new",
+        "crypto.dex.search",
+        "crypto.dex.pairs",
+        "crypto.dex.token",
+        "crypto.dex.new",
+        "crypto.pump.coins",
+        "crypto.pump.coin",
+        "crypto.pump.trades",
+        "crypto.wallet",
+        "crypto.token.holders",
+        "crypto.binance.announcements"
+      ],
+      "example": "crypto.coin"
+    },
+    {
+      "title": "E-commerce",
+      "slug": "e-commerce",
+      "icon": "cart-shopping",
+      "intro": "Search products and read product pages on Amazon, Walmart, AliExpress and Shopify stores.",
+      "endpoints": [
+        "amazon.search",
+        "amazon.product",
+        "amazon.bestsellers",
+        "shopify.products",
+        "shopify.collections",
+        "shopify.store",
+        "walmart.search",
+        "walmart.product",
+        "aliexpress.search",
+        "aliexpress.product"
+      ],
+      "example": "amazon.search"
+    },
+    {
+      "title": "Reviews and apps",
+      "slug": "reviews-and-apps",
+      "icon": "star",
+      "intro": "Get app details, rankings and reviews from the App Store and Google Play, and places and reviews from Tripadvisor.",
+      "endpoints": [
+        "appstore.app",
+        "appstore.search",
+        "appstore.reviews",
+        "appstore.top",
+        "googleplay.app",
+        "googleplay.search",
+        "googleplay.reviews",
+        "tripadvisor.search",
+        "tripadvisor.place",
+        "tripadvisor.reviews"
+      ],
+      "example": "appstore.app"
+    },
+    {
+      "title": "Travel",
+      "slug": "travel",
+      "icon": "plane",
+      "intro": "Search flights, and find stays with their availability and reviews.",
+      "endpoints": [
+        "googletravel.flights",
+        "airbnb.search",
+        "airbnb.listing",
+        "airbnb.calendar",
+        "airbnb.reviews"
+      ],
+      "example": "googletravel.flights"
+    },
+    {
+      "title": "More social",
+      "slug": "more-social",
+      "icon": "users",
+      "intro": "Get posts and profiles from Pinterest, X, Kick, Snapchat, Tumblr, Quora and LinkedIn.",
+      "endpoints": [
+        "pinterest.search",
+        "pinterest.pin",
+        "pinterest.board",
+        "pinterest.user",
+        "x.tweet",
+        "kick.channel",
+        "kick.videos",
+        "kick.clips",
+        "snapchat.profile",
+        "tumblr.blog",
+        "tumblr.posts",
+        "tumblr.post",
+        "tumblr.search",
+        "quora.question",
+        "linkedin.company",
+        "linkedin.profile",
+        "linkedin.posts",
+        "linkedin.company.posts"
+      ],
+      "example": "pinterest.search"
+    },
+    {
+      "title": "More ads",
+      "slug": "more-ads",
+      "icon": "bullhorn",
+      "intro": "See the ads that advertisers run on Pinterest, Microsoft and Snapchat.",
+      "endpoints": [
+        "pinterest.ads.search",
+        "pinterest.ads.ad",
+        "microsoft.ads.search",
+        "microsoft.ads.ad",
+        "microsoft.ads.advertisers",
+        "snapchat.ads.search",
+        "snapchat.ads.ad"
+      ],
+      "example": "microsoft.ads.search"
+    },
+    {
+      "title": "Finance",
+      "slug": "finance",
+      "icon": "chart-line",
+      "intro": "Get stock quotes, price history, company profiles and ticker search.",
+      "endpoints": [
+        "finance.quote",
+        "finance.history",
+        "finance.search",
+        "finance.profile"
+      ],
+      "example": "finance.quote"
+    },
+    {
+      "title": "Real estate",
+      "slug": "real-estate",
+      "icon": "house",
+      "intro": "Search homes for sale or rent and read listing details on Zillow, Redfin, Realtor.com, Rightmove and ImmoScout24.",
+      "endpoints": [
+        "zillow.search",
+        "zillow.property",
+        "redfin.search",
+        "redfin.property",
+        "realtor.search",
+        "realtor.property",
+        "rightmove.search",
+        "rightmove.property",
+        "immoscout.search",
+        "immoscout.listing"
+      ],
+      "example": "zillow.search"
+    }
+  ],
+  "notes": {
+    "web.search": "Supports `from` and `to` dates, `country`, `language`, and domains to include or exclude.",
+    "youtube.transcript": "Pass a video id or URL in `video`. Set `includeTimestamps` to get each line with its time.",
+    "endpoints": "Use this to find the right endpoint and its input before you call it. It needs no API key and costs nothing."
+  }
+}

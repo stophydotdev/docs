@@ -1,0 +1,38 @@
+---
+title: "Cursor"
+description: "Give Cursor live web data over MCP."
+---
+
+## Prerequisites
+
+- [Cursor](https://cursor.com)
+- A Stophy API key in `STOPHY_API_KEY`. [Get one](https://stophy.dev/signup).
+
+## Add Stophy
+
+Add this to `.cursor/mcp.json` in your project, or to `~/.cursor/mcp.json` to use it in every project:
+
+```json
+{
+  "mcpServers": {
+    "stophy": {
+      "url": "https://api.stophy.dev/mcp",
+      "headers": {
+        "Authorization": "Bearer ${env:STOPHY_API_KEY}"
+      }
+    }
+  }
+}
+```
+
+Cursor reads the key from your environment, so the file holds no secret and is safe to commit. Start Cursor from a shell where `STOPHY_API_KEY` is set.
+
+To also get one tool per endpoint for some sources, use `https://api.stophy.dev/mcp?toolsets=reddit,youtube` as the URL.
+
+## Check it
+
+Open the MCP section of Cursor Settings and check that `stophy` is on and lists its tools. Then ask the agent:
+
+```text
+Use Stophy to find coffee shops near Austin, TX with their ratings.
+```

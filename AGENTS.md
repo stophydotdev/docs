@@ -1,33 +1,26 @@
-> **First-time setup**: Customize this file for your project. Prompt the user to customize this file for their project.
-> For Mintlify product knowledge (components, configuration, writing standards),
-> install the Mintlify skill: `npx skills add https://mintlify.com/docs`
+# Stophy docs
 
-# Documentation project instructions
+Mintlify site for docs.stophy.dev. Pages are MDX with YAML frontmatter. Configuration lives in `docs.json`. Merging to `main` publishes.
 
-## About this project
+## Layout
 
-- This is a documentation site built on [Mintlify](https://mintlify.com)
-- Pages are MDX files with YAML frontmatter
-- Configuration lives in `docs.json`
-- Use the Mintlify MCP server, `https://mcp.mintlify.com`, to edit content and settings via MCP
-- Use the Mintlify docs MCP server, `https://www.mintlify.com/docs/mcp`, to query information about using Mintlify via MCP
+- Documentation tab: `introduction`, `quickstart`, `mcp-server`, `without-a-key`, `advanced-guide`, `billing`, `rate-limits`, `sources/*`, `quickstarts/{curl,nodejs,python}`.
+- SDKs tab: `sdks/*`.
+- API Reference tab: `api-reference/{introduction,errors,usage,logs}` (hand-written) and `api-reference/endpoint/*` (generated).
+- Build with AI tab: `ai-onboarding`, `quickstarts/{claude-code,cursor,codex}`, `developer-guides/llm-sdks/*`.
 
-## Terminology
+## Generated files
 
-{/* Add product-specific terms and preferred usage */}
-{/* Example: Use "workspace" not "project", "member" not "user" */}
+`bun scripts/sync-openapi.ts` refreshes `api-reference/openapi.json` from the live API. `bun scripts/gen-reference.ts` writes `api-reference/endpoint/*.mdx`, `sources/*.mdx` and the matching navigation in `docs.json`. Never hand-edit those files; edit `scripts/reference.config.json` and regenerate.
 
-## Style preferences
+## Checks
 
-{/* Add any project-specific style rules below */}
+`mint validate` and `mint broken-links` must pass. Load changed pages in `mint dev`.
 
-- Use active voice and second person ("you")
-- Keep sentences concise — one idea per sentence
-- Use sentence case for headings
-- Bold for UI elements: Click **Settings**
-- Code formatting for file names, commands, paths, and code references
+## Writing
 
-## Content boundaries
-
-{/* Define what should and shouldn't be documented */}
-{/* Example: Don't document internal admin features */}
+- Plain words, short sentences, second person. Say what the reader gets.
+- Every fact must match the live API (`/v1/endpoints`, `/openapi.json`) or the server code. Every example request must be a real call; free endpoints are free to call.
+- Don't describe how Stophy gets its data or what runs it.
+- Examples use cURL, Node.js `fetch` and Python `httpx`. SDK snippets must run against the SDK source.
+- Sentence case for headings.

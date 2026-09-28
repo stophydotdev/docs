@@ -1,0 +1,139 @@
+---
+title: "Node SDK"
+description: "Use Stophy from Node.js and TypeScript."
+---
+
+<Note>Version 1.0.0 is being released. See the [overview](/sdks/overview).</Note>
+
+## Install
+
+```bash
+npm install stophy
+```
+
+The package has no runtime dependencies and ships ESM, CommonJS and type definitions.
+
+## Use your API key
+
+`apiKey` defaults to the `STOPHY_API_KEY` environment variable, so `new Stophy()` picks it up. `new Stophy("your key")` works too.
+
+```ts
+import { Stophy } from "stophy";
+
+const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
+
+const posts = await stophy.reddit.search({ query: "bun runtime", limit: 10 });
+console.log(posts.data, posts.creditsUsed);
+
+const replies = await stophy.youtube.comments.replies({ video: "dQw4w9WgXcQ", cursor: "..." });
+console.log(replies.data);
+```
+
+Methods follow the endpoint id. Nested ids are nested properties: `youtube.comments.replies` is `stophy.youtube.comments.replies(...)`. Inputs and responses are typed from the [API reference](/api-reference/introduction), so a missing required field is a compile error.
+
+## Get markdown
+
+Pass `{ format: "markdown" }` as the second argument to get a string:
+
+```ts
+import { Stophy } from "stophy";
+
+const stophy = new Stophy();
+const page = await stophy.youtube.search(
+  { query: "rust tutorial", limit: 2 },
+  { format: "markdown" },
+);
+console.log(page);
+```
+
+## Paging
+
+```ts
+import { Stophy } from "stophy";
+
+const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
+let cursor: string | undefined;
+do {
+  const page = await stophy.reddit.search({ query: "bun runtime", cursor });
+  console.log(page.data);
+  cursor = page.data.cursor;
+} while (cursor);
+```
+
+## Find endpoints
+
+```ts
+import { Stophy } from "stophy";
+
+const catalog = await new Stophy().endpoints();
+console.log(catalog.endpoints.length);
+```
+
+## Errors
+
+```ts
+import { Stophy, StophyError } from "stophy";
+
+const stophy = new Stophy();
+
+try {
+  await stophy.reddit.search({ query: "bun runtime" });
+} catch (error) {
+  if (error instanceof StophyError) {
+    console.log(error.status, error.code, error.message);
+    console.log(error.retryable, error.retryAfterSeconds, error.requestId);
+  }
+}
+```
+
+`StophyError` has `status`, `code`, `message`, `retryable`, `retryAfterSeconds` and `requestId`. See [Errors](/api-reference/errors) for every code.
+
+## Options
+
+```ts
+import { Stophy } from "stophy";
+
+const stophy = new Stophy({
+  apiKey: process.env.STOPHY_API_KEY,
+  timeoutMs: 20_000,
+  maxRetries: 3,
+  retryInitialDelayMs: 500,
+  headers: { "x-app": "my-app" },
+});
+
+const controller = new AbortController();
+setTimeout(() => controller.abort(), 5_000);
+await stophy.web.search({ query: "bun runtime" }, { signal: controller.signal });
+```
+
+| Option | Default | What it does |
+| --- | --- | --- |
+| `apiKey` | `STOPHY_API_KEY` | Your API key. Leave it unset to use the free endpoints. |
+| `baseUrl` | `STOPHY_BASE_URL` or `https://api.stophy.dev` | Where requests go |
+| `timeoutMs` | `30000` | Timeout for each attempt. A timeout is not retried. |
+| `maxRetries` | `2` | Retries for network errors and `429`/`5xx`. `0` turns them off. |
+| `retryInitialDelayMs` | `500` | Base backoff delay. Each retry waits longer than the last. |
+| `headers` | none | Extra headers on every request |
+| `fetch` | global `fetch` | Your own `fetch` |
+
+Per call, pass `{ signal }` to cancel a request and `{ format: "markdown" }` for markdown.
+
+## Usage and logs
+
+These need an API key.
+
+```ts
+import { Stophy } from "stophy";
+
+const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
+
+const usage = await stophy.usage();
+console.log(usage.balanceMicros, usage.creditsUsed, usage.requestCount);
+
+const logs = await stophy.logs({ days: 7, page: 0, endpoint: "web.search" });
+for (const entry of logs.logs) {
+  console.log(entry.createdAt, entry.endpoint, entry.credits);
+}
+```
+
+`balanceMicros` is your balance in millionths of a dollar: `1000000` is $1.
