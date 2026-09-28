@@ -1,0 +1,105 @@
+---
+title: "Introduction"
+description: "Base URL, auth, the response envelope, markdown and request IDs."
+---
+
+<Note>
+  **For AI agents:** read [stophy.dev/agents.md](https://stophy.dev/agents.md), or [llms.txt](https://docs.stophy.dev/llms.txt) for an index of these docs.
+</Note>
+
+Every Stophy endpoint shares the same base URL, auth, and response shape.
+
+## Base URL
+
+```bash
+https://api.stophy.dev
+```
+
+Every data endpoint is `POST /v1/<source>/<endpoint>` and takes its input as a JSON object body with `content-type: application/json`. Unknown fields are rejected with `400`.
+
+## Authentication
+
+Send your API key on every request:
+
+```bash
+Authorization: Bearer <key>
+```
+
+Get a key at [stophy.dev/signup](https://stophy.dev/signup). `web.search`, `youtube.search` and `youtube.transcript` also work without a key, within [free limits](/without-a-key). Any other endpoint without a valid key answers `401` with code `unauthorized`.
+
+<CodeGroup>
+
+```bash cURL
+curl -X POST https://api.stophy.dev/v1/reddit/search \
+  -H "Authorization: Bearer $STOPHY_API_KEY" \
+  -H "content-type: application/json" \
+  -d '{"query":"bun runtime"}'
+```
+
+```ts Node.js
+const response = await fetch("https://api.stophy.dev/v1/reddit/search", {
+  method: "POST",
+  headers: {
+    authorization: `Bearer ${process.env.STOPHY_API_KEY}`,
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({ query: "bun runtime" }),
+});
+```
+
+```python Python
+import os
+import httpx
+
+response = httpx.post(
+    "https://api.stophy.dev/v1/reddit/search",
+    headers={"Authorization": f"Bearer {os.environ['STOPHY_API_KEY']}"},
+    json={"query": "bun runtime"},
+    timeout=30,
+)
+```
+
+</CodeGroup>
+
+## Response envelope
+
+A successful call answers `200`:
+
+```json
+{
+  "success": true,
+  "data": { },
+  "creditsUsed": 1,
+  "requestId": "7db121ac-d8e6-479a-b17c-59e3fe5fabd8"
+}
+```
+
+| Field | What it is |
+| --- | --- |
+| `success` | `true` |
+| `data` | The result. Its shape is on each endpoint's page. |
+| `creditsUsed` | What this call cost. See [Credits](/billing). |
+| `requestId` | The ID of this request |
+
+Empty values are left out of `data`: nulls, empty strings, empty objects and empty lists are not sent.
+
+A failed call answers with an error status and `{ "success": false, "error": { ... } }`. See [Errors](/api-reference/errors).
+
+## Markdown
+
+Send `Accept: text/markdown` to get `data` as a readable markdown page instead of JSON. The response is `content-type: text/markdown; charset=utf-8`. Errors are still JSON. See the [advanced guide](/advanced-guide#markdown-output).
+
+## Headers
+
+| Header | What it is |
+| --- | --- |
+| `X-Request-ID` | The ID of this request. It matches `requestId`. |
+| `x-credits-used` | What this call cost, also on markdown responses |
+| `X-RateLimit-Limit`, `X-RateLimit-Remaining` | Your [rate limit](/rate-limits) and what is left |
+| `Retry-After` | On `429` and some `503`s: seconds to wait before retrying |
+
+Include the request ID when you contact [support](mailto:support@stophy.dev).
+
+## Timeouts
+
+Every call answers or fails within 25 seconds.

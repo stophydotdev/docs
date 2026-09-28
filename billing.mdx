@@ -1,0 +1,34 @@
+---
+title: "Credits"
+description: "What a call costs and how you pay for it."
+---
+
+Stophy uses credits. You buy credits ahead of time and each successful call uses some.
+
+## Price
+
+- 1,000 credits cost $2.
+- New accounts start with 500 free credits.
+- Top up at [stophy.dev](https://stophy.dev). The smallest top-up is $5.
+
+## What a call costs
+
+Each endpoint has a cost in credits. Find it in the [API reference](/api-reference/introduction), on each source page, or in `GET https://api.stophy.dev/v1/endpoints` (`credits` and `perItems`).
+
+- Most endpoints cost a fixed number of credits per call.
+- Some charge per group of results. When `perItems` is set, a call costs `credits` for every `perItems` items it returns, and at least `credits`. For example, `web.search` costs 1 credit per 10 results, so 25 results cost 3 credits.
+- Failed calls cost nothing.
+- Calls to the three [free endpoints](/without-a-key) without a key cost nothing.
+
+## See what a call cost
+
+Every successful response tells you:
+
+- `creditsUsed` in the JSON body
+- the `x-credits-used` header, also on markdown responses
+
+For your balance and history, use [`GET /v1/usage`](/api-reference/usage) and [`GET /v1/logs`](/api-reference/logs).
+
+## Running out
+
+When your balance is too low for a call, it answers `402` with code `insufficientCredits` and nothing is charged. Top up and try again.

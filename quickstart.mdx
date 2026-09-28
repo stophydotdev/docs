@@ -1,28 +1,28 @@
 ---
 title: "Quickstart"
-description: "Make a first call without a key, then with one."
+description: "Make your first call without a key, then with one."
 ---
 
-## 1. Try it without a key
+## 1. Call it without a key
 
-`web.search`, `youtube.search` and `youtube.transcript` work without an API key, within free limits.
+`web.search`, `youtube.search` and `youtube.transcript` work without an API key, within [free limits](/without-a-key).
 
 <CodeGroup>
 
-```bash curl
+```bash cURL
 curl -X POST https://api.stophy.dev/v1/web/search \
   -H "content-type: application/json" \
-  -d '{"query":"bun runtime","limit":5}'
+  -d '{"query":"bun runtime","limit":3}'
 ```
 
-```ts TypeScript
+```ts Node.js
 const response = await fetch("https://api.stophy.dev/v1/web/search", {
   method: "POST",
   headers: { "content-type": "application/json" },
-  body: JSON.stringify({ query: "bun runtime", limit: 5 }),
+  body: JSON.stringify({ query: "bun runtime", limit: 3 }),
 });
 const { data } = await response.json();
-console.log(data.results);
+for (const result of data.results) console.log(result.title, result.url);
 ```
 
 ```python Python
@@ -30,39 +30,40 @@ import httpx
 
 response = httpx.post(
     "https://api.stophy.dev/v1/web/search",
-    json={"query": "bun runtime", "limit": 5},
+    json={"query": "bun runtime", "limit": 3},
     timeout=30,
 )
-print(response.json()["data"]["results"])
+for result in response.json()["data"]["results"]:
+    print(result["title"], result["url"])
 ```
 
 </CodeGroup>
 
 ## 2. Get an API key
 
-Sign up at [stophy.dev/signup](https://stophy.dev/signup). New accounts start with 500 free credits. Create a key and store it as `STOPHY_API_KEY`.
+Sign up at [stophy.dev/signup](https://stophy.dev/signup). New accounts start with 500 free credits. Create a key and store it as `STOPHY_API_KEY`. Never put it in code.
 
 ## 3. Call any endpoint
 
-With a key, all 161 endpoints are open. Send the key as a Bearer token.
+Send the key as a Bearer token. Every endpoint is now open.
 
 <CodeGroup>
 
-```bash curl
+```bash cURL
 curl -X POST https://api.stophy.dev/v1/reddit/search \
   -H "Authorization: Bearer $STOPHY_API_KEY" \
   -H "content-type: application/json" \
-  -d '{"query":"bun runtime"}'
+  -d '{"query":"bun runtime","limit":10}'
 ```
 
-```ts TypeScript
+```ts Node.js
 const response = await fetch("https://api.stophy.dev/v1/reddit/search", {
   method: "POST",
   headers: {
     authorization: `Bearer ${process.env.STOPHY_API_KEY}`,
     "content-type": "application/json",
   },
-  body: JSON.stringify({ query: "bun runtime" }),
+  body: JSON.stringify({ query: "bun runtime", limit: 10 }),
 });
 const { data, creditsUsed } = await response.json();
 ```
@@ -74,7 +75,7 @@ import httpx
 response = httpx.post(
     "https://api.stophy.dev/v1/reddit/search",
     headers={"Authorization": f"Bearer {os.environ['STOPHY_API_KEY']}"},
-    json={"query": "bun runtime"},
+    json={"query": "bun runtime", "limit": 10},
     timeout=30,
 )
 data = response.json()["data"]
@@ -82,6 +83,13 @@ data = response.json()["data"]
 
 </CodeGroup>
 
-## Find the right endpoint
+## Next steps
 
-`GET https://api.stophy.dev/v1/endpoints` lists every endpoint with its input schema, its cost, whether it works without a key, and an example input when there is one. The [API reference](https://api.stophy.dev/openapi.json) has the same data as OpenAPI.
+<CardGroup cols={2}>
+  <Card title="Find an endpoint" icon="magnifying-glass" href="/advanced-guide#choosing-an-endpoint">
+    Search the catalog for the data you need.
+  </Card>
+  <Card title="Connect over MCP" icon="plug" href="/mcp-server">
+    Let your coding agent call Stophy.
+  </Card>
+</CardGroup>

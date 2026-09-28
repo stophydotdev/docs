@@ -5,11 +5,11 @@ description: "Three endpoints you can call before you sign up."
 
 These endpoints answer without an API key:
 
-| Endpoint | Path |
+| Endpoint | What you get |
 | --- | --- |
-| `web.search` | `POST /v1/web/search` |
-| `youtube.search` | `POST /v1/youtube/search` |
-| `youtube.transcript` | `POST /v1/youtube/transcript` |
+| [`web.search`](/api-reference/endpoint/web-search) | Web search results |
+| [`youtube.search`](/api-reference/endpoint/youtube-search) | YouTube videos, channels and playlists |
+| [`youtube.transcript`](/api-reference/endpoint/youtube-transcript) | The transcript of a YouTube video |
 
 ```bash
 curl -X POST https://api.stophy.dev/v1/youtube/transcript \
@@ -23,8 +23,15 @@ Without a key, per IP address:
 
 - 10 requests a minute and 50 a day
 - `limit` at most 10
-- the first page only, with no `cursor`
+- the first page only: a `cursor` is refused
 
-When you go over, the API answers `429` with code `rateLimited` and a `Retry-After` header. A `limit` over 10 or a `cursor` answers `400`.
+Calls without a key cost nothing. The response headers show your daily allowance: `X-RateLimit-Limit` and `X-RateLimit-Remaining`.
 
-Calls without a key cost nothing. For more, [get an API key](https://stophy.dev/signup). New accounts start with 500 free credits.
+| When | Status | Code |
+| --- | --- | --- |
+| You go over the free limit | `429` | `rateLimited`, with a `Retry-After` header |
+| `limit` is over 10 | `400` | `invalidRequest` |
+| You send a `cursor` | `400` | `invalidRequest` |
+| You call any other endpoint | `401` | `unauthorized` |
+
+Move to a key as soon as you can. [Sign up](https://stophy.dev/signup) and you start with 500 free credits.

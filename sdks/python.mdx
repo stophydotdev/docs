@@ -1,0 +1,162 @@
+---
+title: "Python SDK"
+description: "Use Stophy from Python, sync or async."
+---
+
+<Note>Version 1.0.0 is being released. See the [overview](/sdks/overview).</Note>
+
+## Install
+
+```bash
+pip install stophy
+```
+
+It needs Python 3.9 or newer.
+
+## Search without a key
+
+```python
+from stophy import Stophy
+
+stophy = Stophy()
+result = stophy.web.search(query="bun runtime", limit=3)
+
+for item in result["data"]["results"]:
+    print(item["title"], item["url"])
+```
+
+Responses are plain dictionaries shaped like the [API reference](/api-reference/introduction).
+
+## Use your API key
+
+`api_key` defaults to the `STOPHY_API_KEY` environment variable, so `Stophy()` picks it up.
+
+```python
+import os
+
+from stophy import Stophy
+
+stophy = Stophy(api_key=os.environ["STOPHY_API_KEY"])
+
+posts = stophy.reddit.search(query="bun runtime", limit=10)
+print(posts["data"], posts["creditsUsed"])
+
+replies = stophy.youtube.comments.replies(video="dQw4w9WgXcQ", cursor="...")
+print(replies["data"])
+```
+
+Methods follow the endpoint id, with keyword arguments in snake_case. Nested ids are nested attributes: `youtube.comments.replies` is `stophy.youtube.comments.replies(...)`. A JSON field named `from` is passed as `from_`.
+
+## Get markdown
+
+Pass `format="markdown"` to get a string:
+
+```python
+from stophy import Stophy
+
+with Stophy() as stophy:
+    page = stophy.youtube.search(query="rust tutorial", limit=2, format="markdown")
+    print(page)
+```
+
+## Async
+
+`AsyncStophy` has the same methods. Await them.
+
+```python
+import asyncio
+
+from stophy import AsyncStophy
+
+
+async def main() -> None:
+    async with AsyncStophy() as stophy:
+        result = await stophy.web.search(query="bun runtime", limit=3)
+        for item in result["data"]["results"]:
+            print(item["title"])
+
+
+asyncio.run(main())
+```
+
+## Paging
+
+```python
+import os
+
+from stophy import Stophy
+
+stophy = Stophy(api_key=os.environ["STOPHY_API_KEY"])
+cursor = None
+while True:
+    page = stophy.reddit.search(query="bun runtime", cursor=cursor)
+    print(page["data"])
+    cursor = page["data"].get("cursor")
+    if not cursor:
+        break
+```
+
+## Errors
+
+```python
+from stophy import Stophy, StophyError
+
+stophy = Stophy()
+
+try:
+    stophy.reddit.search(query="bun runtime")
+except StophyError as error:
+    print(error.status, error.code, str(error))
+    print(error.retryable, error.retry_after_seconds, error.request_id)
+```
+
+`StophyError` has `status`, `code`, `retryable`, `retry_after_seconds` and `request_id`. The message is `str(error)`. See [Errors](/api-reference/errors) for every code.
+
+## Options
+
+```python
+import os
+
+from stophy import Stophy
+
+stophy = Stophy(
+    api_key=os.environ.get("STOPHY_API_KEY"),
+    timeout=20.0,
+    max_retries=3,
+    retry_initial_delay=0.5,
+    headers={"x-app": "my-app"},
+)
+```
+
+| Option | Default | What it does |
+| --- | --- | --- |
+| `api_key` | `STOPHY_API_KEY` | Your API key. Leave it unset to use the free endpoints. |
+| `base_url` | `STOPHY_BASE_URL` or `https://api.stophy.dev` | Where requests go |
+| `timeout` | `30.0` | Timeout in seconds |
+| `max_retries` | `2` | Retries for network errors and `429`/`5xx`. `0` turns them off. |
+| `retry_initial_delay` | `0.5` | Base backoff delay in seconds. Each retry waits longer than the last. |
+| `headers` | none | Extra headers on every request |
+| `transport` | none | An `httpx` transport, for tests |
+
+Use the client as a context manager, or call `close()` when you are done.
+
+## Usage and logs
+
+These need an API key.
+
+```python
+import os
+
+from stophy import Stophy
+
+stophy = Stophy(api_key=os.environ["STOPHY_API_KEY"])
+
+usage = stophy.usage()
+print(usage["balanceMicros"], usage["creditsUsed"], usage["requestCount"])
+
+logs = stophy.logs(days=7, page=0, endpoint="web.search")
+for entry in logs["logs"]:
+    print(entry["createdAt"], entry["endpoint"], entry["credits"])
+```
+
+`balanceMicros` is your balance in millionths of a dollar: `1000000` is $1.

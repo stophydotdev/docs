@@ -9,18 +9,18 @@ npm i -g mint
 mint dev
 ```
 
-Open http://localhost:3000.
-
-Before you push, run:
-
-```bash
-mint validate
-mint broken-links
-```
+Open http://localhost:3000. Before you open a pull request, run `mint validate` and `mint broken-links`.
 
 ## The API reference
 
-The API reference tab is generated from the live spec at https://api.stophy.dev/openapi.json (set in `docs.json`). There is no file to sync. `mint dev` reads the live spec. The published site reads it when it builds, so after an API change, redeploy the docs from the Mintlify dashboard to pick up new endpoints.
+The API reference and the Sources pages are generated from the API's OpenAPI spec:
+
+```bash
+bun scripts/sync-openapi.ts    # download https://api.stophy.dev/openapi.json into api-reference/openapi.json
+bun scripts/gen-reference.ts   # write api-reference/endpoint/*.mdx, sources/*.mdx and their navigation in docs.json
+```
+
+Run both after the API changes, then commit the result. Don't edit the generated files. To change what they say, edit `scripts/reference.config.json` (source names, source pages, and per-endpoint notes) or the API's spec.
 
 ## Publishing
 

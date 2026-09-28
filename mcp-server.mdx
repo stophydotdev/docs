@@ -1,0 +1,57 @@
+---
+title: "MCP server"
+description: "Give Claude Code, Cursor, Codex or any MCP client live web data."
+sidebarTitle: "Get Started"
+---
+
+Stophy is a remote MCP server. Point your client at it with your API key and your agent can search for the right endpoint, read its input, and call it.
+
+| | |
+| --- | --- |
+| URL | `https://api.stophy.dev/mcp` |
+| Transport | Streamable HTTP |
+| Auth | `Authorization: Bearer <key>` on every request. MCP always needs a key. |
+
+Get a key at [stophy.dev/signup](https://stophy.dev/signup). New accounts start with 500 free credits.
+
+## Set up your client
+
+<CardGroup cols={3}>
+  <Card title="Claude Code" icon="terminal" href="/quickstarts/claude-code">
+    One command.
+  </Card>
+  <Card title="Cursor" icon="arrow-pointer" href="/quickstarts/cursor">
+    Add it to `mcp.json`.
+  </Card>
+  <Card title="Codex" icon="code" href="/quickstarts/codex">
+    One command.
+  </Card>
+</CardGroup>
+
+For any other client, use the URL above with the streamable HTTP transport and the `Authorization` header.
+
+## Tools
+
+By default the server gives your agent three tools, not one per endpoint. That keeps its tool list short.
+
+| Tool | Input | What it does |
+| --- | --- | --- |
+| `stophy_search_endpoints` | `{ query?, category? }` | Finds endpoints by words or by source. Each match has an id, a one-line description and its cost. `category` is a source such as `reddit`, or an id prefix such as `google.ads`. |
+| `stophy_describe_endpoint` | `{ id }` | Returns one endpoint's input schema, its cost, and whether it pages with `cursor`. |
+| `stophy_call` | `{ id, input?, format? }` | Runs the endpoint with `input` as its JSON body. `format` is `markdown` (the default) or `json`. |
+
+Results are markdown unless you ask for JSON, and include `creditsUsed`. A failed call comes back as a tool error with the API's `code`, `message`, `retryable` and, when there is one, `retryAfterSeconds`.
+
+## Toolsets
+
+Add `?toolsets=` to the URL to also get one tool per endpoint of the sources you name. Tools are named after the endpoint, with dots as underscores, such as `reddit_search`.
+
+```text
+https://api.stophy.dev/mcp?toolsets=reddit,youtube
+```
+
+Leave `toolsets` off unless you want those tools in your client's tool list.
+
+## Cost and limits
+
+An MCP call costs the same credits as the same call over HTTP, and counts toward the same [rate limits](/rate-limits).

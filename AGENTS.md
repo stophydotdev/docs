@@ -1,22 +1,26 @@
 # Stophy docs
 
-Mintlify site for docs.stophy.dev. Pages are MDX with YAML frontmatter. Configuration lives in `docs.json`.
+Mintlify site for docs.stophy.dev. Pages are MDX with YAML frontmatter. Configuration lives in `docs.json`. Merging to `main` publishes.
 
-## Commands
+## Layout
 
-- `mint dev` runs the site at http://localhost:3000.
-- `mint validate` and `mint broken-links` must pass before a PR.
+- Documentation tab: `introduction`, `quickstart`, `mcp-server`, `without-a-key`, `advanced-guide`, `billing`, `rate-limits`, `sources/*`, `quickstarts/{curl,nodejs,python}`.
+- SDKs tab: `sdks/*`.
+- API Reference tab: `api-reference/{introduction,errors,usage,logs}` (hand-written) and `api-reference/endpoint/*` (generated).
+- Build with AI tab: `ai-onboarding`, `quickstarts/{claude-code,cursor,codex}`, `developer-guides/llm-sdks/*`.
 
-## API reference
+## Generated files
 
-Generated from https://api.stophy.dev/openapi.json (the `openapi` field of the "API reference" tab). Don't hand-write endpoint pages. To change an endpoint's docs, change the API's spec. After an API change, redeploy the docs from the Mintlify dashboard.
+`bun scripts/sync-openapi.ts` refreshes `api-reference/openapi.json` from the live API. `bun scripts/gen-reference.ts` writes `api-reference/endpoint/*.mdx`, `sources/*.mdx` and the matching navigation in `docs.json`. Never hand-edit those files; edit `scripts/reference.config.json` and regenerate.
+
+## Checks
+
+`mint validate` and `mint broken-links` must pass. Load changed pages in `mint dev`.
 
 ## Writing
 
 - Plain words, short sentences, second person. Say what the reader gets.
-- Every fact must match the live API (`GET https://api.stophy.dev/v1/endpoints`, `/openapi.json`) or the server code.
+- Every fact must match the live API (`/v1/endpoints`, `/openapi.json`) or the server code. Every example request must be a real call; free endpoints are free to call.
 - Don't describe how Stophy gets its data or what runs it.
-- Examples use curl, TypeScript `fetch` and Python `httpx`.
+- Examples use cURL, Node.js `fetch` and Python `httpx`. SDK snippets must run against the SDK source.
 - Sentence case for headings.
-
-Merging to `main` publishes the site.

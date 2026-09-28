@@ -1,0 +1,63 @@
+---
+title: "Anthropic"
+description: "Give Claude live web search with Stophy."
+---
+
+## Setup
+
+```bash
+npm install @anthropic-ai/sdk zod
+```
+
+Set `ANTHROPIC_API_KEY` in your environment. `STOPHY_API_KEY` is optional for this example.
+
+## The Stophy tool
+
+This function calls `web.search` and returns the results as markdown, which is short and easy for a model to read. It works without a key, within [free limits](/without-a-key). Set `STOPHY_API_KEY` to lift them.
+
+```ts stophy.ts
+export async function stophySearch(query: string): Promise<string> {
+  const headers: Record<string, string> = {
+    "content-type": "application/json",
+    accept: "text/markdown",
+  };
+  if (process.env.STOPHY_API_KEY) headers.authorization = `Bearer ${process.env.STOPHY_API_KEY}`;
+  const response = await fetch("https://api.stophy.dev/v1/web/search", {
+    method: "POST",
+    headers,
+    body: JSON.stringify({ query, limit: 5 }),
+  });
+  return response.text();
+}
+```
+
+## Use it as a tool
+
+Define the search as a tool with `betaZodTool`. The tool runner calls it whenever Claude asks, and returns Claude's final message.
+
+```ts
+import Anthropic from "@anthropic-ai/sdk";
+import { betaZodTool } from "@anthropic-ai/sdk/helpers/beta/zod";
+import { z } from "zod";
+import { stophySearch } from "./stophy";
+
+const client = new Anthropic();
+
+const webSearch = betaZodTool({
+  name: "web_search",
+  description: "Search the web. Returns the top results as markdown.",
+  inputSchema: z.object({ query: z.string().describe("What to search for") }),
+  run: async ({ query }) => stophySearch(query),
+});
+
+const message = await client.beta.messages.toolRunner({
+  model: "claude-opus-5",
+  max_tokens: 16000,
+  tools: [webSearch],
+  messages: [{ role: "user", content: "What changed in the latest Bun release?" }],
+});
+
+for (const block of message.content) {
+  if (block.type === "text") console.log(block.text);
+}
+```
