@@ -1,0 +1,101 @@
+---
+title: "Introduction"
+description: "Use the Stophy REST API: one base URL, bearer key authentication, a JSON body for every endpoint, and one response shape for every call."
+og:title: "API reference | Stophy"
+og:description: "Use the Stophy REST API: one base URL, bearer key authentication, a JSON body for every endpoint, and one response shape for every call."
+mode: "wide"
+---
+
+<Note>
+  **For AI agents:** use [llms.txt](https://docs.stophy.dev/llms.txt) for a full index of these docs.
+</Note>
+
+Every Stophy endpoint uses the same base URL and bearer key. Data endpoints take a JSON body and return a consistent response.
+
+## Features
+
+<CardGroup cols={3}>
+  <Card title="Web search and pages" icon="globe" color="f5d90a" href="/sources/web">Web and news search, site maps, SEO, domains and emails.</Card>
+  <Card title="Video" icon="video" color="f5d90a" href="/sources/video">YouTube, TikTok and Kick videos, transcripts and comments.</Card>
+  <Card title="Social" icon="users" color="f5d90a" href="/sources/social">Posts, profiles and comments from Reddit, Instagram, X and more.</Card>
+  <Card title="Places and travel" icon="map-location-dot" color="f5d90a" href="/sources/places-and-travel">Google Maps places and reviews, flights, Tripadvisor and Airbnb.</Card>
+  <Card title="Shopping" icon="cart-shopping" color="f5d90a" href="/sources/shopping">Products and prices from Amazon, Walmart, AliExpress and Shopify.</Card>
+  <Card title="Apps" icon="mobile" color="f5d90a" href="/sources/apps">App Store and Google Play apps, charts and reviews.</Card>
+  <Card title="Jobs" icon="briefcase" color="f5d90a" href="/sources/jobs">Job listings from LinkedIn, Indeed and Upwork.</Card>
+  <Card title="Real estate" icon="house" color="f5d90a" href="/sources/real-estate">Homes from Zillow, Redfin, Realtor.com, Rightmove and ImmoScout24.</Card>
+  <Card title="Ads" icon="bullhorn" color="f5d90a" href="/sources/ads">Ad libraries from Meta, Google, TikTok, LinkedIn and more.</Card>
+  <Card title="Finance and crypto" icon="chart-line" color="f5d90a" href="/sources/finance-and-crypto">Stock quotes and history, crypto prices, DEX pairs and wallets.</Card>
+</CardGroup>
+
+See every endpoint in the sidebar, grouped the same way.
+
+## Base URL
+
+```text
+https://api.stophy.dev
+```
+
+Data endpoints use `POST /v1/<source>/<endpoint>` with a JSON object body. Unknown input fields return `400`.
+
+## Authentication
+
+Create a key in the [dashboard](https://stophy.dev/signup). Send it with every request:
+
+```text
+Authorization: Bearer <key>
+```
+
+<CodeGroup>
+
+```bash cURL icon="terminal"
+curl -X POST https://api.stophy.dev/v1/reddit/search \
+  -H "Authorization: Bearer $STOPHY_API_KEY" \
+  -H "content-type: application/json" \
+  -d '{"query":"bun runtime"}'
+```
+
+```ts TypeScript icon="/images/icons/typescript.svg"
+const response = await fetch("https://api.stophy.dev/v1/reddit/search", {
+  method: "POST",
+  headers: {
+    authorization: "Bearer " + process.env.STOPHY_API_KEY,
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({ query: "bun runtime" }),
+});
+```
+
+```python Python icon="python"
+import os
+import requests
+
+response = requests.post(
+    "https://api.stophy.dev/v1/reddit/search",
+    headers={"Authorization": f"Bearer {os.environ['STOPHY_API_KEY']}"},
+    json={"query": "bun runtime"},
+    timeout=30,
+)
+```
+
+</CodeGroup>
+
+An invalid or missing key returns `401` with code `unauthorized`.
+
+## Response envelope
+
+A successful call returns `success`, `data`, `creditsUsed`, and `requestId`:
+
+```json
+{
+  "success": true,
+  "data": {},
+  "creditsUsed": 1,
+  "requestId": "7db121ac-d8e6-479a-b17c-59e3fe5fabd8"
+}
+```
+
+The shape of `data` depends on the endpoint. A failed call returns an error status and `{ "success": false, "error": { ... } }`. See [Errors](/api-reference/errors).
+
+## Markdown output
+
+Send `Accept: text/markdown` with your key to get readable text instead of JSON. Errors remain JSON. See the [advanced guide](/advanced-guide#markdown-output).

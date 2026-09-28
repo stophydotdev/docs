@@ -1,0 +1,84 @@
+---
+title: "OpenAI"
+description: "Give an OpenAI model live web search with Stophy: define a tool, run the call when the model asks for it, and return the results as markdown."
+og:title: "OpenAI tool calling with Stophy | Stophy"
+og:description: "Give an OpenAI model live web search with Stophy: define a tool, run the call when the model asks for it, and return the results as markdown."
+---
+
+## Setup
+
+```bash
+npm install openai
+```
+
+Set `OPENAI_API_KEY` in your environment. `STOPHY_API_KEY` is optional for this example.
+
+## The Stophy tool
+
+This function calls web search and returns the results as markdown, which is short and easy for a model to read. It reads your key from `STOPHY_API_KEY`.
+
+```ts stophy.ts
+export async function stophySearch(query: string): Promise<string> {
+  const headers: Record<string, string> = {
+    "content-type": "application/json",
+    accept: "text/markdown",
+  };
+  headers.authorization = `Bearer ${process.env.STOPHY_API_KEY}`;
+  const response = await fetch("https://api.stophy.dev/v1/web/search", {
+    method: "POST",
+    headers,
+    body: JSON.stringify({ query, limit: 5 }),
+  });
+  return response.text();
+}
+```
+
+## Use it as a tool
+
+Pass the function as a tool to the Responses API. When the model calls it, run the search and send the result back.
+
+```ts
+import OpenAI from "openai";
+import { stophySearch } from "./stophy";
+
+const openai = new OpenAI();
+
+const tools: OpenAI.Responses.Tool[] = [
+  {
+    type: "function",
+    name: "web_search",
+    description: "Search the web. Returns the top results as markdown.",
+    parameters: {
+      type: "object",
+      properties: { query: { type: "string", description: "What to search for" } },
+      required: ["query"],
+      additionalProperties: false,
+    },
+    strict: true,
+  },
+];
+
+let response = await openai.responses.create({
+  model: "gpt-5-mini",
+  input: "What changed in the latest Bun release?",
+  tools,
+});
+
+while (true) {
+  const calls = response.output.filter((item) => item.type === "function_call");
+  if (calls.length === 0) break;
+  const outputs: OpenAI.Responses.ResponseInputItem[] = [];
+  for (const call of calls) {
+    const { query } = JSON.parse(call.arguments) as { query: string };
+    outputs.push({ type: "function_call_output", call_id: call.call_id, output: await stophySearch(query) });
+  }
+  response = await openai.responses.create({
+    model: "gpt-5-mini",
+    previous_response_id: response.id,
+    input: outputs,
+    tools,
+  });
+}
+
+console.log(response.output_text);
+```

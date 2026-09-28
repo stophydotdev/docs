@@ -1,0 +1,33 @@
+---
+title: "Introduction"
+description: "Stophy is a public web data API for AI agents and apps: 161 endpoints across 41 sources, as JSON or markdown, from one key."
+og:title: "Introduction | Stophy"
+og:description: "Stophy is a public web data API for AI agents and apps: 161 endpoints across 41 sources, as JSON or markdown, from one key."
+---
+
+Stophy gives your agent or app structured public web data from one API: search results, video, social posts, places, products, jobs, ads, and prices. Every endpoint returns JSON for your code, or markdown for a model, from the same request.
+
+## Three ways in
+
+<CardGroup cols={3}>
+  <Card title="API" icon="code" href="/api-reference/introduction">
+    Call any endpoint directly over HTTPS with a bearer key.
+  </Card>
+  <Card title="SDKs" icon="cube" href="/sdks/overview">
+    Use the TypeScript, Python, or command-line client.
+  </Card>
+  <Card title="MCP" icon="plug" href="/mcp-server">
+    Connect Claude Code, Cursor, Codex, or another MCP client.
+  </Card>
+</CardGroup>
+
+## Make your first request
+
+```bash
+curl -X POST https://api.stophy.dev/v1/reddit/search \
+  -H "Authorization: Bearer $STOPHY_API_KEY" \
+  -H "content-type: application/json" \
+  -d '{"query":"bun runtime"}'
+```
+
+Stophy has 161 endpoints across 41 sources. See [what you can get](/sources/web) for the full list, or follow the [quickstart](/quickstart) to get a key and make this call yourself.

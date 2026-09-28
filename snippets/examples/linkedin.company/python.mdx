@@ -1,0 +1,7 @@
+```python Python icon="python"
+from stophy import Stophy
+
+stophy = Stophy()  # reads STOPHY_API_KEY
+result = stophy.linkedin.company(company="microsoft")
+print(result["data"]["company"])
+```

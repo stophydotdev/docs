@@ -1,0 +1,37 @@
+---
+title: "Rate limits"
+description: "Stophy rate limits: 600 requests a minute and 10 running at once per account, free per-IP limits without a key, and how to handle a 429."
+og:title: "Rate limits | Stophy"
+og:description: "Stophy rate limits: 600 requests a minute and 10 running at once per account, free per-IP limits without a key, and how to handle a 429."
+---
+
+| | Limit |
+| --- | --- |
+| Requests | 600 a minute per account |
+| Running at once | 10 per account |
+
+Every call answers or fails within 25 seconds.
+
+## Without a key
+
+Web search, YouTube search, and YouTube transcripts also work with no API key, over HTTP and [MCP](/mcp-server/keyless). No other endpoints are available without a key.
+
+Free use is capped per IP address. Going over the cap returns a `429`.
+
+[Sign up for an API key](https://stophy.dev/signup) to get 500 free credits, higher limits and every endpoint.
+
+## Headers
+
+Responses include:
+
+- `X-RateLimit-Limit`: your limit
+- `X-RateLimit-Remaining`: what is left
+
+## When you go over
+
+| Code | Status | What to do |
+| --- | --- | --- |
+| `rateLimited` | `429` | Wait for the `Retry-After` header (also `retryAfterSeconds` in the body), then retry. |
+| `tooManyInFlight` | `429` | Too many of your calls are running at once. Wait for one to finish, then retry. |
+
+Both are marked `retryable: true`. See [Errors](/api-reference/errors) for a retry loop.

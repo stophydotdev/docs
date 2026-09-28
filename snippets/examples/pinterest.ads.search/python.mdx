@@ -1,0 +1,7 @@
+```python Python icon="python"
+from stophy import Stophy
+
+stophy = Stophy()  # reads STOPHY_API_KEY
+result = stophy.pinterest.ads.search(country="DE")
+print(result["data"]["ads"])
+```

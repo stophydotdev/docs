@@ -1,0 +1,7 @@
+```python Python icon="python"
+from stophy import Stophy
+
+stophy = Stophy()  # reads STOPHY_API_KEY
+result = stophy.upwork.search(query="react developer", limit=20)
+print(result["data"]["jobs"])
+```

@@ -1,0 +1,37 @@
+---
+title: "Codex"
+description: "Add Stophy to OpenAI Codex as a remote MCP server so your agent can search the web and pull live data from 161 endpoints across 41 sources."
+og:title: "Codex MCP setup | Stophy"
+og:description: "Add Stophy to OpenAI Codex as a remote MCP server so your agent can search the web and pull live data from 161 endpoints across 41 sources."
+---
+
+## Prerequisites
+
+- [Codex](https://developers.openai.com/codex)
+- A Stophy API key in `STOPHY_API_KEY`. [Get one](https://stophy.dev/signup).
+
+No key yet? Start [without one](/mcp-server/keyless) or [sign in with your browser](/mcp-server/oauth).
+
+## Add Stophy
+
+```bash
+codex mcp add stophy --url https://api.stophy.dev/mcp --bearer-token-env-var STOPHY_API_KEY
+```
+
+This writes the following to `~/.codex/config.toml`. Codex reads the key from `STOPHY_API_KEY` each time it starts, so the key is never saved to the file.
+
+```toml
+[mcp_servers.stophy]
+url = "https://api.stophy.dev/mcp"
+bearer_token_env_var = "STOPHY_API_KEY"
+```
+
+To also get one tool per endpoint for some sources, use `https://api.stophy.dev/mcp?toolsets=reddit,youtube` as the URL.
+
+## Check it
+
+Run `codex mcp list`, or type `/mcp` in Codex. Then try:
+
+```text
+Use Stophy to get the transcript of https://www.youtube.com/watch?v=dQw4w9WgXcQ and summarize it.
+```

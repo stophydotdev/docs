@@ -1,0 +1,303 @@
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap");
+
+:root,
+html.dark {
+  --stophy-yellow: #f5d90a;
+  --stophy-yellow-hover: #e0c500;
+  --stophy-text: #ededed;
+  --stophy-muted: rgba(255, 255, 255, 0.56);
+  --stophy-border: #2a2a2a;
+  --stophy-surface: #171717;
+  --stophy-subtle: rgba(255, 255, 255, 0.02);
+  --stophy-subtle-hover: rgba(255, 255, 255, 0.08);
+  --stophy-yellow-soft: rgba(245, 217, 10, 0.08);
+}
+
+html.dark,
+html.dark body {
+  background: #000;
+  color: var(--stophy-text);
+  font-family: "Geist", ui-sans-serif, system-ui, sans-serif;
+}
+
+code,
+pre,
+kbd,
+samp,
+.font-mono {
+  font-family: "Geist Mono", ui-monospace, monospace !important;
+}
+
+li.navbar-link a[href*="stophy.dev/signup"] {
+  background-color: var(--stophy-yellow);
+  color: #000 !important;
+}
+
+li.navbar-link a[href*="stophy.dev/signup"]:hover {
+  background-color: var(--stophy-yellow-hover);
+}
+
+li.navbar-link:has(a[href*="stophy.dev/signup"]) {
+  order: 99;
+}
+
+nav ul li:has(a[href="https://github.com/stophydotdev"]) {
+  order: -1;
+}
+
+#footer a.max-w-36 {
+  max-width: none;
+  overflow: visible;
+  text-overflow: clip;
+  white-space: nowrap;
+}
+
+#footer div:has(> a.max-w-36) {
+  flex-wrap: wrap;
+}
+
+.stophy-mcp-selector {
+  position: relative;
+  margin: 20px 0 32px;
+  border: 1px solid var(--stophy-border);
+  background: var(--stophy-surface);
+  color: var(--stophy-text);
+}
+
+.stophy-mcp-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px;
+}
+
+.stophy-mcp-header h3 {
+  margin: 0;
+  color: var(--stophy-text);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px;
+}
+
+html.dark #content-area .stophy-mcp-header p,
+html.dark #content-area .stophy-mcp-panel p {
+  margin: 6px 0 0;
+  max-width: 600px;
+  color: var(--stophy-muted);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.stophy-mcp-header a {
+  display: inline-flex;
+  flex: none;
+  margin-top: 3px;
+  color: var(--stophy-muted) !important;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none !important;
+}
+
+.stophy-mcp-header a:hover {
+  color: var(--stophy-yellow) !important;
+}
+
+.stophy-mcp-tabs {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  border-top: 1px solid var(--stophy-border);
+  border-bottom: 1px solid var(--stophy-border);
+}
+
+.stophy-mcp-tabs button {
+  display: flex;
+  min-width: 0;
+  overflow: hidden;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 10px;
+  border: 0;
+  border-right: 1px solid var(--stophy-border);
+  background: transparent;
+  color: var(--stophy-text);
+  cursor: pointer;
+  text-align: center;
+}
+
+.stophy-mcp-tabs button:last-child {
+  border-right: 0;
+}
+
+.stophy-mcp-tabs button:hover {
+  background: var(--stophy-subtle);
+}
+
+.stophy-mcp-tabs button.is-active {
+  background: var(--stophy-yellow-soft);
+  box-shadow: inset 0 2px 0 var(--stophy-yellow);
+}
+
+.stophy-client-mark {
+  display: block;
+  width: 26px;
+  height: 26px;
+  flex: none;
+  object-fit: contain;
+}
+
+.stophy-mcp-tabs strong {
+  overflow: hidden;
+  color: var(--stophy-text);
+  font-size: 14px;
+  line-height: 20px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.stophy-mcp-tabs button > span:last-child {
+  overflow: hidden;
+  max-width: 100%;
+  color: var(--stophy-muted);
+  font-size: 13px;
+  line-height: 18px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.stophy-mcp-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px 24px 24px;
+}
+
+.stophy-mcp-code {
+  overflow: hidden;
+  border: 1px solid var(--stophy-border);
+  border-radius: 8px;
+  background: var(--stophy-subtle);
+}
+
+.stophy-mcp-code-label {
+  display: flex;
+  min-height: 38px;
+  align-items: center;
+  padding: 5px 8px 5px 14px;
+  border-bottom: 1px solid var(--stophy-border);
+  color: var(--stophy-muted);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.stophy-mcp-code-body {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+}
+
+.stophy-mcp-code-body > span {
+  flex: none;
+  padding-left: 12px;
+  color: var(--stophy-muted);
+  font-size: 13px;
+  line-height: 20px;
+  user-select: none;
+}
+
+.stophy-mcp-code-body > code {
+  min-width: 0;
+  flex: 1;
+  padding: 7px 6px;
+  overflow-x: auto;
+  border: 0;
+  background: transparent;
+  color: var(--stophy-text);
+  font-size: 13px;
+  line-height: 20px;
+  white-space: nowrap;
+  scrollbar-width: none;
+}
+
+.stophy-mcp-code-body pre {
+  min-width: 0;
+  flex: 1;
+  margin: 0;
+  padding: 14px 16px;
+  overflow-x: auto;
+  background: transparent;
+  color: var(--stophy-text);
+  font-size: 12.5px;
+  line-height: 20px;
+}
+
+.stophy-mcp-code-body button {
+  display: inline-flex;
+  min-width: 78px;
+  height: 28px;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 9px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--stophy-muted);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.stophy-mcp-code-body button:hover {
+  background: var(--stophy-subtle-hover);
+  color: var(--stophy-text);
+}
+
+.stophy-mcp-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px 24px 20px;
+  border-top: 1px solid var(--stophy-border);
+  background: var(--stophy-subtle);
+  color: var(--stophy-muted);
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.stophy-mcp-footer strong,
+.stophy-mcp-footer code {
+  color: var(--stophy-text);
+}
+
+.stophy-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.stophy-mcp-tabs button:focus-visible,
+.stophy-mcp-code-body button:focus-visible,
+.stophy-mcp-header a:focus-visible {
+  outline: 2px solid var(--stophy-yellow);
+  outline-offset: -2px;
+}
+
+@media (max-width: 700px) {
+  .stophy-mcp-header { flex-direction: column; gap: 12px; padding: 20px; }
+  .stophy-mcp-tabs { grid-auto-flow: row; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stophy-mcp-tabs button:nth-child(2n) { border-right: 0; }
+  .stophy-mcp-tabs button { border-bottom: 1px solid var(--stophy-border); }
+  .stophy-mcp-tabs button:nth-last-child(-n + 2):nth-child(odd),
+  .stophy-mcp-tabs button:last-child { border-bottom: 0; }
+  .stophy-mcp-panel { padding: 16px 20px 20px; }
+  .stophy-mcp-footer { padding: 14px 20px 18px; }
+}

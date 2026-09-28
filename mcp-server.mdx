@@ -1,0 +1,63 @@
+---
+title: "MCP server"
+sidebarTitle: "Overview"
+description: "Connect Claude Code, Codex, Cursor or any MCP client to Stophy. Start with no key, add an API key, or sign in with your browser."
+og:title: "MCP server | Stophy"
+og:description: "Connect Claude Code, Codex, Cursor or any MCP client to Stophy. Start with no key, add an API key, or sign in with your browser."
+mode: "wide"
+---
+
+import { McpClientSelector } from "/snippets/mcp-client-selector.jsx";
+
+Stophy is a remote MCP server. Your agent searches for the right endpoint, reads its input, and calls it.
+
+## Choose how to connect
+
+<CardGroup cols={3}>
+  <Card title="No key" icon="bolt" href="/mcp-server/keyless">
+    Start right away. Web search, YouTube search and YouTube transcripts, within free limits.
+  </Card>
+  <Card title="API key" icon="key" href="/mcp-server/keyless#add-an-api-key">
+    Put your key in the client config. Every endpoint, no browser needed.
+  </Card>
+  <Card title="Sign in" icon="right-to-bracket" href="/mcp-server/oauth">
+    Sign in with your browser instead of pasting a key. Every endpoint.
+  </Card>
+</CardGroup>
+
+| | URL |
+| --- | --- |
+| No key or API key | `https://api.stophy.dev/mcp` |
+| Sign in | `https://api.stophy.dev/mcp-oauth` |
+
+Both use the Streamable HTTP transport. They are server URLs for your MCP client, not pages to open in a browser.
+
+## Set up your client
+
+<McpClientSelector showSeeAll={false} />
+
+## Tools
+
+The server gives your agent three tools, not one per endpoint. That keeps its tool list short.
+
+| Tool | Input | What it does |
+| --- | --- | --- |
+| `stophy_search_endpoints` | `{ query?, category? }` | Finds endpoints by words or by source. Each match has an id, a one-line description and its cost. `category` is a source such as `reddit`, or an id prefix such as `google.ads`. |
+| `stophy_describe_endpoint` | `{ id }` | Returns one endpoint's input schema, its cost, and whether it pages with `cursor`. |
+| `stophy_call` | `{ id, input?, format? }` | Runs the endpoint with `input` as its JSON body. `format` is `markdown` (the default) or `json`. |
+
+Results are markdown unless you ask for JSON, and include `creditsUsed`. A failed call comes back as a tool error with the API's `code`, `message`, `retryable` and, when there is one, `retryAfterSeconds`.
+
+## Toolsets
+
+Add `?toolsets=` to the URL to also get one tool per endpoint of the sources you name. Tools are named after the endpoint, with dots as underscores, such as `reddit_search`.
+
+```text
+https://api.stophy.dev/mcp?toolsets=reddit,youtube
+```
+
+Leave `toolsets` off unless you want those tools in your client's tool list.
+
+## Cost and limits
+
+An MCP call costs the same credits as the same call over HTTP, and counts toward the same [rate limits](/rate-limits).

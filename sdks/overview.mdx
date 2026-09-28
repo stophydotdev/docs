@@ -1,0 +1,48 @@
+---
+title: "Overview"
+description: "Pick a Stophy client: the TypeScript or Python SDK for code, or the CLI for your terminal and AI agent skills. Install lines for each."
+og:title: "SDKs overview | Stophy"
+og:description: "Pick a Stophy client: the TypeScript or Python SDK for code, or the CLI for your terminal and AI agent skills. Install lines for each."
+mode: "wide"
+---
+
+Stophy ships three official clients. Each wraps the same [REST API](/api-reference/introduction): your key, retries, and errors.
+
+<CardGroup cols={3}>
+  <Card title="TypeScript" icon="node-js" href="/sdks/typescript">For Node.js, Bun, Deno and browser code. Typed inputs and results.</Card>
+  <Card title="Python" icon="python" href="/sdks/python">For Python apps and scripts. Sync and async clients.</Card>
+  <Card title="CLI" icon="terminal" href="/sdks/cli">For your terminal, scripts, and AI agents that run shell commands.</Card>
+</CardGroup>
+
+## Pick one
+
+Write code that calls Stophy and handles the result: use the **TypeScript** or **Python SDK**. Both return typed data you can use directly.
+
+Run a one-off lookup, pipe results into another command, or give an agent shell access to Stophy without writing a client: use the **CLI**. It also installs Stophy's agent skills, so a coding agent learns which endpoint to call without you wiring an SDK into the project.
+
+## Install
+
+<CodeGroup>
+
+```bash TypeScript icon="/images/icons/typescript.svg"
+npm install stophy
+```
+
+```bash Python icon="python"
+pip install stophy
+```
+
+```bash CLI icon="square-terminal"
+npm install -g @stophy/cli
+```
+
+</CodeGroup>
+
+## What every client does
+
+- Reads `STOPHY_API_KEY` from your environment, so you rarely pass a key by hand.
+- Returns markdown when you ask for it, JSON otherwise.
+- Retries network errors and `429`/`5xx` responses with backoff, honoring `Retry-After`.
+- Reads account usage and recent calls.
+
+See the [TypeScript](/sdks/typescript), [Python](/sdks/python) and [CLI](/sdks/cli) pages for setup and every task.

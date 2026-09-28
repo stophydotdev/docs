@@ -1,0 +1,7 @@
+```typescript TypeScript icon="/images/icons/typescript.svg"
+import { Stophy } from "stophy";
+
+const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
+const result = await stophy.mastodon.post({ post: "https://mastodon.social/@Gargron/109357750250704287" });
+console.log(result.data.post);
+```

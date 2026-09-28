@@ -1,47 +1,81 @@
 ---
 title: "Quickstart"
-description: "Begin with a guide on the fastest path to a successful outcome"
+description: "Make your first Stophy call with no key, then add a key and make the same call from TypeScript, Python, cURL, or the CLI."
+og:title: "Quickstart | Stophy"
+og:description: "Make your first Stophy call with no key, then add a key and make the same call from TypeScript, Python, cURL, or the CLI."
 ---
 
-Describe how someone begins using your product. What is the first thing they need to do? Are there any prerequisites?
+## 1. Try it with no key
 
-A quickstart should take someone from zero to using your product. They'll get a quick win and a sense of what they can accomplish.
+YouTube search works without a key, within a small free limit.
 
-## Prerequisites
+```bash
+curl -X POST https://api.stophy.dev/v1/youtube/search \
+  -H "content-type: application/json" \
+  -d '{"query":"rust tutorial"}'
+```
 
-Before you begin, you must have:
+You should see JSON like this, with `creditsUsed` at `0`:
 
-- Requirement one (for example, Node.js 18+, a free account, an API key)
-- Requirement two (for example, a compatible device, a compatible browser, a compatible operating system)
+```json
+{
+  "success": true,
+  "data": {
+    "results": [
+      {
+        "type": "video",
+        "id": "Wc0ZJo06oAw",
+        "url": "https://www.youtube.com/watch?v=Wc0ZJo06oAw",
+        "title": "The Ultimate Rust Beginners Guide (2026)",
+        "channel": {
+          "id": "UCt6XPuD8u3YjvybuT-Xnj5A",
+          "username": "SBJake",
+          "name": "SBJake",
+          "url": "https://www.youtube.com/channel/UCt6XPuD8u3YjvybuT-Xnj5A"
+        },
+        "durationSeconds": 422,
+        "views": 543208,
+        "thumbnail": "https://i.ytimg.com/vi/Wc0ZJo06oAw/hqdefault.jpg",
+        "isShort": false,
+        "isLive": false,
+        "createdAt": "2025-09-28T13:19:10.000Z"
+      }
+    ]
+  },
+  "creditsUsed": 0,
+  "requestId": "5fb0898a-3983-4f30-ae3e-3146c406ccd1"
+}
+```
 
-## Get started
+## 2. Get an API key
 
-<Steps>
-  <Step title="Install">
-    Describe how to install your product or sign up.
+Sign up at [stophy.dev/signup](https://stophy.dev/signup). New accounts start with 500 free credits. Create a key and store it as `STOPHY_API_KEY`. Never put it in code.
 
-    ```bash
-    npm install your-package
-    ```
-  </Step>
-  <Step title="Configure">
-    Describe any setup or configuration needed before first use.
+## 3. Make the same call with a key
 
-    ```bash
-    your-cli init
-    ```
-  </Step>
-  <Step title="Run it">
-    Show the first thing a user does to see it working.
+import YoutubeSearchTs from '/snippets/examples/youtube.search/ts.mdx';
+import YoutubeSearchPython from '/snippets/examples/youtube.search/python.mdx';
+import YoutubeSearchCurl from '/snippets/examples/youtube.search/curl.mdx';
+import YoutubeSearchCli from '/snippets/examples/youtube.search/cli.mdx';
 
-    ```bash
-    your-cli start
-    ```
-  </Step>
-</Steps>
+Send the key as a bearer token. This is the same call as step 1, now under your account.
 
-<Tip>
-  Give people a way to get help. This could be a link to a support page, a chat with a customer support agent, or a forum for your product.
+<CodeGroup>
+  <YoutubeSearchTs />
+  <YoutubeSearchPython />
+  <YoutubeSearchCurl />
+  <YoutubeSearchCli />
+</CodeGroup>
 
-  Example: Need help? Reach out to us at [support@yourcompany.com](mailto:support@yourcompany.com).
-</Tip>
+It returns the same shape as before. With a key, it costs 1 credit per 20 items, at least 1 credit, instead of being free.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Find the right endpoint" icon="magnifying-glass" href="/guides/find-endpoint">
+    Search the catalog for the data you need.
+  </Card>
+  <Card title="Connect over MCP" icon="plug" href="/mcp-server">
+    Let your coding agent call Stophy.
+  </Card>
+</CardGroup>

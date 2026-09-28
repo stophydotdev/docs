@@ -1,0 +1,40 @@
+---
+title: "Sign in"
+description: "Connect Stophy MCP by signing in with your browser. No API key to copy: approve the app on stophy.dev and your agent can call every endpoint."
+og:title: "Sign in to Stophy MCP with your browser | Stophy"
+og:description: "Connect Stophy MCP by signing in with your browser. No API key to copy: approve the app on stophy.dev and your agent can call every endpoint."
+mode: "wide"
+---
+
+import { McpClientSelector } from "/snippets/mcp-client-selector.jsx";
+
+## Sign in
+
+<McpClientSelector variant="signin" showSeeAll={false} />
+
+<Note>
+`https://api.stophy.dev/mcp-oauth` is a server URL for your MCP client, not a page to open in a browser. Your client starts the sign-in.
+</Note>
+
+## What happens
+
+1. Your client opens stophy.dev in your browser.
+2. You sign in, or sign up. New accounts start with free credits to try every endpoint.
+3. Stophy shows which app is asking and where it will send you back. Approve it only if you started the connection yourself.
+4. Your client connects. Calls use your credits, like calls with an API key.
+
+Your client stays connected until you sign out of stophy.dev. Signing out disconnects the app, and it asks you to sign in again next time.
+
+## Check the connection
+
+Open your client's MCP status or tool list and check that `stophy` is connected with three tools: `stophy_search_endpoints`, `stophy_describe_endpoint` and `stophy_call`.
+
+Then ask your agent something like:
+
+```text
+Find coffee shops in Austin with a rating above 4.5 and list their websites.
+```
+
+<Card title="Prefer an API key?" icon="key" href="/mcp-server/keyless#add-an-api-key" arrow>
+  Put a key in your client config instead. No browser needed.
+</Card>

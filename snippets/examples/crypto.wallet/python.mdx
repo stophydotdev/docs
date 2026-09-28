@@ -1,0 +1,7 @@
+```python Python icon="python"
+from stophy import Stophy
+
+stophy = Stophy()  # reads STOPHY_API_KEY
+result = stophy.crypto.wallet(chain="ethereum", wallet="0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045", limit=25)
+print(result["data"]["balance"])
+```

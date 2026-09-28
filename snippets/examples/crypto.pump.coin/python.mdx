@@ -1,0 +1,7 @@
+```python Python icon="python"
+from stophy import Stophy
+
+stophy = Stophy()  # reads STOPHY_API_KEY
+result = stophy.crypto.pump.coin(coin="9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump")
+print(result["data"]["coin"])
+```

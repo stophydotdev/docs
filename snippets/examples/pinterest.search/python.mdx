@@ -1,0 +1,7 @@
+```python Python icon="python"
+from stophy import Stophy
+
+stophy = Stophy()  # reads STOPHY_API_KEY
+result = stophy.pinterest.search(query="kitchen ideas", limit=25)
+print(result["data"]["pins"])
+```
