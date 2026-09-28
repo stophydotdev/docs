@@ -1,6 +1,8 @@
 ---
 title: "Rate limits"
-description: "How fast you can call Stophy."
+description: "Stophy rate limits: 600 requests a minute and 10 running at once per account, free per-IP limits without a key, and how to handle a 429."
+og:title: "Rate limits | Stophy"
+og:description: "Stophy rate limits: 600 requests a minute and 10 running at once per account, free per-IP limits without a key, and how to handle a 429."
 ---
 
 | | Limit |
@@ -9,6 +11,14 @@ description: "How fast you can call Stophy."
 | Running at once | 10 per account |
 
 Every call answers or fails within 25 seconds.
+
+## Without a key
+
+Web search, YouTube search, and YouTube transcripts also work with no API key, over HTTP and [MCP](/mcp-server/keyless). No other endpoints are available without a key.
+
+Free use is capped per IP address. Going over the cap returns a `429`.
+
+[Sign up for an API key](https://stophy.dev/signup) to get 500 free credits, higher limits and every endpoint.
 
 ## Headers
 

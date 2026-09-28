@@ -1,0 +1,7 @@
+```python Python icon="python"
+from stophy import Stophy
+
+stophy = Stophy()  # reads STOPHY_API_KEY
+result = stophy.maps.search(query="coffee", near="Austin, TX", limit=20)
+print(result["data"]["places"])
+```

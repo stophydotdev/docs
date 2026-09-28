@@ -44,14 +44,25 @@
   },
   "areas": [
     {
-      "title": "Web and SEO",
+      "title": "Web search and pages",
       "slug": "web",
       "icon": "globe",
-      "intro": "Search the web and the news, and pull the emails, phone numbers and social profiles a website lists.",
+      "intro": "Search the web and the news, map a site, check its SEO, look up domains and emails, and follow Google Trends and search suggestions.",
       "endpoints": [
         "web.search",
         "web.news",
-        "web.contacts"
+        "web.contacts",
+        "site.map",
+        "site.seo",
+        "domain.whois",
+        "domain.dns",
+        "domain.tech",
+        "email.check",
+        "google.suggest",
+        "google.trends.interest",
+        "google.trends.regions",
+        "google.trends.related",
+        "google.trends.trending"
       ],
       "example": "web.search",
       "live": {
@@ -85,10 +96,10 @@
       }
     },
     {
-      "title": "YouTube",
-      "slug": "youtube",
-      "icon": "youtube",
-      "intro": "Search YouTube and get videos, transcripts, comments, channels and playlists.",
+      "title": "Video",
+      "slug": "video",
+      "icon": "video",
+      "intro": "Search YouTube, TikTok and Kick. Get videos, transcripts, comments, channels, playlists and clips as structured JSON or readable markdown.",
       "endpoints": [
         "youtube.search",
         "youtube.video",
@@ -96,7 +107,20 @@
         "youtube.comments",
         "youtube.comments.replies",
         "youtube.channel",
-        "youtube.playlist"
+        "youtube.playlist",
+        "youtube.suggest",
+        "tiktok.profile",
+        "tiktok.video",
+        "tiktok.url",
+        "tiktok.transcript",
+        "tiktok.posts",
+        "tiktok.hashtag",
+        "tiktok.comments",
+        "tiktok.comments.replies",
+        "tiktok.search",
+        "kick.channel",
+        "kick.videos",
+        "kick.clips"
       ],
       "example": "youtube.search",
       "live": {
@@ -153,26 +177,17 @@
       }
     },
     {
-      "title": "Reddit",
-      "slug": "reddit",
-      "icon": "reddit",
-      "intro": "Search Reddit and read posts, comment threads, subreddits, users and the links shared from a domain.",
+      "title": "Social",
+      "slug": "social",
+      "icon": "users",
+      "intro": "Get posts, profiles, comments and search results from Reddit, Instagram, X, LinkedIn, Threads, Bluesky, Mastodon, Telegram, Pinterest and more.",
       "endpoints": [
         "reddit.search",
         "reddit.post",
         "reddit.comments.more",
         "reddit.subreddit",
         "reddit.user",
-        "reddit.domain"
-      ],
-      "example": "reddit.search"
-    },
-    {
-      "title": "Instagram",
-      "slug": "instagram",
-      "icon": "instagram",
-      "intro": "Get Instagram profiles, posts, transcripts and comments, or look up any Instagram link.",
-      "endpoints": [
+        "reddit.domain",
         "instagram.profile",
         "instagram.posts",
         "instagram.post",
@@ -180,115 +195,101 @@
         "instagram.search",
         "instagram.transcript",
         "instagram.comments",
-        "instagram.comments.replies"
-      ],
-      "example": "instagram.profile"
-    },
-    {
-      "title": "TikTok",
-      "slug": "tiktok",
-      "icon": "tiktok",
-      "intro": "Get TikTok profiles, videos, transcripts, hashtags, comments and search results, or look up any TikTok link.",
-      "endpoints": [
-        "tiktok.profile",
-        "tiktok.video",
-        "tiktok.url",
-        "tiktok.transcript",
-        "tiktok.posts",
-        "tiktok.hashtag",
-        "tiktok.comments",
-        "tiktok.comments.replies",
-        "tiktok.search"
-      ],
-      "example": "tiktok.profile"
-    },
-    {
-      "title": "Bluesky",
-      "slug": "bluesky",
-      "icon": "bluesky",
-      "intro": "Get Bluesky profiles, posts with their replies, and followers.",
-      "endpoints": [
-        "bluesky.profile",
-        "bluesky.posts",
-        "bluesky.post",
-        "bluesky.followers"
-      ],
-      "example": "bluesky.profile"
-    },
-    {
-      "title": "Mastodon",
-      "slug": "mastodon",
-      "icon": "mastodon",
-      "intro": "Get Mastodon profiles, posts and hashtag timelines.",
-      "endpoints": [
-        "mastodon.profile",
-        "mastodon.posts",
-        "mastodon.post",
-        "mastodon.hashtag"
-      ],
-      "example": "mastodon.profile"
-    },
-    {
-      "title": "Threads",
-      "slug": "threads",
-      "icon": "threads",
-      "intro": "Get Threads profiles and posts, and search Threads.",
-      "endpoints": [
+        "instagram.comments.replies",
+        "x.tweet",
         "threads.profile",
         "threads.posts",
         "threads.post",
-        "threads.search"
-      ],
-      "example": "threads.search"
-    },
-    {
-      "title": "Telegram",
-      "slug": "telegram",
-      "icon": "telegram",
-      "intro": "Read public Telegram channels and their posts.",
-      "endpoints": [
+        "threads.search",
+        "bluesky.profile",
+        "bluesky.posts",
+        "bluesky.post",
+        "bluesky.followers",
+        "mastodon.profile",
+        "mastodon.posts",
+        "mastodon.post",
+        "mastodon.hashtag",
         "telegram.channel",
         "telegram.posts",
-        "telegram.post"
+        "telegram.post",
+        "linkedin.company",
+        "linkedin.profile",
+        "linkedin.posts",
+        "linkedin.company.posts",
+        "pinterest.search",
+        "pinterest.pin",
+        "pinterest.board",
+        "pinterest.user",
+        "tumblr.blog",
+        "tumblr.posts",
+        "tumblr.post",
+        "tumblr.search",
+        "snapchat.profile",
+        "quora.question"
       ],
-      "example": "telegram.channel"
+      "example": "reddit.search"
     },
     {
-      "title": "Local and leads",
-      "slug": "local-and-leads",
+      "title": "Places and travel",
+      "slug": "places-and-travel",
       "icon": "map-location-dot",
-      "intro": "Find local businesses with their contact details, and read their reviews.",
+      "intro": "Find places on Google Maps with their reviews, search flights on Google Travel, and get places, stays, calendars and reviews from Tripadvisor and Airbnb.",
       "endpoints": [
         "maps.search",
         "maps.place",
-        "maps.reviews"
+        "maps.reviews",
+        "googletravel.flights",
+        "tripadvisor.search",
+        "tripadvisor.place",
+        "tripadvisor.reviews",
+        "airbnb.search",
+        "airbnb.listing",
+        "airbnb.calendar",
+        "airbnb.reviews"
       ],
       "example": "maps.search"
     },
     {
-      "title": "Ad libraries",
-      "slug": "ad-libraries",
-      "icon": "rectangle-ad",
-      "intro": "See the ads that advertisers run on Meta, Google, TikTok and LinkedIn.",
+      "title": "Shopping",
+      "slug": "shopping",
+      "icon": "cart-shopping",
+      "intro": "Search Amazon, Walmart, AliExpress and Shopify stores. Get products, prices, bestsellers, collections and search suggestions as structured JSON.",
       "endpoints": [
-        "meta.ads.search",
-        "meta.ads.page",
-        "meta.ads.ad",
-        "google.ads.advertisers",
-        "google.ads.search",
-        "google.ads.ad",
-        "tiktok.ads.search",
-        "tiktok.ads.ad",
-        "linkedin.ads.search",
-        "linkedin.ads.ad"
+        "amazon.search",
+        "amazon.product",
+        "amazon.bestsellers",
+        "amazon.suggest",
+        "walmart.search",
+        "walmart.product",
+        "aliexpress.search",
+        "aliexpress.product",
+        "shopify.products",
+        "shopify.collections",
+        "shopify.store"
       ],
-      "example": "meta.ads.search"
+      "example": "amazon.search"
+    },
+    {
+      "title": "Apps",
+      "slug": "apps",
+      "icon": "mobile",
+      "intro": "Look up apps on the App Store and Google Play. Get app details, search results, top charts and user reviews as structured JSON or markdown.",
+      "endpoints": [
+        "appstore.app",
+        "appstore.search",
+        "appstore.reviews",
+        "appstore.top",
+        "googleplay.app",
+        "googleplay.search",
+        "googleplay.reviews"
+      ],
+      "example": "appstore.app"
     },
     {
       "title": "Jobs",
       "slug": "jobs",
       "icon": "briefcase",
-      "intro": "Search job posts on LinkedIn, Upwork and Indeed, and read each post in full.",
+      "intro": "Search job listings on LinkedIn, Indeed and Upwork, and get the full details of any job post as structured JSON or readable markdown.",
       "endpoints": [
         "linkedin.jobs.search",
         "linkedin.jobs.job",
@@ -300,42 +301,60 @@
       "example": "linkedin.jobs.search"
     },
     {
-      "title": "Keywords",
-      "slug": "keywords",
-      "icon": "key",
-      "intro": "See what people type into Google, YouTube and Amazon, and how interest in a topic changes over time.",
+      "title": "Real estate",
+      "slug": "real-estate",
+      "icon": "house",
+      "intro": "Search homes for sale and rent on Zillow, Redfin, Realtor.com, Rightmove and ImmoScout24, and get the full details of any property as JSON.",
       "endpoints": [
-        "google.suggest",
-        "youtube.suggest",
-        "amazon.suggest",
-        "google.trends.interest",
-        "google.trends.regions",
-        "google.trends.related",
-        "google.trends.trending"
+        "zillow.search",
+        "zillow.property",
+        "redfin.search",
+        "redfin.property",
+        "realtor.search",
+        "realtor.property",
+        "rightmove.search",
+        "rightmove.property",
+        "immoscout.search",
+        "immoscout.listing"
       ],
-      "example": "google.suggest"
+      "example": "zillow.search"
     },
     {
-      "title": "Site and domain",
-      "slug": "site-and-domain",
-      "icon": "sitemap",
-      "intro": "List a site's pages, check its SEO, and look up a domain's owner, DNS records and technology. Check whether an email address can receive mail.",
+      "title": "Ads",
+      "slug": "ads",
+      "icon": "bullhorn",
+      "intro": "Search the public ad libraries of Meta, Google, TikTok, LinkedIn, Pinterest, Microsoft and Snapchat, and get each ad and its advertiser.",
       "endpoints": [
-        "site.map",
-        "site.seo",
-        "domain.whois",
-        "domain.dns",
-        "domain.tech",
-        "email.check"
+        "meta.ads.search",
+        "meta.ads.page",
+        "meta.ads.ad",
+        "google.ads.advertisers",
+        "google.ads.search",
+        "google.ads.ad",
+        "tiktok.ads.search",
+        "tiktok.ads.ad",
+        "linkedin.ads.search",
+        "linkedin.ads.ad",
+        "pinterest.ads.search",
+        "pinterest.ads.ad",
+        "microsoft.ads.search",
+        "microsoft.ads.ad",
+        "microsoft.ads.advertisers",
+        "snapchat.ads.search",
+        "snapchat.ads.ad"
       ],
-      "example": "domain.whois"
+      "example": "meta.ads.search"
     },
     {
-      "title": "Crypto",
-      "slug": "crypto",
-      "icon": "bitcoin",
-      "intro": "Get coin prices, history and market movers, DEX pairs and tokens, wallet balances, token holders and exchange announcements.",
+      "title": "Finance and crypto",
+      "slug": "finance-and-crypto",
+      "icon": "chart-line",
+      "intro": "Get stock quotes, price history and company profiles, plus crypto prices, trending coins, DEX pairs, new tokens, wallets and token holders.",
       "endpoints": [
+        "finance.quote",
+        "finance.history",
+        "finance.search",
+        "finance.profile",
         "crypto.coins",
         "crypto.coin",
         "crypto.history",
@@ -354,139 +373,12 @@
         "crypto.token.holders",
         "crypto.binance.announcements"
       ],
-      "example": "crypto.coin"
-    },
-    {
-      "title": "E-commerce",
-      "slug": "e-commerce",
-      "icon": "cart-shopping",
-      "intro": "Search products and read product pages on Amazon, Walmart, AliExpress and Shopify stores.",
-      "endpoints": [
-        "amazon.search",
-        "amazon.product",
-        "amazon.bestsellers",
-        "shopify.products",
-        "shopify.collections",
-        "shopify.store",
-        "walmart.search",
-        "walmart.product",
-        "aliexpress.search",
-        "aliexpress.product"
-      ],
-      "example": "amazon.search"
-    },
-    {
-      "title": "Reviews and apps",
-      "slug": "reviews-and-apps",
-      "icon": "star",
-      "intro": "Get app details, rankings and reviews from the App Store and Google Play, and places and reviews from Tripadvisor.",
-      "endpoints": [
-        "appstore.app",
-        "appstore.search",
-        "appstore.reviews",
-        "appstore.top",
-        "googleplay.app",
-        "googleplay.search",
-        "googleplay.reviews",
-        "tripadvisor.search",
-        "tripadvisor.place",
-        "tripadvisor.reviews"
-      ],
-      "example": "appstore.app"
-    },
-    {
-      "title": "Travel",
-      "slug": "travel",
-      "icon": "plane",
-      "intro": "Search flights, and find stays with their availability and reviews.",
-      "endpoints": [
-        "googletravel.flights",
-        "airbnb.search",
-        "airbnb.listing",
-        "airbnb.calendar",
-        "airbnb.reviews"
-      ],
-      "example": "googletravel.flights"
-    },
-    {
-      "title": "More social",
-      "slug": "more-social",
-      "icon": "users",
-      "intro": "Get posts and profiles from Pinterest, X, Kick, Snapchat, Tumblr, Quora and LinkedIn.",
-      "endpoints": [
-        "pinterest.search",
-        "pinterest.pin",
-        "pinterest.board",
-        "pinterest.user",
-        "x.tweet",
-        "kick.channel",
-        "kick.videos",
-        "kick.clips",
-        "snapchat.profile",
-        "tumblr.blog",
-        "tumblr.posts",
-        "tumblr.post",
-        "tumblr.search",
-        "quora.question",
-        "linkedin.company",
-        "linkedin.profile",
-        "linkedin.posts",
-        "linkedin.company.posts"
-      ],
-      "example": "pinterest.search"
-    },
-    {
-      "title": "More ads",
-      "slug": "more-ads",
-      "icon": "bullhorn",
-      "intro": "See the ads that advertisers run on Pinterest, Microsoft and Snapchat.",
-      "endpoints": [
-        "pinterest.ads.search",
-        "pinterest.ads.ad",
-        "microsoft.ads.search",
-        "microsoft.ads.ad",
-        "microsoft.ads.advertisers",
-        "snapchat.ads.search",
-        "snapchat.ads.ad"
-      ],
-      "example": "microsoft.ads.search"
-    },
-    {
-      "title": "Finance",
-      "slug": "finance",
-      "icon": "chart-line",
-      "intro": "Get stock quotes, price history, company profiles and ticker search.",
-      "endpoints": [
-        "finance.quote",
-        "finance.history",
-        "finance.search",
-        "finance.profile"
-      ],
       "example": "finance.quote"
-    },
-    {
-      "title": "Real estate",
-      "slug": "real-estate",
-      "icon": "house",
-      "intro": "Search homes for sale or rent and read listing details on Zillow, Redfin, Realtor.com, Rightmove and ImmoScout24.",
-      "endpoints": [
-        "zillow.search",
-        "zillow.property",
-        "redfin.search",
-        "redfin.property",
-        "realtor.search",
-        "realtor.property",
-        "rightmove.search",
-        "rightmove.property",
-        "immoscout.search",
-        "immoscout.listing"
-      ],
-      "example": "zillow.search"
     }
   ],
   "notes": {
     "web.search": "Supports `from` and `to` dates, `country`, `language`, and domains to include or exclude.",
     "youtube.transcript": "Pass a video id or URL in `video`. Set `includeTimestamps` to get each line with its time.",
-    "endpoints": "Use this to find the right endpoint and its input before you call it. It needs no API key and costs nothing."
+    "endpoints": "Use this catalog to find the right endpoint and its input. Send your API key with every request."
   }
 }

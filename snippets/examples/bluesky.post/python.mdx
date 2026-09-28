@@ -1,0 +1,7 @@
+```python Python icon="python"
+from stophy import Stophy
+
+stophy = Stophy()  # reads STOPHY_API_KEY
+result = stophy.bluesky.post(post="https://bsky.app/profile/bsky.app/post/3k2l4z6y8w2ex")
+print(result["data"]["post"])
+```

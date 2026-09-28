@@ -1,6 +1,8 @@
 ---
 title: "Logs"
-description: "Your recent paid calls, newest first."
+description: "List your recent paid Stophy API calls, newest first, with the endpoint, status, credits used and time of each call. Filter by date and endpoint."
+og:title: "Logs API | Stophy"
+og:description: "List your recent paid Stophy API calls, newest first, with the endpoint, status, credits used and time of each call. Filter by date and endpoint."
 api: "GET https://api.stophy.dev/v1/logs"
 authMethod: "bearer"
 ---
@@ -49,7 +51,7 @@ Returns your recent paid calls, 50 per page, newest first. Needs an API key. Fre
 <ResponseField name="totalPages" type="integer" required>How many pages there are.</ResponseField>
 
 <RequestExample>
-```bash cURL
+```bash cURL icon="terminal"
 curl "https://api.stophy.dev/v1/logs?days=7&page=0&endpoint=web.search" \
   -H "Authorization: Bearer $STOPHY_API_KEY"
 ```

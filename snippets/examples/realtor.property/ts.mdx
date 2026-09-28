@@ -1,0 +1,7 @@
+```typescript TypeScript icon="/images/icons/typescript.svg"
+import { Stophy } from "stophy";
+
+const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
+const result = await stophy.realtor.property({ property: "https://www.realtor.com/realestateandhomes-detail/123-Main-St_New-York_NY_10001_M12345-67890" });
+console.log(result.data.property);
+```

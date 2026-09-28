@@ -1,6 +1,8 @@
 ---
 title: "Usage"
-description: "Your balance and lifetime usage."
+description: "Get your Stophy credit balance and lifetime usage with one API call: credits left, credits used and how many requests you have made."
+og:title: "Usage API | Stophy"
+og:description: "Get your Stophy credit balance and lifetime usage with one API call: credits left, credits used and how many requests you have made."
 api: "GET https://api.stophy.dev/v1/usage"
 authMethod: "bearer"
 ---
@@ -20,7 +22,7 @@ Returns your current balance and totals for every call you have paid for. Needs 
 </ResponseField>
 
 <RequestExample>
-```bash cURL
+```bash cURL icon="terminal"
 curl https://api.stophy.dev/v1/usage \
   -H "Authorization: Bearer $STOPHY_API_KEY"
 ```

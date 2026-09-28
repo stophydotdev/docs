@@ -1,0 +1,7 @@
+```python Python icon="python"
+from stophy import Stophy
+
+stophy = Stophy()  # reads STOPHY_API_KEY
+result = stophy.kick.clips(channel="xqc", limit=20)
+print(result["data"]["clips"])
+```

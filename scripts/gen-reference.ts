@@ -1,19 +1,21 @@
-// Generates the API reference pages, the source pages and their navigation
-// from the vendored spec (api-reference/openapi.json) and
-// scripts/reference.config.json. Run with `bun scripts/gen-reference.ts`.
-// Every file it writes is overwritten on each run: edit the config, not the output.
+// Generates the API reference tab: one page per endpoint, grouped into the
+// categories in scripts/reference.config.json, from the vendored spec
+// (api-reference/openapi.json). Run with `bun scripts/gen-reference.ts`.
+// Every api-reference/endpoint/*.mdx it writes is overwritten on each run:
+// edit the config, not the output. It only touches api-reference/** and the
+// "API Reference" tab in docs.json; sources/*.mdx and the "What you can get"
+// nav group belong to builder-docs.
 
 type Json = null | boolean | number | string | Json[] | { [key: string]: Json };
 type JsonObject = { [key: string]: Json };
 
+// reference.config.json also carries slug, intro, example and live fields
+// per area for builder-docs's sources/*.mdx pages. This script only reads
+// the fields it needs to group endpoint pages into categories.
 interface Area {
   title: string;
-  slug: string;
   icon: string;
-  intro: string;
   endpoints: string[];
-  example: string;
-  live?: { input: JsonObject; response: Json };
 }
 
 interface Config {
@@ -89,20 +91,6 @@ function cost(op: Operation): string {
   return op.perItems === undefined ? base : `${base} per ${op.perItems} items, at least ${base}`;
 }
 
-function typeOf(schema: Json | undefined): string {
-  if (!isObject(schema)) return "any";
-  if ("const" in schema) return JSON.stringify(schema.const);
-  if (Array.isArray(schema.enum)) return schema.enum.map((value) => JSON.stringify(value)).join(" \\| ");
-  if (Array.isArray(schema.oneOf) || Array.isArray(schema.anyOf)) {
-    const options = (schema.oneOf ?? schema.anyOf) as Json[];
-    return [...new Set(options.map(typeOf))].join(" \\| ");
-  }
-  if (schema.type === "array") return `${typeOf(schema.items)}[]`;
-  if (Array.isArray(schema.type)) return schema.type.join(" \\| ");
-  if (typeof schema.type === "string") return schema.type;
-  return "any";
-}
-
 function variants(data: JsonObject): string[] {
   const options = (data.oneOf ?? data.anyOf) as Json[] | undefined;
   if (!Array.isArray(options)) return [];
@@ -123,115 +111,132 @@ function returns(op: Operation): string {
   return `\`data\` is one of ${kinds.map((kind) => `\`${kind}\``).join(", ")}. \`data.kind\` says which.`;
 }
 
-function fieldRows(op: Operation): string[] {
+const ACRONYMS = new Set(["dns", "seo", "url", "dex", "id"]);
+const CATALOG_DESCRIPTION =
+  "List every Stophy endpoint with its input schema, credit cost, and whether it works without a key. Use it to pick the right call.";
+
+const quote = (text: string) => text.replaceAll("'", "''");
+
+const words = (parts: string[]) =>
+  parts
+    .flatMap((part) => part.split("_"))
+    .map((word) => (ACRONYMS.has(word) ? word.toUpperCase() : word[0].toUpperCase() + word.slice(1)))
+    .join(" ");
+
+function sourceName(op: Operation): string {
+  const name = config.sources[op.source];
+  if (name === undefined) throw new Error(`No display name for source ${op.source}`);
+  return name;
+}
+
+function seoTitle(op: Operation): string {
+  const rest = op.id.split(".").slice(1);
+  return `${sourceName(op)} ${words(rest)} API`;
+}
+
+const human = (field: string) => field.replace(/([a-z])([A-Z])/g, "$1 $2").toLowerCase();
+
+function propertiesOf(schema: Json | undefined): string[] {
+  if (!isObject(schema)) return [];
+  const item = schema.type === "array" ? schema.items : schema;
+  if (!isObject(item)) return [];
+  const own = Object.keys((item.properties as JsonObject | undefined) ?? {});
+  const options = (item.oneOf ?? item.anyOf) as Json[] | undefined;
+  const merged = Array.isArray(options) ? options.flatMap(propertiesOf) : [];
+  return [...new Set([...own, ...merged])];
+}
+
+function fieldNames(op: Operation): string[] {
+  const top = propertiesOf(op.data).filter((field) => field !== "cursor");
   const properties = (op.data?.properties as JsonObject | undefined) ?? {};
-  const rows: string[] = [];
-  for (const [field, schema] of Object.entries(properties)) {
-    rows.push(`| \`${field}\` | \`${typeOf(schema)}\` |`);
-    const item = isObject(schema) && schema.type === "array" ? schema.items : schema;
-    const nested = isObject(item) && item.type === "object" ? (item.properties as JsonObject | undefined) : undefined;
-    const prefix = isObject(schema) && schema.type === "array" ? `${field}[]` : field;
-    for (const [child, childSchema] of Object.entries(nested ?? {})) {
-      rows.push(`| \`${prefix}.${child}\` | \`${typeOf(childSchema)}\` |`);
-    }
+  if (top.length === 1) {
+    const nested = propertiesOf(properties[top[0]]).filter(
+      (field) => !["id", "type", "kind", "url", "cursor"].includes(field),
+    );
+    if (nested.length > 0) return nested;
   }
-  return rows;
+  return top.filter((field) => !["kind", "type"].includes(field));
+}
+
+function seoDescription(op: Operation): string {
+  const name = seoTitle(op);
+  const price = `${cost(op)}.`;
+  let list = fieldNames(op).map(human).slice(0, 6);
+  const build = () =>
+    list.length === 0
+      ? `Call the ${name} to get this data as JSON or markdown in one request. ${price}`
+      : `Call the ${name} to get ${list.slice(0, -1).join(", ")}${list.length > 1 ? " and " : ""}${list.at(-1)}, as JSON or markdown. ${price}`;
+  while (build().length > 160 && list.length > 1) list = list.slice(0, -1);
+  return build();
 }
 
 function endpointPage(op: Operation): string {
-  const title = op.id === "endpoints" ? "Endpoint catalog" : op.id;
-  const sidebar = op.id === "endpoints" ? "List endpoints" : op.id.split(".").slice(1).join(".");
+  const title = op.id === "endpoints" ? "Endpoint catalog API" : seoTitle(op);
+  const description = op.id === "endpoints" ? CATALOG_DESCRIPTION : seoDescription(op);
+  const sidebar =
+    op.id === "endpoints"
+      ? "List Endpoints"
+      : op.id
+          .split(".")
+          .slice(1)
+          .flatMap((part) => part.split("_"))
+          .map((word) => (["dns", "seo", "url"].includes(word) ? word.toUpperCase() : word[0].toUpperCase() + word.slice(1)))
+          .join(" ");
   const paging = op.pages
     ? `Yes. Send the \`cursor\` from the response to get the next page. See [Paging](/advanced-guide#paging).`
     : "No.";
   const facts = [
+    op.id === "endpoints" ? undefined : `- **Endpoint:** \`${op.id}\``,
     returns(op) === "" ? undefined : `- **Returns:** ${returns(op)}`,
     `- **Cost:** ${cost(op)}.${op.credits !== undefined ? " Failed calls cost nothing." : ""}`,
     op.method === "POST" ? `- **Paging:** ${paging}` : undefined,
   ].filter((line) => line !== undefined);
   const note = config.notes[op.id];
+  const example: { imports: string[]; body: string[]; length: number } =
+    op.id === "endpoints" ? { imports: [], body: [], length: 0 } : exampleSection(op);
   return [
     "---",
-    `title: '${title}'`,
+    `title: '${quote(title)}'`,
     `sidebarTitle: '${sidebar}'`,
+    `description: '${quote(description)}'`,
+    `og:title: '${quote(title)} | Stophy'`,
+    `og:description: '${quote(description)}'`,
     `openapi: '${SPEC_PATH} ${op.method} ${op.path}'`,
     "---",
     "",
+    ...(example.length === 0 ? [] : [...example.imports, ""]),
     GENERATED,
     "",
     ...facts,
     ...(note === undefined ? [] : ["", note]),
+    ...(example.length === 0 ? [] : ["", ...example.body]),
     "",
   ].join("\n");
 }
 
-function curl(op: Operation, input: JsonObject): string {
-  const body = JSON.stringify(input);
-  return [
-    "```bash",
-    `curl -X POST https://api.stophy.dev${op.path} \\`,
-    '  -H "Authorization: Bearer $STOPHY_API_KEY" \\',
-    '  -H "content-type: application/json" \\',
-    `  -d '${body.replaceAll("'", "'\\''")}'`,
-    "```",
-  ].join("\n");
-}
-
-function areaPage(area: Area, byId: Map<string, Operation>): string {
-  const rows = area.endpoints.map((id) => {
-    const op = byId.get(id);
-    if (op === undefined) throw new Error(`${area.title}: ${id} is not in the spec`);
-    return `| [\`${id}\`](/api-reference/endpoint/${op.slug}) | ${cost(op)} | ${op.pages ? "Yes" : "No"} |`;
-  });
-  const example = byId.get(area.example);
-  if (example === undefined) throw new Error(`${area.title}: example ${area.example} is not in the spec`);
-  const input = area.live?.input ?? example.example;
-  if (!isObject(input)) throw new Error(`${area.title}: ${example.id} has no example input`);
-  const response = area.live
-    ? [
-        "The response to this exact request:",
-        "",
-        "```json",
-        JSON.stringify(area.live.response, null, 2),
-        "```",
-      ]
-    : [
-        `The fields in \`data\`, from the [${example.id} reference](/api-reference/endpoint/${example.slug}):`,
-        "",
-        "| Field | Type |",
-        "| --- | --- |",
-        ...fieldRows(example),
-      ];
-  return [
-    "---",
-    `title: '${area.title}'`,
-    `description: '${area.intro.replaceAll("'", "''")}'`,
-    `icon: '${area.icon}'`,
-    "---",
-    "",
-    GENERATED,
-    "",
-    "## Endpoints",
-    "",
-    "| Endpoint | Cost | Paging |",
-    "| --- | --- | --- |",
-    ...rows,
-    "",
-    `## Example: ${example.id}`,
-    "",
-    curl(example, input),
-    "",
-    ...response,
-    "",
-    `Send \`accept: text/markdown\` to get the same data as a readable page. See the [advanced guide](/advanced-guide#markdown-output).`,
-    "",
-  ].join("\n");
+// Each endpoint has one example generated by builder-docs at
+// snippets/examples/<id>/{ts,python,curl,cli}.mdx. Import all four and show
+// them as tabs in one CodeGroup, in a fixed language order.
+function exampleSection(op: Operation): { imports: string[]; body: string[]; length: number } {
+  const dir = `/snippets/examples/${op.id}`;
+  const langs: { file: string; component: string }[] = [
+    { file: "ts", component: "TsExample" },
+    { file: "python", component: "PythonExample" },
+    { file: "curl", component: "CurlExample" },
+    { file: "cli", component: "CliExample" },
+  ];
+  const imports = langs.map(({ file, component }) => `import ${component} from "${dir}/${file}.mdx";`);
+  const body = ["## Example", "", "<CodeGroup>", ...langs.map(({ component }) => `<${component} />`), "</CodeGroup>"];
+  return { imports, body, length: 1 };
 }
 
 const ops = operations();
 const byId = new Map(ops.map((op) => [op.id, op]));
 
-const covered = new Set(config.areas.flatMap((area) => area.endpoints));
+const assigned = config.areas.flatMap((area) => area.endpoints);
+const twice = assigned.filter((id, index) => assigned.indexOf(id) !== index);
+if (twice.length > 0) throw new Error(`In more than one area in reference.config.json: ${twice.join(", ")}`);
+const covered = new Set(assigned);
 const missing = ops.filter((op) => op.method === "POST" && !covered.has(op.id)).map((op) => op.id);
 if (missing.length > 0) throw new Error(`Not in any area in reference.config.json: ${missing.join(", ")}`);
 
@@ -241,38 +246,35 @@ for (const existing of new Bun.Glob("*.mdx").scanSync(file(`${endpointDir}/`).pa
 }
 for (const op of ops) await Bun.write(file(`${endpointDir}/${op.slug}.mdx`), endpointPage(op));
 
-for (const existing of new Bun.Glob("*.mdx").scanSync(file("sources/").pathname)) {
-  await Bun.file(file(`sources/${existing}`)).delete();
-}
-for (const area of config.areas) await Bun.write(file(`sources/${area.slug}.mdx`), areaPage(area, byId));
-
-const sourceOrder: string[] = [];
-for (const op of ops) if (op.method === "POST" && !sourceOrder.includes(op.source)) sourceOrder.push(op.source);
-const sourceGroups = sourceOrder.map((source) => {
-  const name = config.sources[source];
-  if (name === undefined) throw new Error(`No display name for source ${source}`);
+const categoryGroups = config.areas.map((area) => {
+  const sources: string[] = [];
+  for (const id of area.endpoints) {
+    const op = byId.get(id);
+    if (op !== undefined && !sources.includes(op.source)) sources.push(op.source);
+  }
   return {
-    group: name,
-    pages: ops.filter((op) => op.source === source && op.method === "POST").map((op) => `${endpointDir}/${op.slug}`),
+    group: area.title,
+    icon: area.icon,
+    pages: sources.map((source) => ({
+      group: config.sources[source] ?? source,
+      pages: area.endpoints
+        .map((id) => byId.get(id))
+        .filter((op): op is Operation => op !== undefined && op.source === source)
+        .map((op) => `${endpointDir}/${op.slug}`),
+    })),
   };
 });
 
 const docs = (await Bun.file(file("docs.json")).json()) as JsonObject;
 const tabs = (docs.navigation as JsonObject).tabs as JsonObject[];
-const documentation = tabs.find((tab) => tab.tab === "Documentation");
 const reference = tabs.find((tab) => tab.tab === "API Reference");
-if (documentation === undefined || reference === undefined) throw new Error("docs.json needs the Documentation and API Reference tabs");
-const sourcesGroup = (documentation.groups as JsonObject[]).find((group) => group.group === "Sources");
-if (sourcesGroup === undefined) throw new Error('docs.json needs a "Sources" group in Documentation');
-sourcesGroup.pages = config.areas.map((area) => `sources/${area.slug}`);
+if (reference === undefined) throw new Error("docs.json needs the API Reference tab");
 const fixed = (reference.groups as JsonObject[]).filter((group) =>
   ["Using the API", "Catalog", "Account"].includes(String(group.group)),
 );
 const catalogGroup = fixed.find((group) => group.group === "Catalog");
 if (catalogGroup !== undefined) catalogGroup.pages = [`${endpointDir}/endpoints`];
-reference.groups = [...fixed, ...sourceGroups];
+reference.groups = [...fixed, ...categoryGroups];
 await Bun.write(file("docs.json"), `${JSON.stringify(docs, null, 2)}\n`);
 
-console.log(
-  `Wrote ${ops.length} endpoint pages, ${config.areas.length} source pages and ${sourceGroups.length} reference groups.`,
-);
+console.log(`Wrote ${ops.length} endpoint pages and ${categoryGroups.length} reference groups.`);

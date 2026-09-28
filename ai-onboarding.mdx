@@ -1,37 +1,58 @@
 ---
-title: "AI onboarding"
-description: "Everything an AI agent needs to start using Stophy."
+title: "Build with AI"
+description: "Set up an AI agent with Stophy: get credentials, connect the MCP server, and give it agents.md, llms.txt and the live endpoint catalog."
+og:title: "Build with AI | Stophy"
+og:description: "Set up an AI agent with Stophy: get credentials, connect the MCP server, and give it agents.md, llms.txt and the live endpoint catalog."
+mode: "wide"
 ---
 
-If you are an agent, start here. If you are a human, give your agent this page or the link to [agents.md](https://stophy.dev/agents.md).
+If you build with an AI agent, give it [stophy.dev/agents.md](https://stophy.dev/agents.md). It explains how to choose an endpoint and add Stophy to your project.
 
-## For agents
-
-| File | What it is |
-| --- | --- |
-| [stophy.dev/agents.md](https://stophy.dev/agents.md) | The setup guide for agents: get data now, add Stophy to code, get a key, and what works without one. Also served as [SKILL.md](https://stophy.dev/SKILL.md), so you can save it as a skill. |
-| [stophy.dev/llms.txt](https://stophy.dev/llms.txt) | A short index of Stophy with every source and endpoint |
-| [stophy.dev/.well-known/mcp.json](https://stophy.dev/.well-known/mcp.json) | The MCP server, its auth and its tools |
-| [api.stophy.dev/v1/endpoints](https://api.stophy.dev/v1/endpoints) | Every endpoint with its input schema and cost, as JSON. |
-| [api.stophy.dev/openapi.json](https://api.stophy.dev/openapi.json) | The full OpenAPI document |
-| [llms.txt](https://docs.stophy.dev/llms.txt) | An index of these docs |
+- [Get credentials](#get-credentials)
+- [Set up MCP](#set-up-mcp)
+- [Agent harnesses](#agent-harnesses)
+- [LLM SDKs](#llm-sdks)
+- [Resources for agents](#resources-for-agents)
 
 ## Get credentials
 
-A human signs up at [stophy.dev/signup](https://stophy.dev/signup), creates an API key, and stores it as `STOPHY_API_KEY`. New accounts start with 500 free credits. Never print the key, log it, or commit it.
+Sign up in the [dashboard](https://stophy.dev/signup) and create an API key. Set it as `STOPHY_API_KEY` in your environment. Send the key with every API request. Over MCP you can also start with no key, or sign in with your browser.
 
-## Set up your agent
+**How you might arrive:**
 
-Tell your coding agent:
+- **Docs:** start in the dashboard to get your key.
+- **API `401`:** create a key, or check the key in your `Authorization` header.
+- **Direct URL:** follow [agents.md](https://stophy.dev/agents.md), then create a key in the dashboard.
 
-```text
-Follow the guide at https://stophy.dev/agents.md to set up Stophy in this project.
-```
+<Card title="Get an API key" icon="key" href="https://stophy.dev/signup">Create an account, then add a key in the dashboard.</Card>
 
-Or connect it over [MCP](/mcp-server):
+## Set up MCP
+
+Stophy's remote MCP server lets your agent find and call endpoints. It uses Streamable HTTP at `https://api.stophy.dev/mcp`. Start with no key, add a bearer key for every endpoint, or sign in at `https://api.stophy.dev/mcp-oauth`.
+
+<Card title="Set up Stophy MCP" icon="plug" href="/mcp-server">Connect Codex, Claude Code, Cursor, OpenCode, or another MCP client.</Card>
+
+## Agent harnesses
+
+<CardGroup cols={4}>
+  <Card title="Codex" icon="code" href="/quickstarts/codex">Add Stophy to Codex.</Card>
+  <Card title="Claude Code" icon="terminal" href="/quickstarts/claude-code">Add Stophy to Claude Code.</Card>
+  <Card title="Cursor" icon="arrow-pointer" href="/quickstarts/cursor">Add Stophy to Cursor.</Card>
+  <Card title="Claude Desktop" icon="comments" href="/quickstarts/claude-desktop">Add Stophy to Claude Desktop.</Card>
+</CardGroup>
+
+OpenCode setup is in the [MCP setup](/mcp-server/keyless).
+
+## LLM SDKs
 
 <CardGroup cols={3}>
-  <Card title="Claude Code" icon="terminal" href="/quickstarts/claude-code" />
-  <Card title="Cursor" icon="arrow-pointer" href="/quickstarts/cursor" />
-  <Card title="Codex" icon="code" href="/quickstarts/codex" />
+  <Card title="OpenAI" icon="robot" href="/developer-guides/llm-sdks/openai">Call Stophy from an OpenAI tool.</Card>
+  <Card title="Anthropic" icon="brain" href="/developer-guides/llm-sdks/anthropic">Call Stophy from a Claude tool.</Card>
+  <Card title="Vercel AI SDK" icon="code" href="/developer-guides/llm-sdks/vercel-ai-sdk">Use Stophy with the AI SDK.</Card>
 </CardGroup>
+
+## Resources for agents
+
+<Card title="Resources for agents" icon="file-code" href="/resources" arrow>
+  agents.md, llms.txt, the OpenAPI document, and the other resources an agent can read directly.
+</Card>

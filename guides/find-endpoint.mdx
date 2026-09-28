@@ -1,0 +1,60 @@
+---
+title: "Find the right endpoint"
+description: "Search the live Stophy catalog by keyword, browse it by category, or read one endpoint's full input before you write a call."
+og:title: "Find the right endpoint | Stophy"
+og:description: "Search the live Stophy catalog by keyword, browse it by category, or read one endpoint's full input before you write a call."
+---
+
+Stophy has 161 endpoints across 41 sources. Three ways to find the one you need: search the catalog, browse by category, or read one endpoint's input.
+
+## Search the catalog by keyword
+
+The catalog lists every endpoint with its id, summary, cost, and whether it needs a key.
+
+<CodeGroup>
+
+```bash cURL
+curl -s https://api.stophy.dev/v1/endpoints \
+  | jq -r '.endpoints[] | select(.id | contains("video")) | "\(.id): \(.summary)"'
+```
+
+```bash CLI
+stophy endpoints video
+```
+
+</CodeGroup>
+
+```text
+youtube.video: Get a video's title, channel, views, likes and description
+tiktok.video: Get a video's caption, stats and music
+kick.videos: Get a channel's past streams
+```
+
+Drop the keyword to list all 161: `curl -s https://api.stophy.dev/v1/endpoints` or `stophy endpoints`.
+
+## Browse by category
+
+Each page under [What you can get](/sources/web) lists every endpoint for one category, with its cost and a call you can copy.
+
+## Read one endpoint's input
+
+Once you have an id, read its full input schema and an example call.
+
+<CodeGroup>
+
+```bash cURL
+curl -s https://api.stophy.dev/v1/endpoints \
+  | jq '.endpoints[] | select(.id == "youtube.search")'
+```
+
+```bash CLI
+stophy describe youtube.search
+```
+
+</CodeGroup>
+
+The [API reference](/api-reference/introduction) has the same schema for every endpoint, with its required fields, defaults, and limits. Unknown input fields are rejected with a `400`.
+
+Over [MCP](/mcp-server), the `stophy_search_endpoints` tool runs this same search for your agent.
+
+<Tip>Try a call in the [playground](https://stophy.dev/playground) before you write any code.</Tip>

@@ -1,6 +1,8 @@
 ---
 title: "OpenAI"
-description: "Give an OpenAI model live web search with Stophy."
+description: "Give an OpenAI model live web search with Stophy: define a tool, run the call when the model asks for it, and return the results as markdown."
+og:title: "OpenAI tool calling with Stophy | Stophy"
+og:description: "Give an OpenAI model live web search with Stophy: define a tool, run the call when the model asks for it, and return the results as markdown."
 ---
 
 ## Setup
@@ -13,7 +15,7 @@ Set `OPENAI_API_KEY` in your environment. `STOPHY_API_KEY` is optional for this 
 
 ## The Stophy tool
 
-This function calls `web.search` and returns the results as markdown, which is short and easy for a model to read. It reads your key from `STOPHY_API_KEY`.
+This function calls web search and returns the results as markdown, which is short and easy for a model to read. It reads your key from `STOPHY_API_KEY`.
 
 ```ts stophy.ts
 export async function stophySearch(query: string): Promise<string> {

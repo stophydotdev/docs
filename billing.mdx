@@ -1,6 +1,8 @@
 ---
-title: "Credits"
-description: "What a call costs and how you pay for it."
+title: "Credits and billing"
+description: "How Stophy credits work: 1,000 credits cost $2, new accounts get 500 free, failed calls cost nothing, and every response shows what it cost."
+og:title: "Credits and billing | Stophy"
+og:description: "How Stophy credits work: 1,000 credits cost $2, new accounts get 500 free, failed calls cost nothing, and every response shows what it cost."
 ---
 
 Stophy uses credits. You buy credits ahead of time and each successful call uses some.
@@ -16,7 +18,7 @@ Stophy uses credits. You buy credits ahead of time and each successful call uses
 Each endpoint has a cost in credits. Find it in the [API reference](/api-reference/introduction), on each source page, or in `GET https://api.stophy.dev/v1/endpoints` (`credits` and `perItems`).
 
 - Most endpoints cost a fixed number of credits per call.
-- Some charge per group of results. When `perItems` is set, a call costs `credits` for every `perItems` items it returns, and at least `credits`. For example, `web.search` costs 1 credit per 10 results, so 25 results cost 3 credits.
+- Some charge per group of results. When `perItems` is set, a call costs `credits` for every `perItems` items it returns, and at least `credits`. For example, web search costs 1 credit per 10 results, so 25 results cost 3 credits.
 - Failed calls cost nothing.
 
 ## See what a call cost

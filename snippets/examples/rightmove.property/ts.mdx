@@ -1,0 +1,7 @@
+```typescript TypeScript icon="/images/icons/typescript.svg"
+import { Stophy } from "stophy";
+
+const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
+const result = await stophy.rightmove.property({ property: "https://www.rightmove.co.uk/properties/123456789" });
+console.log(result.data.property);
+```

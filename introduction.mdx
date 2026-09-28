@@ -1,81 +1,33 @@
 ---
 title: "Introduction"
-description: "Structured public web data for AI agents and apps, from one API."
+description: "Stophy is a public web data API for AI agents and apps: 161 endpoints across 41 sources, as JSON or markdown, from one key."
+og:title: "Introduction | Stophy"
+og:description: "Stophy is a public web data API for AI agents and apps: 161 endpoints across 41 sources, as JSON or markdown, from one key."
 ---
 
-<Note>
-  **For AI agents:** start with [stophy.dev/agents.md](https://stophy.dev/agents.md), or read [llms.txt](https://docs.stophy.dev/llms.txt) for an index of these docs.
-</Note>
+Stophy gives your agent or app structured public web data from one API: search results, video, social posts, places, products, jobs, ads, and prices. Every endpoint returns JSON for your code, or markdown for a model, from the same request.
 
-Stophy gives your agent or app structured public web data from one API. Search the web, read YouTube and Reddit, look up places, products, jobs, homes, ads and prices. There are 161 endpoints across 41 sources. Each one takes a JSON body and answers with clean JSON, or with markdown when you want text a model can read.
-
-## Get started
-
-<CardGroup cols={2}>
-  <Card title="Quickstart" icon="rocket" href="/quickstart">
-    Get a key and make your first call in a minute.
-  </Card>
-  <Card title="MCP" icon="plug" href="/mcp-server">
-    Give Claude Code, Cursor or Codex live web data.
-  </Card>
-  <Card title="Credits" icon="coins" href="/billing">
-    What a call costs, and how credits work.
-  </Card>
-  <Card title="API reference" icon="code" href="/api-reference/introduction">
-    Every endpoint with its input, output and cost.
-  </Card>
-</CardGroup>
-
-## What you can get
+## Three ways in
 
 <CardGroup cols={3}>
-  <Card title="Web and SEO" icon="globe" href="/sources/web">
-    Web and news search, and the contacts a site lists.
+  <Card title="API" icon="code" href="/api-reference/introduction">
+    Call any endpoint directly over HTTPS with a bearer key.
   </Card>
-  <Card title="YouTube" icon="youtube" href="/sources/youtube">
-    Videos, transcripts, comments and channels.
+  <Card title="SDKs" icon="cube" href="/sdks/overview">
+    Use the TypeScript, Python, or command-line client.
   </Card>
-  <Card title="Reddit" icon="reddit" href="/sources/reddit">
-    Posts, comment threads, subreddits and users.
-  </Card>
-  <Card title="Local and leads" icon="map-location-dot" href="/sources/local-and-leads">
-    Local businesses, their contact details and reviews.
-  </Card>
-  <Card title="E-commerce" icon="cart-shopping" href="/sources/e-commerce">
-    Products and prices from the big stores.
-  </Card>
-  <Card title="Ad libraries" icon="rectangle-ad" href="/sources/ad-libraries">
-    The ads advertisers run on Meta, Google, TikTok and LinkedIn.
+  <Card title="MCP" icon="plug" href="/mcp-server">
+    Connect Claude Code, Cursor, Codex, or another MCP client.
   </Card>
 </CardGroup>
 
-See every source in the **Sources** section of the sidebar.
-
-## How a call looks
+## Make your first request
 
 ```bash
-curl -X POST https://api.stophy.dev/v1/web/search \
+curl -X POST https://api.stophy.dev/v1/reddit/search \
+  -H "Authorization: Bearer $STOPHY_API_KEY" \
   -H "content-type: application/json" \
-  -d '{"query":"bun runtime","limit":2}'
+  -d '{"query":"bun runtime"}'
 ```
 
-```json
-{
-  "success": true,
-  "data": {
-    "results": [
-      {
-        "title": "Bun — A fast all-in-one JavaScript runtime",
-        "url": "https://bun.com/",
-        "description": "Bundle, install, and run JavaScript & TypeScript — all in Bun. ...",
-        "domain": "bun.com",
-        "position": 1
-      }
-    ]
-  },
-  "creditsUsed": 0,
-  "requestId": "7db121ac-d8e6-479a-b17c-59e3fe5fabd8"
-}
-```
-
-With an API key, every endpoint is open. You pay in credits, only for calls that succeed. New accounts start with 500 free credits.
+Stophy has 161 endpoints across 41 sources. See [what you can get](/sources/web) for the full list, or follow the [quickstart](/quickstart) to get a key and make this call yourself.

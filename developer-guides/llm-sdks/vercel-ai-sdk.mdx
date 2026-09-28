@@ -1,6 +1,8 @@
 ---
 title: "Vercel AI SDK"
-description: "Give any AI SDK model live web search with Stophy."
+description: "Give any AI SDK model live web search with Stophy: define a tool with zod, call the API in execute, and return the results as markdown."
+og:title: "Vercel AI SDK tool with Stophy | Stophy"
+og:description: "Give any AI SDK model live web search with Stophy: define a tool with zod, call the API in execute, and return the results as markdown."
 ---
 
 ## Setup
@@ -13,7 +15,7 @@ Set `OPENAI_API_KEY` in your environment. `STOPHY_API_KEY` is optional for this 
 
 ## The Stophy tool
 
-This function calls `web.search` and returns the results as markdown, which is short and easy for a model to read. It reads your key from `STOPHY_API_KEY`.
+This function calls web search and returns the results as markdown, which is short and easy for a model to read. It reads your key from `STOPHY_API_KEY`.
 
 ```ts stophy.ts
 export async function stophySearch(query: string): Promise<string> {

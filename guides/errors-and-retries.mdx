@@ -1,0 +1,95 @@
+---
+title: "Handle errors and retries"
+description: "Handle Stophy API errors: read the error code, retry only when retryable is true, wait for Retry-After, and back off. Failed calls cost nothing."
+og:title: "Handle errors and retries | Stophy"
+og:description: "Handle Stophy API errors: read the error code, retry only when retryable is true, wait for Retry-After, and back off. Failed calls cost nothing."
+---
+
+Every error has the same shape, and failed calls cost nothing.
+
+```json
+{
+  "success": false,
+  "error": {
+    "code": "sourceTimeout",
+    "message": "The source took too long to answer. Try again.",
+    "retryable": true,
+    "requestId": "..."
+  }
+}
+```
+
+## Decide what to do
+
+| When | Do this |
+| --- | --- |
+| `retryable` is `false` | Don't retry. Fix the request, or read the message. |
+| `retryAfterSeconds` is set | Wait that many seconds, then retry. The `Retry-After` header has the same value. |
+| `retryable` is `true` with no wait | Back off: 0.5 s, then 1 s, then 2 s. |
+| Still failing after a few tries | Stop, and log the `requestId`. |
+
+The full list of codes is in [Errors](/api-reference/errors).
+
+## A retry loop
+
+<CodeGroup>
+
+```ts Node.js
+async function call(id: string, input: object, attempts = 3) {
+  for (let attempt = 0; ; attempt++) {
+    const response = await fetch(`https://api.stophy.dev/v1/${id.replaceAll(".", "/")}`, {
+      method: "POST",
+      headers: {
+        authorization: `Bearer ${process.env.STOPHY_API_KEY}`,
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(input),
+      signal: AbortSignal.timeout(30_000),
+    });
+    const body = await response.json();
+    if (body.success) return body.data;
+    if (!body.error.retryable || attempt + 1 >= attempts) {
+      throw new Error(`${body.error.code}: ${body.error.message} (${body.error.requestId})`);
+    }
+    const seconds = body.error.retryAfterSeconds ?? 0.5 * 2 ** attempt;
+    await new Promise((resolve) => setTimeout(resolve, seconds * 1000));
+  }
+}
+```
+
+```python Python
+import os
+import time
+
+import requests
+
+
+def call(endpoint_id, payload, attempts=3):
+    for attempt in range(attempts):
+        response = requests.post(
+            f"https://api.stophy.dev/v1/{endpoint_id.replace('.', '/')}",
+            headers={"Authorization": f"Bearer {os.environ['STOPHY_API_KEY']}"},
+            json=payload,
+            timeout=30,
+        )
+        body = response.json()
+        if body["success"]:
+            return body["data"]
+        error = body["error"]
+        if not error["retryable"] or attempt + 1 >= attempts:
+            raise RuntimeError(f"{error['code']}: {error['message']} ({error['requestId']})")
+        time.sleep(error.get("retryAfterSeconds", 0.5 * 2**attempt))
+```
+
+</CodeGroup>
+
+## Common cases
+
+- **`401 unauthorized`:** the key is missing or wrong. Check the `Authorization: Bearer <key>` header.
+- **`402 insufficientCredits`:** your balance is too low. Nothing was charged. [Top up](/billing) and try again.
+- **`429 rateLimited` or `tooManyInFlight`:** you are over your [rate limits](/rate-limits). Wait, then retry.
+- **`400 invalidRequest`:** the input is not valid. The message names the field. Check the endpoint's input in the [API reference](/api-reference/introduction).
+
+## Timeouts
+
+Every call answers or fails within 25 seconds. Set your client timeout a little above that, for example 30 seconds.

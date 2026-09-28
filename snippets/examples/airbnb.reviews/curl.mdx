@@ -1,0 +1,6 @@
+```bash cURL icon="terminal"
+curl -X POST https://api.stophy.dev/v1/airbnb/reviews \
+  -H "Authorization: Bearer $STOPHY_API_KEY" \
+  -H "content-type: application/json" \
+  -d '{"listing":"https://www.airbnb.com/rooms/12345678"}'
+```

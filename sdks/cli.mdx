@@ -1,0 +1,126 @@
+---
+title: "CLI"
+description: "Install the Stophy CLI, log in with the matching code or an API key, call an endpoint, page through results, and handle errors from a script."
+sidebarTitle: "CLI"
+icon: "terminal"
+og:title: "Stophy CLI | Stophy"
+og:description: "Install the Stophy CLI, log in with the matching code or an API key, call an endpoint, page through results, and handle errors from a script."
+---
+
+## Install
+
+Install with npm. You need Node.js 20 or later.
+
+```bash
+npm install -g @stophy/cli
+```
+
+To install without Node.js, use the standalone binary:
+
+```bash
+# macOS and Linux
+curl -fsSL https://stophy.dev/install.sh | bash
+
+# Windows (PowerShell)
+irm https://stophy.dev/install.ps1 | iex
+```
+
+`npx -y @stophy/cli@latest init --all --browser` installs the CLI, adds Stophy's agent skills to your project, and logs in, in one command.
+
+## Authenticate
+
+Log in with your browser:
+
+```bash
+stophy login --browser
+```
+
+The CLI prints a code and opens stophy.dev. Check that the page shows the same code, then approve it. On a server with no browser, open the printed link on any other device: the CLI logs in once you approve there.
+
+To use an API key instead, pass it to `login` or set it as an environment variable:
+
+```bash
+stophy login --api-key st_...
+export STOPHY_API_KEY="st_..."
+```
+
+Each computer gets its own key. Web search, YouTube search and YouTube transcripts work without logging in.
+
+Log out and revoke this computer's key:
+
+```bash
+stophy logout
+```
+
+## Make a call
+
+Name the source, then the command:
+
+```bash
+stophy youtube search "bun runtime" --limit 5
+stophy maps search dentist --near Berlin --country de
+```
+
+Run `stophy <source> --help` to see what a source can do, and `stophy <source> <command> --help` for every option on one command. If you give a value an option does not accept, the CLI stops before it calls Stophy and lists which values work.
+
+## Get markdown
+
+Markdown is the default. Add `--json` to get the data as JSON instead, with the credits used printed to stderr:
+
+```bash
+stophy reddit search "bun runtime" --json
+```
+
+## Page through results
+
+When there are more results, the output ends with a cursor. Pass it back to get the next page:
+
+```bash
+stophy reddit search "bun runtime" --cursor "eyJvZmZzZXQiOjI1fQ"
+```
+
+## Save the output
+
+`-o <path>` writes the output to a file instead of stdout:
+
+```bash
+stophy youtube search "bun runtime" --json -o results.json
+```
+
+## Handle errors and retries
+
+A failed call exits non-zero and writes its message to stderr. When the API says to wait, the message ends with `Retry after Ns.` and the CLI does not retry for you:
+
+```bash
+if ! stophy reddit search "bun runtime" --json -o out.json 2>err.txt; then
+  cat err.txt
+  exit 1
+fi
+```
+
+To retry on a rate limit from a script, parse the wait time out of that message, or call `stophy status` first to check your account is live before a batch of calls.
+
+## Check your account
+
+```bash
+stophy status
+stophy usage
+stophy logs --days 7
+```
+
+`status` shows your login and balance. `usage` shows your balance and all-time usage. `logs` shows your recent requests.
+
+## Commands
+
+| Command | What it does |
+| --- | --- |
+| `stophy init --all --browser` | Install the CLI and the agent skills, and log in |
+| `stophy login` | Log in with your browser or an API key |
+| `stophy logout` | Log out and revoke this computer's key |
+| `stophy <source> <command>` | Get data, for example `stophy youtube search` |
+| `stophy endpoints [word]` | List every command and its cost |
+| `stophy status` | Show your login, balance, and CLI version |
+| `stophy usage` | Show your balance and all-time usage |
+| `stophy logs` | Show your recent requests |
+| `stophy doctor` | Check your install, login, and connection |
+| `stophy version` | Show the CLI version |

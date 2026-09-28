@@ -1,0 +1,73 @@
+---
+title: "Page through results"
+description: "Get more than one page from Stophy endpoints that page: send the cursor from each response with the same input until no cursor comes back."
+og:title: "Page through results | Stophy"
+og:description: "Get more than one page from Stophy endpoints that page: send the cursor from each response with the same input until no cursor comes back."
+---
+
+Endpoints that page take a `cursor` input. Each endpoint page in the [API reference](/api-reference/introduction) says whether it pages.
+
+## How it works
+
+1. Send your input as usual.
+2. If `data.cursor` is in the response, send the same input again with that `cursor`.
+3. Stop when a response has no `cursor`. You have everything.
+
+Keep the rest of the input the same between pages. Each page is a normal call and costs credits like one.
+
+## Loop through every page
+
+<CodeGroup>
+
+```ts Node.js
+const results = [];
+let cursor: string | undefined;
+do {
+  const response = await fetch("https://api.stophy.dev/v1/youtube/search", {
+    method: "POST",
+    headers: {
+      authorization: `Bearer ${process.env.STOPHY_API_KEY}`,
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({ query: "rust tutorial", cursor }),
+  });
+  const { data } = await response.json();
+  results.push(...data.results);
+  cursor = data.cursor;
+} while (cursor && results.length < 100);
+```
+
+```python Python
+import os
+import requests
+
+results = []
+cursor = None
+while True:
+    body = {"query": "rust tutorial"}
+    if cursor:
+        body["cursor"] = cursor
+    response = requests.post(
+        "https://api.stophy.dev/v1/youtube/search",
+        headers={"Authorization": f"Bearer {os.environ['STOPHY_API_KEY']}"},
+        json=body,
+        timeout=30,
+    )
+    data = response.json()["data"]
+    results += data["results"]
+    cursor = data.get("cursor")
+    if not cursor or len(results) >= 100:
+        break
+```
+
+</CodeGroup>
+
+Set your own stop, like the 100 results above. Some sources have many pages.
+
+## Paging with markdown
+
+With `accept: text/markdown`, the last line tells you what to send next:
+
+```text
+More results: add "cursor": "..." to your request
+```

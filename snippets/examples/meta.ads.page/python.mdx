@@ -1,0 +1,7 @@
+```python Python icon="python"
+from stophy import Stophy
+
+stophy = Stophy()  # reads STOPHY_API_KEY
+result = stophy.meta.ads.page(page="https://www.facebook.com/nike", limit=10)
+print(result["data"]["ads"])
+```

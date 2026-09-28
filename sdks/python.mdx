@@ -1,9 +1,11 @@
 ---
 title: "Python SDK"
-description: "Use Stophy from Python, sync or async."
+description: "Install the Stophy Python SDK, authenticate, call an endpoint sync or async, get markdown, page through results, and handle errors and retries."
+sidebarTitle: "Python"
+icon: "python"
+og:title: "Python SDK | Stophy"
+og:description: "Install the Stophy Python SDK, authenticate, call an endpoint sync or async, get markdown, page through results, and handle errors and retries."
 ---
-
-<Note>Version 1.0.0 is being released. See the [overview](/sdks/overview).</Note>
 
 ## Install
 
@@ -13,9 +15,30 @@ pip install stophy
 
 It needs Python 3.9 or newer.
 
-## Use your API key
+## Authenticate
 
-`api_key` defaults to the `STOPHY_API_KEY` environment variable, so `Stophy()` picks it up.
+`api_key` defaults to the `STOPHY_API_KEY` environment variable, so a bare `Stophy()` picks it up.
+
+```python
+import os
+
+from stophy import Stophy
+
+stophy = Stophy(api_key=os.environ["STOPHY_API_KEY"])
+```
+
+Without a key, web search, YouTube search and YouTube transcripts still work:
+
+```python
+from stophy import Stophy
+
+result = Stophy().web.search(query="bun runtime")
+print(result["data"]["results"])
+```
+
+Every other endpoint raises `StophyError` with code `unauthorized` and status `401` when called without a key.
+
+## Make a call
 
 ```python
 import os
@@ -84,7 +107,7 @@ while True:
         break
 ```
 
-## Errors
+## Handle errors and retries
 
 ```python
 from stophy import Stophy, StophyError
@@ -99,6 +122,8 @@ except StophyError as error:
 ```
 
 `StophyError` has `status`, `code`, `retryable`, `retry_after_seconds` and `request_id`. The message is `str(error)`. See [Errors](/api-reference/errors) for every code.
+
+The SDK retries network errors and `429`/`5xx` responses on its own, honoring `Retry-After`, before it raises. Set `max_retries=0` to turn that off. `StophyError` only reaches your code after retries are exhausted.
 
 ## Options
 

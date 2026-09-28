@@ -1,0 +1,7 @@
+```python Python icon="python"
+from stophy import Stophy
+
+stophy = Stophy()  # reads STOPHY_API_KEY
+result = stophy.realtor.search(location="Denver, CO")
+print(result["data"]["listings"])
+```

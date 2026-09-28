@@ -1,0 +1,7 @@
+```typescript TypeScript icon="/images/icons/typescript.svg"
+import { Stophy } from "stophy";
+
+const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
+const result = await stophy.crypto.token.holders({ chain: "ethereum", token: "0xdAC17F958D2ee523a2206206994597C13D831ec7", limit: 50 });
+console.log(result.data.token);
+```

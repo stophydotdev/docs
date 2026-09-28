@@ -1,56 +1,78 @@
 ---
 title: "Quickstart"
-description: "Get a key and make your first call."
+description: "Make your first Stophy call with no key, then add a key and make the same call from TypeScript, Python, cURL, or the CLI."
+og:title: "Quickstart | Stophy"
+og:description: "Make your first Stophy call with no key, then add a key and make the same call from TypeScript, Python, cURL, or the CLI."
 ---
 
-## 1. Get an API key
+## 1. Try it with no key
+
+YouTube search works without a key, within a small free limit.
+
+```bash
+curl -X POST https://api.stophy.dev/v1/youtube/search \
+  -H "content-type: application/json" \
+  -d '{"query":"rust tutorial"}'
+```
+
+You should see JSON like this, with `creditsUsed` at `0`:
+
+```json
+{
+  "success": true,
+  "data": {
+    "results": [
+      {
+        "type": "video",
+        "id": "Wc0ZJo06oAw",
+        "url": "https://www.youtube.com/watch?v=Wc0ZJo06oAw",
+        "title": "The Ultimate Rust Beginners Guide (2026)",
+        "channel": {
+          "id": "UCt6XPuD8u3YjvybuT-Xnj5A",
+          "username": "SBJake",
+          "name": "SBJake",
+          "url": "https://www.youtube.com/channel/UCt6XPuD8u3YjvybuT-Xnj5A"
+        },
+        "durationSeconds": 422,
+        "views": 543208,
+        "thumbnail": "https://i.ytimg.com/vi/Wc0ZJo06oAw/hqdefault.jpg",
+        "isShort": false,
+        "isLive": false,
+        "createdAt": "2025-09-28T13:19:10.000Z"
+      }
+    ]
+  },
+  "creditsUsed": 0,
+  "requestId": "5fb0898a-3983-4f30-ae3e-3146c406ccd1"
+}
+```
+
+## 2. Get an API key
 
 Sign up at [stophy.dev/signup](https://stophy.dev/signup). New accounts start with 500 free credits. Create a key and store it as `STOPHY_API_KEY`. Never put it in code.
 
-## 2. Make your first call
+## 3. Make the same call with a key
 
-Send the key as a Bearer token.
+import YoutubeSearchTs from '/snippets/examples/youtube.search/ts.mdx';
+import YoutubeSearchPython from '/snippets/examples/youtube.search/python.mdx';
+import YoutubeSearchCurl from '/snippets/examples/youtube.search/curl.mdx';
+import YoutubeSearchCli from '/snippets/examples/youtube.search/cli.mdx';
+
+Send the key as a bearer token. This is the same call as step 1, now under your account.
 
 <CodeGroup>
-
-```bash cURL
-curl -X POST https://api.stophy.dev/v1/reddit/search \
-  -H "Authorization: Bearer $STOPHY_API_KEY" \
-  -H "content-type: application/json" \
-  -d '{"query":"bun runtime","limit":10}'
-```
-
-```ts Node.js
-const response = await fetch("https://api.stophy.dev/v1/reddit/search", {
-  method: "POST",
-  headers: {
-    authorization: `Bearer ${process.env.STOPHY_API_KEY}`,
-    "content-type": "application/json",
-  },
-  body: JSON.stringify({ query: "bun runtime", limit: 10 }),
-});
-const { data, creditsUsed } = await response.json();
-```
-
-```python Python
-import os
-import httpx
-
-response = httpx.post(
-    "https://api.stophy.dev/v1/reddit/search",
-    headers={"Authorization": f"Bearer {os.environ['STOPHY_API_KEY']}"},
-    json={"query": "bun runtime", "limit": 10},
-    timeout=30,
-)
-data = response.json()["data"]
-```
-
+  <YoutubeSearchTs />
+  <YoutubeSearchPython />
+  <YoutubeSearchCurl />
+  <YoutubeSearchCli />
 </CodeGroup>
+
+It returns the same shape as before. With a key, it costs 1 credit per 20 items, at least 1 credit, instead of being free.
 
 ## Next steps
 
 <CardGroup cols={2}>
-  <Card title="Find an endpoint" icon="magnifying-glass" href="/advanced-guide#choosing-an-endpoint">
+  <Card title="Find the right endpoint" icon="magnifying-glass" href="/guides/find-endpoint">
     Search the catalog for the data you need.
   </Card>
   <Card title="Connect over MCP" icon="plug" href="/mcp-server">
