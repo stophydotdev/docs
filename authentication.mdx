@@ -1,0 +1,36 @@
+---
+title: "Authentication"
+description: "Send your API key as a Bearer token."
+---
+
+Send your key in the `Authorization` header on every request:
+
+```bash
+Authorization: Bearer <key>
+```
+
+Get a key at [stophy.dev/signup](https://stophy.dev/signup). New accounts start with 500 free credits.
+
+## Keep the key secret
+
+- Read it from the environment, for example `STOPHY_API_KEY`.
+- Never put it in code, logs or a public repository.
+- Call Stophy from your server, not from a browser page, so the key stays private.
+
+## Missing or wrong key
+
+Without a valid key, most endpoints answer `401` with code `unauthorized`:
+
+```json
+{
+  "success": false,
+  "error": {
+    "code": "unauthorized",
+    "message": "Send an API key as Authorization: Bearer <key>. Get a key: https://stophy.dev/signup",
+    "retryable": false,
+    "requestId": "..."
+  }
+}
+```
+
+Three endpoints also work without a key. See [Without a key](/without-a-key).

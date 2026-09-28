@@ -1,0 +1,68 @@
+---
+title: "MCP"
+description: "Give Claude Code, Cursor or any MCP client live web data."
+---
+
+Stophy is a remote MCP server at `https://api.stophy.dev/mcp` (streamable HTTP). It uses your API key: send `Authorization: Bearer <key>`. MCP always needs a key.
+
+## Set up your client
+
+<Tabs>
+  <Tab title="Claude Code">
+    ```bash
+    claude mcp add --transport http stophy https://api.stophy.dev/mcp --header "Authorization: Bearer <key>"
+    ```
+  </Tab>
+  <Tab title="Cursor">
+    Add this to `.cursor/mcp.json`:
+
+    ```json
+    {
+      "mcpServers": {
+        "stophy": {
+          "url": "https://api.stophy.dev/mcp",
+          "headers": { "Authorization": "Bearer <key>" }
+        }
+      }
+    }
+    ```
+  </Tab>
+  <Tab title="Codex">
+    Add this to `~/.codex/config.toml`:
+
+    ```toml
+    [mcp_servers.stophy]
+    url = "https://api.stophy.dev/mcp"
+
+    [mcp_servers.stophy.http_headers]
+    Authorization = "Bearer <key>"
+    ```
+  </Tab>
+  <Tab title="Other clients">
+    Use the URL `https://api.stophy.dev/mcp` with the streamable HTTP transport, and add the header `Authorization: Bearer <key>`.
+  </Tab>
+</Tabs>
+
+## Tools
+
+By default you get three tools, not one per endpoint:
+
+| Tool | Input | What it does |
+| --- | --- | --- |
+| `stophy_search_endpoints` | `{ query?, category? }` | Finds endpoints by words or source. Each match has an id, a one-line description and its cost. `category` is a source such as `reddit` or an id prefix such as `google.ads`. |
+| `stophy_describe_endpoint` | `{ id }` | Returns one endpoint's input schema, its cost, and whether it pages with `cursor`. |
+| `stophy_call` | `{ id, input?, format? }` | Runs the endpoint. `format` is `markdown` (the default) or `json`. |
+
+Results are markdown unless you ask for JSON, and include `creditsUsed`. Errors come back as tool errors with the API's `code`, `message`, `retryable` and, when present, `retryAfterSeconds`.
+
+## Toolsets
+
+Add `?toolsets=` to the URL to also get one tool per endpoint of those sources, named like `reddit_search`:
+
+```bash
+claude mcp add --transport http stophy "https://api.stophy.dev/mcp?toolsets=reddit,youtube" --header "Authorization: Bearer <key>"
+```
+
+Leave `toolsets` off unless you want those tools in your client's tool list.
+
+MCP calls cost the same credits and use the same limits as the HTTP API.

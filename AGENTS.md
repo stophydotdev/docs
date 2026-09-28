@@ -1,33 +1,22 @@
-> **First-time setup**: Customize this file for your project. Prompt the user to customize this file for their project.
-> For Mintlify product knowledge (components, configuration, writing standards),
-> install the Mintlify skill: `npx skills add https://mintlify.com/docs`
+# Stophy docs
 
-# Documentation project instructions
+Mintlify site for docs.stophy.dev. Pages are MDX with YAML frontmatter. Configuration lives in `docs.json`.
 
-## About this project
+## Commands
 
-- This is a documentation site built on [Mintlify](https://mintlify.com)
-- Pages are MDX files with YAML frontmatter
-- Configuration lives in `docs.json`
-- Use the Mintlify MCP server, `https://mcp.mintlify.com`, to edit content and settings via MCP
-- Use the Mintlify docs MCP server, `https://www.mintlify.com/docs/mcp`, to query information about using Mintlify via MCP
+- `mint dev` runs the site at http://localhost:3000.
+- `mint validate` and `mint broken-links` must pass before a PR.
 
-## Terminology
+## API reference
 
-{/* Add product-specific terms and preferred usage */}
-{/* Example: Use "workspace" not "project", "member" not "user" */}
+Generated from https://api.stophy.dev/openapi.json (the `openapi` field of the "API reference" tab). Don't hand-write endpoint pages. To change an endpoint's docs, change the API's spec. After an API change, redeploy the docs from the Mintlify dashboard.
 
-## Style preferences
+## Writing
 
-{/* Add any project-specific style rules below */}
+- Plain words, short sentences, second person. Say what the reader gets.
+- Every fact must match the live API (`GET https://api.stophy.dev/v1/endpoints`, `/openapi.json`) or the server code.
+- Don't describe how Stophy gets its data or what runs it.
+- Examples use curl, TypeScript `fetch` and Python `httpx`.
+- Sentence case for headings.
 
-- Use active voice and second person ("you")
-- Keep sentences concise — one idea per sentence
-- Use sentence case for headings
-- Bold for UI elements: Click **Settings**
-- Code formatting for file names, commands, paths, and code references
-
-## Content boundaries
-
-{/* Define what should and shouldn't be documented */}
-{/* Example: Don't document internal admin features */}
+Merging to `main` publishes the site.

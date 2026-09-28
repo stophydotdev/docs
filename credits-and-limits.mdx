@@ -1,0 +1,28 @@
+---
+title: "Credits and limits"
+description: "What a call costs and how fast you can go."
+---
+
+## Credits
+
+- 1,000 credits cost $2. New accounts start with 500 free credits.
+- Each endpoint has a cost in credits. Find it in `GET https://api.stophy.dev/v1/endpoints` (`credits`) or in the [API reference](https://api.stophy.dev/openapi.json).
+- Some endpoints charge per group of results. When `perItems` is set, a call costs `credits` for every `perItems` results it returns, and at least `credits`. For example, `web.search` costs 1 credit per 10 results.
+- Every response says what it cost: `creditsUsed` in the JSON body and the `x-credits-used` header.
+- Failed calls cost nothing.
+- Calls to the three free endpoints without a key cost nothing.
+
+When your balance is too low, calls answer `402` with code `insufficientCredits`.
+
+## Limits
+
+| | With a key | Without a key |
+| --- | --- | --- |
+| Requests | 600 a minute | 10 a minute and 50 a day, per IP |
+| Running at once | 10 | |
+| `limit` | Up to the endpoint's maximum | At most 10 |
+| Paging | Yes | First page only |
+
+Every call answers or fails within 25 seconds.
+
+Responses include `X-RateLimit-Limit` and `X-RateLimit-Remaining`. Over the limit, you get `429` with a `Retry-After` header. See [Errors and retries](/errors-and-retries).
