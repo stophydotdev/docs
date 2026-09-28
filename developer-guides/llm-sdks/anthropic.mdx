@@ -51,7 +51,7 @@ const webSearch = betaZodTool({
 });
 
 const message = await client.beta.messages.toolRunner({
-  model: "claude-opus-5",
+  model: "claude-opus-5-5",
   max_tokens: 16000,
   tools: [webSearch],
   messages: [{ role: "user", content: "What changed in the latest Bun release?" }],
