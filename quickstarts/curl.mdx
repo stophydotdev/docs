@@ -6,14 +6,15 @@ description: "Call Stophy from the command line."
 ## Prerequisites
 
 - `curl`
-- An API key for anything beyond the [free endpoints](/without-a-key). [Get one](https://stophy.dev/signup).
+- An API key. [Get one](https://stophy.dev/signup) and store it as `STOPHY_API_KEY`.
 
 ## Search the web
 
-No key needed:
-
 ```bash
+export STOPHY_API_KEY="your key"
+
 curl -X POST https://api.stophy.dev/v1/web/search \
+  -H "Authorization: Bearer $STOPHY_API_KEY" \
   -H "content-type: application/json" \
   -d '{"query":"bun runtime","limit":3}'
 ```
@@ -24,16 +25,15 @@ Add an `accept` header to get a readable page instead of JSON:
 
 ```bash
 curl -X POST https://api.stophy.dev/v1/youtube/search \
+  -H "Authorization: Bearer $STOPHY_API_KEY" \
   -H "content-type: application/json" \
   -H "accept: text/markdown" \
   -d '{"query":"rust tutorial","limit":2}'
 ```
 
-## Call any endpoint with a key
+## Call any endpoint
 
 ```bash
-export STOPHY_API_KEY="your key"
-
 curl -X POST https://api.stophy.dev/v1/maps/search \
   -H "Authorization: Bearer $STOPHY_API_KEY" \
   -H "content-type: application/json" \

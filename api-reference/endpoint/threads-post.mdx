@@ -8,5 +8,4 @@ openapi: 'api-reference/openapi.json POST /v1/threads/post'
 
 - **Returns:** `data` has `post`, `thread`, `replies`.
 - **Cost:** 1 credit. Failed calls cost nothing.
-- **Without a key:** No. Send `Authorization: Bearer <key>`.
 - **Paging:** Yes. Send the `cursor` from the response to get the next page. See [Paging](/advanced-guide#paging).

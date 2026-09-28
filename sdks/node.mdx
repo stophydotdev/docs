@@ -13,19 +13,6 @@ npm install stophy
 
 The package has no runtime dependencies and ships ESM, CommonJS and type definitions.
 
-## Search without a key
-
-```ts
-import { Stophy } from "stophy";
-
-const stophy = new Stophy();
-const result = await stophy.web.search({ query: "bun runtime", limit: 3 });
-
-for (const item of result.data.results ?? []) {
-  console.log(item.title, item.url);
-}
-```
-
 ## Use your API key
 
 `apiKey` defaults to the `STOPHY_API_KEY` environment variable, so `new Stophy()` picks it up. `new Stophy("your key")` works too.

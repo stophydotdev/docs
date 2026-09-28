@@ -30,7 +30,6 @@ interface Operation {
   source: string;
   credits: number | undefined;
   perItems: number | undefined;
-  keyless: boolean;
   pages: boolean;
   input: JsonObject | undefined;
   example: JsonObject | undefined;
@@ -57,7 +56,6 @@ function operations(): Operation[] {
       if (!isObject(op)) continue;
       const parts = path.replace(/^\/v1\//, "").split("/");
       const id = parts.join(".");
-      const security = Array.isArray(op.security) ? op.security : [];
       const body = (op.requestBody as JsonObject | undefined)?.content as JsonObject | undefined;
       const json = body?.["application/json"] as JsonObject | undefined;
       const input = json?.schema as JsonObject | undefined;
@@ -73,7 +71,6 @@ function operations(): Operation[] {
         source: parts[0] ?? id,
         credits: typeof op["x-credits"] === "number" ? op["x-credits"] : undefined,
         perItems: typeof op["x-per-items"] === "number" ? op["x-per-items"] : undefined,
-        keyless: security.some((entry) => isObject(entry) && Object.keys(entry).length === 0),
         pages: isObject((input?.properties as JsonObject | undefined)?.cursor),
         input,
         example,
@@ -144,19 +141,12 @@ function fieldRows(op: Operation): string[] {
 function endpointPage(op: Operation): string {
   const title = op.id === "endpoints" ? "Endpoint catalog" : op.id;
   const sidebar = op.id === "endpoints" ? "List endpoints" : op.id.split(".").slice(1).join(".");
-  const keyless =
-    op.method === "GET"
-      ? "Yes."
-      : op.keyless
-        ? "Yes, within the [free limits](/without-a-key)."
-        : "No. Send `Authorization: Bearer <key>`.";
   const paging = op.pages
-    ? `Yes. Send the \`cursor\` from the response to get the next page${op.keyless ? " (needs an API key)" : ""}. See [Paging](/advanced-guide#paging).`
+    ? `Yes. Send the \`cursor\` from the response to get the next page. See [Paging](/advanced-guide#paging).`
     : "No.";
   const facts = [
     returns(op) === "" ? undefined : `- **Returns:** ${returns(op)}`,
-    `- **Cost:** ${cost(op)}.${op.credits !== undefined ? " Failed calls cost nothing." : ""}${op.keyless && op.method === "POST" ? " Calls without a key are free." : ""}`,
-    `- **Without a key:** ${keyless}`,
+    `- **Cost:** ${cost(op)}.${op.credits !== undefined ? " Failed calls cost nothing." : ""}`,
     op.method === "POST" ? `- **Paging:** ${paging}` : undefined,
   ].filter((line) => line !== undefined);
   const note = config.notes[op.id];
@@ -180,7 +170,7 @@ function curl(op: Operation, input: JsonObject): string {
   return [
     "```bash",
     `curl -X POST https://api.stophy.dev${op.path} \\`,
-    ...(op.keyless ? [] : ['  -H "Authorization: Bearer $STOPHY_API_KEY" \\']),
+    '  -H "Authorization: Bearer $STOPHY_API_KEY" \\',
     '  -H "content-type: application/json" \\',
     `  -d '${body.replaceAll("'", "'\\''")}'`,
     "```",
@@ -191,7 +181,7 @@ function areaPage(area: Area, byId: Map<string, Operation>): string {
   const rows = area.endpoints.map((id) => {
     const op = byId.get(id);
     if (op === undefined) throw new Error(`${area.title}: ${id} is not in the spec`);
-    return `| [\`${id}\`](/api-reference/endpoint/${op.slug}) | ${cost(op)} | ${op.keyless ? "Yes" : "No"} | ${op.pages ? "Yes" : "No"} |`;
+    return `| [\`${id}\`](/api-reference/endpoint/${op.slug}) | ${cost(op)} | ${op.pages ? "Yes" : "No"} |`;
   });
   const example = byId.get(area.example);
   if (example === undefined) throw new Error(`${area.title}: example ${area.example} is not in the spec`);
@@ -223,8 +213,8 @@ function areaPage(area: Area, byId: Map<string, Operation>): string {
     "",
     "## Endpoints",
     "",
-    "| Endpoint | Cost | Without a key | Paging |",
-    "| --- | --- | --- | --- |",
+    "| Endpoint | Cost | Paging |",
+    "| --- | --- | --- |",
     ...rows,
     "",
     `## Example: ${example.id}`,

@@ -7,7 +7,7 @@ description: "Choose an endpoint, get markdown, and page through results."
 
 Every endpoint is `POST https://api.stophy.dev/v1/<source>/<endpoint>`, and its id is the same path with dots: `/v1/youtube/comments/replies` is `youtube.comments.replies`.
 
-To find one, ask the catalog. It needs no key and costs nothing:
+To find one, ask the catalog. It is free to call:
 
 ```bash
 curl https://api.stophy.dev/v1/endpoints
@@ -19,7 +19,6 @@ Each entry has:
 | --- | --- |
 | `id`, `path` | The endpoint id and its path |
 | `credits`, `perItems` | What a call costs. See [Credits](/billing). |
-| `keyless` | `true` when it works without a key |
 | `input` | The input as JSON Schema. Read it before you call. |
 | `example` | A real input, or `null` when there is none |
 | `cacheTtlSeconds` | For how many seconds the same input can return the same result |
@@ -32,6 +31,7 @@ Send `Accept: text/markdown` to get the same result as a readable page. It is sh
 
 ```bash
 curl -X POST https://api.stophy.dev/v1/youtube/search \
+  -H "Authorization: Bearer $STOPHY_API_KEY" \
   -H "content-type: application/json" \
   -H "accept: text/markdown" \
   -d '{"query":"rust tutorial","limit":2}'
@@ -107,8 +107,6 @@ With markdown, the last line tells you the `cursor` to send:
 ```text
 More results: add "cursor": "..." to your request
 ```
-
-Paging needs an API key. Without a key you get the first page only.
 
 ## Timeouts
 

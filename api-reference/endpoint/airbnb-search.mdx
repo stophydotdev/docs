@@ -8,5 +8,4 @@ openapi: 'api-reference/openapi.json POST /v1/airbnb/search'
 
 - **Returns:** `data` has `listings`.
 - **Cost:** 2 credits per 18 items, at least 2 credits. Failed calls cost nothing.
-- **Without a key:** No. Send `Authorization: Bearer <key>`.
 - **Paging:** Yes. Send the `cursor` from the response to get the next page. See [Paging](/advanced-guide#paging).

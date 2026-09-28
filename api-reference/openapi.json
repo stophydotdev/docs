@@ -3,7 +3,7 @@
   "info": {
     "title": "Stophy API",
     "version": "1",
-    "description": "Every endpoint is a POST that takes its input as a JSON object body. Unknown fields are rejected with 400.\n\nSend Accept: text/markdown to get markdown instead of JSON.\n\nResponses leave out empty values: null, empty strings, empty objects and empty nested lists are not sent.\n\nx-credits is what one call costs. When x-per-items is set, a call costs x-credits for every x-per-items items it returns, and at least x-credits.\n\nWhen a response has a cursor, send it back with the same input to get the next page.\n\nEndpoints whose security includes {} also work without an API key: 10 requests a minute and 50 a day per IP, limit at most 10, and no paging."
+    "description": "Every endpoint is a POST that takes its input as a JSON object body. Unknown fields are rejected with 400.\n\nSend Accept: text/markdown to get markdown instead of JSON.\n\nResponses leave out empty values: null, empty strings, empty objects and empty nested lists are not sent.\n\nx-credits is what one call costs. When x-per-items is set, a call costs x-credits for every x-per-items items it returns, and at least x-credits.\n\nWhen a response has a cursor, send it back with the same input to get the next page."
   },
   "servers": [
     {
@@ -361,9 +361,7 @@
       "get": {
         "operationId": "listEndpoints",
         "summary": "List every endpoint with its cost and input schema.",
-        "security": [
-          {}
-        ],
+        "security": [],
         "responses": {
           "200": {
             "description": "The endpoint catalog.",
@@ -382,9 +380,8 @@
       "post": {
         "operationId": "webSearch",
         "summary": "web.search",
-        "description": "Costs 1 credit per 10 items. Works without an API key, within free limits.",
+        "description": "Costs 1 credit per 10 items.",
         "security": [
-          {},
           {
             "apiKey": []
           }
@@ -936,9 +933,8 @@
       "post": {
         "operationId": "youtubeSearch",
         "summary": "youtube.search",
-        "description": "Costs 1 credit per 20 items. Pages with cursor. Works without an API key, within free limits.",
+        "description": "Costs 1 credit per 20 items. Pages with cursor.",
         "security": [
-          {},
           {
             "apiKey": []
           }
@@ -1484,9 +1480,8 @@
       "post": {
         "operationId": "youtubeTranscript",
         "summary": "youtube.transcript",
-        "description": "Costs 3 credits. Works without an API key, within free limits.",
+        "description": "Costs 3 credits.",
         "security": [
-          {},
           {
             "apiKey": []
           }

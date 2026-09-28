@@ -20,7 +20,7 @@ The SDKs wrap the Stophy API. Every endpoint is a typed method named after its i
 
 ## What both SDKs do
 
-- **No key needed to start.** Without a key, the SDK sends no `Authorization` header, so the [free endpoints](/without-a-key) work. Other endpoints raise `StophyError` with code `unauthorized`.
+- **Your key from the environment.** The client reads `STOPHY_API_KEY` unless you pass a key.
 - **Markdown on request.** Pass `format: "markdown"` (`format="markdown"` in Python) to get a string instead of JSON.
 - **Retries.** Network errors and `429`, `500`, `502`, `503`, `504` are retried with backoff, 2 times by default. `Retry-After` is honored. If the API asks to wait more than 60 seconds, the SDK raises right away with the wait in `retryAfterSeconds`.
 - **Timeouts.** 30 seconds per attempt by default.

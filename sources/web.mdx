@@ -8,16 +8,17 @@ icon: 'globe'
 
 ## Endpoints
 
-| Endpoint | Cost | Without a key | Paging |
-| --- | --- | --- | --- |
-| [`web.search`](/api-reference/endpoint/web-search) | 1 credit per 10 items, at least 1 credit | Yes | No |
-| [`web.news`](/api-reference/endpoint/web-news) | 2 credits per 10 items, at least 2 credits | No | No |
-| [`web.contacts`](/api-reference/endpoint/web-contacts) | 2 credits per 5 items, at least 2 credits | No | No |
+| Endpoint | Cost | Paging |
+| --- | --- | --- |
+| [`web.search`](/api-reference/endpoint/web-search) | 1 credit per 10 items, at least 1 credit | No |
+| [`web.news`](/api-reference/endpoint/web-news) | 2 credits per 10 items, at least 2 credits | No |
+| [`web.contacts`](/api-reference/endpoint/web-contacts) | 2 credits per 5 items, at least 2 credits | No |
 
 ## Example: web.search
 
 ```bash
 curl -X POST https://api.stophy.dev/v1/web/search \
+  -H "Authorization: Bearer $STOPHY_API_KEY" \
   -H "content-type: application/json" \
   -d '{"query":"bun runtime","limit":2}'
 ```

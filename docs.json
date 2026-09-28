@@ -4,15 +4,17 @@
   "name": "Stophy",
   "description": "Structured public web data for AI agents and apps, from one API.",
   "colors": {
-    "primary": "#1c1917",
+    "primary": "#f5d90a",
     "light": "#f5d90a",
-    "dark": "#1c1917"
+    "dark": "#f5d90a"
   },
   "appearance": {
-    "default": "dark"
+    "default": "dark",
+    "strict": true
   },
   "background": {
     "color": {
+      "light": "#000000",
       "dark": "#000000"
     }
   },
@@ -39,7 +41,6 @@
                   "mcp-server"
                 ]
               },
-              "without-a-key",
               "advanced-guide",
               {
                 "group": "Plans and Billing",
@@ -595,5 +596,8 @@
       "x": "https://x.com/stophydotdev",
       "github": "https://github.com/stophydotdev"
     }
+  },
+  "fonts": {
+    "family": "Geist"
   }
 }

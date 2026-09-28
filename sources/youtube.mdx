@@ -8,20 +8,21 @@ icon: 'youtube'
 
 ## Endpoints
 
-| Endpoint | Cost | Without a key | Paging |
-| --- | --- | --- | --- |
-| [`youtube.search`](/api-reference/endpoint/youtube-search) | 1 credit per 20 items, at least 1 credit | Yes | Yes |
-| [`youtube.video`](/api-reference/endpoint/youtube-video) | 1 credit | No | No |
-| [`youtube.transcript`](/api-reference/endpoint/youtube-transcript) | 3 credits | Yes | No |
-| [`youtube.comments`](/api-reference/endpoint/youtube-comments) | 1 credit per 20 items, at least 1 credit | No | Yes |
-| [`youtube.comments.replies`](/api-reference/endpoint/youtube-comments-replies) | 1 credit per 10 items, at least 1 credit | No | Yes |
-| [`youtube.channel`](/api-reference/endpoint/youtube-channel) | 1 credit per 30 items, at least 1 credit | No | Yes |
-| [`youtube.playlist`](/api-reference/endpoint/youtube-playlist) | 1 credit per 100 items, at least 1 credit | No | Yes |
+| Endpoint | Cost | Paging |
+| --- | --- | --- |
+| [`youtube.search`](/api-reference/endpoint/youtube-search) | 1 credit per 20 items, at least 1 credit | Yes |
+| [`youtube.video`](/api-reference/endpoint/youtube-video) | 1 credit | No |
+| [`youtube.transcript`](/api-reference/endpoint/youtube-transcript) | 3 credits | No |
+| [`youtube.comments`](/api-reference/endpoint/youtube-comments) | 1 credit per 20 items, at least 1 credit | Yes |
+| [`youtube.comments.replies`](/api-reference/endpoint/youtube-comments-replies) | 1 credit per 10 items, at least 1 credit | Yes |
+| [`youtube.channel`](/api-reference/endpoint/youtube-channel) | 1 credit per 30 items, at least 1 credit | Yes |
+| [`youtube.playlist`](/api-reference/endpoint/youtube-playlist) | 1 credit per 100 items, at least 1 credit | Yes |
 
 ## Example: youtube.search
 
 ```bash
 curl -X POST https://api.stophy.dev/v1/youtube/search \
+  -H "Authorization: Bearer $STOPHY_API_KEY" \
   -H "content-type: application/json" \
   -d '{"query":"rust tutorial","limit":2}'
 ```

@@ -38,7 +38,7 @@ Failed calls cost nothing.
 | `forbidden` | 403 | No | This request is not allowed. |
 | `notFound` | 404 | No | The endpoint, or the thing you asked for, does not exist. |
 | `unsupportedMediaType` | 415 | No | Send the body as JSON with `content-type: application/json`. |
-| `rateLimited` | 429 | Yes | Too many requests, or the free limit without a key is used up. Wait for `Retry-After`. |
+| `rateLimited` | 429 | Yes | Too many requests. Wait for `Retry-After`. |
 | `tooManyInFlight` | 429 | Yes | Too many of your calls are running at once. Wait for one to finish. |
 | `internalError` | 500, 503 | Yes | Something went wrong on our side. Try again shortly. |
 | `sourceChanged` | 502 | No | The source answered in a shape we could not read. Retrying will not help yet. |

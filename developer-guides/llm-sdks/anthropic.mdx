@@ -13,7 +13,7 @@ Set `ANTHROPIC_API_KEY` in your environment. `STOPHY_API_KEY` is optional for th
 
 ## The Stophy tool
 
-This function calls `web.search` and returns the results as markdown, which is short and easy for a model to read. It works without a key, within [free limits](/without-a-key). Set `STOPHY_API_KEY` to lift them.
+This function calls `web.search` and returns the results as markdown, which is short and easy for a model to read. It reads your key from `STOPHY_API_KEY`.
 
 ```ts stophy.ts
 export async function stophySearch(query: string): Promise<string> {
@@ -21,7 +21,7 @@ export async function stophySearch(query: string): Promise<string> {
     "content-type": "application/json",
     accept: "text/markdown",
   };
-  if (process.env.STOPHY_API_KEY) headers.authorization = `Bearer ${process.env.STOPHY_API_KEY}`;
+  headers.authorization = `Bearer ${process.env.STOPHY_API_KEY}`;
   const response = await fetch("https://api.stophy.dev/v1/web/search", {
     method: "POST",
     headers,
