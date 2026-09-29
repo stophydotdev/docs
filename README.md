@@ -20,7 +20,7 @@ bun scripts/sync-openapi.ts    # download https://api.stophy.dev/openapi.json in
 bun scripts/gen-reference.ts   # write api-reference/endpoint/*.mdx, sources/*.mdx and their navigation in docs.json
 ```
 
-Run both after the API changes, then commit the result. Don't edit the generated files. To change what they say, edit `scripts/reference.config.json` (source names, source pages, and per-endpoint notes) or the API's spec.
+Run both after the API changes, then commit the result. `bun scripts/check-titles.ts` checks that the source names and endpoint titles in the config match the live catalog. Don't edit the generated files. To change what they say, edit `scripts/reference.config.json` (source names, source pages, and per-endpoint notes) or the API's spec.
 
 ## Publishing
 
