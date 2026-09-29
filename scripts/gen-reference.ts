@@ -20,6 +20,7 @@ interface Area {
 
 interface Config {
   sources: Record<string, string>;
+  titles: Record<string, string>;
   areas: Area[];
   notes: Record<string, string>;
 }
@@ -111,17 +112,10 @@ function returns(op: Operation): string {
   return `\`data\` is one of ${kinds.map((kind) => `\`${kind}\``).join(", ")}. \`data.kind\` says which.`;
 }
 
-const ACRONYMS = new Set(["dns", "seo", "url", "dex", "id"]);
 const CATALOG_DESCRIPTION =
   "List every Stophy endpoint with its input schema, credit cost, and whether it works without a key. Use it to pick the right call.";
 
 const quote = (text: string) => text.replaceAll("'", "''");
-
-const words = (parts: string[]) =>
-  parts
-    .flatMap((part) => part.split("_"))
-    .map((word) => (ACRONYMS.has(word) ? word.toUpperCase() : word[0].toUpperCase() + word.slice(1)))
-    .join(" ");
 
 function sourceName(op: Operation): string {
   const name = config.sources[op.source];
@@ -129,9 +123,21 @@ function sourceName(op: Operation): string {
   return name;
 }
 
+function endpointTitle(op: Operation): string {
+  const title = config.titles[op.id];
+  if (title === undefined) throw new Error(`No title for ${op.id} in reference.config.json`);
+  return title;
+}
+
+const PROPER_NOUNS = ["Pump.fun", "Binance", "Trends"];
+
+const lowerFirst = (text: string) =>
+  /^[A-Z][a-z]/.test(text) && !PROPER_NOUNS.some((noun) => text.startsWith(noun))
+    ? text[0].toLowerCase() + text.slice(1)
+    : text;
+
 function seoTitle(op: Operation): string {
-  const rest = op.id.split(".").slice(1);
-  return `${sourceName(op)} ${words(rest)} API`;
+  return `${sourceName(op)} ${lowerFirst(endpointTitle(op))} API`;
 }
 
 const human = (field: string) => field.replace(/([a-z])([A-Z])/g, "$1 $2").toLowerCase();
@@ -173,15 +179,7 @@ function seoDescription(op: Operation): string {
 function endpointPage(op: Operation): string {
   const title = op.id === "endpoints" ? "Endpoint catalog API" : seoTitle(op);
   const description = op.id === "endpoints" ? CATALOG_DESCRIPTION : seoDescription(op);
-  const sidebar =
-    op.id === "endpoints"
-      ? "List Endpoints"
-      : op.id
-          .split(".")
-          .slice(1)
-          .flatMap((part) => part.split("_"))
-          .map((word) => (["dns", "seo", "url"].includes(word) ? word.toUpperCase() : word[0].toUpperCase() + word.slice(1)))
-          .join(" ");
+  const sidebar = op.id === "endpoints" ? "List Endpoints" : endpointTitle(op);
   const paging = op.pages
     ? `Yes. Send the \`cursor\` from the response to get the next page. See [Paging](/advanced-guide#paging).`
     : "No.";
@@ -236,6 +234,8 @@ const byId = new Map(ops.map((op) => [op.id, op]));
 const assigned = config.areas.flatMap((area) => area.endpoints);
 const twice = assigned.filter((id, index) => assigned.indexOf(id) !== index);
 if (twice.length > 0) throw new Error(`In more than one area in reference.config.json: ${twice.join(", ")}`);
+const unknownTitles = Object.keys(config.titles).filter((id) => !byId.has(id));
+if (unknownTitles.length > 0) throw new Error(`Titles for unknown endpoints in reference.config.json: ${unknownTitles.join(", ")}`);
 const covered = new Set(assigned);
 const missing = ops.filter((op) => op.method === "POST" && !covered.has(op.id)).map((op) => op.id);
 if (missing.length > 0) throw new Error(`Not in any area in reference.config.json: ${missing.join(", ")}`);

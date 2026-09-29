@@ -334,7 +334,7 @@
             "icon": "map-location-dot",
             "pages": [
               {
-                "group": "Maps",
+                "group": "Google Maps",
                 "pages": [
                   "api-reference/endpoint/maps-search",
                   "api-reference/endpoint/maps-place",
