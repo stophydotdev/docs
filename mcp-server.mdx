@@ -38,27 +38,23 @@ Stophy is also listed on [Smithery](https://smithery.ai/servers/stophy/mcp).
 
 <McpClientSelector showSeeAll={false} />
 
-## Tools
+## How it works
 
-The server gives your agent three tools, not one per endpoint. That keeps its tool list short.
+Ask your agent: *"What are people saying about Bun on Reddit?"*
 
-| Tool | Input | What it does |
-| --- | --- | --- |
-| `stophy_search_endpoints` | `{ query?, category? }` | Finds endpoints by words or by source. Each match has an id, a one-line description and its cost. `category` is a source such as `reddit`, or an id prefix such as `google.ads`. |
-| `stophy_describe_endpoint` | `{ id }` | Returns one endpoint's input schema, its cost, and whether it pages with `cursor`. |
-| `stophy_call` | `{ id, input?, format? }` | Runs the endpoint with `input` as its JSON body. `format` is `markdown` (the default) or `json`. |
+- It searches Stophy and finds **Reddit search**.
+- It checks what Reddit search needs: a query, plus optional sort and time range.
+- It gets the posts and answers you. The call used 1 credit.
 
-Results are markdown unless you ask for JSON, and include `creditsUsed`. A failed call comes back as a tool error with the API's `code`, `message`, `retryable` and, when there is one, `retryAfterSeconds`.
+Behind this are three tools: `stophy_search_endpoints`, `stophy_describe_endpoint` and `stophy_call`.
 
 ## Toolsets
 
-Add `?toolsets=` to the URL to also get one tool per endpoint of the sources you name. Tools are named after the endpoint, with dots as underscores, such as `reddit_search`.
+Add `?toolsets=reddit,youtube` to the URL to also get one tool for each Reddit and YouTube endpoint.
 
 ```text
 https://api.stophy.dev/mcp?toolsets=reddit,youtube
 ```
-
-Leave `toolsets` off unless you want those tools in your client's tool list.
 
 ## Cost and limits
 
