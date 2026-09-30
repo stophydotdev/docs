@@ -3,5 +3,5 @@ import { Stophy } from "stophy";
 
 const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
 const result = await stophy.crypto.coin({ coin: "bitcoin" });
-console.log(result.data.coin);
+console.log(result.data);
 ```

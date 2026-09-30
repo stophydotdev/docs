@@ -3,5 +3,5 @@ import { Stophy } from "stophy";
 
 const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
 const result = await stophy.tiktok.video({ video: "7652012587009215774" });
-console.log(result.data.video);
+console.log(result.data);
 ```

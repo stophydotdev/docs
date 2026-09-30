@@ -3,5 +3,5 @@ import { Stophy } from "stophy";
 
 const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
 const result = await stophy.pinterest.pin({ pin: "https://www.pinterest.com/pin/123456789012345678/" });
-console.log(result.data.pin);
+console.log(result.data);
 ```

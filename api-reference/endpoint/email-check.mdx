@@ -1,9 +1,9 @@
 ---
 title: 'Email check API'
 sidebarTitle: 'Check'
-description: 'Call the Email check API to get email, status, reasons, is valid syntax, domain and mx, as JSON or markdown. 1 credit per 10 items, at least 1 credit.'
+description: 'Check if email addresses can receive mail. Call the Email check API and get JSON back in one request. 1 credit per call. Failed calls cost nothing.'
 og:title: 'Email check API | Stophy'
-og:description: 'Call the Email check API to get email, status, reasons, is valid syntax, domain and mx, as JSON or markdown. 1 credit per 10 items, at least 1 credit.'
+og:description: 'Check if email addresses can receive mail. Call the Email check API and get JSON back in one request. 1 credit per call. Failed calls cost nothing.'
 openapi: 'api-reference/openapi.json POST /v1/email/check'
 ---
 
@@ -16,7 +16,7 @@ import CliExample from "/snippets/examples/email.check/cli.mdx";
 
 - **Endpoint:** `email.check`
 - **Returns:** `data` has `emails`.
-- **Cost:** 1 credit per 10 items, at least 1 credit. Failed calls cost nothing.
+- **Cost:** 1 credit per call. Failed calls cost nothing.
 - **Paging:** No.
 
 ## Example

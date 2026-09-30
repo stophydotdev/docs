@@ -13,14 +13,16 @@ Open http://localhost:3000. Before you open a pull request, run `mint validate` 
 
 ## The API reference
 
-The API reference and the Sources pages are generated from the API's OpenAPI spec:
+The API reference, the Sources pages and the call examples are generated from the API's OpenAPI spec and live catalog:
 
 ```bash
 bun scripts/sync-openapi.ts    # download https://api.stophy.dev/openapi.json into api-reference/openapi.json
-bun scripts/gen-reference.ts   # write api-reference/endpoint/*.mdx, sources/*.mdx and their navigation in docs.json
+bun scripts/gen-examples.ts    # write snippets/examples/<id>/*.mdx
+bun scripts/gen-reference.ts   # write api-reference/endpoint/*.mdx and the API Reference navigation in docs.json
+bun scripts/gen-sources.ts     # write sources/*.mdx
 ```
 
-Run both after the API changes, then commit the result. `bun scripts/check-titles.ts` checks that the source names and endpoint titles in the config match the live catalog. Don't edit the generated files. To change what they say, edit `scripts/reference.config.json` (source names, source pages, and per-endpoint notes) or the API's spec.
+Run all four after the API changes, then commit the result. `bun scripts/check-titles.ts` checks that the source names and endpoint titles in the config match the live catalog. Don't edit the generated files. To change what they say, edit `scripts/reference.config.json` (source names, endpoint titles, categories, and per-endpoint notes), `scripts/gen-sources.ts` (the Sources pages) or the API's spec.
 
 ## Publishing
 

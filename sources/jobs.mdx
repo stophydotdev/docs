@@ -1,8 +1,8 @@
 ---
 title: 'Jobs'
-description: 'Search job listings on LinkedIn, Upwork, and Indeed. Get the full posting, pay, and requirements for any job as JSON or markdown.'
+description: 'Search job listings on LinkedIn, Upwork, and Indeed. Get the full posting, pay, and requirements for any job as structured JSON.'
 og:title: 'Jobs | Stophy'
-og:description: 'Search job listings on LinkedIn, Upwork, and Indeed. Get the full posting, pay, and requirements for any job as JSON or markdown.'
+og:description: 'Search job listings on LinkedIn, Upwork, and Indeed. Get the full posting, pay, and requirements for any job as structured JSON.'
 icon: 'briefcase'
 ---
 
@@ -21,7 +21,7 @@ import IndeedSearchPython from '/snippets/examples/indeed.search/python.mdx';
 import IndeedSearchCurl from '/snippets/examples/indeed.search/curl.mdx';
 import IndeedSearchCli from '/snippets/examples/indeed.search/cli.mdx';
 
-Search job listings on LinkedIn, Upwork, and Indeed. Get the full posting, pay, and requirements for any job as JSON or markdown. See every field in the [Jobs reference](/api-reference/endpoint/linkedin-jobs-search), or try it in the [playground](https://stophy.dev/playground).
+Search job listings on LinkedIn, Upwork, and Indeed. Get the full posting, pay, and requirements for any job as structured JSON. See every field in the [Jobs reference](/api-reference/endpoint/linkedin-jobs-search), or try it in the [playground](https://stophy.dev/playground).
 
 ## Search LinkedIn jobs
 
@@ -38,25 +38,16 @@ The response:
 {
   "success": true,
   "data": {
-    "jobs": [
+    "results": [
       {
-        "id": "abc123",
-        "url": "https://example.com/",
+        "jobId": "abc123",
+        "jobUrl": "https://example.com/",
         "title": "Example title",
-        "company": {
-          "name": "Example title",
-          "url": "https://example.com/",
-          "avatar": "https://example.com/image.jpg"
-        },
-        "address": {
-          "full": "example",
-          "street": "example",
-          "city": "example",
-          "state": "example",
-          "postalCode": "example",
-          "country": "us"
-        },
-        "createdAt": "2026-09-28T12:00:00.000Z",
+        "companyName": "example",
+        "companyUrl": "https://example.com/",
+        "companyAvatarUrl": "https://example.com/image.jpg",
+        "location": "example",
+        "publishedAt": "2026-09-28T12:00:00.000Z",
         "salaryText": "example",
         "isEasyApply": false,
         "insight": "example"
@@ -64,7 +55,7 @@ The response:
     ]
   },
   "creditsUsed": 1,
-  "requestId": "ebb0b21d-0691-4b56-a4d5-93a1e0f73575"
+  "requestId": "6c4d5852-a159-4cc7-a140-7c032a83f739"
 }
 ```
 
@@ -72,11 +63,11 @@ The response:
 
 | Endpoint | Cost |
 | --- | --- |
-| [Search LinkedIn jobs](/api-reference/endpoint/linkedin-jobs-search) | 1 credit per 10 items, at least 1 credit |
+| [Search LinkedIn jobs](/api-reference/endpoint/linkedin-jobs-search) | 1 credit |
 | [Get a LinkedIn job's details](/api-reference/endpoint/linkedin-jobs-job) | 1 credit |
-| [Search Upwork jobs](/api-reference/endpoint/upwork-search) | 2 credits per 10 items, at least 2 credits |
-| [Get an Upwork job's details](/api-reference/endpoint/upwork-job) | 3 credits |
-| [Search Indeed jobs](/api-reference/endpoint/indeed-search) | 1 credit per 20 items, at least 1 credit |
+| [Search Upwork jobs](/api-reference/endpoint/upwork-search) | 2 credits |
+| [Get an Upwork job's details](/api-reference/endpoint/upwork-job) | 1 credit |
+| [Search Indeed jobs](/api-reference/endpoint/indeed-search) | 1 credit |
 | [Get an Indeed job's details](/api-reference/endpoint/indeed-job) | 1 credit |
 
 ## More ways to call it
@@ -99,4 +90,4 @@ The response:
   <IndeedSearchCli />
 </CodeGroup>
 
-<Tip>Pass the job URL from a search result into that site's job lookup endpoint for the full posting.</Tip>
+<Tip>Pass the job link from a search result into that site's job lookup endpoint for the full posting.</Tip>

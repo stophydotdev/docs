@@ -3,5 +3,5 @@ import { Stophy } from "stophy";
 
 const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
 const result = await stophy.finance.quote({ symbols: ["AAPL", "MSFT", "NVDA"] });
-console.log(result.data.quotes);
+console.log(result.data.results);
 ```

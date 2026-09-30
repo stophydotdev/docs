@@ -1,8 +1,8 @@
 ---
 title: 'Finance and crypto'
-description: 'Get stock quotes, price history, and company profiles. Get crypto prices, trending coins, DEX pairs, new tokens, wallets, and token holders.'
+description: 'Get stock quotes, price history, and company profiles. Get crypto prices, price history, DEX pairs, and wallet balances as JSON.'
 og:title: 'Finance and crypto | Stophy'
-og:description: 'Get stock quotes, price history, and company profiles. Get crypto prices, trending coins, DEX pairs, new tokens, wallets, and token holders.'
+og:description: 'Get stock quotes, price history, and company profiles. Get crypto prices, price history, DEX pairs, and wallet balances as JSON.'
 icon: 'chart-line'
 ---
 
@@ -12,16 +12,16 @@ import FinanceQuoteTs from '/snippets/examples/finance.quote/ts.mdx';
 import FinanceQuotePython from '/snippets/examples/finance.quote/python.mdx';
 import FinanceQuoteCurl from '/snippets/examples/finance.quote/curl.mdx';
 import FinanceQuoteCli from '/snippets/examples/finance.quote/cli.mdx';
+import FinanceStockTs from '/snippets/examples/finance.stock/ts.mdx';
+import FinanceStockPython from '/snippets/examples/finance.stock/python.mdx';
+import FinanceStockCurl from '/snippets/examples/finance.stock/curl.mdx';
+import FinanceStockCli from '/snippets/examples/finance.stock/cli.mdx';
 import CryptoCoinsTs from '/snippets/examples/crypto.coins/ts.mdx';
 import CryptoCoinsPython from '/snippets/examples/crypto.coins/python.mdx';
 import CryptoCoinsCurl from '/snippets/examples/crypto.coins/curl.mdx';
 import CryptoCoinsCli from '/snippets/examples/crypto.coins/cli.mdx';
-import CryptoTrendingTs from '/snippets/examples/crypto.trending/ts.mdx';
-import CryptoTrendingPython from '/snippets/examples/crypto.trending/python.mdx';
-import CryptoTrendingCurl from '/snippets/examples/crypto.trending/curl.mdx';
-import CryptoTrendingCli from '/snippets/examples/crypto.trending/cli.mdx';
 
-Get stock quotes, price history, and company profiles. Get crypto prices, trending coins, DEX pairs, new tokens, wallets, and token holders. See every field in the [Finance and crypto reference](/api-reference/endpoint/finance-quote), or try it in the [playground](https://stophy.dev/playground).
+Get stock quotes, price history, and company profiles. Get crypto prices, price history, DEX pairs, and wallet balances as JSON. See every field in the [Finance and crypto reference](/api-reference/endpoint/finance-quote), or try it in the [playground](https://stophy.dev/playground).
 
 ## Get live stock and ETF quotes
 
@@ -38,7 +38,7 @@ The response:
 {
   "success": true,
   "data": {
-    "quotes": [
+    "results": [
       {
         "symbol": "example",
         "name": "Example title",
@@ -69,7 +69,7 @@ The response:
     ]
   },
   "creditsUsed": 1,
-  "requestId": "c09a315a-34a3-432b-9f1f-a5da10bf48c5"
+  "requestId": "88c6bec4-b317-4755-a8d1-4b50efd8f001"
 }
 ```
 
@@ -77,29 +77,27 @@ The response:
 
 | Endpoint | Cost |
 | --- | --- |
+| [Get coin prices, market caps and volume](/api-reference/endpoint/crypto-coins) | 1 credit |
+| [Get a coin's price, supply and details](/api-reference/endpoint/crypto-coin) | 1 credit |
+| [Get a coin's price history](/api-reference/endpoint/crypto-history) | 1 credit |
+| [Search DEX trading pairs](/api-reference/endpoint/crypto-dex-search) | 1 credit |
+| [Get a token and its DEX pairs](/api-reference/endpoint/crypto-dex-token) | 1 credit |
+| [Get a wallet's balance, tokens and transactions](/api-reference/endpoint/crypto-wallet) | 1 credit |
 | [Get live stock and ETF quotes](/api-reference/endpoint/finance-quote) | 1 credit |
 | [Get a stock's price history](/api-reference/endpoint/finance-history) | 1 credit |
 | [Search stocks and related news](/api-reference/endpoint/finance-search) | 1 credit |
-| [Get a company's profile and key stats](/api-reference/endpoint/finance-profile) | 1 credit |
-| [Get coin prices, market caps and volume](/api-reference/endpoint/crypto-coins) | 1 credit per 50 items, at least 1 credit |
-| [Get a coin's price, supply and details](/api-reference/endpoint/crypto-coin) | 1 credit |
-| [Get a coin's price history](/api-reference/endpoint/crypto-history) | 1 credit |
-| [Get trending coins, categories and NFTs](/api-reference/endpoint/crypto-trending) | 1 credit |
-| [Get crypto categories by market cap](/api-reference/endpoint/crypto-categories) | 1 credit |
-| [Get the top gaining and losing coins](/api-reference/endpoint/crypto-movers) | 1 credit |
-| [Get newly listed coins](/api-reference/endpoint/crypto-new) | 1 credit per 50 items, at least 1 credit |
-| [Search DEX trading pairs](/api-reference/endpoint/crypto-dex-search) | 1 credit |
-| [Get a DEX trading pair](/api-reference/endpoint/crypto-dex-pairs) | 1 credit |
-| [Get a token and its DEX pairs](/api-reference/endpoint/crypto-dex-token) | 1 credit |
-| [Get new and boosted tokens on DEXes](/api-reference/endpoint/crypto-dex-new) | 1 credit |
-| [Get pump.fun coins](/api-reference/endpoint/crypto-pump-coins) | 1 credit per 50 items, at least 1 credit |
-| [Get a pump.fun coin's details](/api-reference/endpoint/crypto-pump-coin) | 1 credit |
-| [Get a pump.fun coin's trades](/api-reference/endpoint/crypto-pump-trades) | 1 credit per 100 items, at least 1 credit |
-| [Get a wallet's balance, tokens and transactions](/api-reference/endpoint/crypto-wallet) | 1 credit per 25 items, at least 1 credit |
-| [Get a token's top holders](/api-reference/endpoint/crypto-token-holders) | 1 credit per 50 items, at least 1 credit |
-| [Get Binance announcements and listings](/api-reference/endpoint/crypto-binance-announcements) | 1 credit per 20 items, at least 1 credit |
+| [Get a stock's live price with its company profile and key stats](/api-reference/endpoint/finance-stock) | 1 credit |
 
 ## More ways to call it
+
+### Get a stock's live price with its company profile and key stats
+
+<CodeGroup>
+  <FinanceStockTs />
+  <FinanceStockPython />
+  <FinanceStockCurl />
+  <FinanceStockCli />
+</CodeGroup>
 
 ### Get coin prices, market caps and volume
 
@@ -108,15 +106,6 @@ The response:
   <CryptoCoinsPython />
   <CryptoCoinsCurl />
   <CryptoCoinsCli />
-</CodeGroup>
-
-### Get trending coins, categories and NFTs
-
-<CodeGroup>
-  <CryptoTrendingTs />
-  <CryptoTrendingPython />
-  <CryptoTrendingCurl />
-  <CryptoTrendingCli />
 </CodeGroup>
 
 <Tip>Stock quotes accept several tickers in one call. Coin prices accept several coin ids.</Tip>

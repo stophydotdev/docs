@@ -38,27 +38,18 @@ The response:
 {
   "success": true,
   "data": {
-    "places": [
+    "results": [
       {
-        "id": "abc123",
         "placeId": "abc123",
-        "url": "https://example.com/",
+        "googlePlaceId": "abc123",
+        "placeUrl": "https://example.com/",
         "name": "Example title",
         "categories": [
           "example"
         ],
-        "address": {
-          "full": "example",
-          "street": "example",
-          "city": "example",
-          "state": "example",
-          "postalCode": "example",
-          "country": "us"
-        },
-        "location": {
-          "lat": 1,
-          "lng": 1
-        },
+        "address": "example",
+        "latitude": 1,
+        "longitude": 1,
         "rating": 4.5,
         "photos": 1,
         "phone": "example",
@@ -68,16 +59,16 @@ The response:
         "openStatus": "example",
         "timezone": "example",
         "plusCode": "example",
-        "thumbnail": "https://example.com/image.jpg",
-        "reservation": "https://example.com/",
+        "thumbnailUrl": "https://example.com/image.jpg",
+        "reservationUrl": "https://example.com/",
         "attributes": [
           "example"
         ]
       }
     ]
   },
-  "creditsUsed": 3,
-  "requestId": "3b113111-1fee-4c70-bc3f-d24e2a96e938"
+  "creditsUsed": 1,
+  "requestId": "7fed8a86-3b66-41ef-ad2c-857c7171fa0d"
 }
 ```
 
@@ -85,17 +76,17 @@ The response:
 
 | Endpoint | Cost |
 | --- | --- |
-| [Search places on Google Maps by keyword and location](/api-reference/endpoint/maps-search) | 3 credits per 20 items, at least 3 credits |
-| [Get a place's address, hours, rating and contact details](/api-reference/endpoint/maps-place) | 2 credits |
-| [Get a place's reviews](/api-reference/endpoint/maps-reviews) | 1 credit per 10 items, at least 1 credit |
-| [Search flights with prices and times](/api-reference/endpoint/googletravel-flights) | 3 credits |
+| [Search places on Google Maps by keyword and location](/api-reference/endpoint/maps-search) | 1 credit |
+| [Get a place's address, hours, rating and contact details](/api-reference/endpoint/maps-place) | 1 credit |
+| [Get a place's reviews](/api-reference/endpoint/maps-reviews) | 1 credit |
 | [Search hotels, restaurants and attractions](/api-reference/endpoint/tripadvisor-search) | 1 credit |
 | [Get a place's rating, ranking and details](/api-reference/endpoint/tripadvisor-place) | 1 credit |
-| [Get a place's reviews](/api-reference/endpoint/tripadvisor-reviews) | 1 credit per 20 items, at least 1 credit |
-| [Search Airbnb stays by place and dates](/api-reference/endpoint/airbnb-search) | 2 credits per 18 items, at least 2 credits |
-| [Get a listing's details, amenities and host](/api-reference/endpoint/airbnb-listing) | 2 credits |
+| [Get a place's reviews](/api-reference/endpoint/tripadvisor-reviews) | 1 credit |
+| [Search flights with prices and times](/api-reference/endpoint/googletravel-flights) | 1 credit |
+| [Search Airbnb stays by place and dates](/api-reference/endpoint/airbnb-search) | 1 credit |
+| [Get a listing's details, amenities and host](/api-reference/endpoint/airbnb-listing) | 1 credit |
 | [Get a listing's available dates](/api-reference/endpoint/airbnb-calendar) | 1 credit |
-| [Get a listing's reviews](/api-reference/endpoint/airbnb-reviews) | 1 credit per 25 items, at least 1 credit |
+| [Get a listing's reviews](/api-reference/endpoint/airbnb-reviews) | 1 credit |
 
 ## More ways to call it
 
@@ -117,4 +108,4 @@ The response:
   <AirbnbSearchCli />
 </CodeGroup>
 
-<Tip>Pass the place id from a Google Maps search, the id from a Tripadvisor search, or the listing URL from an Airbnb search into that source's other endpoints.</Tip>
+<Tip>Pass the place id from a Google Maps search, the link from a Tripadvisor search, or the listing link from an Airbnb search into that source's other endpoints.</Tip>

@@ -1,11 +1,11 @@
 ---
 title: "Introduction"
-description: "Stophy is a public web data API for AI agents and apps: 161 endpoints across 41 sources, as JSON or markdown, from one key."
+description: "Stophy is a public web data API for AI agents and apps: 100 endpoints across 35 sources, one flat JSON response per call, one key, $1 per 1,000 credits."
 og:title: "Introduction | Stophy"
-og:description: "Stophy is a public web data API for AI agents and apps: 161 endpoints across 41 sources, as JSON or markdown, from one key."
+og:description: "Stophy is a public web data API for AI agents and apps: 100 endpoints across 35 sources, one flat JSON response per call, one key, $1 per 1,000 credits."
 ---
 
-Stophy gives your agent or app structured public web data from one API: search results, video, social posts, places, products, jobs, ads, and prices. Every endpoint returns JSON for your code, or markdown for a model, from the same request.
+Stophy gives your agent or app structured public web data from one API: search results, video, social posts, places, products, jobs, ads, and prices. Every call returns one flat JSON object at a fixed price.
 
 ## Three ways in
 
@@ -23,11 +23,31 @@ Stophy gives your agent or app structured public web data from one API: search r
 
 ## Make your first request
 
+Web search works without a key, so you can run this as it is:
+
 ```bash
-curl -X POST https://api.stophy.dev/v1/reddit/search \
-  -H "Authorization: Bearer $STOPHY_API_KEY" \
+curl -X POST https://api.stophy.dev/v1/web/search \
   -H "content-type: application/json" \
-  -d '{"query":"bun runtime"}'
+  -d '{"query":"bun runtime","limit":2}'
 ```
 
-Stophy has 161 endpoints across 41 sources. See [what you can get](/sources/web) for the full list, or follow the [quickstart](/quickstart) to get a key and make this call yourself.
+```json
+{
+  "success": true,
+  "data": {
+    "results": [
+      {
+        "title": "Bun — A fast all-in-one JavaScript runtime",
+        "url": "https://bun.com/",
+        "description": "Bundle, install, and run JavaScript & TypeScript — all in Bun.",
+        "domain": "bun.com",
+        "position": 1
+      }
+    ]
+  },
+  "creditsUsed": 0,
+  "requestId": "0094bdbc-2935-4184-8df9-f476e561a522"
+}
+```
+
+Stophy has 100 endpoints across 35 sources. See [what you can get](/sources/web) for the full list, or follow the [quickstart](/quickstart) to get a key and call the rest.

@@ -1,8 +1,8 @@
 ---
 title: 'Social'
-description: 'Search and read posts, profiles, and comments across Reddit, Instagram, X, LinkedIn, and eight more networks. Get replies and followers as JSON.'
+description: 'Search and read posts, profiles, and comments across Reddit, Instagram, X, LinkedIn, Threads, Bluesky, Telegram, and Pinterest.'
 og:title: 'Social | Stophy'
-og:description: 'Search and read posts, profiles, and comments across Reddit, Instagram, X, LinkedIn, and eight more networks. Get replies and followers as JSON.'
+og:description: 'Search and read posts, profiles, and comments across Reddit, Instagram, X, LinkedIn, Threads, Bluesky, Telegram, and Pinterest.'
 icon: 'users'
 ---
 
@@ -16,16 +16,16 @@ import InstagramProfileTs from '/snippets/examples/instagram.profile/ts.mdx';
 import InstagramProfilePython from '/snippets/examples/instagram.profile/python.mdx';
 import InstagramProfileCurl from '/snippets/examples/instagram.profile/curl.mdx';
 import InstagramProfileCli from '/snippets/examples/instagram.profile/cli.mdx';
-import XTweetTs from '/snippets/examples/x.tweet/ts.mdx';
-import XTweetPython from '/snippets/examples/x.tweet/python.mdx';
-import XTweetCurl from '/snippets/examples/x.tweet/curl.mdx';
-import XTweetCli from '/snippets/examples/x.tweet/cli.mdx';
+import XPostTs from '/snippets/examples/x.post/ts.mdx';
+import XPostPython from '/snippets/examples/x.post/python.mdx';
+import XPostCurl from '/snippets/examples/x.post/curl.mdx';
+import XPostCli from '/snippets/examples/x.post/cli.mdx';
 import LinkedinProfileTs from '/snippets/examples/linkedin.profile/ts.mdx';
 import LinkedinProfilePython from '/snippets/examples/linkedin.profile/python.mdx';
 import LinkedinProfileCurl from '/snippets/examples/linkedin.profile/curl.mdx';
 import LinkedinProfileCli from '/snippets/examples/linkedin.profile/cli.mdx';
 
-Search and read posts, profiles, and comments across Reddit, Instagram, X, LinkedIn, and eight more networks. Get replies and followers as JSON. See every field in the [Social reference](/api-reference/endpoint/reddit-search), or try it in the [playground](https://stophy.dev/playground).
+Search and read posts, profiles, and comments across Reddit, Instagram, X, LinkedIn, Threads, Bluesky, Telegram, and Pinterest. See every field in the [Social reference](/api-reference/endpoint/reddit-search), or try it in the [playground](https://stophy.dev/playground).
 
 ## Search Reddit posts, comments, subreddits and users
 
@@ -45,67 +45,44 @@ The response:
     "results": [
       {
         "type": "post",
-        "id": "abc123",
-        "url": "https://example.com/",
+        "postId": "abc123",
+        "postUrl": "https://example.com/",
         "title": "Example title",
         "text": "A short, readable summary of the result.",
-        "author": {
-          "id": "abc123",
-          "username": "example",
-          "name": "Example title",
-          "url": "https://example.com/",
-          "avatar": "https://example.com/image.jpg",
-          "isVerified": false
-        },
+        "authorId": "abc123",
+        "authorUsername": "example",
+        "authorUrl": "https://example.com/",
         "subreddit": "example",
         "score": 4.5,
         "upvotePercent": 1,
         "comments": 1,
-        "createdAt": "2026-09-28T12:00:00.000Z",
+        "publishedAt": "2026-09-28T12:00:00.000Z",
         "flair": "example",
-        "link": {
-          "url": "https://example.com/",
-          "title": "Example title",
-          "description": "A short, readable summary of the result.",
-          "image": "https://example.com/image.jpg"
-        },
-        "thumbnail": "https://example.com/image.jpg",
+        "linkUrl": "https://example.com/",
+        "thumbnailUrl": "https://example.com/image.jpg",
         "isNsfw": false,
         "isVideo": false,
         "isPinned": false,
-        "images": [
+        "imageUrls": [
+          "https://example.com/image.jpg"
+        ],
+        "videoUrl": "https://example.com/",
+        "videoHlsUrl": "https://example.com/",
+        "videoDurationSeconds": 120,
+        "pollOptions": [
           {
-            "url": "https://example.com/",
-            "caption": "example",
-            "alt": "example"
+            "text": "A short, readable summary of the result.",
+            "votes": 1
           }
         ],
-        "video": {
-          "url": "https://example.com/",
-          "hls": "https://example.com/",
-          "durationSeconds": 120
-        },
-        "poll": {
-          "options": [
-            {
-              "text": "A short, readable summary of the result.",
-              "votes": 1
-            }
-          ],
-          "totalVotes": 1234,
-          "endsAt": "2026-09-28T12:00:00.000Z"
-        },
-        "repostOf": {
-          "id": "abc123",
-          "url": "https://example.com/",
-          "subreddit": "example",
-          "title": "Example title"
-        }
+        "pollTotalVotes": 1234,
+        "pollEndsAt": "2026-09-28T12:00:00.000Z",
+        "repostOfUrl": "https://example.com/"
       }
     ]
   },
   "creditsUsed": 2,
-  "requestId": "cd4daa30-af72-4522-a14d-98fa6f73196a"
+  "requestId": "f083c20e-8590-44af-8153-edac21dd3957"
 }
 ```
 
@@ -115,52 +92,33 @@ The response:
 | --- | --- |
 | [Search Reddit posts, comments, subreddits and users](/api-reference/endpoint/reddit-search) | 2 credits |
 | [Read a post and its comment thread](/api-reference/endpoint/reddit-post) | 2 credits |
-| [Load more comments from a thread](/api-reference/endpoint/reddit-comments-more) | 2 credits |
-| [Get a subreddit's info and posts](/api-reference/endpoint/reddit-subreddit) | 2 credits |
-| [Get a user's posts and comments](/api-reference/endpoint/reddit-user) | 2 credits |
+| [Get a subreddit's info and a page of its posts](/api-reference/endpoint/reddit-subreddit) | 2 credits |
+| [Get a user's profile and a page of their posts and comments](/api-reference/endpoint/reddit-user) | 2 credits |
 | [Get Reddit posts that link to a website](/api-reference/endpoint/reddit-domain) | 2 credits |
-| [Get a profile's bio, stats and recent posts](/api-reference/endpoint/instagram-profile) | 1 credit |
-| [Get a profile's posts and reels](/api-reference/endpoint/instagram-posts) | 1 credit per 12 items, at least 1 credit |
-| [Get a post or reel, with its comments](/api-reference/endpoint/instagram-post) | 1 credit |
-| [Get any Instagram profile, post or reel from its link](/api-reference/endpoint/instagram-url) | 1 credit |
-| [Search Instagram posts and reels](/api-reference/endpoint/instagram-search) | 3 credits per 10 items, at least 3 credits |
-| [Get the transcript of a reel or video post](/api-reference/endpoint/instagram-transcript) | 5 credits per 1 items, at least 5 credits |
-| [Get a post's comments](/api-reference/endpoint/instagram-comments) | 1 credit per 15 items, at least 1 credit |
-| [Get the replies to a post comment](/api-reference/endpoint/instagram-comments-replies) | 1 credit per 15 items, at least 1 credit |
-| [Get a post's text, author and stats](/api-reference/endpoint/x-tweet) | 1 credit |
-| [Get a profile's bio and stats](/api-reference/endpoint/threads-profile) | 1 credit |
-| [Get a profile's posts](/api-reference/endpoint/threads-posts) | 1 credit per 20 items, at least 1 credit |
+| [Get a profile's bio, stats and a page of its posts and reels](/api-reference/endpoint/instagram-profile) | 1 credit |
+| [Get a post or reel, with its top comments](/api-reference/endpoint/instagram-post) | 1 credit |
+| [Search Instagram posts and reels](/api-reference/endpoint/instagram-search) | 1 credit |
+| [Get a post's comments, or the replies to one comment](/api-reference/endpoint/instagram-comments) | 1 credit |
+| [Get a profile's bio, stats and a page of its posts](/api-reference/endpoint/bluesky-profile) | 1 credit |
+| [Read a post and its replies](/api-reference/endpoint/bluesky-post) | 1 credit |
+| [Get a page of a profile's followers](/api-reference/endpoint/bluesky-followers) | 1 credit |
+| [Get a profile's bio, stats and a page of its posts](/api-reference/endpoint/threads-profile) | 1 credit |
 | [Read a post with its thread and replies](/api-reference/endpoint/threads-post) | 1 credit |
 | [Search Threads posts](/api-reference/endpoint/threads-search) | 1 credit |
-| [Get a profile's bio and stats](/api-reference/endpoint/bluesky-profile) | 1 credit |
-| [Get a profile's posts](/api-reference/endpoint/bluesky-posts) | 1 credit per 25 items, at least 1 credit |
-| [Read a post and its replies](/api-reference/endpoint/bluesky-post) | 1 credit per 50 items, at least 1 credit |
-| [Get a profile's followers](/api-reference/endpoint/bluesky-followers) | 1 credit per 50 items, at least 1 credit |
-| [Get a profile's bio and stats](/api-reference/endpoint/mastodon-profile) | 1 credit |
-| [Get a profile's posts](/api-reference/endpoint/mastodon-posts) | 1 credit per 20 items, at least 1 credit |
-| [Read a post with its thread and replies](/api-reference/endpoint/mastodon-post) | 1 credit |
-| [Get posts for a hashtag](/api-reference/endpoint/mastodon-hashtag) | 1 credit per 20 items, at least 1 credit |
-| [Get a public channel's info](/api-reference/endpoint/telegram-channel) | 1 credit |
-| [Get a public channel's posts](/api-reference/endpoint/telegram-posts) | 1 credit per 20 items, at least 1 credit |
+| [Get a public channel's info and a page of its posts](/api-reference/endpoint/telegram-posts) | 1 credit |
 | [Get a single channel post](/api-reference/endpoint/telegram-post) | 1 credit |
 | [Get a company's profile, size and industry](/api-reference/endpoint/linkedin-company) | 1 credit |
 | [Get a person's profile](/api-reference/endpoint/linkedin-profile) | 1 credit |
 | [Get a person's or company's posts](/api-reference/endpoint/linkedin-posts) | 1 credit |
-| [Get a company's posts](/api-reference/endpoint/linkedin-company-posts) | 1 credit |
-| [Search pins](/api-reference/endpoint/pinterest-search) | 1 credit per 25 items, at least 1 credit |
+| [Search pins](/api-reference/endpoint/pinterest-search) | 1 credit |
 | [Get a pin's details](/api-reference/endpoint/pinterest-pin) | 1 credit |
-| [Get a board and its pins](/api-reference/endpoint/pinterest-board) | 1 credit per 25 items, at least 1 credit |
-| [Get a profile and its pins](/api-reference/endpoint/pinterest-user) | 1 credit per 25 items, at least 1 credit |
-| [Get a blog's info](/api-reference/endpoint/tumblr-blog) | 1 credit |
-| [Get a blog's posts](/api-reference/endpoint/tumblr-posts) | 1 credit per 10 items, at least 1 credit |
-| [Get a single post](/api-reference/endpoint/tumblr-post) | 1 credit |
-| [Search Tumblr posts](/api-reference/endpoint/tumblr-search) | 1 credit per 10 items, at least 1 credit |
-| [Get a profile with its spotlights and stories](/api-reference/endpoint/snapchat-profile) | 2 credits |
-| [Get a question and its answers](/api-reference/endpoint/quora-question) | 2 credits |
+| [Get a board and a page of its pins](/api-reference/endpoint/pinterest-board) | 1 credit |
+| [Get a profile and a page of its pins](/api-reference/endpoint/pinterest-user) | 1 credit |
+| [Get a post's text, author and stats](/api-reference/endpoint/x-post) | 1 credit |
 
 ## More ways to call it
 
-### Get a profile's bio, stats and recent posts
+### Get a profile's bio, stats and a page of its posts and reels
 
 <CodeGroup>
   <InstagramProfileTs />
@@ -172,10 +130,10 @@ The response:
 ### Get a post's text, author and stats
 
 <CodeGroup>
-  <XTweetTs />
-  <XTweetPython />
-  <XTweetCurl />
-  <XTweetCli />
+  <XPostTs />
+  <XPostPython />
+  <XPostCurl />
+  <XPostCli />
 </CodeGroup>
 
 ### Get a person's profile
@@ -187,4 +145,4 @@ The response:
   <LinkedinProfileCli />
 </CodeGroup>
 
-<Tip>Endpoints that return a list, like Reddit search and Instagram posts, page. See [Page through results](/guides/paging).</Tip>
+<Tip>Endpoints that return `results` page. See [Page through results](/guides/paging).</Tip>

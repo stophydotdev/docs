@@ -3,5 +3,5 @@ import { Stophy } from "stophy";
 
 const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
 const result = await stophy.linkedin.jobs.search({ query: "product manager", location: "New York" });
-console.log(result.data.jobs);
+console.log(result.data.results);
 ```

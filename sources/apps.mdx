@@ -1,8 +1,8 @@
 ---
 title: 'Apps'
-description: 'Look up apps on the App Store and Google Play. Get listings, top charts, and user reviews as structured JSON or markdown.'
+description: 'Look up apps on the App Store and Google Play. Get app details, search results, top charts, and user reviews as structured JSON.'
 og:title: 'Apps | Stophy'
-og:description: 'Look up apps on the App Store and Google Play. Get listings, top charts, and user reviews as structured JSON or markdown.'
+og:description: 'Look up apps on the App Store and Google Play. Get app details, search results, top charts, and user reviews as structured JSON.'
 icon: 'mobile'
 ---
 
@@ -21,7 +21,7 @@ import GoogleplaySearchPython from '/snippets/examples/googleplay.search/python.
 import GoogleplaySearchCurl from '/snippets/examples/googleplay.search/curl.mdx';
 import GoogleplaySearchCli from '/snippets/examples/googleplay.search/cli.mdx';
 
-Look up apps on the App Store and Google Play. Get listings, top charts, and user reviews as structured JSON or markdown. See every field in the [Apps reference](/api-reference/endpoint/appstore-search), or try it in the [playground](https://stophy.dev/playground).
+Look up apps on the App Store and Google Play. Get app details, search results, top charts, and user reviews as structured JSON. See every field in the [Apps reference](/api-reference/endpoint/appstore-search), or try it in the [playground](https://stophy.dev/playground).
 
 ## Search App Store apps
 
@@ -38,29 +38,25 @@ The response:
 {
   "success": true,
   "data": {
-    "apps": [
+    "results": [
       {
-        "id": "abc123",
+        "appId": "abc123",
+        "appUrl": "https://example.com/",
         "bundleId": "abc123",
         "name": "Example title",
-        "url": "https://example.com/",
-        "developer": {
-          "id": "abc123",
-          "name": "Example title",
-          "url": "https://example.com/"
-        },
+        "developerId": "abc123",
+        "developerName": "example",
+        "developerUrl": "https://example.com/",
         "seller": "example",
         "website": "https://example.com/",
         "price": 19.99,
-        "currency": "USD",
+        "priceCurrency": "example",
         "priceText": "example",
         "genres": [
           "example"
         ],
-        "primaryGenre": {
-          "id": "abc123",
-          "name": "Example title"
-        },
+        "primaryGenreId": "abc123",
+        "primaryGenre": "example",
         "contentRating": "example",
         "description": "A short, readable summary of the result.",
         "releaseNotes": "example",
@@ -74,18 +70,18 @@ The response:
         ],
         "rating": 4.5,
         "ratings": 4.5,
-        "icon": "https://example.com/",
-        "screenshots": [
+        "iconUrl": "https://example.com/",
+        "screenshotUrls": [
           "https://example.com/"
         ],
-        "ipadScreenshots": [
+        "ipadScreenshotUrls": [
           "https://example.com/"
         ]
       }
     ]
   },
   "creditsUsed": 1,
-  "requestId": "54ff3b3e-f614-41e6-bf22-39d56411f10f"
+  "requestId": "5776932b-c08e-429d-b5f9-db67daf4015f"
 }
 ```
 
@@ -94,12 +90,12 @@ The response:
 | Endpoint | Cost |
 | --- | --- |
 | [Get an app's details from the App Store](/api-reference/endpoint/appstore-app) | 1 credit |
-| [Search App Store apps](/api-reference/endpoint/appstore-search) | 1 credit per 20 items, at least 1 credit |
-| [Get an app's App Store reviews](/api-reference/endpoint/appstore-reviews) | 1 credit per 20 items, at least 1 credit |
-| [Get App Store top charts](/api-reference/endpoint/appstore-top) | 1 credit per 100 items, at least 1 credit |
+| [Search App Store apps](/api-reference/endpoint/appstore-search) | 1 credit |
+| [Get an app's App Store reviews](/api-reference/endpoint/appstore-reviews) | 1 credit |
+| [Get App Store top charts](/api-reference/endpoint/appstore-top) | 1 credit |
 | [Get an app's details from Google Play](/api-reference/endpoint/googleplay-app) | 1 credit |
 | [Search Google Play apps](/api-reference/endpoint/googleplay-search) | 1 credit |
-| [Get an app's Google Play reviews](/api-reference/endpoint/googleplay-reviews) | 1 credit per 20 items, at least 1 credit |
+| [Get an app's Google Play reviews](/api-reference/endpoint/googleplay-reviews) | 1 credit |
 
 ## More ways to call it
 

@@ -3,5 +3,5 @@ import { Stophy } from "stophy";
 
 const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
 const result = await stophy.immoscout.search({ location: "Berlin" });
-console.log(result.data.listings);
+console.log(result.data.results);
 ```

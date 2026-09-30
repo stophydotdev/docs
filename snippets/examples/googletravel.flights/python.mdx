@@ -2,6 +2,6 @@
 from stophy import Stophy
 
 stophy = Stophy()  # reads STOPHY_API_KEY
-result = stophy.googletravel.flights(origin="JFK", destination="LAX", depart_date="2026-11-12")
-print(result["data"]["flights"])
+result = stophy.googletravel.flights(origin="JFK", destination="LAX", depart_date="2026-11-14")
+print(result["data"]["results"])
 ```

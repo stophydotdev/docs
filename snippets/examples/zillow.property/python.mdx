@@ -3,5 +3,5 @@ from stophy import Stophy
 
 stophy = Stophy()  # reads STOPHY_API_KEY
 result = stophy.zillow.property(property="https://www.zillow.com/homedetails/123-Main-St-New-York-NY-10001/12345678_zpid/")
-print(result["data"]["property"])
+print(result["data"])
 ```

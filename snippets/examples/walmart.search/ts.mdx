@@ -3,5 +3,5 @@ import { Stophy } from "stophy";
 
 const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
 const result = await stophy.walmart.search({ query: "air fryer" });
-console.log(result.data.products);
+console.log(result.data.results);
 ```

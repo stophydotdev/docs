@@ -2,6 +2,6 @@
 import { Stophy } from "stophy";
 
 const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
-const result = await stophy.crypto.coins({ limit: 100 });
-console.log(result.data.coins);
+const result = await stophy.crypto.coins({});
+console.log(result.data.results);
 ```

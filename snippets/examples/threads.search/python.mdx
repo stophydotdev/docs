@@ -2,6 +2,6 @@
 from stophy import Stophy
 
 stophy = Stophy()  # reads STOPHY_API_KEY
-result = stophy.threads.search(query="coffee", limit=20)
-print(result["data"]["posts"])
+result = stophy.threads.search(query="coffee")
+print(result["data"]["results"])
 ```

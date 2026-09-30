@@ -3,5 +3,5 @@ from stophy import Stophy
 
 stophy = Stophy()  # reads STOPHY_API_KEY
 result = stophy.airbnb.calendar(listing="https://www.airbnb.com/rooms/12345678")
-print(result["data"]["days"])
+print(result["data"]["results"])
 ```

@@ -25,7 +25,7 @@ curl -fsSL https://stophy.dev/install.sh | bash
 irm https://stophy.dev/install.ps1 | iex
 ```
 
-`npx -y @stophy/cli@latest init --all --browser` installs the CLI, adds Stophy's agent skills to your project, and logs in, in one command.
+`npx -y @stophy/cli init --all` logs you in, adds Stophy's agent skills to your agents, and adds the Stophy MCP server, in one command.
 
 ## Authenticate
 
@@ -44,7 +44,7 @@ stophy login --api-key st_...
 export STOPHY_API_KEY="st_..."
 ```
 
-Each computer gets its own key. Web search, YouTube search and YouTube transcripts work without logging in.
+Each computer gets its own key. Web search, YouTube search and transcripts work without logging in.
 
 Log out and revoke this computer's key:
 
@@ -58,18 +58,26 @@ Name the source, then the command:
 
 ```bash
 stophy youtube search "bun runtime" --limit 5
-stophy maps search dentist --near Berlin --country de
+stophy maps search --query dentist --location Berlin
+stophy reddit subreddit rust
+stophy transcript https://youtu.be/M4TufsFlv_o
+stophy suggest "how to" --source youtube
+stophy ads search nike --network meta
 ```
+
+When a command needs a choice such as `--network`, `--source` or `--by`, give it as an option.
 
 Run `stophy <source> --help` to see what a source can do, and `stophy <source> <command> --help` for every option on one command. If you give a value an option does not accept, the CLI stops before it calls Stophy and lists which values work.
 
-## Get markdown
+## Read the output
 
-Markdown is the default. Add `--json` to get the data as JSON instead, with the credits used printed to stderr:
+By default, lists print one row per result with its title and link, and other results print as `name: value` lines. Add `--json` to get the data as JSON instead, with the credits used printed to stderr. `--raw` prints the full response, including its request id.
 
 ```bash
 stophy reddit search "bun runtime" --json
 ```
+
+`--limit` keeps at most that many results from a page and costs the same.
 
 ## Page through results
 
@@ -114,7 +122,7 @@ stophy logs --days 7
 
 | Command | What it does |
 | --- | --- |
-| `stophy init --all --browser` | Install the CLI and the agent skills, and log in |
+| `stophy init` | Log in, install the agent skills, and add the MCP server |
 | `stophy login` | Log in with your browser or an API key |
 | `stophy logout` | Log out and revoke this computer's key |
 | `stophy <source> <command>` | Get data, for example `stophy youtube search` |

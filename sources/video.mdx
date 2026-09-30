@@ -1,8 +1,8 @@
 ---
 title: 'Video'
-description: 'Search YouTube, TikTok, and Kick, and open any video, channel, or playlist. Get transcripts, comments, and clip details as JSON or markdown.'
+description: 'Search YouTube and TikTok, and open any video, channel, or playlist. Get transcripts from YouTube, TikTok and Instagram videos, and read comments.'
 og:title: 'Video | Stophy'
-og:description: 'Search YouTube, TikTok, and Kick, and open any video, channel, or playlist. Get transcripts, comments, and clip details as JSON or markdown.'
+og:description: 'Search YouTube and TikTok, and open any video, channel, or playlist. Get transcripts from YouTube, TikTok and Instagram videos, and read comments.'
 icon: 'video'
 ---
 
@@ -12,20 +12,16 @@ import YoutubeSearchTs from '/snippets/examples/youtube.search/ts.mdx';
 import YoutubeSearchPython from '/snippets/examples/youtube.search/python.mdx';
 import YoutubeSearchCurl from '/snippets/examples/youtube.search/curl.mdx';
 import YoutubeSearchCli from '/snippets/examples/youtube.search/cli.mdx';
-import YoutubeTranscriptTs from '/snippets/examples/youtube.transcript/ts.mdx';
-import YoutubeTranscriptPython from '/snippets/examples/youtube.transcript/python.mdx';
-import YoutubeTranscriptCurl from '/snippets/examples/youtube.transcript/curl.mdx';
-import YoutubeTranscriptCli from '/snippets/examples/youtube.transcript/cli.mdx';
+import TranscriptTs from '/snippets/examples/transcript/ts.mdx';
+import TranscriptPython from '/snippets/examples/transcript/python.mdx';
+import TranscriptCurl from '/snippets/examples/transcript/curl.mdx';
+import TranscriptCli from '/snippets/examples/transcript/cli.mdx';
 import TiktokProfileTs from '/snippets/examples/tiktok.profile/ts.mdx';
 import TiktokProfilePython from '/snippets/examples/tiktok.profile/python.mdx';
 import TiktokProfileCurl from '/snippets/examples/tiktok.profile/curl.mdx';
 import TiktokProfileCli from '/snippets/examples/tiktok.profile/cli.mdx';
-import KickChannelTs from '/snippets/examples/kick.channel/ts.mdx';
-import KickChannelPython from '/snippets/examples/kick.channel/python.mdx';
-import KickChannelCurl from '/snippets/examples/kick.channel/curl.mdx';
-import KickChannelCli from '/snippets/examples/kick.channel/cli.mdx';
 
-Search YouTube, TikTok, and Kick, and open any video, channel, or playlist. Get transcripts, comments, and clip details as JSON or markdown. See every field in the [Video reference](/api-reference/endpoint/youtube-search), or try it in the [playground](https://stophy.dev/playground).
+Search YouTube and TikTok, and open any video, channel, or playlist. Get transcripts from YouTube, TikTok and Instagram videos, and read comments. See every field in the [Video reference](/api-reference/endpoint/youtube-search), or try it in the [playground](https://stophy.dev/playground).
 
 ## Search YouTube videos, channels, playlists and shorts
 
@@ -45,44 +41,41 @@ The response:
     "results": [
       {
         "type": "video",
-        "id": "Wc0ZJo06oAw",
-        "url": "https://www.youtube.com/watch?v=Wc0ZJo06oAw",
+        "videoId": "Wc0ZJo06oAw",
+        "videoUrl": "https://www.youtube.com/watch?v=Wc0ZJo06oAw",
         "title": "The Ultimate Rust Beginners Guide (2026)",
-        "channel": {
-          "id": "UCt6XPuD8u3YjvybuT-Xnj5A",
-          "username": "SBJake",
-          "name": "SBJake",
-          "url": "https://www.youtube.com/channel/UCt6XPuD8u3YjvybuT-Xnj5A"
-        },
+        "channelId": "UCt6XPuD8u3YjvybuT-Xnj5A",
+        "channelName": "SBJake",
+        "channelUrl": "https://www.youtube.com/channel/UCt6XPuD8u3YjvybuT-Xnj5A",
+        "channelUsername": "SBJake",
         "durationSeconds": 422,
-        "views": 543208,
-        "thumbnail": "https://i.ytimg.com/vi/Wc0ZJo06oAw/hqdefault.jpg",
+        "views": 545124,
+        "thumbnailUrl": "https://i.ytimg.com/vi/Wc0ZJo06oAw/hqdefault.jpg",
         "isShort": false,
         "isLive": false,
-        "createdAt": "2025-09-28T13:19:10.000Z"
+        "publishedAt": "2025-09-30T13:12:21.000Z"
       },
       {
         "type": "video",
-        "id": "5C_HPTJg5ek",
-        "url": "https://www.youtube.com/watch?v=5C_HPTJg5ek",
-        "title": "Rust in 100 Seconds",
-        "channel": {
-          "id": "UCsBjURrPoezykLs9EqgamOA",
-          "username": "Fireship",
-          "name": "Fireship",
-          "url": "https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA"
-        },
-        "durationSeconds": 149,
-        "views": 2518131,
-        "thumbnail": "https://i.ytimg.com/vi/5C_HPTJg5ek/hqdefault.jpg",
+        "videoId": "BpPEoZW5IiY",
+        "videoUrl": "https://www.youtube.com/watch?v=BpPEoZW5IiY",
+        "title": "Learn Rust Programming - Complete Course 🦀",
+        "channelId": "UC8butISFwT-Wl7EV0hUK0BQ",
+        "channelName": "freeCodeCamp.org",
+        "channelUrl": "https://www.youtube.com/channel/UC8butISFwT-Wl7EV0hUK0BQ",
+        "channelUsername": "freecodecamp",
+        "durationSeconds": 50350,
+        "views": 1248090,
+        "thumbnailUrl": "https://i.ytimg.com/vi/BpPEoZW5IiY/hqdefault.jpg",
         "isShort": false,
         "isLive": false,
-        "createdAt": "2022-09-28T19:51:34.000Z"
+        "publishedAt": "2023-10-01T01:33:57.000Z"
       }
-    ]
+    ],
+    "cursor": "EqIDEg1ydXN0IHR1dG9yaWFs…"
   },
   "creditsUsed": 0,
-  "requestId": "5fb0898a-3983-4f30-ae3e-3146c406ccd1"
+  "requestId": "2fe9dbad-fc48-4890-9751-0b24b596035b"
 }
 ```
 
@@ -90,39 +83,30 @@ The response:
 
 | Endpoint | Cost |
 | --- | --- |
-| [Search YouTube videos, channels, playlists and shorts](/api-reference/endpoint/youtube-search) | 1 credit per 20 items, at least 1 credit (no key needed) |
+| [Search YouTube videos, channels, playlists and shorts](/api-reference/endpoint/youtube-search) | 1 credit (no key needed) |
 | [Get a video's title, channel, views, likes and description](/api-reference/endpoint/youtube-video) | 1 credit |
-| [Get a video's transcript, with optional timestamps](/api-reference/endpoint/youtube-transcript) | 3 credits (no key needed) |
-| [Get a video's comments](/api-reference/endpoint/youtube-comments) | 1 credit per 20 items, at least 1 credit |
-| [Get the replies to a video comment](/api-reference/endpoint/youtube-comments-replies) | 1 credit per 10 items, at least 1 credit |
-| [Get a channel's videos, shorts, playlists and about info](/api-reference/endpoint/youtube-channel) | 1 credit per 30 items, at least 1 credit |
-| [Get the videos in a playlist](/api-reference/endpoint/youtube-playlist) | 1 credit per 100 items, at least 1 credit |
-| [Get YouTube search suggestions for a keyword](/api-reference/endpoint/youtube-suggest) | 1 credit per 50 items, at least 1 credit |
-| [Get a profile's bio and stats](/api-reference/endpoint/tiktok-profile) | 1 credit |
+| [Get what is said in a YouTube, TikTok or Instagram video, with optional timestamps](/api-reference/endpoint/transcript) | 2 credits (no key needed) |
+| [Get a video's comments, or the replies to one comment](/api-reference/endpoint/youtube-comments) | 1 credit |
+| [Get a channel's profile and a page of its videos, shorts, playlists or posts](/api-reference/endpoint/youtube-channel) | 1 credit |
+| [Get a playlist and a page of its videos](/api-reference/endpoint/youtube-playlist) | 1 credit |
+| [Get a profile's bio, stats and a page of its videos](/api-reference/endpoint/tiktok-profile) | 1 credit |
 | [Get a video's caption, stats and music](/api-reference/endpoint/tiktok-video) | 1 credit |
-| [Get any TikTok profile or video from its link](/api-reference/endpoint/tiktok-url) | 1 credit |
-| [Get a video's transcript, with optional timestamps](/api-reference/endpoint/tiktok-transcript) | 5 credits |
-| [Get a profile's videos](/api-reference/endpoint/tiktok-posts) | 1 credit per 30 items, at least 1 credit |
-| [Get videos for a hashtag](/api-reference/endpoint/tiktok-hashtag) | 1 credit per 30 items, at least 1 credit |
-| [Get a video's comments](/api-reference/endpoint/tiktok-comments) | 1 credit per 20 items, at least 1 credit |
-| [Get the replies to a video comment](/api-reference/endpoint/tiktok-comments-replies) | 1 credit per 20 items, at least 1 credit |
-| [Search TikTok videos and users](/api-reference/endpoint/tiktok-search) | 1 credit per 12 items, at least 1 credit |
-| [Get a channel's info and stats](/api-reference/endpoint/kick-channel) | 1 credit |
-| [Get a channel's past streams](/api-reference/endpoint/kick-videos) | 1 credit |
-| [Get a channel's clips](/api-reference/endpoint/kick-clips) | 1 credit per 20 items, at least 1 credit |
+| [Get a page of videos for a hashtag](/api-reference/endpoint/tiktok-hashtag) | 1 credit |
+| [Get a video's comments, or the replies to one comment](/api-reference/endpoint/tiktok-comments) | 1 credit |
+| [Search TikTok videos and users](/api-reference/endpoint/tiktok-search) | 1 credit |
 
 ## More ways to call it
 
-### Get a video's transcript, with optional timestamps
+### Get what is said in a YouTube, TikTok or Instagram video, with optional timestamps
 
 <CodeGroup>
-  <YoutubeTranscriptTs />
-  <YoutubeTranscriptPython />
-  <YoutubeTranscriptCurl />
-  <YoutubeTranscriptCli />
+  <TranscriptTs />
+  <TranscriptPython />
+  <TranscriptCurl />
+  <TranscriptCli />
 </CodeGroup>
 
-### Get a profile's bio and stats
+### Get a profile's bio, stats and a page of its videos
 
 <CodeGroup>
   <TiktokProfileTs />
@@ -131,13 +115,4 @@ The response:
   <TiktokProfileCli />
 </CodeGroup>
 
-### Get a channel's info and stats
-
-<CodeGroup>
-  <KickChannelTs />
-  <KickChannelPython />
-  <KickChannelCurl />
-  <KickChannelCli />
-</CodeGroup>
-
-<Tip>YouTube search, YouTube transcripts, and web search work without a key. Every other endpoint on this page needs one.</Tip>
+<Tip>YouTube search and transcripts work without a key. Every other endpoint on this page needs one. TikTok videos over 3 minutes can't be transcribed.</Tip>

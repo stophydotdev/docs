@@ -3,5 +3,5 @@ import { Stophy } from "stophy";
 
 const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
 const result = await stophy.aliexpress.product({ product: "https://www.aliexpress.com/item/1005006109874231.html" });
-console.log(result.data.product);
+console.log(result.data);
 ```

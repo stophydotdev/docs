@@ -3,5 +3,5 @@ from stophy import Stophy
 
 stophy = Stophy()  # reads STOPHY_API_KEY
 result = stophy.linkedin.jobs.search(query="product manager", location="New York")
-print(result["data"]["jobs"])
+print(result["data"]["results"])
 ```

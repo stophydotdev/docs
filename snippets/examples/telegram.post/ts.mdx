@@ -3,5 +3,5 @@ import { Stophy } from "stophy";
 
 const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
 const result = await stophy.telegram.post({ post: "https://t.me/durov/123" });
-console.log(result.data.post);
+console.log(result.data);
 ```

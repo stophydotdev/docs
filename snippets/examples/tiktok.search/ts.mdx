@@ -3,5 +3,5 @@ import { Stophy } from "stophy";
 
 const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
 const result = await stophy.tiktok.search({ query: "street food" });
-console.log(result.data.videos);
+console.log(result.data.results);
 ```
