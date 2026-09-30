@@ -140,8 +140,7 @@
                 "group": "Web",
                 "pages": [
                   "api-reference/endpoint/web-search",
-                  "api-reference/endpoint/web-news",
-                  "api-reference/endpoint/web-contacts"
+                  "api-reference/endpoint/web-news"
                 ]
               },
               {
@@ -161,7 +160,7 @@
               {
                 "group": "Email",
                 "pages": [
-                  "api-reference/endpoint/email-check",
+                  "api-reference/endpoint/email-verify",
                   "api-reference/endpoint/email-find"
                 ]
               },
@@ -999,6 +998,14 @@
     {
       "source": "/v1/channel",
       "destination": "/api-reference/endpoint/youtube-channel"
+    },
+    {
+      "source": "/api-reference/endpoint/web-contacts",
+      "destination": "/api-reference/endpoint/email-find"
+    },
+    {
+      "source": "/api-reference/endpoint/email-check",
+      "destination": "/api-reference/endpoint/email-verify"
     }
   ],
   "integrations": {

@@ -35,8 +35,8 @@ const AREAS: Area[] = [
     slug: "web",
     icon: "globe",
     description:
-      "Search the web and the news, find contacts on a site, and check a page's SEO. Check and find email addresses, plus search suggestions and Google Trends.",
-    endpoints: ["web.search", "web.news", "web.contacts", "google.trends.related", "google.trends.trending", "site.seo", "email.check", "email.find", "suggest", "google.trends"],
+      "Search the web and the news, and check a page's SEO. Verify and find email addresses, plus search suggestions and Google Trends.",
+    endpoints: ["web.search", "web.news", "google.trends.related", "google.trends.trending", "site.seo", "email.verify", "email.find", "suggest", "google.trends"],
     example: "web.search",
     variations: ["web.news", "site.seo"],
     tip: "Web search, YouTube search and transcripts work without a key. Every other endpoint needs one.",

@@ -39,7 +39,6 @@
   "titles": {
     "web.search": "Search",
     "web.news": "News",
-    "web.contacts": "Contacts",
     "youtube.search": "Search",
     "youtube.video": "Video",
     "transcript": "Transcript",
@@ -84,7 +83,7 @@
     "google.trends.related": "Related searches",
     "google.trends.trending": "Trending now",
     "site.seo": "SEO check",
-    "email.check": "Check",
+    "email.verify": "Verify",
     "email.find": "Find",
     "crypto.coins": "Coins",
     "crypto.coin": "Coin",
@@ -146,11 +145,10 @@
       "endpoints": [
         "web.search",
         "web.news",
-        "web.contacts",
         "google.trends.related",
         "google.trends.trending",
         "site.seo",
-        "email.check",
+        "email.verify",
         "email.find",
         "suggest",
         "google.trends"
