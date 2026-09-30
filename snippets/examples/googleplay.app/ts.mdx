@@ -3,5 +3,5 @@ import { Stophy } from "stophy";
 
 const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
 const result = await stophy.googleplay.app({ app: "com.spotify.music" });
-console.log(result.data.app);
+console.log(result.data);
 ```

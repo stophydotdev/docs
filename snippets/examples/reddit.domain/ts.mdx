@@ -3,5 +3,5 @@ import { Stophy } from "stophy";
 
 const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
 const result = await stophy.reddit.domain({ domain: "github.com" });
-console.log(result.data.posts);
+console.log(result.data.results);
 ```

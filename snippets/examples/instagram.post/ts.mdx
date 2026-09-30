@@ -3,5 +3,5 @@ import { Stophy } from "stophy";
 
 const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
 const result = await stophy.instagram.post({ post: "https://www.instagram.com/p/C1a2B3cD4eF/" });
-console.log(result.data.post);
+console.log(result.data);
 ```

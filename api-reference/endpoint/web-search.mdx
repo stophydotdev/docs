@@ -1,9 +1,9 @@
 ---
 title: 'Web search API'
 sidebarTitle: 'Search'
-description: 'Call the Web search API to get title, description, domain and position, as JSON or markdown. 1 credit per 10 items, at least 1 credit.'
+description: 'Search the web and get titles, links and snippets. Call the Web search API and get JSON back in one request. 1 credit per call. Failed calls cost nothing.'
 og:title: 'Web search API | Stophy'
-og:description: 'Call the Web search API to get title, description, domain and position, as JSON or markdown. 1 credit per 10 items, at least 1 credit.'
+og:description: 'Search the web and get titles, links and snippets. Call the Web search API and get JSON back in one request. 1 credit per call. Failed calls cost nothing.'
 openapi: 'api-reference/openapi.json POST /v1/web/search'
 ---
 
@@ -16,10 +16,10 @@ import CliExample from "/snippets/examples/web.search/cli.mdx";
 
 - **Endpoint:** `web.search`
 - **Returns:** `data` has `results`.
-- **Cost:** 1 credit per 10 items, at least 1 credit. Failed calls cost nothing.
+- **Cost:** 1 credit per call. Failed calls cost nothing.
 - **Paging:** No.
 
-Supports `from` and `to` dates, `country`, `language`, and domains to include or exclude.
+Filter with `within`, `country`, `language`, and domains to include or exclude.
 
 ## Example
 

@@ -3,5 +3,5 @@ import { Stophy } from "stophy";
 
 const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
 const result = await stophy.indeed.job({ job: "https://www.indeed.com/viewjob?jk=abcdef0123456789" });
-console.log(result.data.job);
+console.log(result.data);
 ```

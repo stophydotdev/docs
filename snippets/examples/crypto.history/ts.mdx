@@ -2,6 +2,6 @@
 import { Stophy } from "stophy";
 
 const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
-const result = await stophy.crypto.history({ coin: "bitcoin", within: "month" });
-console.log(result.data.coin);
+const result = await stophy.crypto.history({ coin: "bitcoin" });
+console.log(result.data.results);
 ```

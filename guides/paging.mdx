@@ -5,7 +5,7 @@ og:title: "Page through results | Stophy"
 og:description: "Get more than one page from Stophy endpoints that page: send the cursor from each response with the same input until no cursor comes back."
 ---
 
-Endpoints that page take a `cursor` input. Each endpoint page in the [API reference](/api-reference/introduction) says whether it pages.
+One call returns one page. Endpoints that page take a `cursor` input. Each endpoint page in the [API reference](/api-reference/introduction) says whether it pages.
 
 ## How it works
 
@@ -13,7 +13,7 @@ Endpoints that page take a `cursor` input. Each endpoint page in the [API refere
 2. If `data.cursor` is in the response, send the same input again with that `cursor`.
 3. Stop when a response has no `cursor`. You have everything.
 
-Keep the rest of the input the same between pages. Each page is a normal call and costs credits like one.
+Keep the rest of the input the same between pages. Each page is a normal call and costs its flat price, 1 or 2 credits, like any other call.
 
 ## Loop through every page
 
@@ -64,10 +64,14 @@ while True:
 
 Set your own stop, like the 100 results above. Some sources have many pages.
 
-## Paging with markdown
+## Keep fewer results with limit
 
-With `accept: text/markdown`, the last line tells you what to send next:
+Every endpoint that returns `results` takes `limit`, from 1 to 100. It keeps at most that many results from the page. The price stays the same, and the `cursor` still points to the next page.
 
-```text
-More results: add "cursor": "..." to your request
+```bash
+curl -X POST https://api.stophy.dev/v1/web/search \
+  -H "content-type: application/json" \
+  -d '{"query":"bun runtime","limit":2}'
 ```
+
+Use it to keep a model's context small. It does not fetch more: a page holds what the source returns for one call.

@@ -20,30 +20,18 @@ const SNIPPETS_DIR = "snippets/examples";
 // search result, so these are hand-picked, realistic values for the ones the
 // catalog leaves out.
 const FALLBACK_EXAMPLES: Record<string, JsonObject> = {
-  "youtube.comments.replies": { video: "dQw4w9WgXcQ", cursor: "UgxKREWxIgDrw8w2p2h4AaABAg" },
   "reddit.post": { post: "https://www.reddit.com/r/rust/comments/1c8x9k2/why_i_switched_to_rust/" },
-  "reddit.comments.more": { cursor: "t1_kz3x9k2,t1_kz3y4l1" },
   "maps.place": { place: "ChIJN1t_tDeuEmsRUsoyG83frY4" },
   "maps.reviews": { place: "ChIJN1t_tDeuEmsRUsoyG83frY4" },
   "instagram.post": { post: "https://www.instagram.com/p/C1a2B3cD4eF/" },
-  "instagram.transcript": { post: "https://www.instagram.com/p/C1a2B3cD4eF/" },
   "instagram.comments": { post: "https://www.instagram.com/p/C1a2B3cD4eF/" },
-  "instagram.comments.replies": { post: "https://www.instagram.com/p/C1a2B3cD4eF/", comment: "17912345678901234" },
-  "tiktok.comments.replies": { video: "7123456789012345678", comment: "7123456789" },
   "bluesky.post": { post: "https://bsky.app/profile/bsky.app/post/3k2l4z6y8w2ex" },
-  "mastodon.post": { post: "https://mastodon.social/@Gargron/109357750250704287" },
   "threads.post": { post: "https://www.threads.net/@zuck/post/C1a2B3cD4eF" },
   "telegram.post": { post: "https://t.me/durov/123" },
-  "meta.ads.ad": { ad: "1234567890123456" },
+  "ads.ad": { network: "meta", ad: "1234567890123456" },
   "linkedin.jobs.job": { job: "https://www.linkedin.com/jobs/view/3812345678" },
-  "linkedin.ads.ad": { ad: "1234567890123456" },
   "zillow.property": { property: "https://www.zillow.com/homedetails/123-Main-St-New-York-NY-10001/12345678_zpid/" },
-  "google.ads.ad": { ad: "1234567890123456" },
-  "tiktok.ads.ad": { ad: "1234567890123456" },
   "upwork.job": { job: "https://www.upwork.com/jobs/~0123456789abcdef01" },
-  "crypto.dex.pairs": { pair: "0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640" },
-  "crypto.pump.coin": { coin: "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump" },
-  "crypto.pump.trades": { coin: "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump" },
   "indeed.job": { job: "https://www.indeed.com/viewjob?jk=abcdef0123456789" },
   "tripadvisor.place": { place: "https://www.tripadvisor.com/Hotel_Review-g60763-d224832-Reviews-The_Peninsula_New_York-New_York_City_New_York.html" },
   "tripadvisor.reviews": { place: "https://www.tripadvisor.com/Hotel_Review-g60763-d224832-Reviews-The_Peninsula_New_York-New_York_City_New_York.html" },
@@ -53,16 +41,10 @@ const FALLBACK_EXAMPLES: Record<string, JsonObject> = {
   "airbnb.listing": { listing: "https://www.airbnb.com/rooms/12345678" },
   "airbnb.calendar": { listing: "https://www.airbnb.com/rooms/12345678" },
   "airbnb.reviews": { listing: "https://www.airbnb.com/rooms/12345678" },
-  "redfin.property": { property: "https://www.redfin.com/NY/New-York/123-Main-St-10001/home/12345678" },
-  "realtor.property": { property: "https://www.realtor.com/realestateandhomes-detail/123-Main-St_New-York_NY_10001_M12345-67890" },
   "rightmove.property": { property: "https://www.rightmove.co.uk/properties/123456789" },
   "immoscout.listing": { listing: "https://www.immobilienscout24.de/expose/123456789" },
   "pinterest.pin": { pin: "https://www.pinterest.com/pin/123456789012345678/" },
   "pinterest.board": { board: "https://www.pinterest.com/example/example-board/" },
-  "pinterest.ads.ad": { ad: "1234567890123456" },
-  "microsoft.ads.ad": { ad: "1234567890123" },
-  "snapchat.ads.ad": { ad: "550e8400-e29b-41d4-a716-446655440000" },
-  "tumblr.post": { post: "https://example.tumblr.com/post/123456789012/example-post" },
 };
 
 // --- naming -----------------------------------------------------------
@@ -122,14 +104,18 @@ function cliValue(value: Json): string | undefined {
 
 // --- schema helpers -------------------------------------------------------
 
-/** The one required top-level string field, if there is exactly one: the CLI's positional argument. */
+/** The CLI's positional argument: the one required free-text field, else `query`. Choices such as `network` stay flags. */
 function positionalField(op: CatalogEndpoint): string | undefined {
+  const properties = (op.input?.properties as JsonObject | undefined) ?? {};
   const required = Array.isArray(op.input?.required) ? (op.input?.required as string[]) : [];
-  if (required.length !== 1) return undefined;
-  const [name] = required;
-  if (name === undefined) return undefined;
-  const schema = (op.input?.properties as JsonObject | undefined)?.[name];
-  return isObject(schema) && schema.type === "string" ? name : undefined;
+  const free = required.filter((name) => {
+    const schema = properties[name];
+    return isObject(schema) && schema.type === "string" && schema.enum === undefined;
+  });
+  if (free.length === 1) return free[0];
+  if (free.length > 0) return undefined;
+  const query = properties.query;
+  return isObject(query) && query.type === "string" && query.enum === undefined ? "query" : undefined;
 }
 
 function dataProperties(op: CatalogEndpoint, spec: JsonObject): string[] {
@@ -144,10 +130,10 @@ function dataProperties(op: CatalogEndpoint, spec: JsonObject): string[] {
   if (!isObject(data)) return [];
   const own = Object.keys((data.properties as JsonObject | undefined) ?? {});
   if (own.length > 0) return own.filter((field) => field !== "cursor");
-  const options = (data.oneOf ?? data.anyOf) as Json[] | undefined;
+  const options = (data.allOf ?? data.oneOf ?? data.anyOf) as Json[] | undefined;
   if (!Array.isArray(options)) return [];
   const [first] = options;
-  return isObject(first) ? Object.keys((first.properties as JsonObject | undefined) ?? {}) : [];
+  return isObject(first) ? Object.keys((first.properties as JsonObject | undefined) ?? {}).filter((field) => field !== "cursor") : [];
 }
 
 // The first property in the response schema is usually the substance of the
@@ -155,23 +141,16 @@ function dataProperties(op: CatalogEndpoint, spec: JsonObject): string[] {
 // of the input first (`domain`, `query`) or a bare `id` ahead of the payload.
 // These name the field that is actually worth printing in an example.
 const PRIMARY_FIELD_OVERRIDES: Record<string, string> = {
-  "domain.dns": "records",
-  "domain.tech": "technologies",
-  "amazon.suggest": "keywords",
-  "google.suggest": "keywords",
-  "youtube.suggest": "keywords",
-  "google.trends.related": "queries",
-  "instagram.transcript": "transcripts",
-  "youtube.transcript": "text",
-  "tiktok.transcript": "text",
+  transcript: "text",
   "youtube.video": "title",
-  "googletravel.flights": "flights",
-  "crypto.wallet": "balance",
+  "finance.stock": "name",
 };
 
 /** The field to read off `result.data` in the TS and Python snippets. */
 function primaryField(op: CatalogEndpoint, spec: JsonObject): string | undefined {
-  return PRIMARY_FIELD_OVERRIDES[op.id] ?? dataProperties(op, spec)[0];
+  const override = PRIMARY_FIELD_OVERRIDES[op.id];
+  if (override !== undefined) return override;
+  return dataProperties(op, spec).includes("results") ? "results" : undefined;
 }
 
 // --- snippet bodies -----------------------------------------------------
@@ -245,9 +224,15 @@ function cliSnippet(op: CatalogEndpoint): string {
 const rawCatalog = await fetchCatalog();
 const spec = (await Bun.file(file("api-reference/openapi.json")).json()) as JsonObject;
 
-const catalog: CatalogEndpoint[] = rawCatalog.endpoints.map((op) =>
-  isObject(op.example) ? op : { ...op, example: FALLBACK_EXAMPLES[op.id] },
-);
+const EXAMPLE_OVERRIDES: Record<string, JsonObject> = {
+  transcript: { video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" },
+};
+
+const catalog: CatalogEndpoint[] = rawCatalog.endpoints.map((op) => {
+  const override = EXAMPLE_OVERRIDES[op.id];
+  if (override !== undefined) return { ...op, example: override };
+  return isObject(op.example) ? op : { ...op, example: FALLBACK_EXAMPLES[op.id] };
+});
 
 const missingExample = catalog.filter((op) => !isObject(op.example));
 if (missingExample.length > 0) {

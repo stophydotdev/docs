@@ -3,5 +3,5 @@ import { Stophy } from "stophy";
 
 const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
 const result = await stophy.walmart.product({ product: "https://www.walmart.com/ip/123456789" });
-console.log(result.data.product);
+console.log(result.data);
 ```

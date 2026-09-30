@@ -5,7 +5,7 @@ og:title: "Find the right endpoint | Stophy"
 og:description: "Search the live Stophy catalog by keyword, browse it by category, or read one endpoint's full input before you write a call."
 ---
 
-Stophy has 161 endpoints across 41 sources. Three ways to find the one you need: search the catalog, browse by category, or read one endpoint's input.
+Stophy has 100 endpoints across 35 sources. Three ways to find the one you need: search the catalog, browse by category, or read one endpoint's input.
 
 ## Search the catalog by keyword
 
@@ -27,10 +27,9 @@ stophy endpoints video
 ```text
 youtube.video: Get a video's title, channel, views, likes and description
 tiktok.video: Get a video's caption, stats and music
-kick.videos: Get a channel's past streams
 ```
 
-Drop the keyword to list all 161: `curl -s https://api.stophy.dev/v1/endpoints` or `stophy endpoints`.
+Drop the keyword to list all 100: `curl -s https://api.stophy.dev/v1/endpoints` or `stophy endpoints`.
 
 ## Browse by category
 
@@ -48,7 +47,7 @@ curl -s https://api.stophy.dev/v1/endpoints \
 ```
 
 ```bash CLI
-stophy describe youtube.search
+stophy youtube search --help
 ```
 
 </CodeGroup>

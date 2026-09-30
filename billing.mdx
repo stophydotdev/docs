@@ -1,35 +1,40 @@
 ---
 title: "Credits and billing"
-description: "How Stophy credits work: 1,000 credits cost $2, new accounts get 500 free, failed calls cost nothing, and every response shows what it cost."
+description: "How Stophy credits work: $1 buys 1,000 credits, new accounts get 1,000 free, every call has one flat price, and failed calls cost nothing."
 og:title: "Credits and billing | Stophy"
-og:description: "How Stophy credits work: 1,000 credits cost $2, new accounts get 500 free, failed calls cost nothing, and every response shows what it cost."
+og:description: "How Stophy credits work: $1 buys 1,000 credits, new accounts get 1,000 free, every call has one flat price, and failed calls cost nothing."
 ---
 
 Stophy uses credits. You buy credits ahead of time and each successful call uses some.
 
 ## Price
 
-- 1,000 credits cost $2.
-- New accounts start with 500 free credits.
-- Top up at [stophy.dev](https://stophy.dev). The smallest top-up is $5.
+- $1 buys 1,000 credits.
+- New accounts start with 1,000 free credits ($1).
+- Top up at [stophy.dev](https://stophy.dev). The smallest top-up is $10.
 
 ## What a call costs
 
-Each endpoint has a cost in credits. Find it in the [API reference](/api-reference/introduction), on each source page, or in `GET https://api.stophy.dev/v1/endpoints` (`credits` and `perItems`).
+Every endpoint has one flat price per call: 1 or 2 credits. The price does not change with how many results come back, and `limit` does not change it either.
 
-- Most endpoints cost a fixed number of credits per call.
-- Some charge per group of results. When `perItems` is set, a call costs `credits` for every `perItems` items it returns, and at least `credits`. For example, web search costs 1 credit per 10 results, so 25 results cost 3 credits.
-- Failed calls cost nothing.
+| Cost | Endpoints |
+| --- | --- |
+| 2 credits | Every Reddit endpoint, every `ads.*` endpoint, `meta.ads.page`, `upwork.search`, `walmart.search`, `aliexpress.search`, `web.contacts`, and `transcript` |
+| 1 credit | Everything else |
+
+One call returns one page. To get the next page, send the `cursor` from the response in a new call, which costs the same again. Find an endpoint's cost in the [API reference](/api-reference/introduction), on each source page, or in `credits` in `GET https://api.stophy.dev/v1/endpoints`.
+
+Failed calls cost nothing. A call that Stophy refuses, for example a TikTok video over 3 minutes sent to `transcript`, costs nothing either.
 
 ## See what a call cost
 
 Every successful response tells you:
 
 - `creditsUsed` in the JSON body
-- the `x-credits-used` header, also on markdown responses
+- the `x-credits-used` header
 
 For your balance and history, use [`GET /v1/usage`](/api-reference/usage) and [`GET /v1/logs`](/api-reference/logs).
 
 ## Running out
 
-When your balance is too low for a call, it answers `402` with code `insufficientCredits` and nothing is charged. Top up and try again.
+When your balance is too low for a call, it answers `402` with code `insufficientCredits` and nothing is charged. The error says how many credits the call needs and how many you have. Top up and try again.

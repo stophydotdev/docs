@@ -1,9 +1,9 @@
 ---
 title: 'Reddit search API'
 sidebarTitle: 'Search'
-description: 'Call the Reddit search API to get title, text, author, subreddit, score and upvote percent, as JSON or markdown. 2 credits.'
+description: 'Search Reddit posts, comments, subreddits and users. Call the Reddit search API and get JSON back in one request. 2 credits per call. Failed calls cost nothing.'
 og:title: 'Reddit search API | Stophy'
-og:description: 'Call the Reddit search API to get title, text, author, subreddit, score and upvote percent, as JSON or markdown. 2 credits.'
+og:description: 'Search Reddit posts, comments, subreddits and users. Call the Reddit search API and get JSON back in one request. 2 credits per call. Failed calls cost nothing.'
 openapi: 'api-reference/openapi.json POST /v1/reddit/search'
 ---
 
@@ -16,8 +16,8 @@ import CliExample from "/snippets/examples/reddit.search/cli.mdx";
 
 - **Endpoint:** `reddit.search`
 - **Returns:** `data` has `results`.
-- **Cost:** 2 credits. Failed calls cost nothing.
-- **Paging:** Yes. Send the `cursor` from the response to get the next page. See [Paging](/advanced-guide#paging).
+- **Cost:** 2 credits per call. Failed calls cost nothing.
+- **Paging:** Yes. Send the `cursor` from the response to get the next page. See [Page through results](/guides/paging).
 
 ## Example
 

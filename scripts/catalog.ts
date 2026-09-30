@@ -11,8 +11,6 @@ export interface CatalogEndpoint {
   path: string;
   credits?: number;
   keyless?: boolean;
-  perItems?: number;
-  cacheTtlSeconds?: number;
   input?: JsonObject;
   example?: JsonObject;
 }

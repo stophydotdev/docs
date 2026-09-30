@@ -15,7 +15,7 @@ Stophy is a remote MCP server. Your agent searches for the right endpoint, reads
 
 <CardGroup cols={3}>
   <Card title="No key" icon="bolt" href="/mcp-server/keyless">
-    Start right away. Web search, YouTube search and YouTube transcripts, within free limits.
+    Start right away. Web search, YouTube search and transcripts, within free limits.
   </Card>
   <Card title="API key" icon="key" href="/mcp-server/keyless#add-an-api-key">
     Put your key in the client config. Every endpoint, no browser needed.
@@ -44,9 +44,9 @@ Ask your agent: *"What are people saying about Bun on Reddit?"*
 
 - It searches Stophy and finds **Reddit search**.
 - It checks what Reddit search needs: a query, plus optional sort and time range.
-- It gets the posts and answers you. The call used 1 credit.
+- It gets the posts and answers you. The call used 2 credits.
 
-Behind this are three tools: `stophy_search_endpoints`, `stophy_describe_endpoint` and `stophy_call`.
+Behind this are three tools: `stophy_search_endpoints`, `stophy_describe_endpoint` and `stophy_call`. Endpoint ids are camelCase, such as `redditSearch` or `youtubeSearch`. `stophy_call` takes `id`, `input` and optional `fields`, which keeps only the keys you name on each result. Lists come back as `results`, one page per call.
 
 ## Toolsets
 

@@ -3,5 +3,5 @@ from stophy import Stophy
 
 stophy = Stophy()  # reads STOPHY_API_KEY
 result = stophy.crypto.dex.search(query="pepe")
-print(result["data"]["pairs"])
+print(result["data"]["results"])
 ```

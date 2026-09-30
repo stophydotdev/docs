@@ -3,5 +3,5 @@ from stophy import Stophy
 
 stophy = Stophy()  # reads STOPHY_API_KEY
 result = stophy.amazon.bestsellers(category="electronics")
-print(result["data"]["category"])
+print(result["data"]["results"])
 ```

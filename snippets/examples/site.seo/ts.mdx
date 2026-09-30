@@ -3,5 +3,5 @@ import { Stophy } from "stophy";
 
 const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
 const result = await stophy.site.seo({ url: "https://www.shopify.com" });
-console.log(result.data.url);
+console.log(result.data);
 ```

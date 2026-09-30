@@ -3,5 +3,5 @@ import { Stophy } from "stophy";
 
 const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
 const result = await stophy.bluesky.post({ post: "https://bsky.app/profile/bsky.app/post/3k2l4z6y8w2ex" });
-console.log(result.data.post);
+console.log(result.data);
 ```

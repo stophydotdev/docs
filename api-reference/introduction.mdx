@@ -1,8 +1,8 @@
 ---
 title: "Introduction"
-description: "Use the Stophy REST API: one base URL, bearer key authentication, a JSON body for every endpoint, and one response shape for every call."
+description: "Use the Stophy REST API: one base URL, bearer key authentication, a JSON body for every endpoint, and one flat response for every call."
 og:title: "API reference | Stophy"
-og:description: "Use the Stophy REST API: one base URL, bearer key authentication, a JSON body for every endpoint, and one response shape for every call."
+og:description: "Use the Stophy REST API: one base URL, bearer key authentication, a JSON body for every endpoint, and one flat response for every call."
 mode: "wide"
 ---
 
@@ -16,14 +16,14 @@ Every Stophy endpoint uses the same base URL and bearer key. Data endpoints take
 
 <CardGroup cols={3}>
   <Card title="Web search and pages" icon="globe" color="f5d90a" href="/sources/web">Web and news search, site maps, SEO, domains and emails.</Card>
-  <Card title="Video" icon="video" color="f5d90a" href="/sources/video">YouTube, TikTok and Kick videos, transcripts and comments.</Card>
+  <Card title="Video" icon="video" color="f5d90a" href="/sources/video">YouTube and TikTok videos, transcripts and comments.</Card>
   <Card title="Social" icon="users" color="f5d90a" href="/sources/social">Posts, profiles and comments from Reddit, Instagram, X and more.</Card>
   <Card title="Places and travel" icon="map-location-dot" color="f5d90a" href="/sources/places-and-travel">Google Maps places and reviews, flights, Tripadvisor and Airbnb.</Card>
   <Card title="Shopping" icon="cart-shopping" color="f5d90a" href="/sources/shopping">Products and prices from Amazon, Walmart, AliExpress and Shopify.</Card>
   <Card title="Apps" icon="mobile" color="f5d90a" href="/sources/apps">App Store and Google Play apps, charts and reviews.</Card>
   <Card title="Jobs" icon="briefcase" color="f5d90a" href="/sources/jobs">Job listings from LinkedIn, Indeed and Upwork.</Card>
-  <Card title="Real estate" icon="house" color="f5d90a" href="/sources/real-estate">Homes from Zillow, Redfin, Realtor.com, Rightmove and ImmoScout24.</Card>
-  <Card title="Ads" icon="bullhorn" color="f5d90a" href="/sources/ads">Ad libraries from Meta, Google, TikTok, LinkedIn and more.</Card>
+  <Card title="Real estate" icon="house" color="f5d90a" href="/sources/real-estate">Homes from Zillow, Rightmove and ImmoScout24.</Card>
+  <Card title="Ads" icon="bullhorn" color="f5d90a" href="/sources/ads">Ad libraries from Meta, Google, TikTok, LinkedIn, Microsoft and Pinterest.</Card>
   <Card title="Finance and crypto" icon="chart-line" color="f5d90a" href="/sources/finance-and-crypto">Stock quotes and history, crypto prices, DEX pairs and wallets.</Card>
 </CardGroup>
 
@@ -35,7 +35,7 @@ See every endpoint in the sidebar, grouped the same way.
 https://api.stophy.dev
 ```
 
-Data endpoints use `POST /v1/<source>/<endpoint>` with a JSON object body. Unknown input fields return `400`.
+Every endpoint is a `POST` with a JSON object body. The path is `/v1/` plus the endpoint id with dots as slashes: `web.search` is `/v1/web/search`, and `transcript` is `/v1/transcript`. Unknown input fields return `400`.
 
 ## Authentication
 
@@ -81,21 +81,27 @@ response = requests.post(
 
 An invalid or missing key returns `401` with code `unauthorized`.
 
-## Response envelope
+## Responses
 
-A successful call returns `success`, `data`, `creditsUsed`, and `requestId`:
+A successful call returns exactly `success`, `data`, `creditsUsed`, and `requestId`:
 
 ```json
 {
   "success": true,
-  "data": {},
+  "data": {
+    "results": [{ "title": "Bun", "url": "https://bun.com/", "position": 1 }]
+  },
   "creditsUsed": 1,
   "requestId": "7db121ac-d8e6-479a-b17c-59e3fe5fabd8"
 }
 ```
 
-The shape of `data` depends on the endpoint. A failed call returns an error status and `{ "success": false, "error": { ... } }`. See [Errors](/api-reference/errors).
+`data` is one flat object. A list is `data.results`, with `data.cursor` when there is another page. A value that belongs to something carries its owner in the name: `videoId`, `videoUrl`, `channelName`, `placeId`, `latitude`. Empty values are left out.
 
-## Markdown output
+A failed call returns an error status and `{ "success": false, "error": { ... } }`. See [Errors](/api-reference/errors).
 
-Send `Accept: text/markdown` with your key to get readable text instead of JSON. Errors remain JSON. See the [advanced guide](/advanced-guide#markdown-output).
+## One call, one page, one price
+
+Each call returns one page and costs one flat price, 1 or 2 credits, whatever it returns. Endpoints that return `results` take `limit` (1 to 100) to keep at most that many results from the page. It does not change the price. To get the next page, send the `cursor` back with the same input. See [Page through results](/guides/paging).
+
+Inputs are flat too. There are no nested option objects, and the JSON body is the only input: there is no output format to choose.

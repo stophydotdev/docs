@@ -1,25 +1,22 @@
 ---
 title: "Advanced guide"
-description: "What to learn after your first call: find the right endpoint, read markdown output, page through results, and handle errors and retries."
+description: "What to learn after your first call: find the right endpoint, page through results, keep fewer results with limit, and handle errors and retries."
 og:title: "Advanced guide | Stophy"
-og:description: "What to learn after your first call: find the right endpoint, read markdown output, page through results, and handle errors and retries."
+og:description: "What to learn after your first call: find the right endpoint, page through results, keep fewer results with limit, and handle errors and retries."
 ---
 
 You've made your first call. Here's what to learn next.
 
-<CardGroup cols={2}>
+<CardGroup cols={3}>
   <Card title="Find the right endpoint" icon="magnifying-glass" href="/guides/find-endpoint">
     Search the catalog by keyword, or browse it by category.
   </Card>
-  <Card title="Get markdown for a model" icon="file-lines" href="/guides/markdown">
-    Get a readable page instead of JSON when a model reads the result.
-  </Card>
   <Card title="Page through results" icon="list" href="/guides/paging">
-    Send the cursor from each response to get the next page.
+    Send the cursor from each response to get the next page, and use `limit` to keep fewer results.
   </Card>
   <Card title="Handle errors and retries" icon="triangle-exclamation" href="/guides/errors-and-retries">
     Read the error code, retry only when it's safe, and back off.
   </Card>
 </CardGroup>
 
-Every endpoint is `POST https://api.stophy.dev/v1/<source>/<endpoint>`, with a JSON body and a bearer key. The [API reference](/api-reference/introduction) has the full input and output for each one.
+Every endpoint is a `POST` to `https://api.stophy.dev/v1/` followed by its id with dots as slashes: `web.search` is `/v1/web/search`, and `transcript` is `/v1/transcript`. Send a JSON body and a bearer key. The [API reference](/api-reference/introduction) has the full input and output for each one.

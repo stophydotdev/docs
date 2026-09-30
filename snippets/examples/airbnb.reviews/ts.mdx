@@ -3,5 +3,5 @@ import { Stophy } from "stophy";
 
 const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
 const result = await stophy.airbnb.reviews({ listing: "https://www.airbnb.com/rooms/12345678" });
-console.log(result.data.reviews);
+console.log(result.data.results);
 ```

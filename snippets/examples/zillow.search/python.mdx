@@ -3,5 +3,5 @@ from stophy import Stophy
 
 stophy = Stophy()  # reads STOPHY_API_KEY
 result = stophy.zillow.search(location="Austin, TX")
-print(result["data"]["listings"])
+print(result["data"]["results"])
 ```

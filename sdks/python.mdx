@@ -1,10 +1,10 @@
 ---
 title: "Python SDK"
-description: "Install the Stophy Python SDK, authenticate, call an endpoint sync or async, get markdown, page through results, and handle errors and retries."
+description: "Install the Stophy Python SDK, authenticate, call an endpoint sync or async, page through results, and handle errors and retries."
 sidebarTitle: "Python"
 icon: "python"
 og:title: "Python SDK | Stophy"
-og:description: "Install the Stophy Python SDK, authenticate, call an endpoint sync or async, get markdown, page through results, and handle errors and retries."
+og:description: "Install the Stophy Python SDK, authenticate, call an endpoint sync or async, page through results, and handle errors and retries."
 ---
 
 ## Install
@@ -27,7 +27,7 @@ from stophy import Stophy
 stophy = Stophy(api_key=os.environ["STOPHY_API_KEY"])
 ```
 
-Without a key, web search, YouTube search and YouTube transcripts still work:
+Without a key, web search, YouTube search and transcripts still work:
 
 ```python
 from stophy import Stophy
@@ -48,27 +48,20 @@ from stophy import Stophy
 stophy = Stophy(api_key=os.environ["STOPHY_API_KEY"])
 
 posts = stophy.reddit.search(query="bun runtime", limit=10)
-print(posts["data"], posts["creditsUsed"])
+print(posts["data"]["results"], posts["creditsUsed"])
 
-replies = stophy.youtube.comments.replies(video="dQw4w9WgXcQ", cursor="...")
-print(replies["data"])
+transcript = stophy.transcript(video="https://youtu.be/dQw4w9WgXcQ")
+print(transcript["data"]["text"])
+
+ads = stophy.ads.search(network="meta", query="running shoes")
+print(ads["data"]["results"])
 ```
 
-Responses are plain dictionaries shaped like the [API reference](/api-reference/introduction).
+Responses are plain dictionaries shaped like the [API reference](/api-reference/introduction): `success`, `data`, `creditsUsed` and `requestId`. `data` is one flat dict, and lists are in `data["results"]`. `limit` keeps at most that many results from the page, at the same price.
 
-Methods follow the endpoint id, with keyword arguments in snake_case. Nested ids are nested attributes: `youtube.comments.replies` is `stophy.youtube.comments.replies(...)`. A JSON field named `from` is passed as `from_`.
+Methods follow the endpoint id, with keyword arguments in snake_case. Nested ids are nested attributes: `reddit.search` is `stophy.reddit.search(...)`. An endpoint with a single name is a method on the client: `stophy.transcript(...)`, `stophy.suggest(...)`. A JSON field named `from` is passed as `from_`.
 
-## Get markdown
-
-Pass `format="markdown"` to get a string:
-
-```python
-from stophy import Stophy
-
-with Stophy() as stophy:
-    page = stophy.youtube.search(query="rust tutorial", limit=2, format="markdown")
-    print(page)
-```
+Some endpoints cover several sources. Pick one with a keyword: `network` for `ads.*`, `source` for `suggest`, `by` for `google.trends`. The type checker follows the choice.
 
 ## Async
 
@@ -101,7 +94,7 @@ stophy = Stophy(api_key=os.environ["STOPHY_API_KEY"])
 cursor = None
 while True:
     page = stophy.reddit.search(query="bun runtime", cursor=cursor)
-    print(page["data"])
+    print(page["data"]["results"])
     cursor = page["data"].get("cursor")
     if not cursor:
         break

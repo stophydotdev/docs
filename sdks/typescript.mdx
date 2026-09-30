@@ -1,10 +1,10 @@
 ---
 title: "TypeScript SDK"
-description: "Install the Stophy TypeScript SDK, authenticate, call an endpoint, get markdown, page through results, and handle errors and retries."
+description: "Install the Stophy TypeScript SDK, authenticate, call an endpoint with typed inputs, page through results, and handle errors and retries."
 sidebarTitle: "TypeScript"
 icon: "node-js"
 og:title: "TypeScript SDK | Stophy"
-og:description: "Install the Stophy TypeScript SDK, authenticate, call an endpoint, get markdown, page through results, and handle errors and retries."
+og:description: "Install the Stophy TypeScript SDK, authenticate, call an endpoint with typed inputs, page through results, and handle errors and retries."
 ---
 
 ## Install
@@ -25,7 +25,7 @@ import { Stophy } from "stophy";
 const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
 ```
 
-Without a key, web search, YouTube search and YouTube transcripts still work:
+Without a key, web search, YouTube search and transcripts still work:
 
 ```ts
 import { Stophy } from "stophy";
@@ -44,28 +44,20 @@ import { Stophy } from "stophy";
 const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
 
 const posts = await stophy.reddit.search({ query: "bun runtime", limit: 10 });
-console.log(posts.data, posts.creditsUsed);
+console.log(posts.data.results, posts.creditsUsed);
 
-const replies = await stophy.youtube.comments.replies({ video: "dQw4w9WgXcQ", cursor: "..." });
-console.log(replies.data);
+const transcript = await stophy.transcript({ video: "https://youtu.be/dQw4w9WgXcQ" });
+console.log(transcript.data.text);
+
+const ads = await stophy.ads.search({ network: "meta", query: "running shoes" });
+console.log(ads.data.results);
 ```
 
-Methods follow the endpoint id. Nested ids are nested properties: `youtube.comments.replies` is `stophy.youtube.comments.replies(...)`. Inputs and responses are typed from the [API reference](/api-reference/introduction), so a missing required field is a compile error.
+Methods follow the endpoint id. Nested ids are nested properties: `reddit.search` is `stophy.reddit.search(...)`. An endpoint with a single name is a method on the client: `stophy.transcript(...)`, `stophy.suggest(...)`. Inputs and responses are typed from the [API reference](/api-reference/introduction), so a missing required field is a compile error.
 
-## Get markdown
+Some endpoints cover several sources. Pick one with a field: `network` for `ads.*`, `source` for `suggest`, `by` for `google.trends`. The types follow the choice.
 
-Pass `{ format: "markdown" }` as the second argument to get a string:
-
-```ts
-import { Stophy } from "stophy";
-
-const stophy = new Stophy();
-const page = await stophy.youtube.search(
-  { query: "rust tutorial", limit: 2 },
-  { format: "markdown" },
-);
-console.log(page);
-```
+Every response is `{ success, data, creditsUsed, requestId }`. `data` is one flat object, and lists are in `data.results`. `limit` keeps at most that many results from the page, at the same price.
 
 ## Paging
 
@@ -76,7 +68,7 @@ const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
 let cursor: string | undefined;
 do {
   const page = await stophy.reddit.search({ query: "bun runtime", cursor });
-  console.log(page.data);
+  console.log(page.data.results);
   cursor = page.data.cursor;
 } while (cursor);
 ```
@@ -139,7 +131,7 @@ await stophy.web.search({ query: "bun runtime" }, { signal: controller.signal })
 | `headers` | none | Extra headers on every request |
 | `fetch` | global `fetch` | Your own `fetch` |
 
-Per call, pass `{ signal }` to cancel a request and `{ format: "markdown" }` for markdown.
+Per call, pass `{ signal }` to cancel a request.
 
 ## Usage and logs
 

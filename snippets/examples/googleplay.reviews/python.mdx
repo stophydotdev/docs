@@ -2,6 +2,6 @@
 from stophy import Stophy
 
 stophy = Stophy()  # reads STOPHY_API_KEY
-result = stophy.googleplay.reviews(app="com.spotify.music", limit=40)
-print(result["data"]["reviews"])
+result = stophy.googleplay.reviews(app="com.spotify.music")
+print(result["data"]["results"])
 ```

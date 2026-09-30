@@ -2,6 +2,6 @@
 from stophy import Stophy
 
 stophy = Stophy()  # reads STOPHY_API_KEY
-result = stophy.crypto.history(coin="bitcoin", within="month")
-print(result["data"]["coin"])
+result = stophy.crypto.history(coin="bitcoin")
+print(result["data"]["results"])
 ```

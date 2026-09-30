@@ -30,9 +30,9 @@ interface Operation {
   method: "GET" | "POST";
   path: string;
   slug: string;
+  summary: string;
   source: string;
   credits: number | undefined;
-  perItems: number | undefined;
   pages: boolean;
   input: JsonObject | undefined;
   example: JsonObject | undefined;
@@ -71,10 +71,10 @@ function operations(): Operation[] {
         method: method.toUpperCase() as "GET" | "POST",
         path,
         slug: parts.join("-"),
+        summary: typeof op.summary === "string" ? op.summary : id,
         source: parts[0] ?? id,
         credits: typeof op["x-credits"] === "number" ? op["x-credits"] : undefined,
-        perItems: typeof op["x-per-items"] === "number" ? op["x-per-items"] : undefined,
-        pages: isObject((input?.properties as JsonObject | undefined)?.cursor),
+        pages: propertiesOf(input).includes("cursor"),
         input,
         example,
         data,
@@ -88,8 +88,7 @@ const plural = (count: number, word: string) => `${count} ${word}${count === 1 ?
 
 function cost(op: Operation): string {
   if (op.credits === undefined) return "Free";
-  const base = plural(op.credits, "credit");
-  return op.perItems === undefined ? base : `${base} per ${op.perItems} items, at least ${base}`;
+  return plural(op.credits, "credit");
 }
 
 function variants(data: JsonObject): string[] {
@@ -108,7 +107,10 @@ function returns(op: Operation): string {
   );
   if (fields.length > 0) return `\`data\` has ${fields.map((field) => `\`${field}\``).join(", ")}.`;
   const kinds = variants(op.data);
-  if (kinds.length === 0) return "";
+  if (kinds.length === 0) {
+    const merged = propertiesOf(op.data).filter((field) => field !== "cursor");
+    return merged.length === 0 ? "" : `\`data\` has ${merged.map((field) => `\`${field}\``).join(", ")}.`;
+  }
   return `\`data\` is one of ${kinds.map((kind) => `\`${kind}\``).join(", ")}. \`data.kind\` says which.`;
 }
 
@@ -137,43 +139,27 @@ const lowerFirst = (text: string) =>
     : text;
 
 function seoTitle(op: Operation): string {
+  if (sourceName(op).toLowerCase() === endpointTitle(op).toLowerCase()) return `${sourceName(op)} API`;
   return `${sourceName(op)} ${lowerFirst(endpointTitle(op))} API`;
 }
-
-const human = (field: string) => field.replace(/([a-z])([A-Z])/g, "$1 $2").toLowerCase();
 
 function propertiesOf(schema: Json | undefined): string[] {
   if (!isObject(schema)) return [];
   const item = schema.type === "array" ? schema.items : schema;
   if (!isObject(item)) return [];
   const own = Object.keys((item.properties as JsonObject | undefined) ?? {});
-  const options = (item.oneOf ?? item.anyOf) as Json[] | undefined;
+  const options = (item.allOf ?? item.oneOf ?? item.anyOf) as Json[] | undefined;
   const merged = Array.isArray(options) ? options.flatMap(propertiesOf) : [];
   return [...new Set([...own, ...merged])];
 }
 
-function fieldNames(op: Operation): string[] {
-  const top = propertiesOf(op.data).filter((field) => field !== "cursor");
-  const properties = (op.data?.properties as JsonObject | undefined) ?? {};
-  if (top.length === 1) {
-    const nested = propertiesOf(properties[top[0]]).filter(
-      (field) => !["id", "type", "kind", "url", "cursor"].includes(field),
-    );
-    if (nested.length > 0) return nested;
-  }
-  return top.filter((field) => !["kind", "type"].includes(field));
-}
-
 function seoDescription(op: Operation): string {
-  const name = seoTitle(op);
-  const price = `${cost(op)}.`;
-  let list = fieldNames(op).map(human).slice(0, 6);
-  const build = () =>
-    list.length === 0
-      ? `Call the ${name} to get this data as JSON or markdown in one request. ${price}`
-      : `Call the ${name} to get ${list.slice(0, -1).join(", ")}${list.length > 1 ? " and " : ""}${list.at(-1)}, as JSON or markdown. ${price}`;
-  while (build().length > 160 && list.length > 1) list = list.slice(0, -1);
-  return build();
+  const price = `${cost(op)} per call.`;
+  const parts = [`${op.summary.replace(/\.$/, "")}.`, `Call the ${seoTitle(op)} and get JSON back in one request.`, price, "Failed calls cost nothing."];
+  let text = parts.join(" ");
+  if (text.length > 160) text = [parts[0], `Call the ${seoTitle(op)} for JSON.`, price].join(" ");
+  if (text.length < 120) text = `${text} Every call returns the same flat shape.`;
+  return text;
 }
 
 function endpointPage(op: Operation): string {
@@ -181,12 +167,12 @@ function endpointPage(op: Operation): string {
   const description = op.id === "endpoints" ? CATALOG_DESCRIPTION : seoDescription(op);
   const sidebar = op.id === "endpoints" ? "List Endpoints" : endpointTitle(op);
   const paging = op.pages
-    ? `Yes. Send the \`cursor\` from the response to get the next page. See [Paging](/advanced-guide#paging).`
+    ? `Yes. Send the \`cursor\` from the response to get the next page. See [Page through results](/guides/paging).`
     : "No.";
   const facts = [
     op.id === "endpoints" ? undefined : `- **Endpoint:** \`${op.id}\``,
     returns(op) === "" ? undefined : `- **Returns:** ${returns(op)}`,
-    `- **Cost:** ${cost(op)}.${op.credits !== undefined ? " Failed calls cost nothing." : ""}`,
+    op.credits === undefined ? "- **Cost:** Free." : `- **Cost:** ${cost(op)} per call. Failed calls cost nothing.`,
     op.method === "POST" ? `- **Paging:** ${paging}` : undefined,
   ].filter((line) => line !== undefined);
   const note = config.notes[op.id];

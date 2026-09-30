@@ -3,5 +3,5 @@ import { Stophy } from "stophy";
 
 const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
 const result = await stophy.upwork.job({ job: "https://www.upwork.com/jobs/~0123456789abcdef01" });
-console.log(result.data.job);
+console.log(result.data);
 ```

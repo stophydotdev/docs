@@ -86,9 +86,10 @@ def call(endpoint_id, payload, attempts=3):
 ## Common cases
 
 - **`401 unauthorized`:** the key is missing or wrong. Check the `Authorization: Bearer <key>` header.
-- **`402 insufficientCredits`:** your balance is too low. Nothing was charged. [Top up](/billing) and try again.
+- **`402 insufficientCredits`:** your balance is too low. Nothing was charged, and the error says how many credits the call needs and how many you have. [Top up](/billing) and try again.
 - **`429 rateLimited` or `tooManyInFlight`:** you are over your [rate limits](/rate-limits). Wait, then retry.
-- **`400 invalidRequest`:** the input is not valid. The message names the field. Check the endpoint's input in the [API reference](/api-reference/introduction).
+- **`400 invalidRequest`:** the input is not valid. The message names the field, or repeats the source's own complaint. Check the endpoint's input in the [API reference](/api-reference/introduction).
+- **`404 notFound`:** the thing you asked for does not exist. The message is the source's own, such as `YouTube says: This video is unavailable`. Don't retry.
 
 ## Timeouts
 
