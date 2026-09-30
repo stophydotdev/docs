@@ -67,6 +67,7 @@
             "group": "What you can get",
             "pages": [
               "sources/web",
+              "sources/email",
               "sources/video",
               "sources/social",
               "sources/places-and-travel",
@@ -1001,11 +1002,11 @@
     },
     {
       "source": "/api-reference/endpoint/web-contacts",
-      "destination": "/api-reference/endpoint/email-find"
+      "destination": "/sources/email"
     },
     {
       "source": "/api-reference/endpoint/email-check",
-      "destination": "/api-reference/endpoint/email-verify"
+      "destination": "/sources/email"
     }
   ],
   "integrations": {
