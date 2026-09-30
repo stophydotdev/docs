@@ -1,4 +1,4 @@
-// Generates the 10 "What you can get" category pages (sources/*.mdx) from the
+// Generates the "What you can get" category pages (sources/*.mdx) from the
 // live catalog and the snippets in snippets/examples/. Run with:
 //   bun scripts/gen-examples.ts && bun scripts/gen-sources.ts
 // Every file it writes is overwritten on each run: change AREAS below, not the
@@ -22,6 +22,7 @@ interface Area {
   endpoints: string[];
   example: string;
   variations: string[];
+  extra?: string;
   tip: string;
 }
 
@@ -35,11 +36,23 @@ const AREAS: Area[] = [
     slug: "web",
     icon: "globe",
     description:
-      "Search the web and the news, find contacts on a site, and check a page's SEO. Check and find email addresses, plus search suggestions and Google Trends.",
-    endpoints: ["web.search", "web.news", "web.contacts", "google.trends.related", "google.trends.trending", "site.seo", "email.check", "email.find", "suggest", "google.trends"],
+      "Search the web and the news, and check a page's SEO, plus search suggestions and Google Trends.",
+    endpoints: ["web.search", "web.news", "google.trends.related", "google.trends.trending", "site.seo", "suggest", "google.trends"],
     example: "web.search",
     variations: ["web.news", "site.seo"],
     tip: "Web search, YouTube search and transcripts work without a key. Every other endpoint needs one.",
+  },
+  {
+    title: "Email",
+    slug: "email",
+    icon: "envelope",
+    description:
+      "Find a person's work email from a company domain or name, list the emails on a company's site, and check whether an address can receive mail.",
+    endpoints: ["email.find", "email.verify"],
+    example: "email.find",
+    variations: ["email.verify"],
+    extra: "The response. `status` is `valid`, `risky` or `invalid`.\n\n```json\n{\n  \"success\": true,\n  \"data\": {\n    \"email\": \"info@the305agency.com\",\n    \"status\": \"valid\",\n    \"mxProvider\": \"google.com\",\n    \"isRole\": true,\n    \"isDisposable\": false,\n    \"isFree\": false\n  },\n  \"creditsUsed\": 1,\n  \"requestId\": \"552f1480-c351-4bb8-a417-48aaa08e94c8\"\n}\n```\n\n### Emails on a company's site\n\nLeave out the name to get the emails found on the company's site, each one checked. `type` is `personal` or `generic`.\n\n```bash cURL icon=\"terminal\"\ncurl -X POST https://api.stophy.dev/v1/email/find \\\n  -H \"Authorization: Bearer $STOPHY_API_KEY\" \\\n  -H \"content-type: application/json\" \\\n  -d '{\"domain\":\"the305agency.com\"}'\n```\n\nThe response:\n\n```json\n{\n  \"success\": true,\n  \"data\": {\n    \"domain\": \"the305agency.com\",\n    \"mxProvider\": \"google.com\",\n    \"results\": [\n      {\n        \"email\": \"info@the305agency.com\",\n        \"status\": \"valid\",\n        \"type\": \"generic\"\n      },\n      {\n        \"email\": \"info@sandra305.com\",\n        \"status\": \"valid\",\n        \"type\": \"generic\"\n      }\n    ]\n  },\n  \"creditsUsed\": 1,\n  \"requestId\": \"d01438d1-ab71-480e-9ea7-c3e29ea29c9e\"\n}\n```\n",
+    tip: "You pay 1 credit only when a valid email comes back. Risky, not found and failed calls cost nothing. A role address like info@ is judged by its mail server, and `isRole` flags it.",
   },
   {
     title: "Video",
@@ -146,6 +159,30 @@ const AREAS: Area[] = [
 // the docs repo's builder report for the exact command). Used instead of a
 // schema-guessed sample for the endpoints that actually answer without a key.
 const LIVE_RESPONSES: Record<string, JsonObject> = {
+  "email.find": {
+    "success": true,
+    "data": {
+      "email": "patrick@stripe.com",
+      "status": "valid",
+      "domain": "stripe.com",
+      "mxProvider": "google.com"
+    },
+    "creditsUsed": 1,
+    "requestId": "7ee48ae7-9f8f-4d3a-ab08-f2ba90fa13ae"
+  },
+  "email.verify": {
+    "success": true,
+    "data": {
+      "email": "info@the305agency.com",
+      "status": "valid",
+      "mxProvider": "google.com",
+      "isRole": true,
+      "isDisposable": false,
+      "isFree": false
+    },
+    "creditsUsed": 1,
+    "requestId": "552f1480-c351-4bb8-a417-48aaa08e94c8"
+  },
   "web.search": {
     "success": true,
     "data": {
@@ -381,6 +418,7 @@ function areaPage(area: Area, byId: Map<string, CatalogEndpoint>, spec: JsonObje
     "## More ways to call it",
     "",
     ...variationSections,
+    ...(area.extra === undefined ? [] : [area.extra]),
     `<Tip>${area.tip}</Tip>`,
     "",
   ].join("\n");

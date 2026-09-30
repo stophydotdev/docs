@@ -2,6 +2,6 @@
 from stophy import Stophy
 
 stophy = Stophy()  # reads STOPHY_API_KEY
-result = stophy.email.check(emails=["hello@stripe.com", "test@mailinator.com", "bad@@x"])
+result = stophy.email.verify(email="info@the305agency.com")
 print(result["data"])
 ```

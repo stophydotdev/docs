@@ -67,6 +67,7 @@
             "group": "What you can get",
             "pages": [
               "sources/web",
+              "sources/email",
               "sources/video",
               "sources/social",
               "sources/places-and-travel",
@@ -140,8 +141,7 @@
                 "group": "Web",
                 "pages": [
                   "api-reference/endpoint/web-search",
-                  "api-reference/endpoint/web-news",
-                  "api-reference/endpoint/web-contacts"
+                  "api-reference/endpoint/web-news"
                 ]
               },
               {
@@ -161,7 +161,7 @@
               {
                 "group": "Email",
                 "pages": [
-                  "api-reference/endpoint/email-check",
+                  "api-reference/endpoint/email-verify",
                   "api-reference/endpoint/email-find"
                 ]
               },
@@ -999,6 +999,14 @@
     {
       "source": "/v1/channel",
       "destination": "/api-reference/endpoint/youtube-channel"
+    },
+    {
+      "source": "/api-reference/endpoint/web-contacts",
+      "destination": "/sources/email"
+    },
+    {
+      "source": "/api-reference/endpoint/email-check",
+      "destination": "/sources/email"
     }
   ],
   "integrations": {
