@@ -3,7 +3,7 @@
   "info": {
     "title": "Stophy API",
     "version": "1",
-    "description": "Every endpoint is a POST that takes its input as a JSON object body. Unknown fields are rejected with 400.\n\nResponses leave out empty values: null, empty strings, empty objects and empty nested lists are not sent.\n\nx-credits is what one call costs. Every call costs the same, whatever it returns.\n\nWhen a response has a cursor, send it back with the same input to get the next page."
+    "description": "Every endpoint is a POST that takes its input as a JSON object body. Unknown fields are rejected with 400.\n\nResponses leave out empty values: null, empty strings, empty objects and empty nested lists are not sent.\n\nx-credits is what one call costs. Every call costs the same, whatever it returns, unless an operation's description sets a price scale. Then x-credits is the lowest price and x-credits-max the highest.\n\nWhen a response has a cursor, send it back with the same input to get the next page."
   },
   "servers": [
     {
@@ -171,7 +171,15 @@
                   "type": "string"
                 },
                 "credits": {
-                  "type": "integer"
+                  "type": "integer",
+                  "description": "What one call costs, or the lowest it can cost when pricing is set."
+                },
+                "pricing": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "description": "How the price changes with the answer. Null when every call costs the same."
                 },
                 "keyless": {
                   "type": "boolean"
@@ -933,9 +941,10 @@
     "/v1/transcript": {
       "post": {
         "operationId": "transcript",
-        "summary": "Get what is said in a YouTube, TikTok, Instagram or other video, with timestamps",
-        "description": "Costs 2 credits per call.",
+        "summary": "Get what a YouTube or other video says. 2 credits with captions, else 2 plus 1 per 10 s",
+        "description": "Costs 2 credits when the video has captions; otherwise 2 credits plus 1 credit for every 10 seconds of audio, up to 30 minutes.",
         "x-credits": 2,
+        "x-credits-max": 182,
         "requestBody": {
           "required": true,
           "content": {
@@ -1025,6 +1034,9 @@
                           "type": "boolean"
                         },
                         "durationSeconds": {
+                          "type": "number"
+                        },
+                        "transcribedSeconds": {
                           "type": "number"
                         },
                         "text": {
@@ -8279,6 +8291,1335 @@
         }
       }
     },
+    "/v1/indeed/search": {
+      "post": {
+        "operationId": "indeedSearch",
+        "summary": "Search Indeed jobs",
+        "description": "Costs 1 credit per call. Pages with cursor.",
+        "x-credits": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "query": {
+                    "type": "string",
+                    "maxLength": 200
+                  },
+                  "location": {
+                    "description": "City, region or postal code, e.g. Kansas City, MO. Only jobs within about 5 miles are returned, so a city on a state line stays in its own state.",
+                    "type": "string",
+                    "minLength": 2,
+                    "maxLength": 200
+                  },
+                  "country": {
+                    "default": "us",
+                    "enum": [
+                      "us",
+                      "gb",
+                      "ca",
+                      "au",
+                      "nz",
+                      "ie",
+                      "in",
+                      "sg",
+                      "my",
+                      "ph",
+                      "za",
+                      "ng",
+                      "ae",
+                      "sa",
+                      "qa",
+                      "kw",
+                      "bh",
+                      "om",
+                      "pk",
+                      "hk",
+                      "jp",
+                      "kr",
+                      "tw",
+                      "cn",
+                      "id",
+                      "th",
+                      "vn",
+                      "de",
+                      "at",
+                      "ch",
+                      "fr",
+                      "be",
+                      "nl",
+                      "lu",
+                      "es",
+                      "pt",
+                      "it",
+                      "gr",
+                      "mt",
+                      "cy",
+                      "pl",
+                      "cz",
+                      "sk",
+                      "hu",
+                      "ro",
+                      "bg",
+                      "hr",
+                      "si",
+                      "ee",
+                      "lv",
+                      "lt",
+                      "fi",
+                      "se",
+                      "no",
+                      "dk",
+                      "ua",
+                      "tr",
+                      "il",
+                      "eg",
+                      "ma",
+                      "mx",
+                      "br",
+                      "ar",
+                      "cl",
+                      "co",
+                      "pe",
+                      "ec",
+                      "uy",
+                      "ve",
+                      "cr",
+                      "pa"
+                    ],
+                    "description": "ISO 3166-1 alpha-2 country code, e.g. us. Any case is accepted.",
+                    "type": "string"
+                  },
+                  "remote": {
+                    "default": false,
+                    "type": "boolean"
+                  },
+                  "within": {
+                    "description": "Jobs Indeed listed or relisted in this window. A relisted job keeps its first publishedAt and shows the new date in indexedAt.",
+                    "type": "string",
+                    "enum": [
+                      "day",
+                      "week",
+                      "month"
+                    ]
+                  },
+                  "cursor": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "The cursor from the previous response. Send it as is."
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  }
+                },
+                "additionalProperties": false
+              },
+              "example": {
+                "query": "data analyst",
+                "location": "Chicago, IL"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The data, and the credits this call used.",
+            "headers": {
+              "X-Request-ID": {
+                "$ref": "#/components/headers/RequestId"
+              },
+              "x-credits-used": {
+                "$ref": "#/components/headers/CreditsUsed"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "x-cache": {
+                "$ref": "#/components/headers/Cache"
+              },
+              "x-cache-age": {
+                "$ref": "#/components/headers/CacheAge"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data",
+                    "creditsUsed",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "success": {
+                      "const": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                              "jobId": {
+                                "type": "string"
+                              },
+                              "jobUrl": {
+                                "type": "string",
+                                "format": "uri"
+                              },
+                              "title": {
+                                "type": "string"
+                              },
+                              "companyName": {
+                                "type": "string"
+                              },
+                              "companyUrl": {
+                                "type": "string",
+                                "format": "uri"
+                              },
+                              "companyAvatarUrl": {
+                                "type": "string",
+                                "format": "uri"
+                              },
+                              "companyWebsite": {
+                                "type": "string",
+                                "format": "uri"
+                              },
+                              "companyIndustry": {
+                                "type": "string"
+                              },
+                              "companyEmployeesText": {
+                                "type": "string"
+                              },
+                              "companyRevenueText": {
+                                "type": "string"
+                              },
+                              "companyDescription": {
+                                "type": "string"
+                              },
+                              "addressFull": {
+                                "type": "string"
+                              },
+                              "addressCity": {
+                                "type": "string"
+                              },
+                              "addressRegion": {
+                                "type": "string"
+                              },
+                              "addressPostalCode": {
+                                "type": "string"
+                              },
+                              "addressCountry": {
+                                "type": "string"
+                              },
+                              "latitude": {
+                                "type": "number",
+                                "minimum": -90,
+                                "maximum": 90
+                              },
+                              "longitude": {
+                                "type": "number",
+                                "minimum": -180,
+                                "maximum": 180
+                              },
+                              "salaryMin": {
+                                "type": "number"
+                              },
+                              "salaryMax": {
+                                "type": "number"
+                              },
+                              "salaryPeriod": {
+                                "type": "string",
+                                "enum": [
+                                  "hour",
+                                  "day",
+                                  "week",
+                                  "month",
+                                  "year"
+                                ]
+                              },
+                              "salaryCurrency": {
+                                "type": "string"
+                              },
+                              "salaryIsEstimate": {
+                                "type": "boolean"
+                              },
+                              "jobTypes": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "enum": [
+                                    "fullTime",
+                                    "partTime",
+                                    "contract",
+                                    "internship"
+                                  ]
+                                }
+                              },
+                              "isRemote": {
+                                "type": "boolean"
+                              },
+                              "attributes": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              "publishedAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$"
+                              },
+                              "indexedAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$"
+                              },
+                              "applyUrl": {
+                                "type": "string",
+                                "format": "uri"
+                              },
+                              "isEasyApply": {
+                                "type": "boolean"
+                              },
+                              "isUrgent": {
+                                "type": "boolean"
+                              },
+                              "source": {
+                                "type": "string"
+                              },
+                              "description": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "jobUrl",
+                              "salaryIsEstimate",
+                              "isRemote",
+                              "isEasyApply",
+                              "isUrgent"
+                            ]
+                          }
+                        },
+                        "cursor": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "results"
+                      ]
+                    },
+                    "creditsUsed": {
+                      "type": "integer"
+                    },
+                    "requestId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/Error"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      }
+    },
+    "/v1/indeed/job": {
+      "post": {
+        "operationId": "indeedJob",
+        "summary": "Get an Indeed job's details",
+        "description": "Costs 1 credit per call.",
+        "x-credits": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "job": {
+                    "type": "string"
+                  },
+                  "country": {
+                    "enum": [
+                      "us",
+                      "gb",
+                      "ca",
+                      "au",
+                      "nz",
+                      "ie",
+                      "in",
+                      "sg",
+                      "my",
+                      "ph",
+                      "za",
+                      "ng",
+                      "ae",
+                      "sa",
+                      "qa",
+                      "kw",
+                      "bh",
+                      "om",
+                      "pk",
+                      "hk",
+                      "jp",
+                      "kr",
+                      "tw",
+                      "cn",
+                      "id",
+                      "th",
+                      "vn",
+                      "de",
+                      "at",
+                      "ch",
+                      "fr",
+                      "be",
+                      "nl",
+                      "lu",
+                      "es",
+                      "pt",
+                      "it",
+                      "gr",
+                      "mt",
+                      "cy",
+                      "pl",
+                      "cz",
+                      "sk",
+                      "hu",
+                      "ro",
+                      "bg",
+                      "hr",
+                      "si",
+                      "ee",
+                      "lv",
+                      "lt",
+                      "fi",
+                      "se",
+                      "no",
+                      "dk",
+                      "ua",
+                      "tr",
+                      "il",
+                      "eg",
+                      "ma",
+                      "mx",
+                      "br",
+                      "ar",
+                      "cl",
+                      "co",
+                      "pe",
+                      "ec",
+                      "uy",
+                      "ve",
+                      "cr",
+                      "pa"
+                    ],
+                    "description": "ISO 3166-1 alpha-2 country code, e.g. us. Any case is accepted.",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "job"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The data, and the credits this call used.",
+            "headers": {
+              "X-Request-ID": {
+                "$ref": "#/components/headers/RequestId"
+              },
+              "x-credits-used": {
+                "$ref": "#/components/headers/CreditsUsed"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "x-cache": {
+                "$ref": "#/components/headers/Cache"
+              },
+              "x-cache-age": {
+                "$ref": "#/components/headers/CacheAge"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data",
+                    "creditsUsed",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "success": {
+                      "const": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "jobId": {
+                          "type": "string"
+                        },
+                        "jobUrl": {
+                          "type": "string",
+                          "format": "uri"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "companyName": {
+                          "type": "string"
+                        },
+                        "companyUrl": {
+                          "type": "string",
+                          "format": "uri"
+                        },
+                        "companyAvatarUrl": {
+                          "type": "string",
+                          "format": "uri"
+                        },
+                        "companyWebsite": {
+                          "type": "string",
+                          "format": "uri"
+                        },
+                        "companyIndustry": {
+                          "type": "string"
+                        },
+                        "companyEmployeesText": {
+                          "type": "string"
+                        },
+                        "companyRevenueText": {
+                          "type": "string"
+                        },
+                        "companyDescription": {
+                          "type": "string"
+                        },
+                        "addressFull": {
+                          "type": "string"
+                        },
+                        "addressCity": {
+                          "type": "string"
+                        },
+                        "addressRegion": {
+                          "type": "string"
+                        },
+                        "addressPostalCode": {
+                          "type": "string"
+                        },
+                        "addressCountry": {
+                          "type": "string"
+                        },
+                        "latitude": {
+                          "type": "number",
+                          "minimum": -90,
+                          "maximum": 90
+                        },
+                        "longitude": {
+                          "type": "number",
+                          "minimum": -180,
+                          "maximum": 180
+                        },
+                        "salaryMin": {
+                          "type": "number"
+                        },
+                        "salaryMax": {
+                          "type": "number"
+                        },
+                        "salaryPeriod": {
+                          "type": "string",
+                          "enum": [
+                            "hour",
+                            "day",
+                            "week",
+                            "month",
+                            "year"
+                          ]
+                        },
+                        "salaryCurrency": {
+                          "type": "string"
+                        },
+                        "salaryIsEstimate": {
+                          "type": "boolean"
+                        },
+                        "jobTypes": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "enum": [
+                              "fullTime",
+                              "partTime",
+                              "contract",
+                              "internship"
+                            ]
+                          }
+                        },
+                        "isRemote": {
+                          "type": "boolean"
+                        },
+                        "attributes": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "publishedAt": {
+                          "type": "string",
+                          "format": "date-time",
+                          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$"
+                        },
+                        "indexedAt": {
+                          "type": "string",
+                          "format": "date-time",
+                          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$"
+                        },
+                        "applyUrl": {
+                          "type": "string",
+                          "format": "uri"
+                        },
+                        "isEasyApply": {
+                          "type": "boolean"
+                        },
+                        "isUrgent": {
+                          "type": "boolean"
+                        },
+                        "source": {
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "descriptionHtml": {
+                          "type": "string"
+                        },
+                        "isExpired": {
+                          "type": "boolean"
+                        },
+                        "language": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "jobUrl",
+                        "salaryIsEstimate",
+                        "jobTypes",
+                        "isRemote",
+                        "attributes",
+                        "isEasyApply",
+                        "isUrgent",
+                        "isExpired"
+                      ]
+                    },
+                    "creditsUsed": {
+                      "type": "integer"
+                    },
+                    "requestId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/Error"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      }
+    },
+    "/v1/tripadvisor/search": {
+      "post": {
+        "operationId": "tripadvisorSearch",
+        "summary": "Search hotels, restaurants and attractions",
+        "description": "Costs 1 credit per call.",
+        "x-credits": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "query": {
+                    "type": "string",
+                    "minLength": 2,
+                    "maxLength": 200
+                  },
+                  "type": {
+                    "default": "all",
+                    "type": "string",
+                    "enum": [
+                      "all",
+                      "hotels",
+                      "restaurants",
+                      "attractions",
+                      "geos"
+                    ]
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  }
+                },
+                "required": [
+                  "query"
+                ],
+                "additionalProperties": false
+              },
+              "example": {
+                "query": "Eiffel Tower"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The data, and the credits this call used.",
+            "headers": {
+              "X-Request-ID": {
+                "$ref": "#/components/headers/RequestId"
+              },
+              "x-credits-used": {
+                "$ref": "#/components/headers/CreditsUsed"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "x-cache": {
+                "$ref": "#/components/headers/Cache"
+              },
+              "x-cache-age": {
+                "$ref": "#/components/headers/CacheAge"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data",
+                    "creditsUsed",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "success": {
+                      "const": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                              "placeId": {
+                                "type": "string"
+                              },
+                              "placeUrl": {
+                                "type": "string",
+                                "format": "uri"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "type": {
+                                "type": "string"
+                              },
+                              "address": {
+                                "type": "string"
+                              },
+                              "parent": {
+                                "type": "string"
+                              },
+                              "latitude": {
+                                "type": "number",
+                                "minimum": -90,
+                                "maximum": 90
+                              },
+                              "longitude": {
+                                "type": "number",
+                                "minimum": -180,
+                                "maximum": 180
+                              },
+                              "imageUrl": {
+                                "type": "string",
+                                "format": "uri"
+                              }
+                            },
+                            "required": []
+                          }
+                        }
+                      },
+                      "required": [
+                        "results"
+                      ]
+                    },
+                    "creditsUsed": {
+                      "type": "integer"
+                    },
+                    "requestId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/Error"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      }
+    },
+    "/v1/tripadvisor/place": {
+      "post": {
+        "operationId": "tripadvisorPlace",
+        "summary": "Get a place's rating, ranking and details",
+        "description": "Costs 1 credit per call.",
+        "x-credits": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "place": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "place"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The data, and the credits this call used.",
+            "headers": {
+              "X-Request-ID": {
+                "$ref": "#/components/headers/RequestId"
+              },
+              "x-credits-used": {
+                "$ref": "#/components/headers/CreditsUsed"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "x-cache": {
+                "$ref": "#/components/headers/Cache"
+              },
+              "x-cache-age": {
+                "$ref": "#/components/headers/CacheAge"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data",
+                    "creditsUsed",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "success": {
+                      "const": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "placeId": {
+                          "type": "string"
+                        },
+                        "placeUrl": {
+                          "type": "string",
+                          "format": "uri"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "type": {
+                          "type": "string"
+                        },
+                        "subtypes": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "rating": {
+                          "type": "number"
+                        },
+                        "reviews": {
+                          "type": "integer",
+                          "minimum": -9007199254740991,
+                          "maximum": 9007199254740991
+                        },
+                        "rankingText": {
+                          "type": "string"
+                        },
+                        "rankingPosition": {
+                          "type": "integer",
+                          "minimum": -9007199254740991,
+                          "maximum": 9007199254740991
+                        },
+                        "rankingOf": {
+                          "type": "integer",
+                          "minimum": -9007199254740991,
+                          "maximum": 9007199254740991
+                        },
+                        "rankingGeo": {
+                          "type": "string"
+                        },
+                        "priceLevel": {
+                          "type": "string"
+                        },
+                        "priceRangeText": {
+                          "type": "string"
+                        },
+                        "hotelClass": {
+                          "type": "number"
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "addressFull": {
+                          "type": "string"
+                        },
+                        "addressStreet": {
+                          "type": "string"
+                        },
+                        "addressCity": {
+                          "type": "string"
+                        },
+                        "addressRegion": {
+                          "type": "string"
+                        },
+                        "addressCountry": {
+                          "type": "string"
+                        },
+                        "addressPostalCode": {
+                          "type": "string"
+                        },
+                        "latitude": {
+                          "type": "number",
+                          "minimum": -90,
+                          "maximum": 90
+                        },
+                        "longitude": {
+                          "type": "number",
+                          "minimum": -180,
+                          "maximum": 180
+                        },
+                        "phone": {
+                          "type": "string"
+                        },
+                        "website": {
+                          "type": "string",
+                          "format": "uri"
+                        },
+                        "email": {
+                          "type": "string"
+                        },
+                        "neighborhoods": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "parents": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                              "placeId": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              }
+                            },
+                            "required": []
+                          }
+                        },
+                        "cuisines": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "hours": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                              "days": {
+                                "type": "string"
+                              },
+                              "times": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "required": []
+                          }
+                        },
+                        "tags": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "imageUrl": {
+                          "type": "string",
+                          "format": "uri"
+                        },
+                        "timezone": {
+                          "type": "string"
+                        },
+                        "isClosed": {
+                          "type": "boolean"
+                        }
+                      },
+                      "required": [
+                        "subtypes",
+                        "neighborhoods",
+                        "parents",
+                        "cuisines",
+                        "hours",
+                        "tags",
+                        "isClosed"
+                      ]
+                    },
+                    "creditsUsed": {
+                      "type": "integer"
+                    },
+                    "requestId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/Error"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      }
+    },
+    "/v1/tripadvisor/reviews": {
+      "post": {
+        "operationId": "tripadvisorReviews",
+        "summary": "Get a place's reviews",
+        "description": "Costs 1 credit per call. Pages with cursor.",
+        "x-credits": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "place": {
+                    "type": "string"
+                  },
+                  "language": {
+                    "default": "en",
+                    "type": "string",
+                    "pattern": "^(?:[Aa][Ll][Ll]|[A-Za-z]{2}(?:-[A-Za-z]{2})?)$"
+                  },
+                  "ratings": {
+                    "default": [],
+                    "maxItems": 5,
+                    "type": "array",
+                    "items": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 5
+                    }
+                  },
+                  "cursor": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "The cursor from the previous response. Send it as is."
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  }
+                },
+                "required": [
+                  "place"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The data, and the credits this call used.",
+            "headers": {
+              "X-Request-ID": {
+                "$ref": "#/components/headers/RequestId"
+              },
+              "x-credits-used": {
+                "$ref": "#/components/headers/CreditsUsed"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "x-cache": {
+                "$ref": "#/components/headers/Cache"
+              },
+              "x-cache-age": {
+                "$ref": "#/components/headers/CacheAge"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data",
+                    "creditsUsed",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "success": {
+                      "const": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "placeId": {
+                          "type": "string"
+                        },
+                        "placeName": {
+                          "type": "string"
+                        },
+                        "placeType": {
+                          "type": "string"
+                        },
+                        "placeUrl": {
+                          "type": "string",
+                          "format": "uri"
+                        },
+                        "total": {
+                          "type": "integer",
+                          "minimum": -9007199254740991,
+                          "maximum": 9007199254740991
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                              "reviewId": {
+                                "type": "string"
+                              },
+                              "reviewUrl": {
+                                "type": "string",
+                                "format": "uri"
+                              },
+                              "rating": {
+                                "type": "number"
+                              },
+                              "title": {
+                                "type": "string"
+                              },
+                              "text": {
+                                "type": "string"
+                              },
+                              "language": {
+                                "type": "string"
+                              },
+                              "createdDate": {
+                                "type": "string",
+                                "format": "date",
+                                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
+                              },
+                              "publishedDate": {
+                                "type": "string",
+                                "format": "date",
+                                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
+                              },
+                              "stayDate": {
+                                "type": "string",
+                                "format": "date",
+                                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
+                              },
+                              "tripType": {
+                                "type": "string"
+                              },
+                              "helpful": {
+                                "type": "integer",
+                                "minimum": -9007199254740991,
+                                "maximum": 9007199254740991
+                              },
+                              "subRatings": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "additionalProperties": false,
+                                  "properties": {
+                                    "name": {
+                                      "type": "string"
+                                    },
+                                    "rating": {
+                                      "type": "number"
+                                    }
+                                  },
+                                  "required": [
+                                    "rating"
+                                  ]
+                                }
+                              },
+                              "authorName": {
+                                "type": "string"
+                              },
+                              "authorUsername": {
+                                "type": "string"
+                              },
+                              "authorUrl": {
+                                "type": "string",
+                                "format": "uri"
+                              },
+                              "authorAddress": {
+                                "type": "string"
+                              },
+                              "authorContributions": {
+                                "type": "integer",
+                                "minimum": -9007199254740991,
+                                "maximum": 9007199254740991
+                              },
+                              "ownerReplyText": {
+                                "type": "string"
+                              },
+                              "ownerReplyDate": {
+                                "type": "string",
+                                "format": "date",
+                                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
+                              },
+                              "ownerReplyAuthor": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "helpful"
+                            ]
+                          }
+                        },
+                        "cursor": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "results"
+                      ]
+                    },
+                    "creditsUsed": {
+                      "type": "integer"
+                    },
+                    "requestId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/Error"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      }
+    },
     "/v1/googletravel/flights": {
       "post": {
         "operationId": "googletravelFlights",
@@ -8549,6 +9890,1938 @@
                         "cabin",
                         "tripType",
                         "adults",
+                        "results"
+                      ]
+                    },
+                    "creditsUsed": {
+                      "type": "integer"
+                    },
+                    "requestId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/Error"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      }
+    },
+    "/v1/walmart/search": {
+      "post": {
+        "operationId": "walmartSearch",
+        "summary": "Search Walmart products",
+        "description": "Costs 5 credits per call. Pages with cursor.",
+        "x-credits": 5,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "query": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 300
+                  },
+                  "sort": {
+                    "default": "relevance",
+                    "type": "string",
+                    "enum": [
+                      "relevance",
+                      "priceLow",
+                      "priceHigh",
+                      "bestSelling",
+                      "highest",
+                      "newest"
+                    ]
+                  },
+                  "minPrice": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "maxPrice": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "cursor": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "The cursor from the previous response. Send it as is."
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  }
+                },
+                "required": [
+                  "query"
+                ],
+                "additionalProperties": false
+              },
+              "example": {
+                "query": "air fryer"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The data, and the credits this call used.",
+            "headers": {
+              "X-Request-ID": {
+                "$ref": "#/components/headers/RequestId"
+              },
+              "x-credits-used": {
+                "$ref": "#/components/headers/CreditsUsed"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "x-cache": {
+                "$ref": "#/components/headers/Cache"
+              },
+              "x-cache-age": {
+                "$ref": "#/components/headers/CacheAge"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data",
+                    "creditsUsed",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "success": {
+                      "const": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                              "productId": {
+                                "type": "string"
+                              },
+                              "productUrl": {
+                                "type": "string",
+                                "format": "uri"
+                              },
+                              "title": {
+                                "type": "string"
+                              },
+                              "imageUrl": {
+                                "type": "string",
+                                "format": "uri"
+                              },
+                              "price": {
+                                "type": "number",
+                                "minimum": 0
+                              },
+                              "originalPrice": {
+                                "type": "number",
+                                "minimum": 0
+                              },
+                              "priceCurrency": {
+                                "type": "string",
+                                "pattern": "^[A-Z]{3}$",
+                                "description": "ISO 4217 currency code, e.g. USD."
+                              },
+                              "rating": {
+                                "type": "number"
+                              },
+                              "reviews": {
+                                "type": "integer",
+                                "minimum": -9007199254740991,
+                                "maximum": 9007199254740991
+                              },
+                              "sellerName": {
+                                "type": "string"
+                              },
+                              "availability": {
+                                "type": "string"
+                              },
+                              "isSponsored": {
+                                "type": "boolean"
+                              }
+                            },
+                            "required": [
+                              "productUrl",
+                              "isSponsored"
+                            ]
+                          }
+                        },
+                        "total": {
+                          "type": "integer",
+                          "minimum": -9007199254740991,
+                          "maximum": 9007199254740991
+                        },
+                        "cursor": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "results"
+                      ]
+                    },
+                    "creditsUsed": {
+                      "type": "integer"
+                    },
+                    "requestId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/Error"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      }
+    },
+    "/v1/walmart/product": {
+      "post": {
+        "operationId": "walmartProduct",
+        "summary": "Get a Walmart product's price and details",
+        "description": "Costs 3 credits per call.",
+        "x-credits": 3,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "product": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "product"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The data, and the credits this call used.",
+            "headers": {
+              "X-Request-ID": {
+                "$ref": "#/components/headers/RequestId"
+              },
+              "x-credits-used": {
+                "$ref": "#/components/headers/CreditsUsed"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "x-cache": {
+                "$ref": "#/components/headers/Cache"
+              },
+              "x-cache-age": {
+                "$ref": "#/components/headers/CacheAge"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data",
+                    "creditsUsed",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "success": {
+                      "const": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "productId": {
+                          "type": "string"
+                        },
+                        "productUrl": {
+                          "type": "string",
+                          "format": "uri"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "brand": {
+                          "type": "string"
+                        },
+                        "price": {
+                          "type": "number",
+                          "minimum": 0
+                        },
+                        "originalPrice": {
+                          "type": "number",
+                          "minimum": 0
+                        },
+                        "priceCurrency": {
+                          "type": "string",
+                          "pattern": "^[A-Z]{3}$",
+                          "description": "ISO 4217 currency code, e.g. USD."
+                        },
+                        "availability": {
+                          "type": "string"
+                        },
+                        "rating": {
+                          "type": "number"
+                        },
+                        "reviews": {
+                          "type": "integer",
+                          "minimum": -9007199254740991,
+                          "maximum": 9007199254740991
+                        },
+                        "sellerName": {
+                          "type": "string"
+                        },
+                        "sellerId": {
+                          "type": "string"
+                        },
+                        "categories": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "imageUrls": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "format": "uri"
+                          }
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "highlights": {
+                          "type": "string"
+                        },
+                        "specs": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                              "name": {
+                                "type": "string"
+                              },
+                              "value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": []
+                          }
+                        },
+                        "variants": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                              "name": {
+                                "type": "string"
+                              },
+                              "values": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "required": []
+                          }
+                        },
+                        "upc": {
+                          "type": "string"
+                        },
+                        "model": {
+                          "type": "string"
+                        },
+                        "topReviews": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                              "reviewId": {
+                                "type": "string"
+                              },
+                              "authorName": {
+                                "type": "string"
+                              },
+                              "rating": {
+                                "type": "number"
+                              },
+                              "title": {
+                                "type": "string"
+                              },
+                              "text": {
+                                "type": "string"
+                              },
+                              "publishedAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$"
+                              },
+                              "helpful": {
+                                "type": "integer",
+                                "minimum": -9007199254740991,
+                                "maximum": 9007199254740991
+                              }
+                            },
+                            "required": []
+                          }
+                        }
+                      },
+                      "required": [
+                        "productUrl",
+                        "categories",
+                        "imageUrls",
+                        "specs",
+                        "variants",
+                        "topReviews"
+                      ]
+                    },
+                    "creditsUsed": {
+                      "type": "integer"
+                    },
+                    "requestId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/Error"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      }
+    },
+    "/v1/appstore/app": {
+      "post": {
+        "operationId": "appstoreApp",
+        "summary": "Get an app's details from the App Store",
+        "description": "Costs 1 credit per call.",
+        "x-credits": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "app": {
+                    "type": "string"
+                  },
+                  "country": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z]{2}$",
+                    "description": "ISO 3166-1 alpha-2 country code, e.g. us. Any case is accepted."
+                  }
+                },
+                "required": [
+                  "app"
+                ],
+                "additionalProperties": false
+              },
+              "example": {
+                "app": "284882215"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The data, and the credits this call used.",
+            "headers": {
+              "X-Request-ID": {
+                "$ref": "#/components/headers/RequestId"
+              },
+              "x-credits-used": {
+                "$ref": "#/components/headers/CreditsUsed"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "x-cache": {
+                "$ref": "#/components/headers/Cache"
+              },
+              "x-cache-age": {
+                "$ref": "#/components/headers/CacheAge"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data",
+                    "creditsUsed",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "success": {
+                      "const": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "appId": {
+                          "type": "string"
+                        },
+                        "appUrl": {
+                          "type": "string",
+                          "format": "uri"
+                        },
+                        "bundleId": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "subtitle": {
+                          "type": "string"
+                        },
+                        "developerId": {
+                          "type": "string"
+                        },
+                        "developerName": {
+                          "type": "string"
+                        },
+                        "developerUrl": {
+                          "type": "string",
+                          "format": "uri"
+                        },
+                        "seller": {
+                          "type": "string"
+                        },
+                        "website": {
+                          "type": "string",
+                          "format": "uri"
+                        },
+                        "price": {
+                          "type": "number"
+                        },
+                        "priceCurrency": {
+                          "type": "string"
+                        },
+                        "priceText": {
+                          "type": "string"
+                        },
+                        "hasInAppPurchases": {
+                          "type": "boolean"
+                        },
+                        "genres": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "primaryGenreId": {
+                          "type": "string"
+                        },
+                        "primaryGenre": {
+                          "type": "string"
+                        },
+                        "contentRating": {
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "releaseNotes": {
+                          "type": "string"
+                        },
+                        "version": {
+                          "type": "string"
+                        },
+                        "releasedAt": {
+                          "type": "string",
+                          "format": "date-time",
+                          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$"
+                        },
+                        "updatedAt": {
+                          "type": "string",
+                          "format": "date-time",
+                          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$"
+                        },
+                        "minimumOsVersion": {
+                          "type": "string"
+                        },
+                        "sizeBytes": {
+                          "type": "integer",
+                          "minimum": -9007199254740991,
+                          "maximum": 9007199254740991
+                        },
+                        "languages": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "rating": {
+                          "type": "number"
+                        },
+                        "ratings": {
+                          "type": "integer",
+                          "minimum": -9007199254740991,
+                          "maximum": 9007199254740991
+                        },
+                        "ratingsOne": {
+                          "type": "integer",
+                          "minimum": -9007199254740991,
+                          "maximum": 9007199254740991
+                        },
+                        "ratingsTwo": {
+                          "type": "integer",
+                          "minimum": -9007199254740991,
+                          "maximum": 9007199254740991
+                        },
+                        "ratingsThree": {
+                          "type": "integer",
+                          "minimum": -9007199254740991,
+                          "maximum": 9007199254740991
+                        },
+                        "ratingsFour": {
+                          "type": "integer",
+                          "minimum": -9007199254740991,
+                          "maximum": 9007199254740991
+                        },
+                        "ratingsFive": {
+                          "type": "integer",
+                          "minimum": -9007199254740991,
+                          "maximum": 9007199254740991
+                        },
+                        "chartName": {
+                          "type": "string"
+                        },
+                        "chartGenre": {
+                          "type": "string"
+                        },
+                        "chartPosition": {
+                          "type": "integer",
+                          "minimum": -9007199254740991,
+                          "maximum": 9007199254740991
+                        },
+                        "iconUrl": {
+                          "type": "string",
+                          "format": "uri"
+                        },
+                        "screenshotUrls": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "format": "uri"
+                          }
+                        },
+                        "ipadScreenshotUrls": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "format": "uri"
+                          }
+                        }
+                      },
+                      "required": [
+                        "appUrl",
+                        "genres",
+                        "languages",
+                        "screenshotUrls",
+                        "ipadScreenshotUrls"
+                      ]
+                    },
+                    "creditsUsed": {
+                      "type": "integer"
+                    },
+                    "requestId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/Error"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      }
+    },
+    "/v1/appstore/search": {
+      "post": {
+        "operationId": "appstoreSearch",
+        "summary": "Search App Store apps",
+        "description": "Costs 1 credit per call.",
+        "x-credits": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "query": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100
+                  },
+                  "country": {
+                    "default": "us",
+                    "type": "string",
+                    "pattern": "^[A-Za-z]{2}$",
+                    "description": "ISO 3166-1 alpha-2 country code, e.g. us. Any case is accepted."
+                  },
+                  "device": {
+                    "default": "iphone",
+                    "type": "string",
+                    "enum": [
+                      "iphone",
+                      "ipad",
+                      "mac"
+                    ]
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  }
+                },
+                "required": [
+                  "query"
+                ],
+                "additionalProperties": false
+              },
+              "example": {
+                "query": "photo editor"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The data, and the credits this call used.",
+            "headers": {
+              "X-Request-ID": {
+                "$ref": "#/components/headers/RequestId"
+              },
+              "x-credits-used": {
+                "$ref": "#/components/headers/CreditsUsed"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "x-cache": {
+                "$ref": "#/components/headers/Cache"
+              },
+              "x-cache-age": {
+                "$ref": "#/components/headers/CacheAge"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data",
+                    "creditsUsed",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "success": {
+                      "const": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                              "appId": {
+                                "type": "string"
+                              },
+                              "appUrl": {
+                                "type": "string",
+                                "format": "uri"
+                              },
+                              "bundleId": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "developerId": {
+                                "type": "string"
+                              },
+                              "developerName": {
+                                "type": "string"
+                              },
+                              "developerUrl": {
+                                "type": "string",
+                                "format": "uri"
+                              },
+                              "seller": {
+                                "type": "string"
+                              },
+                              "website": {
+                                "type": "string",
+                                "format": "uri"
+                              },
+                              "price": {
+                                "type": "number"
+                              },
+                              "priceCurrency": {
+                                "type": "string"
+                              },
+                              "priceText": {
+                                "type": "string"
+                              },
+                              "genres": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              "primaryGenreId": {
+                                "type": "string"
+                              },
+                              "primaryGenre": {
+                                "type": "string"
+                              },
+                              "contentRating": {
+                                "type": "string"
+                              },
+                              "description": {
+                                "type": "string"
+                              },
+                              "releaseNotes": {
+                                "type": "string"
+                              },
+                              "version": {
+                                "type": "string"
+                              },
+                              "releasedAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$"
+                              },
+                              "updatedAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$"
+                              },
+                              "minimumOsVersion": {
+                                "type": "string"
+                              },
+                              "sizeBytes": {
+                                "type": "integer",
+                                "minimum": -9007199254740991,
+                                "maximum": 9007199254740991
+                              },
+                              "languages": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              "rating": {
+                                "type": "number"
+                              },
+                              "ratings": {
+                                "type": "integer",
+                                "minimum": -9007199254740991,
+                                "maximum": 9007199254740991
+                              },
+                              "iconUrl": {
+                                "type": "string",
+                                "format": "uri"
+                              },
+                              "screenshotUrls": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "format": "uri"
+                                }
+                              },
+                              "ipadScreenshotUrls": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "format": "uri"
+                                }
+                              }
+                            },
+                            "required": [
+                              "appUrl"
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "results"
+                      ]
+                    },
+                    "creditsUsed": {
+                      "type": "integer"
+                    },
+                    "requestId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/Error"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      }
+    },
+    "/v1/appstore/reviews": {
+      "post": {
+        "operationId": "appstoreReviews",
+        "summary": "Get an app's App Store reviews",
+        "description": "Costs 1 credit per call. Pages with cursor.",
+        "x-credits": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "app": {
+                    "type": "string"
+                  },
+                  "country": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z]{2}$",
+                    "description": "ISO 3166-1 alpha-2 country code, e.g. us. Any case is accepted."
+                  },
+                  "sort": {
+                    "default": "newest",
+                    "type": "string",
+                    "enum": [
+                      "newest",
+                      "helpful",
+                      "highest",
+                      "lowest"
+                    ]
+                  },
+                  "cursor": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "The cursor from the previous response. Send it as is."
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  }
+                },
+                "required": [
+                  "app"
+                ],
+                "additionalProperties": false
+              },
+              "example": {
+                "app": "284882215"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The data, and the credits this call used.",
+            "headers": {
+              "X-Request-ID": {
+                "$ref": "#/components/headers/RequestId"
+              },
+              "x-credits-used": {
+                "$ref": "#/components/headers/CreditsUsed"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "x-cache": {
+                "$ref": "#/components/headers/Cache"
+              },
+              "x-cache-age": {
+                "$ref": "#/components/headers/CacheAge"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data",
+                    "creditsUsed",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "success": {
+                      "const": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                              "reviewId": {
+                                "type": "string"
+                              },
+                              "rating": {
+                                "type": "integer",
+                                "minimum": 1,
+                                "maximum": 5
+                              },
+                              "title": {
+                                "type": "string"
+                              },
+                              "text": {
+                                "type": "string"
+                              },
+                              "authorName": {
+                                "type": "string"
+                              },
+                              "publishedAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$"
+                              },
+                              "isEdited": {
+                                "type": "boolean"
+                              }
+                            },
+                            "required": [
+                              "rating",
+                              "isEdited"
+                            ]
+                          }
+                        },
+                        "cursor": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "results"
+                      ]
+                    },
+                    "creditsUsed": {
+                      "type": "integer"
+                    },
+                    "requestId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/Error"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      }
+    },
+    "/v1/appstore/top": {
+      "post": {
+        "operationId": "appstoreTop",
+        "summary": "Get App Store top charts",
+        "description": "Costs 1 credit per call.",
+        "x-credits": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "chart": {
+                    "default": "free",
+                    "type": "string",
+                    "enum": [
+                      "free",
+                      "paid",
+                      "grossing"
+                    ]
+                  },
+                  "device": {
+                    "default": "iphone",
+                    "type": "string",
+                    "enum": [
+                      "iphone",
+                      "ipad",
+                      "mac"
+                    ]
+                  },
+                  "genre": {
+                    "type": "string",
+                    "enum": [
+                      "business",
+                      "weather",
+                      "utilities",
+                      "travel",
+                      "sports",
+                      "socialNetworking",
+                      "reference",
+                      "productivity",
+                      "photoVideo",
+                      "news",
+                      "navigation",
+                      "music",
+                      "lifestyle",
+                      "healthFitness",
+                      "games",
+                      "finance",
+                      "entertainment",
+                      "education",
+                      "books",
+                      "medical",
+                      "foodDrink",
+                      "shopping",
+                      "developerTools",
+                      "graphicsDesign"
+                    ]
+                  },
+                  "country": {
+                    "default": "us",
+                    "type": "string",
+                    "pattern": "^[A-Za-z]{2}$",
+                    "description": "ISO 3166-1 alpha-2 country code, e.g. us. Any case is accepted."
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  }
+                },
+                "additionalProperties": false
+              },
+              "example": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The data, and the credits this call used.",
+            "headers": {
+              "X-Request-ID": {
+                "$ref": "#/components/headers/RequestId"
+              },
+              "x-credits-used": {
+                "$ref": "#/components/headers/CreditsUsed"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "x-cache": {
+                "$ref": "#/components/headers/Cache"
+              },
+              "x-cache-age": {
+                "$ref": "#/components/headers/CacheAge"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data",
+                    "creditsUsed",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "success": {
+                      "const": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                              "rank": {
+                                "type": "integer",
+                                "minimum": -9007199254740991,
+                                "maximum": 9007199254740991
+                              },
+                              "appId": {
+                                "type": "string"
+                              },
+                              "appUrl": {
+                                "type": "string",
+                                "format": "uri"
+                              },
+                              "bundleId": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "developerId": {
+                                "type": "string"
+                              },
+                              "developerName": {
+                                "type": "string"
+                              },
+                              "developerUrl": {
+                                "type": "string",
+                                "format": "uri"
+                              },
+                              "price": {
+                                "type": "number"
+                              },
+                              "priceCurrency": {
+                                "type": "string"
+                              },
+                              "genreId": {
+                                "type": "string"
+                              },
+                              "genre": {
+                                "type": "string"
+                              },
+                              "releasedAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$"
+                              },
+                              "summary": {
+                                "type": "string"
+                              },
+                              "iconUrl": {
+                                "type": "string",
+                                "format": "uri"
+                              }
+                            },
+                            "required": [
+                              "rank",
+                              "appUrl"
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "results"
+                      ]
+                    },
+                    "creditsUsed": {
+                      "type": "integer"
+                    },
+                    "requestId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/Error"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      }
+    },
+    "/v1/googleplay/app": {
+      "post": {
+        "operationId": "googleplayApp",
+        "summary": "Get an app's details from Google Play",
+        "description": "Costs 1 credit per call.",
+        "x-credits": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "app": {
+                    "type": "string"
+                  },
+                  "country": {
+                    "default": "us",
+                    "type": "string",
+                    "pattern": "^[A-Za-z]{2}$",
+                    "description": "ISO 3166-1 alpha-2 country code, e.g. us. Any case is accepted."
+                  },
+                  "language": {
+                    "default": "en",
+                    "type": "string",
+                    "pattern": "^[A-Za-z]{2,3}(?:[-_][A-Za-z0-9]{2,4})?$",
+                    "description": "BCP 47 language tag, e.g. en or pt-BR. Any case is accepted."
+                  }
+                },
+                "required": [
+                  "app"
+                ],
+                "additionalProperties": false
+              },
+              "example": {
+                "app": "com.spotify.music"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The data, and the credits this call used.",
+            "headers": {
+              "X-Request-ID": {
+                "$ref": "#/components/headers/RequestId"
+              },
+              "x-credits-used": {
+                "$ref": "#/components/headers/CreditsUsed"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "x-cache": {
+                "$ref": "#/components/headers/Cache"
+              },
+              "x-cache-age": {
+                "$ref": "#/components/headers/CacheAge"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data",
+                    "creditsUsed",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "success": {
+                      "const": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "appId": {
+                          "type": "string"
+                        },
+                        "appUrl": {
+                          "type": "string",
+                          "format": "uri"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "summary": {
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "developerId": {
+                          "type": "string"
+                        },
+                        "developerName": {
+                          "type": "string"
+                        },
+                        "developerEmail": {
+                          "type": "string"
+                        },
+                        "developerWebsite": {
+                          "type": "string",
+                          "format": "uri"
+                        },
+                        "developerAddress": {
+                          "type": "string"
+                        },
+                        "privacyPolicyUrl": {
+                          "type": "string",
+                          "format": "uri"
+                        },
+                        "genreId": {
+                          "type": "string"
+                        },
+                        "genre": {
+                          "type": "string"
+                        },
+                        "contentRating": {
+                          "type": "string"
+                        },
+                        "installsText": {
+                          "type": "string"
+                        },
+                        "installsMin": {
+                          "type": "integer",
+                          "minimum": -9007199254740991,
+                          "maximum": 9007199254740991
+                        },
+                        "installsExact": {
+                          "type": "integer",
+                          "minimum": -9007199254740991,
+                          "maximum": 9007199254740991
+                        },
+                        "rating": {
+                          "type": "number"
+                        },
+                        "ratings": {
+                          "type": "integer",
+                          "minimum": -9007199254740991,
+                          "maximum": 9007199254740991
+                        },
+                        "reviews": {
+                          "type": "integer",
+                          "minimum": -9007199254740991,
+                          "maximum": 9007199254740991
+                        },
+                        "ratingsOne": {
+                          "type": "integer",
+                          "minimum": -9007199254740991,
+                          "maximum": 9007199254740991
+                        },
+                        "ratingsTwo": {
+                          "type": "integer",
+                          "minimum": -9007199254740991,
+                          "maximum": 9007199254740991
+                        },
+                        "ratingsThree": {
+                          "type": "integer",
+                          "minimum": -9007199254740991,
+                          "maximum": 9007199254740991
+                        },
+                        "ratingsFour": {
+                          "type": "integer",
+                          "minimum": -9007199254740991,
+                          "maximum": 9007199254740991
+                        },
+                        "ratingsFive": {
+                          "type": "integer",
+                          "minimum": -9007199254740991,
+                          "maximum": 9007199254740991
+                        },
+                        "price": {
+                          "type": "number"
+                        },
+                        "priceCurrency": {
+                          "type": "string"
+                        },
+                        "hasInAppPurchases": {
+                          "type": "boolean"
+                        },
+                        "inAppPriceText": {
+                          "type": "string"
+                        },
+                        "hasAds": {
+                          "type": "boolean"
+                        },
+                        "version": {
+                          "type": "string"
+                        },
+                        "recentChanges": {
+                          "type": "string"
+                        },
+                        "releasedAt": {
+                          "type": "string",
+                          "format": "date-time",
+                          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$"
+                        },
+                        "updatedAt": {
+                          "type": "string",
+                          "format": "date-time",
+                          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$"
+                        },
+                        "iconUrl": {
+                          "type": "string",
+                          "format": "uri"
+                        },
+                        "bannerUrl": {
+                          "type": "string",
+                          "format": "uri"
+                        },
+                        "screenshotUrls": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "format": "uri"
+                          }
+                        }
+                      },
+                      "required": [
+                        "appUrl",
+                        "hasInAppPurchases",
+                        "hasAds",
+                        "screenshotUrls"
+                      ]
+                    },
+                    "creditsUsed": {
+                      "type": "integer"
+                    },
+                    "requestId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/Error"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      }
+    },
+    "/v1/googleplay/search": {
+      "post": {
+        "operationId": "googleplaySearch",
+        "summary": "Search Google Play apps",
+        "description": "Costs 1 credit per call.",
+        "x-credits": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "query": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100
+                  },
+                  "country": {
+                    "default": "us",
+                    "type": "string",
+                    "pattern": "^[A-Za-z]{2}$",
+                    "description": "ISO 3166-1 alpha-2 country code, e.g. us. Any case is accepted."
+                  },
+                  "language": {
+                    "default": "en",
+                    "type": "string",
+                    "pattern": "^[A-Za-z]{2,3}(?:[-_][A-Za-z0-9]{2,4})?$",
+                    "description": "BCP 47 language tag, e.g. en or pt-BR. Any case is accepted."
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  }
+                },
+                "required": [
+                  "query"
+                ],
+                "additionalProperties": false
+              },
+              "example": {
+                "query": "photo editor"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The data, and the credits this call used.",
+            "headers": {
+              "X-Request-ID": {
+                "$ref": "#/components/headers/RequestId"
+              },
+              "x-credits-used": {
+                "$ref": "#/components/headers/CreditsUsed"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "x-cache": {
+                "$ref": "#/components/headers/Cache"
+              },
+              "x-cache-age": {
+                "$ref": "#/components/headers/CacheAge"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data",
+                    "creditsUsed",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "success": {
+                      "const": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                              "appId": {
+                                "type": "string"
+                              },
+                              "appUrl": {
+                                "type": "string",
+                                "format": "uri"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "developerName": {
+                                "type": "string"
+                              },
+                              "summary": {
+                                "type": "string"
+                              },
+                              "genre": {
+                                "type": "string"
+                              },
+                              "installsText": {
+                                "type": "string"
+                              },
+                              "installsMin": {
+                                "type": "integer",
+                                "minimum": -9007199254740991,
+                                "maximum": 9007199254740991
+                              },
+                              "rating": {
+                                "type": "number"
+                              },
+                              "price": {
+                                "type": "number"
+                              },
+                              "priceCurrency": {
+                                "type": "string"
+                              },
+                              "iconUrl": {
+                                "type": "string",
+                                "format": "uri"
+                              }
+                            },
+                            "required": [
+                              "appUrl"
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "results"
+                      ]
+                    },
+                    "creditsUsed": {
+                      "type": "integer"
+                    },
+                    "requestId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/Error"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      }
+    },
+    "/v1/googleplay/reviews": {
+      "post": {
+        "operationId": "googleplayReviews",
+        "summary": "Get an app's Google Play reviews",
+        "description": "Costs 1 credit per call. Pages with cursor.",
+        "x-credits": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "app": {
+                    "type": "string"
+                  },
+                  "country": {
+                    "default": "us",
+                    "type": "string",
+                    "pattern": "^[A-Za-z]{2}$",
+                    "description": "ISO 3166-1 alpha-2 country code, e.g. us. Any case is accepted."
+                  },
+                  "language": {
+                    "default": "en",
+                    "type": "string",
+                    "pattern": "^[A-Za-z]{2,3}(?:[-_][A-Za-z0-9]{2,4})?$",
+                    "description": "BCP 47 language tag, e.g. en or pt-BR. Any case is accepted."
+                  },
+                  "sort": {
+                    "default": "newest",
+                    "type": "string",
+                    "enum": [
+                      "newest",
+                      "relevance",
+                      "highest"
+                    ]
+                  },
+                  "rating": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 5
+                  },
+                  "cursor": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "The cursor from the previous response. Send it as is."
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  }
+                },
+                "required": [
+                  "app"
+                ],
+                "additionalProperties": false
+              },
+              "example": {
+                "app": "com.spotify.music"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The data, and the credits this call used.",
+            "headers": {
+              "X-Request-ID": {
+                "$ref": "#/components/headers/RequestId"
+              },
+              "x-credits-used": {
+                "$ref": "#/components/headers/CreditsUsed"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "x-cache": {
+                "$ref": "#/components/headers/Cache"
+              },
+              "x-cache-age": {
+                "$ref": "#/components/headers/CacheAge"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data",
+                    "creditsUsed",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "success": {
+                      "const": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                              "reviewId": {
+                                "type": "string"
+                              },
+                              "reviewUrl": {
+                                "type": "string",
+                                "format": "uri"
+                              },
+                              "rating": {
+                                "type": "integer",
+                                "minimum": 1,
+                                "maximum": 5
+                              },
+                              "text": {
+                                "type": "string"
+                              },
+                              "authorName": {
+                                "type": "string"
+                              },
+                              "authorAvatarUrl": {
+                                "type": "string",
+                                "format": "uri"
+                              },
+                              "publishedAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$"
+                              },
+                              "likes": {
+                                "type": "integer",
+                                "minimum": -9007199254740991,
+                                "maximum": 9007199254740991
+                              },
+                              "appVersion": {
+                                "type": "string"
+                              },
+                              "ownerReplyText": {
+                                "type": "string"
+                              },
+                              "ownerReplyAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$"
+                              }
+                            },
+                            "required": [
+                              "reviewUrl",
+                              "rating",
+                              "likes"
+                            ]
+                          }
+                        },
+                        "cursor": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
                         "results"
                       ]
                     },

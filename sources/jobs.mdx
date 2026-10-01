@@ -1,8 +1,8 @@
 ---
 title: 'Jobs'
-description: 'Search job listings on LinkedIn and Upwork. Get the full posting, pay, and requirements for any job as structured JSON.'
+description: 'Search job listings on LinkedIn, Indeed, and Upwork. Get the full posting, pay, and requirements for any job as structured JSON.'
 og:title: 'Jobs | Stophy'
-og:description: 'Search job listings on LinkedIn and Upwork. Get the full posting, pay, and requirements for any job as structured JSON.'
+og:description: 'Search job listings on LinkedIn, Indeed, and Upwork. Get the full posting, pay, and requirements for any job as structured JSON.'
 icon: 'briefcase'
 ---
 
@@ -12,12 +12,16 @@ import LinkedinJobsSearchTs from '/snippets/examples/linkedin.jobs.search/ts.mdx
 import LinkedinJobsSearchPython from '/snippets/examples/linkedin.jobs.search/python.mdx';
 import LinkedinJobsSearchCurl from '/snippets/examples/linkedin.jobs.search/curl.mdx';
 import LinkedinJobsSearchCli from '/snippets/examples/linkedin.jobs.search/cli.mdx';
+import IndeedSearchTs from '/snippets/examples/indeed.search/ts.mdx';
+import IndeedSearchPython from '/snippets/examples/indeed.search/python.mdx';
+import IndeedSearchCurl from '/snippets/examples/indeed.search/curl.mdx';
+import IndeedSearchCli from '/snippets/examples/indeed.search/cli.mdx';
 import UpworkSearchTs from '/snippets/examples/upwork.search/ts.mdx';
 import UpworkSearchPython from '/snippets/examples/upwork.search/python.mdx';
 import UpworkSearchCurl from '/snippets/examples/upwork.search/curl.mdx';
 import UpworkSearchCli from '/snippets/examples/upwork.search/cli.mdx';
 
-Search job listings on LinkedIn and Upwork. Get the full posting, pay, and requirements for any job as structured JSON. See every field in the [Jobs reference](/api-reference/endpoint/linkedin-jobs-search), or try it in the [playground](https://stophy.dev/playground).
+Search job listings on LinkedIn, Indeed, and Upwork. Get the full posting, pay, and requirements for any job as structured JSON. See every field in the [Jobs reference](/api-reference/endpoint/linkedin-jobs-search), or try it in the [playground](https://stophy.dev/playground).
 
 ## Search LinkedIn jobs
 
@@ -55,7 +59,7 @@ The response:
     ]
   },
   "creditsUsed": 3,
-  "requestId": "13c17e6f-a070-48cb-9d5e-740c1f84fbef"
+  "requestId": "ec7a761f-f989-4452-90d3-24cdff527116"
 }
 ```
 
@@ -67,8 +71,19 @@ The response:
 | [Get a LinkedIn job's details](/api-reference/endpoint/linkedin-jobs-job) | 1 credit |
 | [Search Upwork jobs](/api-reference/endpoint/upwork-search) | 3 credits |
 | [Get an Upwork job's details](/api-reference/endpoint/upwork-job) | 1 credit |
+| [Search Indeed jobs](/api-reference/endpoint/indeed-search) | 1 credit |
+| [Get an Indeed job's details](/api-reference/endpoint/indeed-job) | 1 credit |
 
 ## More ways to call it
+
+### Search Indeed jobs
+
+<CodeGroup>
+  <IndeedSearchTs />
+  <IndeedSearchPython />
+  <IndeedSearchCurl />
+  <IndeedSearchCli />
+</CodeGroup>
 
 ### Search Upwork jobs
 

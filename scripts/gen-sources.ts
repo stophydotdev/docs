@@ -51,7 +51,7 @@ const AREAS: Area[] = [
     endpoints: ["youtube.search", "youtube.video", "transcript", "youtube.comments", "youtube.channel", "youtube.playlist", "tiktok.profile", "tiktok.video", "tiktok.hashtag", "tiktok.comments", "tiktok.search"],
     example: "youtube.search",
     variations: ["transcript", "tiktok.profile"],
-    tip: "Every endpoint on this page needs an API key. TikTok videos over 3 minutes can't be transcribed.",
+    tip: "Every endpoint on this page needs an API key. Transcripts cost 2 credits when the video has captions and more when the audio has to be transcribed: see [Credits and billing](/billing). TikTok videos over 3 minutes can't be transcribed.",
   },
   {
     title: "Social",
@@ -69,22 +69,44 @@ const AREAS: Area[] = [
     slug: "places-and-travel",
     icon: "map-location-dot",
     description:
-      "Find places on Google Maps with their reviews, and search flights on Google Travel. Get stays, calendars, and reviews from Airbnb.",
-    endpoints: ["maps.search", "maps.place", "maps.reviews", "googletravel.flights", "airbnb.search", "airbnb.listing", "airbnb.calendar", "airbnb.reviews"],
+      "Find places on Google Maps and Tripadvisor with their reviews, and search flights on Google Travel. Get stays, calendars, and reviews from Airbnb.",
+    endpoints: ["maps.search", "maps.place", "maps.reviews", "tripadvisor.search", "tripadvisor.place", "tripadvisor.reviews", "googletravel.flights", "airbnb.search", "airbnb.listing", "airbnb.calendar", "airbnb.reviews"],
     example: "maps.search",
     variations: ["airbnb.search"],
-    tip: "Pass the place id from a Google Maps search or the listing link from an Airbnb search into that source's other endpoints.",
+    tip: "Pass the place id from a Google Maps search, the place link from a Tripadvisor search, or the listing link from an Airbnb search into that source's other endpoints.",
   },
   {
     title: "Jobs",
     slug: "jobs",
     icon: "briefcase",
     description:
-      "Search job listings on LinkedIn and Upwork. Get the full posting, pay, and requirements for any job as structured JSON.",
-    endpoints: ["linkedin.jobs.search", "linkedin.jobs.job", "upwork.search", "upwork.job"],
+      "Search job listings on LinkedIn, Indeed, and Upwork. Get the full posting, pay, and requirements for any job as structured JSON.",
+    endpoints: ["linkedin.jobs.search", "linkedin.jobs.job", "upwork.search", "upwork.job", "indeed.search", "indeed.job"],
     example: "linkedin.jobs.search",
-    variations: ["upwork.search"],
+    variations: ["indeed.search", "upwork.search"],
     tip: "Pass the job link from a search result into that site's job lookup endpoint for the full posting.",
+  },
+  {
+    title: "Shopping",
+    slug: "shopping",
+    icon: "cart-shopping",
+    description:
+      "Search Walmart products and get the price, ratings, and details for any product as structured JSON.",
+    endpoints: ["walmart.search", "walmart.product"],
+    example: "walmart.search",
+    variations: ["walmart.product"],
+    tip: "Walmart search costs 5 credits and a product lookup costs 3. Pass the product link from a search result into `walmart.product`.",
+  },
+  {
+    title: "Apps",
+    slug: "apps",
+    icon: "mobile-screen",
+    description:
+      "Search the App Store and Google Play. Get any app's details and reviews, and the App Store top charts, as structured JSON.",
+    endpoints: ["appstore.app", "appstore.search", "appstore.reviews", "appstore.top", "googleplay.app", "googleplay.search", "googleplay.reviews"],
+    example: "appstore.search",
+    variations: ["googleplay.reviews", "appstore.top"],
+    tip: "Pass an App Store app id or a Google Play package name from a search result into that store's other endpoints. Review endpoints page. See [Page through results](/guides/paging).",
   },
   {
     title: "Real estate",
@@ -279,7 +301,7 @@ const importOf = (id: string, lang: string) =>
 function creditPhrase(op: CatalogEndpoint): string {
   if (op.credits === undefined || op.credits === null) return "Free";
   const noun = op.credits === 1 ? "credit" : "credits";
-  const base = `${op.credits} ${noun}`;
+  const base = `${op.pricing ? "From " : ""}${op.credits} ${noun}`;
   return op.keyless ? `${base} (no key needed)` : base;
 }
 

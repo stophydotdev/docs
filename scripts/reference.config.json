@@ -16,7 +16,12 @@
     "rightmove": "Rightmove",
     "immoscout": "ImmoScout24",
     "pinterest": "Pinterest",
-    "ads": "Ads"
+    "ads": "Ads",
+    "indeed": "Indeed",
+    "tripadvisor": "Tripadvisor",
+    "walmart": "Walmart",
+    "appstore": "App Store",
+    "googleplay": "Google Play"
   },
   "titles": {
     "web.search": "Search",
@@ -67,7 +72,21 @@
     "pinterest.user": "Profile",
     "ads.search": "Search",
     "ads.ad": "Ad",
-    "ads.advertisers": "Advertisers"
+    "ads.advertisers": "Advertisers",
+    "indeed.search": "Search",
+    "indeed.job": "Job",
+    "tripadvisor.search": "Search",
+    "tripadvisor.place": "Place",
+    "tripadvisor.reviews": "Reviews",
+    "walmart.search": "Search",
+    "walmart.product": "Product",
+    "appstore.app": "App",
+    "appstore.search": "Search",
+    "appstore.reviews": "Reviews",
+    "appstore.top": "Top charts",
+    "googleplay.app": "App",
+    "googleplay.search": "Search",
+    "googleplay.reviews": "Reviews"
   },
   "areas": [
     {
@@ -126,6 +145,9 @@
         "maps.search",
         "maps.place",
         "maps.reviews",
+        "tripadvisor.search",
+        "tripadvisor.place",
+        "tripadvisor.reviews",
         "googletravel.flights",
         "airbnb.search",
         "airbnb.listing",
@@ -141,7 +163,32 @@
         "linkedin.jobs.search",
         "linkedin.jobs.job",
         "upwork.search",
-        "upwork.job"
+        "upwork.job",
+        "indeed.search",
+        "indeed.job"
+      ]
+    },
+    {
+      "title": "Shopping",
+      "slug": "shopping",
+      "icon": "cart-shopping",
+      "endpoints": [
+        "walmart.search",
+        "walmart.product"
+      ]
+    },
+    {
+      "title": "Apps",
+      "slug": "apps",
+      "icon": "mobile-screen",
+      "endpoints": [
+        "appstore.app",
+        "appstore.search",
+        "appstore.reviews",
+        "appstore.top",
+        "googleplay.app",
+        "googleplay.search",
+        "googleplay.reviews"
       ]
     },
     {
@@ -171,13 +218,14 @@
   ],
   "notes": {
     "web.search": "Filter with `within`, `country`, `language`, and domains to include or exclude.",
-    "transcript": "Pass a YouTube, TikTok or Instagram link in `video`. Set `includeTimestamps` to get each line with its time. TikTok videos over 3 minutes are refused, and refused calls cost nothing.",
+    "transcript": "Pass a YouTube, TikTok or Instagram link in `video`. Set `includeTimestamps` to get each line with its time. When there are no captions, the audio is transcribed and `transcribedSeconds` says how much. TikTok videos over 3 minutes are refused, and refused calls cost nothing.",
     "youtube.channel": "A cursor expires after 6 hours. Start again from the first page when it does.",
     "reddit.search": "With `type` set to `users` there is one page and no cursor.",
     "tiktok.profile": "The profile's videos come back in `results`. Page with `limit` and `cursor`.",
     "instagram.profile": "`posts` is the profile's post count. Its latest posts come back in `results`. Page with `limit` and `cursor`.",
     "airbnb.search": "Returns up to about 110 listings, 18 to a page. Page with `cursor`.",
     "linkedin.posts": "Returns only the few posts LinkedIn shows publicly.",
-    "ads.search": "On Meta, `mediaType` keeps image, video or text ads. Pinterest takes `advertiser` and rejects `query`. Google takes `query` only when it is a domain. To search Google by name, find the advertiser id with Ads advertisers first. On LinkedIn, `within` limits how recent the ads are."
+    "ads.search": "On Meta, `mediaType` keeps image, video or text ads. Pinterest takes `advertiser` and rejects `query`. Google takes `query` only when it is a domain. To search Google by name, find the advertiser id with Ads advertisers first. On LinkedIn, `within` limits how recent the ads are.",
+    "appstore.top": "Pick a `chart` (free, paid or grossing), a `device`, a `genre` and a `country`."
   }
 }

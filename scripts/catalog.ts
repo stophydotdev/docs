@@ -10,6 +10,7 @@ export interface CatalogEndpoint {
   method: "GET" | "POST";
   path: string;
   credits?: number;
+  pricing?: string | null;
   keyless?: boolean;
   input?: JsonObject;
   example?: JsonObject;
