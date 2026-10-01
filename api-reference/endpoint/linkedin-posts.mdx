@@ -1,9 +1,9 @@
 ---
 title: 'LinkedIn posts API'
 sidebarTitle: 'Posts'
-description: 'Get a person''s or company''s posts. Call the LinkedIn posts API and get JSON back in one request. 1 credit per call. Failed calls cost nothing.'
+description: 'Get a person''s or company''s latest public posts. Call the LinkedIn posts API and get JSON back in one request. 1 credit per call. Failed calls cost nothing.'
 og:title: 'LinkedIn posts API | Stophy'
-og:description: 'Get a person''s or company''s posts. Call the LinkedIn posts API and get JSON back in one request. 1 credit per call. Failed calls cost nothing.'
+og:description: 'Get a person''s or company''s latest public posts. Call the LinkedIn posts API and get JSON back in one request. 1 credit per call. Failed calls cost nothing.'
 openapi: 'api-reference/openapi.json POST /v1/linkedin/posts'
 ---
 
@@ -18,6 +18,8 @@ import CliExample from "/snippets/examples/linkedin.posts/cli.mdx";
 - **Returns:** `data` has `results`.
 - **Cost:** 1 credit per call. Failed calls cost nothing.
 - **Paging:** No.
+
+Returns only the few posts LinkedIn shows publicly.
 
 ## Example
 

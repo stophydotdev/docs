@@ -1,9 +1,9 @@
 ---
 title: 'Zillow search API'
 sidebarTitle: 'Search'
-description: 'Search homes for sale, for rent or sold. Call the Zillow search API and get JSON back in one request. 1 credit per call. Failed calls cost nothing.'
+description: 'Search homes for sale, for rent or sold. Call the Zillow search API and get JSON back in one request. 3 credits per call. Failed calls cost nothing.'
 og:title: 'Zillow search API | Stophy'
-og:description: 'Search homes for sale, for rent or sold. Call the Zillow search API and get JSON back in one request. 1 credit per call. Failed calls cost nothing.'
+og:description: 'Search homes for sale, for rent or sold. Call the Zillow search API and get JSON back in one request. 3 credits per call. Failed calls cost nothing.'
 openapi: 'api-reference/openapi.json POST /v1/zillow/search'
 ---
 
@@ -16,7 +16,7 @@ import CliExample from "/snippets/examples/zillow.search/cli.mdx";
 
 - **Endpoint:** `zillow.search`
 - **Returns:** `data` has `results`, `total`.
-- **Cost:** 1 credit per call. Failed calls cost nothing.
+- **Cost:** 3 credits per call. Failed calls cost nothing.
 - **Paging:** Yes. Send the `cursor` from the response to get the next page. See [Page through results](/guides/paging).
 
 ## Example

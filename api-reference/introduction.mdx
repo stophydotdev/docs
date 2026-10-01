@@ -15,16 +15,13 @@ Every Stophy endpoint uses the same base URL and bearer key. Data endpoints take
 ## Features
 
 <CardGroup cols={3}>
-  <Card title="Web search and pages" icon="globe" color="f5d90a" href="/sources/web">Web and news search, site maps, SEO, domains and emails.</Card>
+  <Card title="Web search" icon="globe" color="f5d90a" href="/sources/web">Search results from across the web.</Card>
   <Card title="Video" icon="video" color="f5d90a" href="/sources/video">YouTube and TikTok videos, transcripts and comments.</Card>
-  <Card title="Social" icon="users" color="f5d90a" href="/sources/social">Posts, profiles and comments from Reddit, Instagram, X and more.</Card>
-  <Card title="Places and travel" icon="map-location-dot" color="f5d90a" href="/sources/places-and-travel">Google Maps places and reviews, flights, Tripadvisor and Airbnb.</Card>
-  <Card title="Shopping" icon="cart-shopping" color="f5d90a" href="/sources/shopping">Products and prices from Amazon, Walmart, AliExpress and Shopify.</Card>
-  <Card title="Apps" icon="mobile" color="f5d90a" href="/sources/apps">App Store and Google Play apps, charts and reviews.</Card>
-  <Card title="Jobs" icon="briefcase" color="f5d90a" href="/sources/jobs">Job listings from LinkedIn, Indeed and Upwork.</Card>
+  <Card title="Social" icon="users" color="f5d90a" href="/sources/social">Posts, profiles and comments from Reddit, Instagram, LinkedIn and Pinterest.</Card>
+  <Card title="Places and travel" icon="map-location-dot" color="f5d90a" href="/sources/places-and-travel">Google Maps places and reviews, flights and Airbnb.</Card>
+  <Card title="Jobs" icon="briefcase" color="f5d90a" href="/sources/jobs">Job listings from LinkedIn and Upwork.</Card>
   <Card title="Real estate" icon="house" color="f5d90a" href="/sources/real-estate">Homes from Zillow, Rightmove and ImmoScout24.</Card>
   <Card title="Ads" icon="bullhorn" color="f5d90a" href="/sources/ads">Ad libraries from Meta, Google, TikTok, LinkedIn, Microsoft and Pinterest.</Card>
-  <Card title="Finance and crypto" icon="chart-line" color="f5d90a" href="/sources/finance-and-crypto">Stock quotes and history, crypto prices, DEX pairs and wallets.</Card>
 </CardGroup>
 
 See every endpoint in the sidebar, grouped the same way.
@@ -102,6 +99,6 @@ A failed call returns an error status and `{ "success": false, "error": { ... } 
 
 ## One call, one page, one price
 
-Each call returns one page and costs one flat price, 1 or 2 credits, whatever it returns. Endpoints that return `results` take `limit` (1 to 100) to keep at most that many results from the page. It does not change the price. To get the next page, send the `cursor` back with the same input. See [Page through results](/guides/paging).
+Each call returns one page and costs one flat price, from 1 to 5 credits, whatever it returns. Endpoints that return `results` take `limit` (1 to 100) to keep at most that many results from the page. It does not change the price. To get the next page, send the `cursor` back with the same input. See [Page through results](/guides/paging).
 
 Inputs are flat too. There are no nested option objects, and the JSON body is the only input: there is no output format to choose.

@@ -25,19 +25,10 @@ const FALLBACK_EXAMPLES: Record<string, JsonObject> = {
   "maps.reviews": { place: "ChIJN1t_tDeuEmsRUsoyG83frY4" },
   "instagram.post": { post: "https://www.instagram.com/p/C1a2B3cD4eF/" },
   "instagram.comments": { post: "https://www.instagram.com/p/C1a2B3cD4eF/" },
-  "bluesky.post": { post: "https://bsky.app/profile/bsky.app/post/3k2l4z6y8w2ex" },
-  "threads.post": { post: "https://www.threads.net/@zuck/post/C1a2B3cD4eF" },
-  "telegram.post": { post: "https://t.me/durov/123" },
   "ads.ad": { network: "meta", ad: "1234567890123456" },
   "linkedin.jobs.job": { job: "https://www.linkedin.com/jobs/view/3812345678" },
   "zillow.property": { property: "https://www.zillow.com/homedetails/123-Main-St-New-York-NY-10001/12345678_zpid/" },
   "upwork.job": { job: "https://www.upwork.com/jobs/~0123456789abcdef01" },
-  "indeed.job": { job: "https://www.indeed.com/viewjob?jk=abcdef0123456789" },
-  "tripadvisor.place": { place: "https://www.tripadvisor.com/Hotel_Review-g60763-d224832-Reviews-The_Peninsula_New_York-New_York_City_New_York.html" },
-  "tripadvisor.reviews": { place: "https://www.tripadvisor.com/Hotel_Review-g60763-d224832-Reviews-The_Peninsula_New_York-New_York_City_New_York.html" },
-  "amazon.product": { product: "https://www.amazon.com/dp/B0CX23V2ZK" },
-  "walmart.product": { product: "https://www.walmart.com/ip/123456789" },
-  "aliexpress.product": { product: "https://www.aliexpress.com/item/1005006109874231.html" },
   "airbnb.listing": { listing: "https://www.airbnb.com/rooms/12345678" },
   "airbnb.calendar": { listing: "https://www.airbnb.com/rooms/12345678" },
   "airbnb.reviews": { listing: "https://www.airbnb.com/rooms/12345678" },
@@ -143,7 +134,6 @@ function dataProperties(op: CatalogEndpoint, spec: JsonObject): string[] {
 const PRIMARY_FIELD_OVERRIDES: Record<string, string> = {
   transcript: "text",
   "youtube.video": "title",
-  "finance.stock": "name",
 };
 
 /** The field to read off `result.data` in the TS and Python snippets. */

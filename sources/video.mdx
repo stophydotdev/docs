@@ -74,7 +74,7 @@ The response:
     ],
     "cursor": "EqIDEg1ydXN0IHR1dG9yaWFs…"
   },
-  "creditsUsed": 0,
+  "creditsUsed": 1,
   "requestId": "2fe9dbad-fc48-4890-9751-0b24b596035b"
 }
 ```
@@ -83,9 +83,9 @@ The response:
 
 | Endpoint | Cost |
 | --- | --- |
-| [Search YouTube videos, channels, playlists and shorts](/api-reference/endpoint/youtube-search) | 1 credit (no key needed) |
+| [Search YouTube videos, channels, playlists and shorts](/api-reference/endpoint/youtube-search) | 1 credit |
 | [Get a video's title, channel, views, likes and description](/api-reference/endpoint/youtube-video) | 1 credit |
-| [Get what is said in a YouTube, TikTok or Instagram video, with optional timestamps](/api-reference/endpoint/transcript) | 2 credits (no key needed) |
+| [Get what is said in a YouTube, TikTok, Instagram or other video, with timestamps](/api-reference/endpoint/transcript) | 2 credits |
 | [Get a video's comments, or the replies to one comment](/api-reference/endpoint/youtube-comments) | 1 credit |
 | [Get a channel's profile and a page of its videos, shorts, playlists or posts](/api-reference/endpoint/youtube-channel) | 1 credit |
 | [Get a playlist and a page of its videos](/api-reference/endpoint/youtube-playlist) | 1 credit |
@@ -97,7 +97,7 @@ The response:
 
 ## More ways to call it
 
-### Get what is said in a YouTube, TikTok or Instagram video, with optional timestamps
+### Get what is said in a YouTube, TikTok, Instagram or other video, with timestamps
 
 <CodeGroup>
   <TranscriptTs />
@@ -115,4 +115,4 @@ The response:
   <TiktokProfileCli />
 </CodeGroup>
 
-<Tip>YouTube search and transcripts work without a key. Every other endpoint on this page needs one. TikTok videos over 3 minutes can't be transcribed.</Tip>
+<Tip>Every endpoint on this page needs an API key. TikTok videos over 3 minutes can't be transcribed.</Tip>

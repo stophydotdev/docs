@@ -44,7 +44,7 @@ stophy login --api-key st_...
 export STOPHY_API_KEY="st_..."
 ```
 
-Each computer gets its own key. Web search, YouTube search and transcripts work without logging in.
+Each computer gets its own key. Web search works without logging in.
 
 Log out and revoke this computer's key:
 
@@ -61,11 +61,11 @@ stophy youtube search "bun runtime" --limit 5
 stophy maps search --query dentist --location Berlin
 stophy reddit subreddit rust
 stophy transcript https://youtu.be/M4TufsFlv_o
-stophy suggest "how to" --source youtube
+stophy ads advertisers nike --network google
 stophy ads search nike --network meta
 ```
 
-When a command needs a choice such as `--network`, `--source` or `--by`, give it as an option.
+When a command needs a choice such as `--network`, give it as an option.
 
 Run `stophy <source> --help` to see what a source can do, and `stophy <source> <command> --help` for every option on one command. If you give a value an option does not accept, the CLI stops before it calls Stophy and lists which values work.
 

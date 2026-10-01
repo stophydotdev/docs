@@ -1,8 +1,8 @@
 ---
 title: 'Social'
-description: 'Search and read posts, profiles, and comments across Reddit, Instagram, X, LinkedIn, Threads, Bluesky, Telegram, and Pinterest.'
+description: 'Search and read posts, profiles, and comments across Reddit, Instagram, LinkedIn, and Pinterest.'
 og:title: 'Social | Stophy'
-og:description: 'Search and read posts, profiles, and comments across Reddit, Instagram, X, LinkedIn, Threads, Bluesky, Telegram, and Pinterest.'
+og:description: 'Search and read posts, profiles, and comments across Reddit, Instagram, LinkedIn, and Pinterest.'
 icon: 'users'
 ---
 
@@ -16,16 +16,12 @@ import InstagramProfileTs from '/snippets/examples/instagram.profile/ts.mdx';
 import InstagramProfilePython from '/snippets/examples/instagram.profile/python.mdx';
 import InstagramProfileCurl from '/snippets/examples/instagram.profile/curl.mdx';
 import InstagramProfileCli from '/snippets/examples/instagram.profile/cli.mdx';
-import XPostTs from '/snippets/examples/x.post/ts.mdx';
-import XPostPython from '/snippets/examples/x.post/python.mdx';
-import XPostCurl from '/snippets/examples/x.post/curl.mdx';
-import XPostCli from '/snippets/examples/x.post/cli.mdx';
 import LinkedinProfileTs from '/snippets/examples/linkedin.profile/ts.mdx';
 import LinkedinProfilePython from '/snippets/examples/linkedin.profile/python.mdx';
 import LinkedinProfileCurl from '/snippets/examples/linkedin.profile/curl.mdx';
 import LinkedinProfileCli from '/snippets/examples/linkedin.profile/cli.mdx';
 
-Search and read posts, profiles, and comments across Reddit, Instagram, X, LinkedIn, Threads, Bluesky, Telegram, and Pinterest. See every field in the [Social reference](/api-reference/endpoint/reddit-search), or try it in the [playground](https://stophy.dev/playground).
+Search and read posts, profiles, and comments across Reddit, Instagram, LinkedIn, and Pinterest. See every field in the [Social reference](/api-reference/endpoint/reddit-search), or try it in the [playground](https://stophy.dev/playground).
 
 ## Search Reddit posts, comments, subreddits and users
 
@@ -81,8 +77,8 @@ The response:
       }
     ]
   },
-  "creditsUsed": 2,
-  "requestId": "cd6a759a-b1bb-44e5-8fa4-c2862cf64103"
+  "creditsUsed": 1,
+  "requestId": "eaaf3ef0-3adf-4fdb-bf71-7c448bf5de32"
 }
 ```
 
@@ -90,31 +86,21 @@ The response:
 
 | Endpoint | Cost |
 | --- | --- |
-| [Search Reddit posts, comments, subreddits and users](/api-reference/endpoint/reddit-search) | 2 credits |
-| [Read a post and its comment thread](/api-reference/endpoint/reddit-post) | 2 credits |
-| [Get a subreddit's info and a page of its posts](/api-reference/endpoint/reddit-subreddit) | 2 credits |
-| [Get a user's profile and a page of their posts and comments](/api-reference/endpoint/reddit-user) | 2 credits |
-| [Get Reddit posts that link to a website](/api-reference/endpoint/reddit-domain) | 2 credits |
-| [Get a profile's bio, stats and a page of its posts and reels](/api-reference/endpoint/instagram-profile) | 1 credit |
+| [Search Reddit posts, comments, subreddits and users](/api-reference/endpoint/reddit-search) | 1 credit |
+| [Read a post and its comment thread](/api-reference/endpoint/reddit-post) | 1 credit |
+| [Get a subreddit's info and a page of its posts](/api-reference/endpoint/reddit-subreddit) | 1 credit |
+| [Get a user's profile and a page of their posts and comments](/api-reference/endpoint/reddit-user) | 1 credit |
+| [Get Reddit posts that link to a website](/api-reference/endpoint/reddit-domain) | 1 credit |
+| [Get a profile's bio, stats and a page of its posts and reels](/api-reference/endpoint/instagram-profile) | 2 credits |
 | [Get a post or reel, with its top comments](/api-reference/endpoint/instagram-post) | 1 credit |
-| [Search Instagram posts and reels](/api-reference/endpoint/instagram-search) | 1 credit |
 | [Get a post's comments, or the replies to one comment](/api-reference/endpoint/instagram-comments) | 1 credit |
-| [Get a profile's bio, stats and a page of its posts](/api-reference/endpoint/bluesky-profile) | 1 credit |
-| [Read a post and its replies](/api-reference/endpoint/bluesky-post) | 1 credit |
-| [Get a page of a profile's followers](/api-reference/endpoint/bluesky-followers) | 1 credit |
-| [Get a profile's bio, stats and a page of its posts](/api-reference/endpoint/threads-profile) | 1 credit |
-| [Read a post with its thread and replies](/api-reference/endpoint/threads-post) | 1 credit |
-| [Search Threads posts](/api-reference/endpoint/threads-search) | 1 credit |
-| [Get a public channel's info and a page of its posts](/api-reference/endpoint/telegram-posts) | 1 credit |
-| [Get a single channel post](/api-reference/endpoint/telegram-post) | 1 credit |
 | [Get a company's profile, size and industry](/api-reference/endpoint/linkedin-company) | 1 credit |
 | [Get a person's profile](/api-reference/endpoint/linkedin-profile) | 1 credit |
-| [Get a person's or company's posts](/api-reference/endpoint/linkedin-posts) | 1 credit |
+| [Get a person's or company's latest public posts](/api-reference/endpoint/linkedin-posts) | 1 credit |
 | [Search pins](/api-reference/endpoint/pinterest-search) | 1 credit |
 | [Get a pin's details](/api-reference/endpoint/pinterest-pin) | 1 credit |
 | [Get a board and a page of its pins](/api-reference/endpoint/pinterest-board) | 1 credit |
 | [Get a profile and a page of its pins](/api-reference/endpoint/pinterest-user) | 1 credit |
-| [Get a post's text, author and stats](/api-reference/endpoint/x-post) | 1 credit |
 
 ## More ways to call it
 
@@ -125,15 +111,6 @@ The response:
   <InstagramProfilePython />
   <InstagramProfileCurl />
   <InstagramProfileCli />
-</CodeGroup>
-
-### Get a post's text, author and stats
-
-<CodeGroup>
-  <XPostTs />
-  <XPostPython />
-  <XPostCurl />
-  <XPostCli />
 </CodeGroup>
 
 ### Get a person's profile

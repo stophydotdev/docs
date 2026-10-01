@@ -32,27 +32,15 @@ interface Area {
 // shown first; `variations` are 2-3 more calls shown further down the page.
 const AREAS: Area[] = [
   {
-    title: "Web search and pages",
+    title: "Web search",
     slug: "web",
     icon: "globe",
     description:
-      "Search the web and the news, and check a page's SEO, plus search suggestions and Google Trends.",
-    endpoints: ["web.search", "web.news", "google.trends.related", "google.trends.trending", "site.seo", "suggest", "google.trends"],
+      "Search the web and get ranked results with titles, links and descriptions as structured JSON.",
+    endpoints: ["web.search"],
     example: "web.search",
-    variations: ["web.news", "site.seo"],
-    tip: "Web search, YouTube search and transcripts work without a key. Every other endpoint needs one.",
-  },
-  {
-    title: "Email",
-    slug: "email",
-    icon: "envelope",
-    description:
-      "Find a person's work email from a company domain or name, list the emails on a company's site, and check whether an address can receive mail.",
-    endpoints: ["email.find", "email.verify"],
-    example: "email.find",
-    variations: ["email.verify"],
-    extra: "The response. `status` is `valid`, `risky` or `invalid`.\n\n```json\n{\n  \"success\": true,\n  \"data\": {\n    \"email\": \"info@the305agency.com\",\n    \"status\": \"valid\",\n    \"mxProvider\": \"google.com\",\n    \"isRole\": true,\n    \"isDisposable\": false,\n    \"isFree\": false\n  },\n  \"creditsUsed\": 1,\n  \"requestId\": \"552f1480-c351-4bb8-a417-48aaa08e94c8\"\n}\n```\n\n### Emails on a company's site\n\nLeave out the name to get the emails found on the company's site, each one checked. `type` is `personal` or `generic`.\n\n```bash cURL icon=\"terminal\"\ncurl -X POST https://api.stophy.dev/v1/email/find \\\n  -H \"Authorization: Bearer $STOPHY_API_KEY\" \\\n  -H \"content-type: application/json\" \\\n  -d '{\"domain\":\"the305agency.com\"}'\n```\n\nThe response:\n\n```json\n{\n  \"success\": true,\n  \"data\": {\n    \"domain\": \"the305agency.com\",\n    \"mxProvider\": \"google.com\",\n    \"results\": [\n      {\n        \"email\": \"info@the305agency.com\",\n        \"status\": \"valid\",\n        \"type\": \"generic\"\n      },\n      {\n        \"email\": \"info@sandra305.com\",\n        \"status\": \"valid\",\n        \"type\": \"generic\"\n      }\n    ]\n  },\n  \"creditsUsed\": 1,\n  \"requestId\": \"d01438d1-ab71-480e-9ea7-c3e29ea29c9e\"\n}\n```\n",
-    tip: "You pay 1 credit only when a valid email comes back. Risky, not found and failed calls cost nothing. A role address like info@ is judged by its mail server, and `isRole` flags it.",
+    variations: [],
+    tip: "Web search works without a key. Every other endpoint needs one.",
   },
   {
     title: "Video",
@@ -63,17 +51,17 @@ const AREAS: Area[] = [
     endpoints: ["youtube.search", "youtube.video", "transcript", "youtube.comments", "youtube.channel", "youtube.playlist", "tiktok.profile", "tiktok.video", "tiktok.hashtag", "tiktok.comments", "tiktok.search"],
     example: "youtube.search",
     variations: ["transcript", "tiktok.profile"],
-    tip: "YouTube search and transcripts work without a key. Every other endpoint on this page needs one. TikTok videos over 3 minutes can't be transcribed.",
+    tip: "Every endpoint on this page needs an API key. TikTok videos over 3 minutes can't be transcribed.",
   },
   {
     title: "Social",
     slug: "social",
     icon: "users",
     description:
-      "Search and read posts, profiles, and comments across Reddit, Instagram, X, LinkedIn, Threads, Bluesky, Telegram, and Pinterest.",
-    endpoints: ["reddit.search", "reddit.post", "reddit.subreddit", "reddit.user", "reddit.domain", "instagram.profile", "instagram.post", "instagram.search", "instagram.comments", "bluesky.profile", "bluesky.post", "bluesky.followers", "threads.profile", "threads.post", "threads.search", "telegram.posts", "telegram.post", "linkedin.company", "linkedin.profile", "linkedin.posts", "pinterest.search", "pinterest.pin", "pinterest.board", "pinterest.user", "x.post"],
+      "Search and read posts, profiles, and comments across Reddit, Instagram, LinkedIn, and Pinterest.",
+    endpoints: ["reddit.search", "reddit.post", "reddit.subreddit", "reddit.user", "reddit.domain", "instagram.profile", "instagram.post", "instagram.comments", "linkedin.company", "linkedin.profile", "linkedin.posts", "pinterest.search", "pinterest.pin", "pinterest.board", "pinterest.user"],
     example: "reddit.search",
-    variations: ["instagram.profile", "x.post", "linkedin.profile"],
+    variations: ["instagram.profile", "linkedin.profile"],
     tip: "Endpoints that return `results` page. See [Page through results](/guides/paging).",
   },
   {
@@ -81,43 +69,21 @@ const AREAS: Area[] = [
     slug: "places-and-travel",
     icon: "map-location-dot",
     description:
-      "Find places on Google Maps with their reviews, and search flights on Google Travel. Get stays, calendars, and reviews from Tripadvisor and Airbnb.",
-    endpoints: ["maps.search", "maps.place", "maps.reviews", "tripadvisor.search", "tripadvisor.place", "tripadvisor.reviews", "googletravel.flights", "airbnb.search", "airbnb.listing", "airbnb.calendar", "airbnb.reviews"],
+      "Find places on Google Maps with their reviews, and search flights on Google Travel. Get stays, calendars, and reviews from Airbnb.",
+    endpoints: ["maps.search", "maps.place", "maps.reviews", "googletravel.flights", "airbnb.search", "airbnb.listing", "airbnb.calendar", "airbnb.reviews"],
     example: "maps.search",
-    variations: ["tripadvisor.search", "airbnb.search"],
-    tip: "Pass the place id from a Google Maps search, the link from a Tripadvisor search, or the listing link from an Airbnb search into that source's other endpoints.",
-  },
-  {
-    title: "Shopping",
-    slug: "shopping",
-    icon: "cart-shopping",
-    description:
-      "Search Amazon, Walmart, AliExpress, and any Shopify store. Get products, prices, bestsellers, and collections as structured JSON.",
-    endpoints: ["amazon.search", "amazon.product", "amazon.bestsellers", "shopify.products", "shopify.collections", "shopify.store", "walmart.search", "walmart.product", "aliexpress.search", "aliexpress.product"],
-    example: "amazon.search",
-    variations: ["walmart.search", "shopify.products"],
-    tip: "Pass the product link from a search result into the Amazon, Walmart, or AliExpress product lookup for full pricing and details.",
-  },
-  {
-    title: "Apps",
-    slug: "apps",
-    icon: "mobile",
-    description:
-      "Look up apps on the App Store and Google Play. Get app details, search results, top charts, and user reviews as structured JSON.",
-    endpoints: ["appstore.app", "appstore.search", "appstore.reviews", "appstore.top", "googleplay.app", "googleplay.search", "googleplay.reviews"],
-    example: "appstore.search",
-    variations: ["appstore.app", "googleplay.search"],
-    tip: "Pass the app id from a search result into the App Store or Google Play reviews endpoint to read what users say.",
+    variations: ["airbnb.search"],
+    tip: "Pass the place id from a Google Maps search or the listing link from an Airbnb search into that source's other endpoints.",
   },
   {
     title: "Jobs",
     slug: "jobs",
     icon: "briefcase",
     description:
-      "Search job listings on LinkedIn, Upwork, and Indeed. Get the full posting, pay, and requirements for any job as structured JSON.",
-    endpoints: ["linkedin.jobs.search", "linkedin.jobs.job", "upwork.search", "upwork.job", "indeed.search", "indeed.job"],
+      "Search job listings on LinkedIn and Upwork. Get the full posting, pay, and requirements for any job as structured JSON.",
+    endpoints: ["linkedin.jobs.search", "linkedin.jobs.job", "upwork.search", "upwork.job"],
     example: "linkedin.jobs.search",
-    variations: ["upwork.search", "indeed.search"],
+    variations: ["upwork.search"],
     tip: "Pass the job link from a search result into that site's job lookup endpoint for the full posting.",
   },
   {
@@ -140,18 +106,7 @@ const AREAS: Area[] = [
     endpoints: ["meta.ads.page", "ads.search", "ads.ad", "ads.advertisers"],
     example: "ads.search",
     variations: ["ads.ad", "ads.advertisers"],
-    tip: "`ads.search`, `ads.ad` and `ads.advertisers` take a `network`. Each ad library needs a keyword, an advertiser, or both. See each endpoint's reference for what it accepts.",
-  },
-  {
-    title: "Finance and crypto",
-    slug: "finance-and-crypto",
-    icon: "chart-line",
-    description:
-      "Get stock quotes, price history, and company profiles. Get crypto prices, price history, DEX pairs, and wallet balances as JSON.",
-    endpoints: ["crypto.coins", "crypto.coin", "crypto.history", "crypto.dex.search", "crypto.dex.token", "crypto.wallet", "finance.quote", "finance.history", "finance.search", "finance.stock"],
-    example: "finance.quote",
-    variations: ["finance.stock", "crypto.coins"],
-    tip: "Stock quotes accept several tickers in one call. Coin prices accept several coin ids.",
+    tip: "`ads.search`, `ads.ad` and `ads.advertisers` take a `network`. Each ad library needs a keyword, an advertiser, or both. Pinterest takes an advertiser and no keyword. Google takes a keyword only when it is a domain. See each endpoint's reference for what it accepts.",
   },
 ];
 
@@ -159,30 +114,6 @@ const AREAS: Area[] = [
 // the docs repo's builder report for the exact command). Used instead of a
 // schema-guessed sample for the endpoints that actually answer without a key.
 const LIVE_RESPONSES: Record<string, JsonObject> = {
-  "email.find": {
-    "success": true,
-    "data": {
-      "email": "patrick@stripe.com",
-      "status": "valid",
-      "domain": "stripe.com",
-      "mxProvider": "google.com"
-    },
-    "creditsUsed": 1,
-    "requestId": "7ee48ae7-9f8f-4d3a-ab08-f2ba90fa13ae"
-  },
-  "email.verify": {
-    "success": true,
-    "data": {
-      "email": "info@the305agency.com",
-      "status": "valid",
-      "mxProvider": "google.com",
-      "isRole": true,
-      "isDisposable": false,
-      "isFree": false
-    },
-    "creditsUsed": 1,
-    "requestId": "552f1480-c351-4bb8-a417-48aaa08e94c8"
-  },
   "web.search": {
     "success": true,
     "data": {
@@ -245,7 +176,7 @@ const LIVE_RESPONSES: Record<string, JsonObject> = {
       ],
       "cursor": "EqIDEg1ydXN0IHR1dG9yaWFs…"
     },
-    "creditsUsed": 0,
+    "creditsUsed": 1,
     "requestId": "2fe9dbad-fc48-4890-9751-0b24b596035b"
   },
   "transcript": {
@@ -258,7 +189,7 @@ const LIVE_RESPONSES: Record<string, JsonObject> = {
       "durationSeconds": 213,
       "text": "[♪♪♪] ♪ We're no strangers to love ♪ ♪ You know the rules and so do I ♪ ♪ A full commitment's what I'm thinking of ♪ …"
     },
-    "creditsUsed": 0,
+    "creditsUsed": 2,
     "requestId": "b61dc157-0de6-43fd-97ae-564b39d62bdf"
   }
 };
@@ -415,9 +346,7 @@ function areaPage(area: Area, byId: Map<string, CatalogEndpoint>, spec: JsonObje
     "| --- | --- |",
     ...rows,
     "",
-    "## More ways to call it",
-    "",
-    ...variationSections,
+    ...(variationSections.length === 0 ? [] : ["## More ways to call it", "", ...variationSections]),
     ...(area.extra === undefined ? [] : [area.extra]),
     `<Tip>${area.tip}</Tip>`,
     "",

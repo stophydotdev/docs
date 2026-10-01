@@ -7,12 +7,12 @@ og:description: "Make your first Stophy call with no key, then add a key and mak
 
 ## 1. Try it with no key
 
-YouTube search, web search, and transcripts work without a key, within a small free limit.
+Web search works without a key, within a small free limit.
 
 ```bash
-curl -X POST https://api.stophy.dev/v1/youtube/search \
+curl -X POST https://api.stophy.dev/v1/web/search \
   -H "content-type: application/json" \
-  -d '{"query":"rust tutorial","limit":2}'
+  -d '{"query":"bun runtime","limit":2}'
 ```
 
 You should see JSON like this, with `creditsUsed` at `0`:
@@ -23,57 +23,39 @@ You should see JSON like this, with `creditsUsed` at `0`:
   "data": {
     "results": [
       {
-        "type": "video",
-        "videoId": "Wc0ZJo06oAw",
-        "videoUrl": "https://www.youtube.com/watch?v=Wc0ZJo06oAw",
-        "title": "The Ultimate Rust Beginners Guide (2026)",
-        "channelId": "UCt6XPuD8u3YjvybuT-Xnj5A",
-        "channelName": "SBJake",
-        "channelUrl": "https://www.youtube.com/channel/UCt6XPuD8u3YjvybuT-Xnj5A",
-        "channelUsername": "SBJake",
-        "durationSeconds": 422,
-        "views": 545124,
-        "thumbnailUrl": "https://i.ytimg.com/vi/Wc0ZJo06oAw/hqdefault.jpg",
-        "isShort": false,
-        "isLive": false,
-        "publishedAt": "2025-09-30T13:12:21.000Z"
+        "title": "Bun — A fast all-in-one JavaScript runtime",
+        "url": "https://bun.com/",
+        "description": "Bundle, install, and run JavaScript & TypeScript — all in Bun.",
+        "domain": "bun.com",
+        "position": 1
       }
-    ],
-    "cursor": "EqIDEg1ydXN0IHR1dG9yaWFs…"
+    ]
   },
   "creditsUsed": 0,
-  "requestId": "2fe9dbad-fc48-4890-9751-0b24b596035b"
+  "requestId": "0094bdbc-2935-4184-8df9-f476e561a522"
 }
 ```
 
-`data.results` is one page. `limit` keeps at most that many results from it. `data.cursor` is how you get the next page. See [Page through results](/guides/paging).
-
-Get what is said in a video the same way, also without a key:
-
-```bash
-curl -X POST https://api.stophy.dev/v1/transcript \
-  -H "content-type: application/json" \
-  -d '{"video":"https://www.youtube.com/watch?v=dQw4w9WgXcQ"}'
-```
+`data.results` is one page. `limit` keeps at most that many results from it. Endpoints that page also return `data.cursor`, which is how you get the next page. See [Page through results](/guides/paging).
 
 ## 2. Get an API key
 
-Sign up at [stophy.dev/signup](https://stophy.dev/signup). New accounts start with 1,000 free credits ($1). Create a key and store it as `STOPHY_API_KEY`. Never put it in code.
+Sign up at [stophy.dev/signup](https://stophy.dev/signup). New accounts start with 1,000 free credits. Create a key and store it as `STOPHY_API_KEY`. Never put it in code.
 
 ## 3. Make the same call with a key
 
-import YoutubeSearchTs from '/snippets/examples/youtube.search/ts.mdx';
-import YoutubeSearchPython from '/snippets/examples/youtube.search/python.mdx';
-import YoutubeSearchCurl from '/snippets/examples/youtube.search/curl.mdx';
-import YoutubeSearchCli from '/snippets/examples/youtube.search/cli.mdx';
+import WebSearchTs from '/snippets/examples/web.search/ts.mdx';
+import WebSearchPython from '/snippets/examples/web.search/python.mdx';
+import WebSearchCurl from '/snippets/examples/web.search/curl.mdx';
+import WebSearchCli from '/snippets/examples/web.search/cli.mdx';
 
 Send the key as a bearer token. This is the same call as step 1, now under your account.
 
 <CodeGroup>
-  <YoutubeSearchTs />
-  <YoutubeSearchPython />
-  <YoutubeSearchCurl />
-  <YoutubeSearchCli />
+  <WebSearchTs />
+  <WebSearchPython />
+  <WebSearchCurl />
+  <WebSearchCli />
 </CodeGroup>
 
 It returns the same shape as before. With a key, it costs 1 credit instead of being free. Every call to an endpoint costs the same, however many results it returns. See [Credits and billing](/billing).
