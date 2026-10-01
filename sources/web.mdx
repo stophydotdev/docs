@@ -1,8 +1,8 @@
 ---
-title: 'Web search and pages'
-description: 'Search the web and the news, and check a page''s SEO, plus search suggestions and Google Trends.'
-og:title: 'Web search and pages | Stophy'
-og:description: 'Search the web and the news, and check a page''s SEO, plus search suggestions and Google Trends.'
+title: 'Web search'
+description: 'Search the web and get ranked results with titles, links and descriptions as structured JSON.'
+og:title: 'Web search | Stophy'
+og:description: 'Search the web and get ranked results with titles, links and descriptions as structured JSON.'
 icon: 'globe'
 ---
 
@@ -12,16 +12,8 @@ import WebSearchTs from '/snippets/examples/web.search/ts.mdx';
 import WebSearchPython from '/snippets/examples/web.search/python.mdx';
 import WebSearchCurl from '/snippets/examples/web.search/curl.mdx';
 import WebSearchCli from '/snippets/examples/web.search/cli.mdx';
-import WebNewsTs from '/snippets/examples/web.news/ts.mdx';
-import WebNewsPython from '/snippets/examples/web.news/python.mdx';
-import WebNewsCurl from '/snippets/examples/web.news/curl.mdx';
-import WebNewsCli from '/snippets/examples/web.news/cli.mdx';
-import SiteSeoTs from '/snippets/examples/site.seo/ts.mdx';
-import SiteSeoPython from '/snippets/examples/site.seo/python.mdx';
-import SiteSeoCurl from '/snippets/examples/site.seo/curl.mdx';
-import SiteSeoCli from '/snippets/examples/site.seo/cli.mdx';
 
-Search the web and the news, and check a page's SEO, plus search suggestions and Google Trends. See every field in the [Web search and pages reference](/api-reference/endpoint/web-search), or try it in the [playground](https://stophy.dev/playground).
+Search the web and get ranked results with titles, links and descriptions as structured JSON. See every field in the [Web search reference](/api-reference/endpoint/web-search), or try it in the [playground](https://stophy.dev/playground).
 
 ## Search the web and get titles, links and snippets
 
@@ -65,31 +57,5 @@ The response:
 | Endpoint | Cost |
 | --- | --- |
 | [Search the web and get titles, links and snippets](/api-reference/endpoint/web-search) | 1 credit (no key needed) |
-| [Search news articles by topic, date and country](/api-reference/endpoint/web-news) | 1 credit |
-| [Get related searches for a keyword](/api-reference/endpoint/google-trends-related) | 1 credit |
-| [Get what is trending on Google now](/api-reference/endpoint/google-trends-trending) | 1 credit |
-| [Check a page's SEO: titles, tags, headings and links](/api-reference/endpoint/site-seo) | 1 credit |
-| [Get autocomplete phrases for a keyword from Google, YouTube or Amazon](/api-reference/endpoint/suggest) | 1 credit |
-| [Get Google search interest over time or by region](/api-reference/endpoint/google-trends) | 1 credit |
 
-## More ways to call it
-
-### Search news articles by topic, date and country
-
-<CodeGroup>
-  <WebNewsTs />
-  <WebNewsPython />
-  <WebNewsCurl />
-  <WebNewsCli />
-</CodeGroup>
-
-### Check a page's SEO: titles, tags, headings and links
-
-<CodeGroup>
-  <SiteSeoTs />
-  <SiteSeoPython />
-  <SiteSeoCurl />
-  <SiteSeoCli />
-</CodeGroup>
-
-<Tip>Web search, YouTube search and transcripts work without a key. Every other endpoint needs one.</Tip>
+<Tip>Web search works without a key. Every other endpoint needs one.</Tip>

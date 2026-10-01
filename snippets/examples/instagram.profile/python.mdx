@@ -3,5 +3,5 @@ from stophy import Stophy
 
 stophy = Stophy()  # reads STOPHY_API_KEY
 result = stophy.instagram.profile(profile="natgeo")
-print(result["data"])
+print(result["data"]["results"])
 ```

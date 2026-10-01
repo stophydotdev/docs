@@ -3,5 +3,5 @@ import { Stophy } from "stophy";
 
 const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
 const result = await stophy.instagram.profile({ profile: "natgeo" });
-console.log(result.data);
+console.log(result.data.results);
 ```

@@ -131,7 +131,7 @@ function endpointTitle(op: Operation): string {
   return title;
 }
 
-const PROPER_NOUNS = ["Pump.fun", "Binance", "Trends"];
+const PROPER_NOUNS: string[] = [];
 
 const lowerFirst = (text: string) =>
   /^[A-Z][a-z]/.test(text) && !PROPER_NOUNS.some((noun) => text.startsWith(noun))

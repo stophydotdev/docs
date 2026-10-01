@@ -19,6 +19,8 @@ import CliExample from "/snippets/examples/ads.search/cli.mdx";
 - **Cost:** 2 credits per call. Failed calls cost nothing.
 - **Paging:** Yes. Send the `cursor` from the response to get the next page. See [Page through results](/guides/paging).
 
+On Meta, `mediaType` keeps image, video or text ads. Pinterest takes `advertiser` and rejects `query`. Google takes `query` only when it is a domain. To search Google by name, find the advertiser id with Ads advertisers first. On LinkedIn, `within` limits how recent the ads are.
+
 ## Example
 
 <CodeGroup>

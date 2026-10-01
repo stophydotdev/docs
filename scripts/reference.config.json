@@ -7,38 +7,19 @@
     "maps": "Google Maps",
     "instagram": "Instagram",
     "tiktok": "TikTok",
-    "bluesky": "Bluesky",
-    "threads": "Threads",
-    "telegram": "Telegram",
     "meta": "Meta Ads",
     "linkedin": "LinkedIn",
     "zillow": "Zillow",
     "upwork": "Upwork",
-    "google": "Google",
-    "site": "Site",
-    "email": "Email",
-    "crypto": "Crypto",
-    "indeed": "Indeed",
-    "tripadvisor": "Tripadvisor",
     "googletravel": "Google Travel",
-    "amazon": "Amazon",
-    "shopify": "Shopify",
-    "walmart": "Walmart",
-    "aliexpress": "AliExpress",
-    "appstore": "App Store",
-    "googleplay": "Google Play",
     "airbnb": "Airbnb",
     "rightmove": "Rightmove",
     "immoscout": "ImmoScout24",
     "pinterest": "Pinterest",
-    "x": "X",
-    "finance": "Finance",
-    "ads": "Ads",
-    "suggest": "Suggestions"
+    "ads": "Ads"
   },
   "titles": {
     "web.search": "Search",
-    "web.news": "News",
     "youtube.search": "Search",
     "youtube.video": "Video",
     "transcript": "Transcript",
@@ -55,21 +36,12 @@
     "maps.reviews": "Reviews",
     "instagram.profile": "Profile",
     "instagram.post": "Post",
-    "instagram.search": "Search",
     "instagram.comments": "Comments",
     "tiktok.profile": "Profile",
     "tiktok.video": "Video",
     "tiktok.hashtag": "Hashtag",
     "tiktok.comments": "Comments",
     "tiktok.search": "Search",
-    "bluesky.profile": "Profile",
-    "bluesky.post": "Post",
-    "bluesky.followers": "Followers",
-    "threads.profile": "Profile",
-    "threads.post": "Post",
-    "threads.search": "Search",
-    "telegram.posts": "Posts",
-    "telegram.post": "Post",
     "meta.ads.page": "Page",
     "linkedin.jobs.search": "Search jobs",
     "linkedin.jobs.job": "Job",
@@ -80,40 +52,7 @@
     "zillow.property": "Property",
     "upwork.search": "Search",
     "upwork.job": "Job",
-    "google.trends.related": "Related searches",
-    "google.trends.trending": "Trending now",
-    "site.seo": "SEO check",
-    "email.verify": "Verify",
-    "email.find": "Find",
-    "crypto.coins": "Coins",
-    "crypto.coin": "Coin",
-    "crypto.history": "Price history",
-    "crypto.dex.search": "Search DEX pairs",
-    "crypto.dex.token": "DEX token",
-    "crypto.wallet": "Wallet",
-    "indeed.search": "Search",
-    "indeed.job": "Job",
-    "tripadvisor.search": "Search",
-    "tripadvisor.place": "Place",
-    "tripadvisor.reviews": "Reviews",
     "googletravel.flights": "Flights",
-    "amazon.search": "Search",
-    "amazon.product": "Product",
-    "amazon.bestsellers": "Best sellers",
-    "shopify.products": "Products",
-    "shopify.collections": "Collections",
-    "shopify.store": "Store",
-    "walmart.search": "Search",
-    "walmart.product": "Product",
-    "aliexpress.search": "Search",
-    "aliexpress.product": "Product",
-    "appstore.app": "App",
-    "appstore.search": "Search",
-    "appstore.reviews": "Reviews",
-    "appstore.top": "Top charts",
-    "googleplay.app": "App",
-    "googleplay.search": "Search",
-    "googleplay.reviews": "Reviews",
     "airbnb.search": "Search",
     "airbnb.listing": "Listing",
     "airbnb.calendar": "Calendar",
@@ -126,32 +65,17 @@
     "pinterest.pin": "Pin",
     "pinterest.board": "Board",
     "pinterest.user": "Profile",
-    "x.post": "Post",
-    "finance.quote": "Quotes",
-    "finance.history": "Price history",
-    "finance.search": "Search",
     "ads.search": "Search",
     "ads.ad": "Ad",
-    "ads.advertisers": "Advertisers",
-    "suggest": "Suggestions",
-    "google.trends": "Trends",
-    "finance.stock": "Stock"
+    "ads.advertisers": "Advertisers"
   },
   "areas": [
     {
-      "title": "Web search and pages",
+      "title": "Web search",
       "slug": "web",
       "icon": "globe",
       "endpoints": [
-        "web.search",
-        "web.news",
-        "google.trends.related",
-        "google.trends.trending",
-        "site.seo",
-        "email.verify",
-        "email.find",
-        "suggest",
-        "google.trends"
+        "web.search"
       ]
     },
     {
@@ -184,24 +108,14 @@
         "reddit.domain",
         "instagram.profile",
         "instagram.post",
-        "instagram.search",
         "instagram.comments",
-        "bluesky.profile",
-        "bluesky.post",
-        "bluesky.followers",
-        "threads.profile",
-        "threads.post",
-        "threads.search",
-        "telegram.posts",
-        "telegram.post",
         "linkedin.company",
         "linkedin.profile",
         "linkedin.posts",
         "pinterest.search",
         "pinterest.pin",
         "pinterest.board",
-        "pinterest.user",
-        "x.post"
+        "pinterest.user"
       ]
     },
     {
@@ -212,45 +126,11 @@
         "maps.search",
         "maps.place",
         "maps.reviews",
-        "tripadvisor.search",
-        "tripadvisor.place",
-        "tripadvisor.reviews",
         "googletravel.flights",
         "airbnb.search",
         "airbnb.listing",
         "airbnb.calendar",
         "airbnb.reviews"
-      ]
-    },
-    {
-      "title": "Shopping",
-      "slug": "shopping",
-      "icon": "cart-shopping",
-      "endpoints": [
-        "amazon.search",
-        "amazon.product",
-        "amazon.bestsellers",
-        "shopify.products",
-        "shopify.collections",
-        "shopify.store",
-        "walmart.search",
-        "walmart.product",
-        "aliexpress.search",
-        "aliexpress.product"
-      ]
-    },
-    {
-      "title": "Apps",
-      "slug": "apps",
-      "icon": "mobile",
-      "endpoints": [
-        "appstore.app",
-        "appstore.search",
-        "appstore.reviews",
-        "appstore.top",
-        "googleplay.app",
-        "googleplay.search",
-        "googleplay.reviews"
       ]
     },
     {
@@ -261,9 +141,7 @@
         "linkedin.jobs.search",
         "linkedin.jobs.job",
         "upwork.search",
-        "upwork.job",
-        "indeed.search",
-        "indeed.job"
+        "upwork.job"
       ]
     },
     {
@@ -289,28 +167,17 @@
         "ads.ad",
         "ads.advertisers"
       ]
-    },
-    {
-      "title": "Finance and crypto",
-      "slug": "finance-and-crypto",
-      "icon": "chart-line",
-      "endpoints": [
-        "crypto.coins",
-        "crypto.coin",
-        "crypto.history",
-        "crypto.dex.search",
-        "crypto.dex.token",
-        "crypto.wallet",
-        "finance.quote",
-        "finance.history",
-        "finance.search",
-        "finance.stock"
-      ]
     }
   ],
   "notes": {
     "web.search": "Filter with `within`, `country`, `language`, and domains to include or exclude.",
     "transcript": "Pass a YouTube, TikTok or Instagram link in `video`. Set `includeTimestamps` to get each line with its time. TikTok videos over 3 minutes are refused, and refused calls cost nothing.",
-    "endpoints": "Use this catalog to find the right endpoint and its input. Send your API key with every request."
+    "youtube.channel": "A cursor expires after 6 hours. Start again from the first page when it does.",
+    "reddit.search": "With `type` set to `users` there is one page and no cursor.",
+    "tiktok.profile": "The profile's videos come back in `results`. Page with `limit` and `cursor`.",
+    "instagram.profile": "`posts` is the profile's post count. Its latest posts come back in `results`. Page with `limit` and `cursor`.",
+    "airbnb.search": "Returns up to about 110 listings, 18 to a page. Page with `cursor`.",
+    "linkedin.posts": "Returns only the few posts LinkedIn shows publicly.",
+    "ads.search": "On Meta, `mediaType` keeps image, video or text ads. Pinterest takes `advertiser` and rejects `query`. Google takes `query` only when it is a domain. To search Google by name, find the advertiser id with Ads advertisers first. On LinkedIn, `within` limits how recent the ads are."
   }
 }

@@ -42,6 +42,10 @@ The response:
       {
         "adId": "abc123",
         "adUrl": "https://example.com/",
+        "advertiserId": "abc123",
+        "advertiserName": "example",
+        "advertiserUrl": "https://example.com/",
+        "advertiserAvatarUrl": "https://example.com/image.jpg",
         "pageId": "abc123",
         "pageName": "example",
         "pageUrl": "https://example.com/",
@@ -97,7 +101,7 @@ The response:
     ]
   },
   "creditsUsed": 2,
-  "requestId": "7604f073-9de8-4d39-8727-1e047b4ff3c9"
+  "requestId": "33ff8f03-b161-45fd-a612-0428ee4c3ec2"
 }
 ```
 
@@ -130,4 +134,4 @@ The response:
   <AdsAdvertisersCli />
 </CodeGroup>
 
-<Tip>`ads.search`, `ads.ad` and `ads.advertisers` take a `network`. Each ad library needs a keyword, an advertiser, or both. See each endpoint's reference for what it accepts.</Tip>
+<Tip>`ads.search`, `ads.ad` and `ads.advertisers` take a `network`. Each ad library needs a keyword, an advertiser, or both. Pinterest takes an advertiser and no keyword. Google takes a keyword only when it is a domain. See each endpoint's reference for what it accepts.</Tip>

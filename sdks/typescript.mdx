@@ -25,7 +25,7 @@ import { Stophy } from "stophy";
 const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
 ```
 
-Without a key, web search, YouTube search and transcripts still work:
+Without a key, web search still works:
 
 ```ts
 import { Stophy } from "stophy";
@@ -53,9 +53,9 @@ const ads = await stophy.ads.search({ network: "meta", query: "running shoes" })
 console.log(ads.data.results);
 ```
 
-Methods follow the endpoint id. Nested ids are nested properties: `reddit.search` is `stophy.reddit.search(...)`. An endpoint with a single name is a method on the client: `stophy.transcript(...)`, `stophy.suggest(...)`. Inputs and responses are typed from the [API reference](/api-reference/introduction), so a missing required field is a compile error.
+Methods follow the endpoint id. Nested ids are nested properties: `reddit.search` is `stophy.reddit.search(...)`. An endpoint with a single name is a method on the client: `stophy.transcript(...)`. Inputs and responses are typed from the [API reference](/api-reference/introduction), so a missing required field is a compile error.
 
-Some endpoints cover several sources. Pick one with a field: `network` for `ads.*`, `source` for `suggest`, `by` for `google.trends`. The types follow the choice.
+The ad endpoints cover several ad libraries. Pick one with the `network` field. The types follow the choice.
 
 Every response is `{ success, data, creditsUsed, requestId }`. `data` is one flat object, and lists are in `data.results`. `limit` keeps at most that many results from the page, at the same price.
 
@@ -123,7 +123,7 @@ await stophy.web.search({ query: "bun runtime" }, { signal: controller.signal })
 
 | Option | Default | What it does |
 | --- | --- | --- |
-| `apiKey` | `STOPHY_API_KEY` | Your API key. Leave it unset to use the free endpoints. |
+| `apiKey` | `STOPHY_API_KEY` | Your API key. Leave it unset to use web search only. |
 | `baseUrl` | `STOPHY_BASE_URL` or `https://api.stophy.dev` | Where requests go |
 | `timeoutMs` | `30000` | Timeout for each attempt. A timeout is not retried. |
 | `maxRetries` | `2` | Retries for network errors and `429`/`5xx`. `0` turns them off. |

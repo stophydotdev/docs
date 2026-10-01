@@ -2,6 +2,6 @@
 import { Stophy } from "stophy";
 
 const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
-const result = await stophy.googletravel.flights({ origin: "JFK", destination: "LAX", departDate: "2026-11-14" });
+const result = await stophy.googletravel.flights({ origin: "JFK", destination: "LAX", departDate: "2026-11-15" });
 console.log(result.data.results);
 ```

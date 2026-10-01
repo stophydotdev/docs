@@ -67,16 +67,12 @@
             "group": "What you can get",
             "pages": [
               "sources/web",
-              "sources/email",
               "sources/video",
               "sources/social",
               "sources/places-and-travel",
-              "sources/shopping",
-              "sources/apps",
               "sources/jobs",
               "sources/real-estate",
-              "sources/ads",
-              "sources/finance-and-crypto"
+              "sources/ads"
             ]
           },
           {
@@ -134,41 +130,13 @@
             ]
           },
           {
-            "group": "Web search and pages",
+            "group": "Web search",
             "icon": "globe",
             "pages": [
               {
                 "group": "Web",
                 "pages": [
-                  "api-reference/endpoint/web-search",
-                  "api-reference/endpoint/web-news"
-                ]
-              },
-              {
-                "group": "Google",
-                "pages": [
-                  "api-reference/endpoint/google-trends-related",
-                  "api-reference/endpoint/google-trends-trending",
-                  "api-reference/endpoint/google-trends"
-                ]
-              },
-              {
-                "group": "Site",
-                "pages": [
-                  "api-reference/endpoint/site-seo"
-                ]
-              },
-              {
-                "group": "Email",
-                "pages": [
-                  "api-reference/endpoint/email-verify",
-                  "api-reference/endpoint/email-find"
-                ]
-              },
-              {
-                "group": "Suggestions",
-                "pages": [
-                  "api-reference/endpoint/suggest"
+                  "api-reference/endpoint/web-search"
                 ]
               }
             ]
@@ -224,31 +192,7 @@
                 "pages": [
                   "api-reference/endpoint/instagram-profile",
                   "api-reference/endpoint/instagram-post",
-                  "api-reference/endpoint/instagram-search",
                   "api-reference/endpoint/instagram-comments"
-                ]
-              },
-              {
-                "group": "Bluesky",
-                "pages": [
-                  "api-reference/endpoint/bluesky-profile",
-                  "api-reference/endpoint/bluesky-post",
-                  "api-reference/endpoint/bluesky-followers"
-                ]
-              },
-              {
-                "group": "Threads",
-                "pages": [
-                  "api-reference/endpoint/threads-profile",
-                  "api-reference/endpoint/threads-post",
-                  "api-reference/endpoint/threads-search"
-                ]
-              },
-              {
-                "group": "Telegram",
-                "pages": [
-                  "api-reference/endpoint/telegram-posts",
-                  "api-reference/endpoint/telegram-post"
                 ]
               },
               {
@@ -267,12 +211,6 @@
                   "api-reference/endpoint/pinterest-board",
                   "api-reference/endpoint/pinterest-user"
                 ]
-              },
-              {
-                "group": "X",
-                "pages": [
-                  "api-reference/endpoint/x-post"
-                ]
               }
             ]
           },
@@ -286,14 +224,6 @@
                   "api-reference/endpoint/maps-search",
                   "api-reference/endpoint/maps-place",
                   "api-reference/endpoint/maps-reviews"
-                ]
-              },
-              {
-                "group": "Tripadvisor",
-                "pages": [
-                  "api-reference/endpoint/tripadvisor-search",
-                  "api-reference/endpoint/tripadvisor-place",
-                  "api-reference/endpoint/tripadvisor-reviews"
                 ]
               },
               {
@@ -314,65 +244,6 @@
             ]
           },
           {
-            "group": "Shopping",
-            "icon": "cart-shopping",
-            "pages": [
-              {
-                "group": "Amazon",
-                "pages": [
-                  "api-reference/endpoint/amazon-search",
-                  "api-reference/endpoint/amazon-product",
-                  "api-reference/endpoint/amazon-bestsellers"
-                ]
-              },
-              {
-                "group": "Shopify",
-                "pages": [
-                  "api-reference/endpoint/shopify-products",
-                  "api-reference/endpoint/shopify-collections",
-                  "api-reference/endpoint/shopify-store"
-                ]
-              },
-              {
-                "group": "Walmart",
-                "pages": [
-                  "api-reference/endpoint/walmart-search",
-                  "api-reference/endpoint/walmart-product"
-                ]
-              },
-              {
-                "group": "AliExpress",
-                "pages": [
-                  "api-reference/endpoint/aliexpress-search",
-                  "api-reference/endpoint/aliexpress-product"
-                ]
-              }
-            ]
-          },
-          {
-            "group": "Apps",
-            "icon": "mobile",
-            "pages": [
-              {
-                "group": "App Store",
-                "pages": [
-                  "api-reference/endpoint/appstore-app",
-                  "api-reference/endpoint/appstore-search",
-                  "api-reference/endpoint/appstore-reviews",
-                  "api-reference/endpoint/appstore-top"
-                ]
-              },
-              {
-                "group": "Google Play",
-                "pages": [
-                  "api-reference/endpoint/googleplay-app",
-                  "api-reference/endpoint/googleplay-search",
-                  "api-reference/endpoint/googleplay-reviews"
-                ]
-              }
-            ]
-          },
-          {
             "group": "Jobs",
             "icon": "briefcase",
             "pages": [
@@ -388,13 +259,6 @@
                 "pages": [
                   "api-reference/endpoint/upwork-search",
                   "api-reference/endpoint/upwork-job"
-                ]
-              },
-              {
-                "group": "Indeed",
-                "pages": [
-                  "api-reference/endpoint/indeed-search",
-                  "api-reference/endpoint/indeed-job"
                 ]
               }
             ]
@@ -442,32 +306,6 @@
                   "api-reference/endpoint/ads-search",
                   "api-reference/endpoint/ads-ad",
                   "api-reference/endpoint/ads-advertisers"
-                ]
-              }
-            ]
-          },
-          {
-            "group": "Finance and crypto",
-            "icon": "chart-line",
-            "pages": [
-              {
-                "group": "Crypto",
-                "pages": [
-                  "api-reference/endpoint/crypto-coins",
-                  "api-reference/endpoint/crypto-coin",
-                  "api-reference/endpoint/crypto-history",
-                  "api-reference/endpoint/crypto-dex-search",
-                  "api-reference/endpoint/crypto-dex-token",
-                  "api-reference/endpoint/crypto-wallet"
-                ]
-              },
-              {
-                "group": "Finance",
-                "pages": [
-                  "api-reference/endpoint/finance-quote",
-                  "api-reference/endpoint/finance-history",
-                  "api-reference/endpoint/finance-search",
-                  "api-reference/endpoint/finance-stock"
                 ]
               }
             ]
@@ -669,76 +507,8 @@
       "destination": "/sources/web"
     },
     {
-      "source": "/sources/crypto",
-      "destination": "/sources/finance-and-crypto"
-    },
-    {
-      "source": "/sources/finance",
-      "destination": "/sources/finance-and-crypto"
-    },
-    {
-      "source": "/sources/e-commerce",
-      "destination": "/sources/shopping"
-    },
-    {
-      "source": "/sources/reviews-and-apps",
-      "destination": "/sources/apps"
-    },
-    {
       "source": "/sdks/node",
       "destination": "/sdks/typescript"
-    },
-    {
-      "source": "/api-reference/endpoint/amazon-suggest",
-      "destination": "/api-reference/endpoint/suggest"
-    },
-    {
-      "source": "/api-reference/endpoint/bluesky-posts",
-      "destination": "/api-reference/endpoint/bluesky-profile"
-    },
-    {
-      "source": "/api-reference/endpoint/crypto-binance-announcements",
-      "destination": "/sources/finance-and-crypto"
-    },
-    {
-      "source": "/api-reference/endpoint/crypto-categories",
-      "destination": "/sources/finance-and-crypto"
-    },
-    {
-      "source": "/api-reference/endpoint/crypto-dex-new",
-      "destination": "/sources/finance-and-crypto"
-    },
-    {
-      "source": "/api-reference/endpoint/crypto-dex-pairs",
-      "destination": "/sources/finance-and-crypto"
-    },
-    {
-      "source": "/api-reference/endpoint/crypto-movers",
-      "destination": "/sources/finance-and-crypto"
-    },
-    {
-      "source": "/api-reference/endpoint/crypto-new",
-      "destination": "/sources/finance-and-crypto"
-    },
-    {
-      "source": "/api-reference/endpoint/crypto-pump-coin",
-      "destination": "/sources/finance-and-crypto"
-    },
-    {
-      "source": "/api-reference/endpoint/crypto-pump-coins",
-      "destination": "/sources/finance-and-crypto"
-    },
-    {
-      "source": "/api-reference/endpoint/crypto-pump-trades",
-      "destination": "/sources/finance-and-crypto"
-    },
-    {
-      "source": "/api-reference/endpoint/crypto-token-holders",
-      "destination": "/sources/finance-and-crypto"
-    },
-    {
-      "source": "/api-reference/endpoint/crypto-trending",
-      "destination": "/sources/finance-and-crypto"
     },
     {
       "source": "/api-reference/endpoint/domain-dns",
@@ -753,10 +523,6 @@
       "destination": "/sources/web"
     },
     {
-      "source": "/api-reference/endpoint/finance-profile",
-      "destination": "/api-reference/endpoint/finance-stock"
-    },
-    {
       "source": "/api-reference/endpoint/google-ads-ad",
       "destination": "/api-reference/endpoint/ads-ad"
     },
@@ -767,18 +533,6 @@
     {
       "source": "/api-reference/endpoint/google-ads-search",
       "destination": "/api-reference/endpoint/ads-search"
-    },
-    {
-      "source": "/api-reference/endpoint/google-suggest",
-      "destination": "/api-reference/endpoint/suggest"
-    },
-    {
-      "source": "/api-reference/endpoint/google-trends-interest",
-      "destination": "/api-reference/endpoint/google-trends"
-    },
-    {
-      "source": "/api-reference/endpoint/google-trends-regions",
-      "destination": "/api-reference/endpoint/google-trends"
     },
     {
       "source": "/api-reference/endpoint/instagram-comments-replies",
@@ -905,14 +659,6 @@
       "destination": "/sources/social"
     },
     {
-      "source": "/api-reference/endpoint/telegram-channel",
-      "destination": "/api-reference/endpoint/telegram-posts"
-    },
-    {
-      "source": "/api-reference/endpoint/threads-posts",
-      "destination": "/api-reference/endpoint/threads-profile"
-    },
-    {
       "source": "/api-reference/endpoint/tiktok-ads-ad",
       "destination": "/api-reference/endpoint/ads-ad"
     },
@@ -953,16 +699,8 @@
       "destination": "/sources/social"
     },
     {
-      "source": "/api-reference/endpoint/x-tweet",
-      "destination": "/api-reference/endpoint/x-post"
-    },
-    {
       "source": "/api-reference/endpoint/youtube-comments-replies",
       "destination": "/api-reference/endpoint/youtube-comments"
-    },
-    {
-      "source": "/api-reference/endpoint/youtube-suggest",
-      "destination": "/api-reference/endpoint/suggest"
     },
     {
       "source": "/api-reference/endpoint/youtube-transcript",
@@ -999,14 +737,6 @@
     {
       "source": "/v1/channel",
       "destination": "/api-reference/endpoint/youtube-channel"
-    },
-    {
-      "source": "/api-reference/endpoint/web-contacts",
-      "destination": "/sources/email"
-    },
-    {
-      "source": "/api-reference/endpoint/email-check",
-      "destination": "/sources/email"
     }
   ],
   "integrations": {

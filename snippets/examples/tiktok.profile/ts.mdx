@@ -3,5 +3,5 @@ import { Stophy } from "stophy";
 
 const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
 const result = await stophy.tiktok.profile({ profile: "khaby.lame" });
-console.log(result.data);
+console.log(result.data.results);
 ```

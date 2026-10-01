@@ -15,11 +15,11 @@ Stophy uses credits. You buy credits ahead of time and each successful call uses
 
 ## What a call costs
 
-Every endpoint has one flat price per call: 1 or 2 credits. The price does not change with how many results come back. `limit` (1 to 100) returns fewer results at the same price. Errors and empty results cost nothing. `email.verify` and `email.find` are charged only when they return a valid email.
+Every endpoint has one flat price per call: 1 or 2 credits. The price does not change with how many results come back. `limit` (1 to 100) returns fewer results at the same price. Errors and empty results cost nothing.
 
 | Cost | Endpoints |
 | --- | --- |
-| 2 credits | Every Reddit endpoint, every `ads.*` endpoint, `meta.ads.page`, `upwork.search`, `walmart.search`, `aliexpress.search`, and `transcript` |
+| 2 credits | Every Reddit endpoint, every `ads.*` endpoint, `meta.ads.page`, `upwork.search`, and `transcript` |
 | 1 credit | Everything else |
 
 One call returns one page. To get the next page, send the `cursor` from the response in a new call, which costs the same again and continues with no gaps. Find an endpoint's cost in the [API reference](/api-reference/introduction), on each source page, or in `credits` in `GET https://api.stophy.dev/v1/endpoints`.
