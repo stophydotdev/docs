@@ -1,9 +1,9 @@
 ---
 title: 'ImmoScout24 search API'
 sidebarTitle: 'Search'
-description: 'Search German homes for rent or sale. Call the ImmoScout24 search API and get JSON back in one request. 1 credit per call. Failed calls cost nothing.'
+description: 'Search German homes for rent or sale. Call the ImmoScout24 search API and get JSON back in one request. 3 credits per call. Failed calls cost nothing.'
 og:title: 'ImmoScout24 search API | Stophy'
-og:description: 'Search German homes for rent or sale. Call the ImmoScout24 search API and get JSON back in one request. 1 credit per call. Failed calls cost nothing.'
+og:description: 'Search German homes for rent or sale. Call the ImmoScout24 search API and get JSON back in one request. 3 credits per call. Failed calls cost nothing.'
 openapi: 'api-reference/openapi.json POST /v1/immoscout/search'
 ---
 
@@ -16,7 +16,7 @@ import CliExample from "/snippets/examples/immoscout.search/cli.mdx";
 
 - **Endpoint:** `immoscout.search`
 - **Returns:** `data` has `results`, `total`.
-- **Cost:** 1 credit per call. Failed calls cost nothing.
+- **Cost:** 3 credits per call. Failed calls cost nothing.
 - **Paging:** Yes. Send the `cursor` from the response to get the next page. See [Page through results](/guides/paging).
 
 ## Example

@@ -1,9 +1,9 @@
 ---
 title: 'Reddit subreddit API'
 sidebarTitle: 'Subreddit'
-description: 'Get a subreddit''s info and a page of its posts. Call the Reddit subreddit API and get JSON back in one request. 2 credits per call. Failed calls cost nothing.'
+description: 'Get a subreddit''s info and a page of its posts. Call the Reddit subreddit API and get JSON back in one request. 1 credit per call. Failed calls cost nothing.'
 og:title: 'Reddit subreddit API | Stophy'
-og:description: 'Get a subreddit''s info and a page of its posts. Call the Reddit subreddit API and get JSON back in one request. 2 credits per call. Failed calls cost nothing.'
+og:description: 'Get a subreddit''s info and a page of its posts. Call the Reddit subreddit API and get JSON back in one request. 1 credit per call. Failed calls cost nothing.'
 openapi: 'api-reference/openapi.json POST /v1/reddit/subreddit'
 ---
 
@@ -16,7 +16,7 @@ import CliExample from "/snippets/examples/reddit.subreddit/cli.mdx";
 
 - **Endpoint:** `reddit.subreddit`
 - **Returns:** `data` has `subredditId`, `subredditName`, `subredditUrl`, `title`, `description`, `members`, `createdAt`, `avatarUrl`, `isNsfw`, `rules`, `results`.
-- **Cost:** 2 credits per call. Failed calls cost nothing.
+- **Cost:** 1 credit per call. Failed calls cost nothing.
 - **Paging:** Yes. Send the `cursor` from the response to get the next page. See [Page through results](/guides/paging).
 
 ## Example

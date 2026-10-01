@@ -1,9 +1,9 @@
 ---
 title: 'Airbnb search API'
 sidebarTitle: 'Search'
-description: 'Search Airbnb stays by place and dates. Call the Airbnb search API and get JSON back in one request. 1 credit per call. Failed calls cost nothing.'
+description: 'Search Airbnb stays by place and dates. Call the Airbnb search API and get JSON back in one request. 3 credits per call. Failed calls cost nothing.'
 og:title: 'Airbnb search API | Stophy'
-og:description: 'Search Airbnb stays by place and dates. Call the Airbnb search API and get JSON back in one request. 1 credit per call. Failed calls cost nothing.'
+og:description: 'Search Airbnb stays by place and dates. Call the Airbnb search API and get JSON back in one request. 3 credits per call. Failed calls cost nothing.'
 openapi: 'api-reference/openapi.json POST /v1/airbnb/search'
 ---
 
@@ -16,7 +16,7 @@ import CliExample from "/snippets/examples/airbnb.search/cli.mdx";
 
 - **Endpoint:** `airbnb.search`
 - **Returns:** `data` has `results`.
-- **Cost:** 1 credit per call. Failed calls cost nothing.
+- **Cost:** 3 credits per call. Failed calls cost nothing.
 - **Paging:** Yes. Send the `cursor` from the response to get the next page. See [Page through results](/guides/paging).
 
 Returns up to about 110 listings, 18 to a page. Page with `cursor`.

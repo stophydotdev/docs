@@ -1,9 +1,9 @@
 ---
 title: 'Reddit user API'
 sidebarTitle: 'User'
-description: 'Get a user''s profile and a page of their posts and comments. Call the Reddit user API for JSON. 2 credits per call. Every call returns the same flat shape.'
+description: 'Get a user''s profile and a page of their posts and comments. Call the Reddit user API for JSON. 1 credit per call. Every call returns the same flat shape.'
 og:title: 'Reddit user API | Stophy'
-og:description: 'Get a user''s profile and a page of their posts and comments. Call the Reddit user API for JSON. 2 credits per call. Every call returns the same flat shape.'
+og:description: 'Get a user''s profile and a page of their posts and comments. Call the Reddit user API for JSON. 1 credit per call. Every call returns the same flat shape.'
 openapi: 'api-reference/openapi.json POST /v1/reddit/user'
 ---
 
@@ -16,7 +16,7 @@ import CliExample from "/snippets/examples/reddit.user/cli.mdx";
 
 - **Endpoint:** `reddit.user`
 - **Returns:** `data` has `userId`, `username`, `userUrl`, `postKarma`, `commentKarma`, `createdAt`, `avatarUrl`, `isVerified`, `results`.
-- **Cost:** 2 credits per call. Failed calls cost nothing.
+- **Cost:** 1 credit per call. Failed calls cost nothing.
 - **Paging:** Yes. Send the `cursor` from the response to get the next page. See [Page through results](/guides/paging).
 
 ## Example
