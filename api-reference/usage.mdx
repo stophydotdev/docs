@@ -10,7 +10,7 @@ authMethod: "bearer"
 Returns your current balance and totals for every call you have paid for. Needs an API key. Free.
 
 <ResponseField name="balanceMicros" type="integer" required>
-  Your balance in micros. `1500` is one credit.
+  Your balance in millionths of a dollar. One credit is `1500`, so divide by 1,500 to get credits.
 </ResponseField>
 
 <ResponseField name="creditsUsed" type="integer" required>
