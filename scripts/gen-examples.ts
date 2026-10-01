@@ -36,6 +36,10 @@ const FALLBACK_EXAMPLES: Record<string, JsonObject> = {
   "immoscout.listing": { listing: "https://www.immobilienscout24.de/expose/123456789" },
   "pinterest.pin": { pin: "https://www.pinterest.com/pin/123456789012345678/" },
   "pinterest.board": { board: "https://www.pinterest.com/example/example-board/" },
+  "indeed.job": { job: "21a9db51a8d45b9d" },
+  "tripadvisor.place": { place: "https://www.tripadvisor.com/Attraction_Review-g187147-d188151-Reviews-Eiffel_Tower-Paris_Ile_de_France.html" },
+  "tripadvisor.reviews": { place: "https://www.tripadvisor.com/Attraction_Review-g187147-d188151-Reviews-Eiffel_Tower-Paris_Ile_de_France.html" },
+  "walmart.product": { product: "https://www.walmart.com/ip/32-onn-HD-Powered-by-VIZIO/17942205635" },
 };
 
 // --- naming -----------------------------------------------------------

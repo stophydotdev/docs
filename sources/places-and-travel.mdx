@@ -1,8 +1,8 @@
 ---
 title: 'Places and travel'
-description: 'Find places on Google Maps with their reviews, and search flights on Google Travel. Get stays, calendars, and reviews from Airbnb.'
+description: 'Find places on Google Maps and Tripadvisor with their reviews, and search flights on Google Travel. Get stays, calendars, and reviews from Airbnb.'
 og:title: 'Places and travel | Stophy'
-og:description: 'Find places on Google Maps with their reviews, and search flights on Google Travel. Get stays, calendars, and reviews from Airbnb.'
+og:description: 'Find places on Google Maps and Tripadvisor with their reviews, and search flights on Google Travel. Get stays, calendars, and reviews from Airbnb.'
 icon: 'map-location-dot'
 ---
 
@@ -17,7 +17,7 @@ import AirbnbSearchPython from '/snippets/examples/airbnb.search/python.mdx';
 import AirbnbSearchCurl from '/snippets/examples/airbnb.search/curl.mdx';
 import AirbnbSearchCli from '/snippets/examples/airbnb.search/cli.mdx';
 
-Find places on Google Maps with their reviews, and search flights on Google Travel. Get stays, calendars, and reviews from Airbnb. See every field in the [Places and travel reference](/api-reference/endpoint/maps-search), or try it in the [playground](https://stophy.dev/playground).
+Find places on Google Maps and Tripadvisor with their reviews, and search flights on Google Travel. Get stays, calendars, and reviews from Airbnb. See every field in the [Places and travel reference](/api-reference/endpoint/maps-search), or try it in the [playground](https://stophy.dev/playground).
 
 ## Search places on Google Maps by keyword and location
 
@@ -64,7 +64,7 @@ The response:
     ]
   },
   "creditsUsed": 3,
-  "requestId": "61ae4244-4881-4457-8f01-632e954a6f0f"
+  "requestId": "92df43a2-b67b-477d-9d13-19b4d7804f7d"
 }
 ```
 
@@ -75,6 +75,9 @@ The response:
 | [Search places on Google Maps by keyword and location](/api-reference/endpoint/maps-search) | 3 credits |
 | [Get a place's address, hours, rating and contact details](/api-reference/endpoint/maps-place) | 1 credit |
 | [Get a place's reviews](/api-reference/endpoint/maps-reviews) | 1 credit |
+| [Search hotels, restaurants and attractions](/api-reference/endpoint/tripadvisor-search) | 1 credit |
+| [Get a place's rating, ranking and details](/api-reference/endpoint/tripadvisor-place) | 1 credit |
+| [Get a place's reviews](/api-reference/endpoint/tripadvisor-reviews) | 1 credit |
 | [Search flights with prices and times](/api-reference/endpoint/googletravel-flights) | 5 credits |
 | [Search Airbnb stays by place and dates](/api-reference/endpoint/airbnb-search) | 3 credits |
 | [Get a listing's details, amenities and host](/api-reference/endpoint/airbnb-listing) | 1 credit |
@@ -92,4 +95,4 @@ The response:
   <AirbnbSearchCli />
 </CodeGroup>
 
-<Tip>Pass the place id from a Google Maps search or the listing link from an Airbnb search into that source's other endpoints.</Tip>
+<Tip>Pass the place id from a Google Maps search, the place link from a Tripadvisor search, or the listing link from an Airbnb search into that source's other endpoints.</Tip>

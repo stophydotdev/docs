@@ -71,6 +71,8 @@
               "sources/social",
               "sources/places-and-travel",
               "sources/jobs",
+              "sources/shopping",
+              "sources/apps",
               "sources/real-estate",
               "sources/ads"
             ]
@@ -227,6 +229,14 @@
                 ]
               },
               {
+                "group": "Tripadvisor",
+                "pages": [
+                  "api-reference/endpoint/tripadvisor-search",
+                  "api-reference/endpoint/tripadvisor-place",
+                  "api-reference/endpoint/tripadvisor-reviews"
+                ]
+              },
+              {
                 "group": "Google Travel",
                 "pages": [
                   "api-reference/endpoint/googletravel-flights"
@@ -259,6 +269,49 @@
                 "pages": [
                   "api-reference/endpoint/upwork-search",
                   "api-reference/endpoint/upwork-job"
+                ]
+              },
+              {
+                "group": "Indeed",
+                "pages": [
+                  "api-reference/endpoint/indeed-search",
+                  "api-reference/endpoint/indeed-job"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Shopping",
+            "icon": "cart-shopping",
+            "pages": [
+              {
+                "group": "Walmart",
+                "pages": [
+                  "api-reference/endpoint/walmart-search",
+                  "api-reference/endpoint/walmart-product"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Apps",
+            "icon": "mobile-screen",
+            "pages": [
+              {
+                "group": "App Store",
+                "pages": [
+                  "api-reference/endpoint/appstore-app",
+                  "api-reference/endpoint/appstore-search",
+                  "api-reference/endpoint/appstore-reviews",
+                  "api-reference/endpoint/appstore-top"
+                ]
+              },
+              {
+                "group": "Google Play",
+                "pages": [
+                  "api-reference/endpoint/googleplay-app",
+                  "api-reference/endpoint/googleplay-search",
+                  "api-reference/endpoint/googleplay-reviews"
                 ]
               }
             ]

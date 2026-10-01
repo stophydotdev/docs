@@ -33,6 +33,8 @@ interface Operation {
   summary: string;
   source: string;
   credits: number | undefined;
+  creditsMax: number | undefined;
+  terms: string | undefined;
   pages: boolean;
   input: JsonObject | undefined;
   example: JsonObject | undefined;
@@ -74,6 +76,8 @@ function operations(): Operation[] {
         summary: typeof op.summary === "string" ? op.summary : id,
         source: parts[0] ?? id,
         credits: typeof op["x-credits"] === "number" ? op["x-credits"] : undefined,
+        creditsMax: typeof op["x-credits-max"] === "number" ? op["x-credits-max"] : undefined,
+        terms: typeof op.description === "string" ? op.description : undefined,
         pages: propertiesOf(input).includes("cursor"),
         input,
         example,
@@ -86,9 +90,19 @@ function operations(): Operation[] {
 
 const plural = (count: number, word: string) => `${count} ${word}${count === 1 ? "" : "s"}`;
 
+const isVariable = (op: Operation) =>
+  op.credits !== undefined && op.creditsMax !== undefined && op.creditsMax > op.credits;
+
 function cost(op: Operation): string {
   if (op.credits === undefined) return "Free";
-  return plural(op.credits, "credit");
+  return isVariable(op) ? `From ${plural(op.credits, "credit")}` : plural(op.credits, "credit");
+}
+
+function costFact(op: Operation): string {
+  if (op.credits === undefined) return "- **Cost:** Free.";
+  if (!isVariable(op)) return `- **Cost:** ${cost(op)} per call. Failed calls cost nothing.`;
+  const terms = (op.terms ?? `${cost(op)} per call.`).replace(/^Costs /, "").replace(/\.$/, "");
+  return `- **Cost:** ${terms} (${plural(op.creditsMax ?? op.credits, "credit")} at most). Failed calls cost nothing.`;
 }
 
 function variants(data: JsonObject): string[] {
@@ -172,7 +186,7 @@ function endpointPage(op: Operation): string {
   const facts = [
     op.id === "endpoints" ? undefined : `- **Endpoint:** \`${op.id}\``,
     returns(op) === "" ? undefined : `- **Returns:** ${returns(op)}`,
-    op.credits === undefined ? "- **Cost:** Free." : `- **Cost:** ${cost(op)} per call. Failed calls cost nothing.`,
+    costFact(op),
     op.method === "POST" ? `- **Paging:** ${paging}` : undefined,
   ].filter((line) => line !== undefined);
   const note = config.notes[op.id];
