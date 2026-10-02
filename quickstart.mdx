@@ -12,7 +12,7 @@ Google search works without a key, within a small free limit.
 ```bash
 curl -X POST https://api.stophy.dev/v1/google/search \
   -H "content-type: application/json" \
-  -d '{"query":"bun runtime","limit":2}'
+  -d '{"query":"bun runtime"}'
 ```
 
 You should see JSON like this, with `creditsUsed` at `0`:
@@ -35,7 +35,7 @@ You should see JSON like this, with `creditsUsed` at `0`:
 }
 ```
 
-`data.results` is one page. `limit` keeps at most that many results from it. Endpoints that page also return `data.cursor`, which is how you get the next page. See [Page through results](/guides/paging).
+`data.results` is one page, as the site shows it. Endpoints that page take `page` (send `page: 2` while `data.hasMore` is true) or `cursor` (send back the `cursor` from the response). See [Page through results](/guides/paging).
 
 ## 2. Get an API key
 

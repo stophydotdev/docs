@@ -101,6 +101,6 @@ A failed call returns an error status and `{ "success": false, "error": { ... } 
 
 ## One call, one page, one price
 
-Each call returns one page and costs a fixed price, from 1 to 5 credits, whatever it returns. The exception is `transcript`: it costs 2 credits, or more when the audio has to be transcribed. See [Credits and billing](/billing). Endpoints that return `results` take `limit` (1 to 100) to keep at most that many results from the page. It does not change the price. To get the next page, send the `cursor` back with the same input. See [Page through results](/guides/paging).
+Each call returns one page and costs a fixed price, from 1 to 4 credits, whatever it returns. The exception is `transcript`: it costs 2 credits, or more when the audio has to be transcribed. See [Credits and billing](/billing). Endpoints that page take `page` (send `page: 2` while `data.hasMore` is true) or `cursor` (send back the `cursor` from the response). Endpoints without either return everything in one call. See [Page through results](/guides/paging).
 
 Inputs are flat too. There are no nested option objects, and the JSON body is the only input: there is no output format to choose.
