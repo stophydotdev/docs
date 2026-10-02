@@ -1,9 +1,9 @@
 ---
 title: 'Ads search API'
 sidebarTitle: 'Search'
-description: 'Search a public ad library: Meta, Google, TikTok, LinkedIn, Microsoft or Pinterest. Call the Ads search API for JSON. 5 credits per call.'
+description: 'Search a public ad library: Meta, Google, TikTok, LinkedIn, Microsoft or Pinterest. Call the Ads search API for JSON. 1 credit per call.'
 og:title: 'Ads search API | Stophy'
-og:description: 'Search a public ad library: Meta, Google, TikTok, LinkedIn, Microsoft or Pinterest. Call the Ads search API for JSON. 5 credits per call.'
+og:description: 'Search a public ad library: Meta, Google, TikTok, LinkedIn, Microsoft or Pinterest. Call the Ads search API for JSON. 1 credit per call.'
 openapi: 'api-reference/openapi.json POST /v1/ads/search'
 ---
 
@@ -16,7 +16,7 @@ import CliExample from "/snippets/examples/ads.search/cli.mdx";
 
 - **Endpoint:** `ads.search`
 - **Returns:** `data` has `results`, `totalMin`, `totalMax`, `advertiserId`, `advertiserName`, `total`.
-- **Cost:** 5 credits per call. Failed calls cost nothing.
+- **Cost:** 1 credit per call. Failed calls cost nothing.
 - **Paging:** Yes. Send the `cursor` from the response to get the next page. See [Page through results](/guides/paging).
 
 On Meta, `mediaType` keeps image, video or text ads. Pinterest takes `advertiser` and rejects `query`. Google takes `query` only when it is a domain. To search Google by name, find the advertiser id with Ads advertisers first. On LinkedIn, `within` limits how recent the ads are.
