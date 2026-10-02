@@ -1,6 +1,7 @@
 {
   "sources": {
-    "web": "Web",
+    "google": "Google",
+    "ai": "AI",
     "youtube": "YouTube",
     "transcript": "Transcript",
     "reddit": "Reddit",
@@ -24,7 +25,12 @@
     "googleplay": "Google Play"
   },
   "titles": {
-    "web.search": "Search",
+    "google.search": "Search",
+    "google.news": "News",
+    "google.images": "Images",
+    "google.aiMode": "AI Mode",
+    "google.shopping": "Shopping",
+    "ai.answer": "Answer",
     "youtube.search": "Search",
     "youtube.video": "Video",
     "transcript": "Transcript",
@@ -86,15 +92,21 @@
     "appstore.top": "Top charts",
     "googleplay.app": "App",
     "googleplay.search": "Search",
-    "googleplay.reviews": "Reviews"
+    "googleplay.reviews": "Reviews",
+    "linkedin.people.search": "Search people",
+    "linkedin.companies.search": "Search companies"
   },
   "areas": [
     {
-      "title": "Web search",
+      "title": "Search and AI answers",
       "slug": "web",
-      "icon": "globe",
+      "icon": "magnifying-glass",
       "endpoints": [
-        "web.search"
+        "google.search",
+        "google.news",
+        "google.images",
+        "google.aiMode",
+        "ai.answer"
       ]
     },
     {
@@ -134,7 +146,9 @@
         "pinterest.search",
         "pinterest.pin",
         "pinterest.board",
-        "pinterest.user"
+        "pinterest.user",
+        "linkedin.people.search",
+        "linkedin.companies.search"
       ]
     },
     {
@@ -174,7 +188,8 @@
       "icon": "cart-shopping",
       "endpoints": [
         "walmart.search",
-        "walmart.product"
+        "walmart.product",
+        "google.shopping"
       ]
     },
     {
@@ -217,7 +232,12 @@
     }
   ],
   "notes": {
-    "web.search": "Filter with `within`, `country`, `language`, and domains to include or exclude.",
+    "google.search": "Filter with `within`, `country`, `language`, and domains to include or exclude. Keys a result does not have are left out. Without a key you get up to 10 results.",
+    "google.news": "Search by `query`, or leave it out and pick a `topic` for the top headlines.",
+    "google.aiMode": "Returns Google's AI Mode answer as text, with the pages it cites in `sources`.",
+    "ai.answer": "Pick the assistant with `engine`: `gemini` or `chatgpt`. Returns its answer and the pages it cites.",
+    "linkedin.people.search": "Results come with profile details when LinkedIn shows them publicly. A result without details costs no extra credit.",
+    "linkedin.companies.search": "Results come with company page details. A result without details costs no extra credit.",
     "transcript": "Pass a YouTube, TikTok or Instagram link in `video`. Set `includeTimestamps` to get each line with its time. When there are no captions, the audio is transcribed and `transcribedSeconds` says how much. TikTok videos over 3 minutes are refused, and refused calls cost nothing.",
     "youtube.channel": "A cursor expires after 6 hours. Start again from the first page when it does.",
     "reddit.search": "With `type` set to `users` there is one page and no cursor.",

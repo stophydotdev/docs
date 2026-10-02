@@ -15,13 +15,13 @@ Set `OPENAI_API_KEY` in your environment. `STOPHY_API_KEY` is optional for this 
 
 ## The Stophy tool
 
-This function calls web search and returns the results as JSON, limited to 5 so the model's context stays small. It reads your key from `STOPHY_API_KEY`, and works without one.
+This function calls Google search and returns the results as JSON, limited to 5 so the model's context stays small. It reads your key from `STOPHY_API_KEY`, and works without one.
 
 ```ts stophy.ts
 export async function stophySearch(query: string): Promise<string> {
   const headers: Record<string, string> = { "content-type": "application/json" };
   if (process.env.STOPHY_API_KEY) headers.authorization = `Bearer ${process.env.STOPHY_API_KEY}`;
-  const response = await fetch("https://api.stophy.dev/v1/web/search", {
+  const response = await fetch("https://api.stophy.dev/v1/google/search", {
     method: "POST",
     headers,
     body: JSON.stringify({ query, limit: 5 }),

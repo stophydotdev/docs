@@ -23,10 +23,10 @@ Stophy gives your agent or app structured public web data from one API: search r
 
 ## Make your first request
 
-Web search works without a key, so you can run this as it is:
+Google search works without a key, so you can run this as it is:
 
 ```bash
-curl -X POST https://api.stophy.dev/v1/web/search \
+curl -X POST https://api.stophy.dev/v1/google/search \
   -H "content-type: application/json" \
   -d '{"query":"bun runtime","limit":2}'
 ```
@@ -37,16 +37,15 @@ curl -X POST https://api.stophy.dev/v1/web/search \
   "data": {
     "results": [
       {
-        "title": "Bun — A fast all-in-one JavaScript runtime",
         "url": "https://bun.com/",
-        "description": "Bundle, install, and run JavaScript & TypeScript — all in Bun.",
-        "domain": "bun.com",
+        "title": "Bun — A fast all-in-one JavaScript runtime",
+        "description": "Bun is a fast JavaScript runtime & toolkit. All in one.",
         "position": 1
       }
     ]
   },
   "creditsUsed": 0,
-  "requestId": "0094bdbc-2935-4184-8df9-f476e561a522"
+  "requestId": "44eea069-e571-4dd8-95b4-cd56e641701a"
 }
 ```
 

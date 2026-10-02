@@ -15,7 +15,7 @@ Every Stophy endpoint uses the same base URL and bearer key. Data endpoints take
 ## Features
 
 <CardGroup cols={3}>
-  <Card title="Web search" icon="globe" color="f5d90a" href="/sources/web">Search results from across the web.</Card>
+  <Card title="Search and AI answers" icon="magnifying-glass" color="f5d90a" href="/sources/web">Google results, news and images, and answers from AI assistants.</Card>
   <Card title="Video" icon="video" color="f5d90a" href="/sources/video">YouTube and TikTok videos, transcripts and comments.</Card>
   <Card title="Social" icon="users" color="f5d90a" href="/sources/social">Posts, profiles and comments from Reddit, Instagram, LinkedIn and Pinterest.</Card>
   <Card title="Places and travel" icon="map-location-dot" color="f5d90a" href="/sources/places-and-travel">Google Maps and Tripadvisor places and reviews, flights and Airbnb.</Card>
@@ -34,7 +34,7 @@ See every endpoint in the sidebar, grouped the same way.
 https://api.stophy.dev
 ```
 
-Every endpoint is a `POST` with a JSON object body. The path is `/v1/` plus the endpoint id with dots as slashes: `web.search` is `/v1/web/search`, and `transcript` is `/v1/transcript`. Unknown input fields return `400`.
+Every endpoint is a `POST` with a JSON object body. The path is `/v1/` plus the endpoint id with dots as slashes: `google.search` is `/v1/google/search`, and `transcript` is `/v1/transcript`. Unknown input fields return `400`.
 
 ## Authentication
 

@@ -7,10 +7,10 @@ og:description: "Make your first Stophy call with no key, then add a key and mak
 
 ## 1. Try it with no key
 
-Web search works without a key, within a small free limit.
+Google search works without a key, within a small free limit.
 
 ```bash
-curl -X POST https://api.stophy.dev/v1/web/search \
+curl -X POST https://api.stophy.dev/v1/google/search \
   -H "content-type: application/json" \
   -d '{"query":"bun runtime","limit":2}'
 ```
@@ -23,16 +23,15 @@ You should see JSON like this, with `creditsUsed` at `0`:
   "data": {
     "results": [
       {
-        "title": "Bun — A fast all-in-one JavaScript runtime",
         "url": "https://bun.com/",
-        "description": "Bundle, install, and run JavaScript & TypeScript — all in Bun.",
-        "domain": "bun.com",
+        "title": "Bun — A fast all-in-one JavaScript runtime",
+        "description": "Bun is a fast JavaScript runtime & toolkit. All in one.",
         "position": 1
       }
     ]
   },
   "creditsUsed": 0,
-  "requestId": "0094bdbc-2935-4184-8df9-f476e561a522"
+  "requestId": "44eea069-e571-4dd8-95b4-cd56e641701a"
 }
 ```
 
@@ -44,10 +43,10 @@ Sign up at [stophy.dev/signup](https://stophy.dev/signup). New accounts start wi
 
 ## 3. Make the same call with a key
 
-import WebSearchTs from '/snippets/examples/web.search/ts.mdx';
-import WebSearchPython from '/snippets/examples/web.search/python.mdx';
-import WebSearchCurl from '/snippets/examples/web.search/curl.mdx';
-import WebSearchCli from '/snippets/examples/web.search/cli.mdx';
+import WebSearchTs from '/snippets/examples/google.search/ts.mdx';
+import WebSearchPython from '/snippets/examples/google.search/python.mdx';
+import WebSearchCurl from '/snippets/examples/google.search/curl.mdx';
+import WebSearchCli from '/snippets/examples/google.search/cli.mdx';
 
 Send the key as a bearer token. This is the same call as step 1, now under your account.
 

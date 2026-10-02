@@ -25,12 +25,12 @@ import { Stophy } from "stophy";
 const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
 ```
 
-Without a key, web search still works:
+Without a key, Google search still works:
 
 ```ts
 import { Stophy } from "stophy";
 
-const result = await new Stophy().web.search({ query: "bun runtime" });
+const result = await new Stophy().google.search({ query: "bun runtime" });
 console.log(result.data.results);
 ```
 
@@ -118,12 +118,12 @@ const stophy = new Stophy({
 
 const controller = new AbortController();
 setTimeout(() => controller.abort(), 5_000);
-await stophy.web.search({ query: "bun runtime" }, { signal: controller.signal });
+await stophy.google.search({ query: "bun runtime" }, { signal: controller.signal });
 ```
 
 | Option | Default | What it does |
 | --- | --- | --- |
-| `apiKey` | `STOPHY_API_KEY` | Your API key. Leave it unset to use web search only. |
+| `apiKey` | `STOPHY_API_KEY` | Your API key. Leave it unset to use Google search only. |
 | `baseUrl` | `STOPHY_BASE_URL` or `https://api.stophy.dev` | Where requests go |
 | `timeoutMs` | `30000` | Timeout for each attempt. A timeout is not retried. |
 | `maxRetries` | `2` | Retries for network errors and `429`/`5xx`. `0` turns them off. |
@@ -145,7 +145,7 @@ const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
 const usage = await stophy.usage();
 console.log(usage.balanceMicros, usage.creditsUsed, usage.requestCount);
 
-const logs = await stophy.logs({ days: 7, page: 0, endpoint: "web.search" });
+const logs = await stophy.logs({ days: 7, page: 0, endpoint: "google.search" });
 for (const entry of logs.logs) {
   console.log(entry.createdAt, entry.endpoint, entry.credits);
 }

@@ -295,17 +295,18 @@
         }
       }
     },
-    "/v1/web/search": {
+    "/v1/google/search": {
       "post": {
-        "operationId": "webSearch",
-        "summary": "Search the web and get titles, links and snippets",
-        "description": "Costs 1 credit per call.",
+        "operationId": "googleSearch",
+        "summary": "Search Google and get results, the AI Overview, the knowledge panel and related questions",
+        "description": "Costs 1 credit per 10 results returned, never more than you asked for.",
         "security": [
           {
             "apiKey": []
           }
         ],
         "x-credits": 1,
+        "x-credits-max": 10,
         "requestBody": {
           "required": true,
           "content": {
@@ -313,6 +314,13 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "limit": {
+                    "default": 10,
+                    "description": "How many results to return, up to 100.",
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100
+                  },
                   "query": {
                     "type": "string",
                     "minLength": 1,
@@ -352,12 +360,6 @@
                       "year",
                       "all"
                     ]
-                  },
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "required": [
@@ -421,19 +423,843 @@
                             "type": "object",
                             "additionalProperties": false,
                             "properties": {
-                              "title": {
-                                "type": "string",
-                                "minLength": 1
-                              },
                               "url": {
                                 "type": "string",
                                 "format": "uri"
                               },
+                              "title": {
+                                "type": "string",
+                                "minLength": 1
+                              },
                               "description": {
+                                "description": "Text shown under the title.",
                                 "type": "string"
                               },
-                              "domain": {
+                              "date": {
+                                "description": "Day shown on the result, when there is one.",
+                                "type": "string",
+                                "format": "date",
+                                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
+                              },
+                              "sitelinks": {
+                                "description": "Links listed under the result.",
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "additionalProperties": false,
+                                  "properties": {
+                                    "title": {
+                                      "type": "string",
+                                      "minLength": 1,
+                                      "description": "Link text."
+                                    },
+                                    "url": {
+                                      "type": "string",
+                                      "format": "uri",
+                                      "description": "Destination URL."
+                                    }
+                                  },
+                                  "required": [
+                                    "title",
+                                    "url"
+                                  ]
+                                }
+                              },
+                              "position": {
+                                "type": "integer",
+                                "exclusiveMinimum": 0,
+                                "maximum": 9007199254740991
+                              }
+                            },
+                            "required": [
+                              "url",
+                              "title",
+                              "position"
+                            ]
+                          }
+                        },
+                        "aiOverview": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "properties": {
+                            "text": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "sources": {
+                              "description": "Pages the overview cites.",
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "additionalProperties": false,
+                                "properties": {
+                                  "url": {
+                                    "type": "string",
+                                    "format": "uri"
+                                  },
+                                  "title": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  }
+                                },
+                                "required": [
+                                  "url"
+                                ]
+                              }
+                            }
+                          },
+                          "required": [
+                            "text"
+                          ]
+                        },
+                        "knowledgeGraph": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "properties": {
+                            "title": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "type": {
+                              "type": "string"
+                            },
+                            "website": {
+                              "type": "string",
+                              "format": "uri"
+                            },
+                            "imageUrl": {
+                              "type": "string",
+                              "format": "uri"
+                            },
+                            "description": {
+                              "type": "string"
+                            },
+                            "descriptionSource": {
+                              "type": "string"
+                            },
+                            "descriptionUrl": {
+                              "type": "string",
+                              "format": "uri"
+                            },
+                            "attributes": {
+                              "description": "Labelled facts, like Founded or Headquarters.",
+                              "type": "object",
+                              "propertyNames": {
                                 "type": "string"
+                              },
+                              "additionalProperties": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "required": [
+                            "title"
+                          ]
+                        },
+                        "peopleAlsoAsk": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                              "question": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "answer": {
+                                "type": "string"
+                              },
+                              "title": {
+                                "type": "string"
+                              },
+                              "url": {
+                                "type": "string",
+                                "format": "uri"
+                              }
+                            },
+                            "required": [
+                              "question"
+                            ]
+                          }
+                        },
+                        "relatedSearches": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "isPartial": {
+                          "description": "True when later pages failed and only the earlier results are here.",
+                          "type": "boolean",
+                          "const": true
+                        }
+                      },
+                      "required": [
+                        "results"
+                      ]
+                    },
+                    "creditsUsed": {
+                      "type": "integer"
+                    },
+                    "requestId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/Error"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      }
+    },
+    "/v1/google/news": {
+      "post": {
+        "operationId": "googleNews",
+        "summary": "Search Google News by keyword, date, site and country, or read headlines by topic",
+        "description": "Costs 1 credit per 10 articles returned, never more than you asked for.",
+        "x-credits": 1,
+        "x-credits-max": 5,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "limit": {
+                    "default": 10,
+                    "description": "How many articles to return, up to 50. Headlines (no query) give up to 10.",
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 50
+                  },
+                  "query": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 400
+                  },
+                  "topic": {
+                    "description": "Headlines for one section instead of a search. Send query or topic, not both.",
+                    "type": "string",
+                    "enum": [
+                      "world",
+                      "nation",
+                      "business",
+                      "technology",
+                      "entertainment",
+                      "sports",
+                      "science",
+                      "health"
+                    ]
+                  },
+                  "country": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z]{2}$",
+                    "description": "ISO 3166-1 alpha-2 country code, e.g. us. Any case is accepted."
+                  },
+                  "language": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z]{2}$",
+                    "description": "Two-letter language code like en or pt. Any case is accepted."
+                  },
+                  "includeDomains": {
+                    "maxItems": 10,
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "excludeDomains": {
+                    "maxItems": 10,
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "within": {
+                    "default": "all",
+                    "type": "string",
+                    "enum": [
+                      "hour",
+                      "day",
+                      "week",
+                      "month",
+                      "year",
+                      "all"
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              },
+              "example": {
+                "query": "nvidia"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The data, and the credits this call used.",
+            "headers": {
+              "X-Request-ID": {
+                "$ref": "#/components/headers/RequestId"
+              },
+              "x-credits-used": {
+                "$ref": "#/components/headers/CreditsUsed"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "x-cache": {
+                "$ref": "#/components/headers/Cache"
+              },
+              "x-cache-age": {
+                "$ref": "#/components/headers/CacheAge"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data",
+                    "creditsUsed",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "success": {
+                      "const": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                              "url": {
+                                "type": "string",
+                                "format": "uri"
+                              },
+                              "title": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "source": {
+                                "description": "Publication that ran the article.",
+                                "type": "string"
+                              },
+                              "description": {
+                                "description": "Text shown under the headline.",
+                                "type": "string"
+                              },
+                              "publishedAt": {
+                                "description": "When the article was published.",
+                                "type": "string",
+                                "format": "date-time",
+                                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$"
+                              },
+                              "position": {
+                                "type": "integer",
+                                "exclusiveMinimum": 0,
+                                "maximum": 9007199254740991
+                              }
+                            },
+                            "required": [
+                              "url",
+                              "title",
+                              "position"
+                            ]
+                          }
+                        },
+                        "isPartial": {
+                          "description": "True when later pages failed and only the earlier articles are here.",
+                          "type": "boolean",
+                          "const": true
+                        }
+                      },
+                      "required": [
+                        "results"
+                      ]
+                    },
+                    "creditsUsed": {
+                      "type": "integer"
+                    },
+                    "requestId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/Error"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      }
+    },
+    "/v1/google/images": {
+      "post": {
+        "operationId": "googleImages",
+        "summary": "Search Google Images and get each full-size image with the page it comes from",
+        "description": "Costs 1 credit per call.",
+        "x-credits": 1,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "limit": {
+                    "default": 20,
+                    "description": "How many images to return, up to 100.",
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100
+                  },
+                  "query": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 400
+                  },
+                  "country": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z]{2}$",
+                    "description": "ISO 3166-1 alpha-2 country code, e.g. us. Any case is accepted."
+                  },
+                  "language": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z]{2}$",
+                    "description": "Two-letter language code like en or pt. Any case is accepted."
+                  }
+                },
+                "required": [
+                  "query"
+                ],
+                "additionalProperties": false
+              },
+              "example": {
+                "query": "golden retriever puppy",
+                "limit": 10
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The data, and the credits this call used.",
+            "headers": {
+              "X-Request-ID": {
+                "$ref": "#/components/headers/RequestId"
+              },
+              "x-credits-used": {
+                "$ref": "#/components/headers/CreditsUsed"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "x-cache": {
+                "$ref": "#/components/headers/Cache"
+              },
+              "x-cache-age": {
+                "$ref": "#/components/headers/CacheAge"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data",
+                    "creditsUsed",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "success": {
+                      "const": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                              "imageUrl": {
+                                "type": "string",
+                                "format": "uri"
+                              },
+                              "title": {
+                                "type": "string"
+                              },
+                              "pageUrl": {
+                                "type": "string",
+                                "format": "uri"
+                              },
+                              "source": {
+                                "type": "string"
+                              },
+                              "width": {
+                                "type": "integer",
+                                "minimum": -9007199254740991,
+                                "maximum": 9007199254740991
+                              },
+                              "height": {
+                                "type": "integer",
+                                "minimum": -9007199254740991,
+                                "maximum": 9007199254740991
+                              },
+                              "thumbnailUrl": {
+                                "type": "string",
+                                "format": "uri"
+                              },
+                              "position": {
+                                "type": "integer",
+                                "minimum": -9007199254740991,
+                                "maximum": 9007199254740991
+                              }
+                            },
+                            "required": [
+                              "imageUrl",
+                              "pageUrl",
+                              "width",
+                              "height",
+                              "thumbnailUrl",
+                              "position"
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "results"
+                      ]
+                    },
+                    "creditsUsed": {
+                      "type": "integer"
+                    },
+                    "requestId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/Error"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      }
+    },
+    "/v1/google/aiMode": {
+      "post": {
+        "operationId": "googleAiMode",
+        "summary": "Ask Google AI Mode a question and get its answer with the sources it cites",
+        "description": "Costs 2 credits per call.",
+        "x-credits": 2,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "prompt": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 2000,
+                    "description": "The question to ask, worded the way a person would ask it."
+                  },
+                  "country": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z]{2}$",
+                    "description": "ISO 3166-1 alpha-2 country code, e.g. us. Any case is accepted."
+                  },
+                  "language": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z]{2}$",
+                    "description": "Two-letter language code like en or pt. Any case is accepted."
+                  }
+                },
+                "required": [
+                  "prompt"
+                ],
+                "additionalProperties": false
+              },
+              "example": {
+                "prompt": "What is the best CRM for a small business?"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The data, and the credits this call used.",
+            "headers": {
+              "X-Request-ID": {
+                "$ref": "#/components/headers/RequestId"
+              },
+              "x-credits-used": {
+                "$ref": "#/components/headers/CreditsUsed"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "x-cache": {
+                "$ref": "#/components/headers/Cache"
+              },
+              "x-cache-age": {
+                "$ref": "#/components/headers/CacheAge"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data",
+                    "creditsUsed",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "success": {
+                      "const": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "prompt": {
+                          "type": "string"
+                        },
+                        "answer": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "sources": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                              "url": {
+                                "type": "string",
+                                "format": "uri"
+                              },
+                              "title": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "url"
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "answer",
+                        "sources"
+                      ]
+                    },
+                    "creditsUsed": {
+                      "type": "integer"
+                    },
+                    "requestId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/Error"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      }
+    },
+    "/v1/google/shopping": {
+      "post": {
+        "operationId": "googleShopping",
+        "summary": "Compare product prices and sellers on Google Shopping by country",
+        "description": "Costs 2 credits per call.",
+        "x-credits": 2,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "limit": {
+                    "default": 20,
+                    "description": "How many products to return, up to 40.",
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 40
+                  },
+                  "query": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 400
+                  },
+                  "country": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z]{2}$",
+                    "description": "ISO 3166-1 alpha-2 country code, e.g. us. Any case is accepted."
+                  },
+                  "language": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z]{2}$",
+                    "description": "Two-letter language code like en or pt. Any case is accepted."
+                  }
+                },
+                "required": [
+                  "query"
+                ],
+                "additionalProperties": false
+              },
+              "example": {
+                "query": "running shoes"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The data, and the credits this call used.",
+            "headers": {
+              "X-Request-ID": {
+                "$ref": "#/components/headers/RequestId"
+              },
+              "x-credits-used": {
+                "$ref": "#/components/headers/CreditsUsed"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "x-cache": {
+                "$ref": "#/components/headers/Cache"
+              },
+              "x-cache-age": {
+                "$ref": "#/components/headers/CacheAge"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data",
+                    "creditsUsed",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "success": {
+                      "const": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                              "title": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "price": {
+                                "type": "number",
+                                "exclusiveMinimum": 0,
+                                "description": "Current price in the country's currency."
+                              },
+                              "priceCurrency": {
+                                "type": "string",
+                                "pattern": "^[A-Z]{3}$",
+                                "description": "ISO 4217 currency code, e.g. USD."
+                              },
+                              "originalPrice": {
+                                "description": "Higher price Google shows next to the current one, when there is one.",
+                                "type": "number",
+                                "exclusiveMinimum": 0
+                              },
+                              "seller": {
+                                "description": "Store with the listed price.",
+                                "type": "string"
+                              },
+                              "delivery": {
+                                "description": "Delivery terms, in the page language.",
+                                "type": "string"
+                              },
+                              "returns": {
+                                "description": "Return terms, in the page language.",
+                                "type": "string"
+                              },
+                              "rating": {
+                                "type": "number",
+                                "minimum": 0,
+                                "maximum": 5
+                              },
+                              "reviews": {
+                                "description": "How many reviews the rating is based on.",
+                                "type": "integer",
+                                "minimum": 0,
+                                "maximum": 9007199254740991
                               },
                               "position": {
                                 "type": "integer",
@@ -443,7 +1269,7 @@
                             },
                             "required": [
                               "title",
-                              "url",
+                              "price",
                               "position"
                             ]
                           }
@@ -486,6 +1312,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  },
                   "query": {
                     "type": "string",
                     "minLength": 1,
@@ -526,12 +1358,6 @@
                     "type": "string",
                     "minLength": 1,
                     "description": "The cursor from the previous response. Send it as is."
-                  },
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "required": [
@@ -1103,6 +1929,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  },
                   "video": {
                     "type": "string"
                   },
@@ -1124,12 +1956,6 @@
                     "type": "string",
                     "minLength": 1,
                     "description": "The cursor from the previous response. Send it as is."
-                  },
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "required": [
@@ -1295,6 +2121,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  },
                   "channel": {
                     "type": "string",
                     "minLength": 2,
@@ -1315,12 +2147,6 @@
                     "type": "string",
                     "minLength": 1,
                     "description": "The cursor from the previous response. Send it as is."
-                  },
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "required": [
@@ -1646,6 +2472,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  },
                   "playlist": {
                     "type": "string"
                   },
@@ -1653,12 +2485,6 @@
                     "type": "string",
                     "minLength": 1,
                     "description": "The cursor from the previous response. Send it as is."
-                  },
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "required": [
@@ -1864,10 +2690,17 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  },
                   "query": {
                     "type": "string",
                     "minLength": 1,
-                    "maxLength": 512
+                    "maxLength": 512,
+                    "description": "Words to find. With any sort other than relevance, a query of several words matches that exact phrase; use sort relevance to match the words anywhere in a post. Quotes, AND, OR, NOT, title:, selftext:, author:, subreddit: and site: are used as typed."
                   },
                   "type": {
                     "default": "posts",
@@ -1883,6 +2716,7 @@
                   },
                   "sort": {
                     "default": "relevance",
+                    "description": "relevance matches the words anywhere in a post. hot, top, newest and mostComments match the exact phrase, so a query of several words only returns posts containing that phrase.",
                     "type": "string",
                     "enum": [
                       "relevance",
@@ -1908,12 +2742,6 @@
                     "type": "string",
                     "minLength": 1,
                     "description": "The cursor from the previous response. Send it as is."
-                  },
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "required": [
@@ -2536,6 +3364,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  },
                   "subreddit": {
                     "type": "string"
                   },
@@ -2564,12 +3398,6 @@
                     "type": "string",
                     "minLength": 1,
                     "description": "The cursor from the previous response. Send it as is."
-                  },
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "required": [
@@ -2855,6 +3683,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  },
                   "profile": {
                     "type": "string"
                   },
@@ -2880,12 +3714,6 @@
                     "type": "string",
                     "minLength": 1,
                     "description": "The cursor from the previous response. Send it as is."
-                  },
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "required": [
@@ -3202,6 +4030,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  },
                   "domain": {
                     "type": "string"
                   },
@@ -3218,12 +4052,6 @@
                     "type": "string",
                     "minLength": 1,
                     "description": "The cursor from the previous response. Send it as is."
-                  },
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "required": [
@@ -3460,6 +4288,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  },
                   "query": {
                     "type": "string",
                     "minLength": 1,
@@ -3486,12 +4320,6 @@
                     "type": "string",
                     "pattern": "^[A-Za-z]{2,3}(?:[-_][A-Za-z0-9]{2,4})?$",
                     "description": "BCP 47 language tag, e.g. en or pt-BR. Any case is accepted."
-                  },
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "required": [
@@ -3868,6 +4696,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  },
                   "place": {
                     "type": "string"
                   },
@@ -3891,12 +4725,6 @@
                     "type": "string",
                     "pattern": "^[A-Za-z]{2,3}(?:[-_][A-Za-z0-9]{2,4})?$",
                     "description": "BCP 47 language tag, e.g. en or pt-BR. Any case is accepted."
-                  },
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "required": [
@@ -4086,6 +4914,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  },
                   "profile": {
                     "type": "string"
                   },
@@ -4093,12 +4927,6 @@
                     "type": "string",
                     "minLength": 1,
                     "description": "The cursor from the previous response. Send it as is."
-                  },
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "required": [
@@ -4709,6 +5537,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  },
                   "post": {
                     "type": "string"
                   },
@@ -4719,12 +5553,6 @@
                     "type": "string",
                     "minLength": 1,
                     "description": "The cursor from the previous response. Send it as is."
-                  },
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "required": [
@@ -4878,6 +5706,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  },
                   "profile": {
                     "type": "string"
                   },
@@ -4885,12 +5719,6 @@
                     "type": "string",
                     "minLength": 1,
                     "description": "The cursor from the previous response. Send it as is."
-                  },
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "required": [
@@ -5397,6 +6225,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  },
                   "hashtag": {
                     "type": "string"
                   },
@@ -5404,12 +6238,6 @@
                     "type": "string",
                     "minLength": 1,
                     "description": "The cursor from the previous response. Send it as is."
-                  },
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "required": [
@@ -5636,6 +6464,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  },
                   "video": {
                     "type": "string"
                   },
@@ -5647,12 +6481,6 @@
                     "type": "string",
                     "minLength": 1,
                     "description": "The cursor from the previous response. Send it as is."
-                  },
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "required": [
@@ -5803,6 +6631,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  },
                   "query": {
                     "type": "string",
                     "minLength": 1,
@@ -5820,12 +6654,6 @@
                     "type": "string",
                     "minLength": 1,
                     "description": "The cursor from the previous response. Send it as is."
-                  },
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "required": [
@@ -6099,6 +6927,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  },
                   "page": {
                     "type": "string"
                   },
@@ -6130,12 +6964,6 @@
                     "type": "string",
                     "minLength": 1,
                     "description": "The cursor from the previous response. Send it as is."
-                  },
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "required": [
@@ -6436,6 +7264,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  },
                   "query": {
                     "type": "string",
                     "maxLength": 200
@@ -6458,12 +7292,6 @@
                     "type": "string",
                     "minLength": 1,
                     "description": "The cursor from the previous response. Send it as is."
-                  },
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "additionalProperties": false
@@ -6588,6 +7416,456 @@
                         },
                         "cursor": {
                           "type": "string"
+                        }
+                      },
+                      "required": [
+                        "results"
+                      ]
+                    },
+                    "creditsUsed": {
+                      "type": "integer"
+                    },
+                    "requestId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/Error"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      }
+    },
+    "/v1/linkedin/people/search": {
+      "post": {
+        "operationId": "linkedinPeopleSearch",
+        "summary": "Find public LinkedIn profiles by job title, company and location, with their details",
+        "description": "Costs 1 credit per 10 results, plus 1 credit per result that comes back with details.",
+        "x-credits": 1,
+        "x-credits-max": 28,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "limit": {
+                    "default": 10,
+                    "description": "How many results to return, up to 25.",
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 25
+                  },
+                  "query": {
+                    "description": "Free words to match, like a skill or industry.",
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  },
+                  "title": {
+                    "description": "Current job title, like Head of Marketing.",
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  },
+                  "company": {
+                    "description": "Current company, like Shopify.",
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  },
+                  "location": {
+                    "description": "City or region shown on the profile, like Toronto.",
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  }
+                },
+                "additionalProperties": false
+              },
+              "example": {
+                "title": "Head of Marketing",
+                "query": "SaaS"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The data, and the credits this call used.",
+            "headers": {
+              "X-Request-ID": {
+                "$ref": "#/components/headers/RequestId"
+              },
+              "x-credits-used": {
+                "$ref": "#/components/headers/CreditsUsed"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "x-cache": {
+                "$ref": "#/components/headers/Cache"
+              },
+              "x-cache-age": {
+                "$ref": "#/components/headers/CacheAge"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data",
+                    "creditsUsed",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "success": {
+                      "const": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                              "profileUrl": {
+                                "type": "string",
+                                "format": "uri"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "headline": {
+                                "type": "string"
+                              },
+                              "title": {
+                                "type": "string"
+                              },
+                              "company": {
+                                "type": "string"
+                              },
+                              "location": {
+                                "type": "string"
+                              },
+                              "education": {
+                                "type": "string"
+                              },
+                              "details": {
+                                "type": "object",
+                                "additionalProperties": false,
+                                "properties": {
+                                  "profileId": {
+                                    "type": "string"
+                                  },
+                                  "headline": {
+                                    "type": "string"
+                                  },
+                                  "location": {
+                                    "type": "string"
+                                  },
+                                  "about": {
+                                    "type": "string"
+                                  },
+                                  "followers": {
+                                    "type": "integer",
+                                    "minimum": -9007199254740991,
+                                    "maximum": 9007199254740991
+                                  },
+                                  "roles": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "additionalProperties": false,
+                                      "properties": {
+                                        "title": {
+                                          "type": "string"
+                                        },
+                                        "company": {
+                                          "type": "string"
+                                        },
+                                        "companyUrl": {
+                                          "type": "string",
+                                          "format": "uri"
+                                        },
+                                        "from": {
+                                          "type": "string"
+                                        },
+                                        "to": {
+                                          "type": "string"
+                                        },
+                                        "isCurrent": {
+                                          "type": "boolean"
+                                        }
+                                      },
+                                      "required": [
+                                        "isCurrent"
+                                      ]
+                                    }
+                                  },
+                                  "education": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "additionalProperties": false,
+                                      "properties": {
+                                        "school": {
+                                          "type": "string"
+                                        },
+                                        "degree": {
+                                          "type": "string"
+                                        },
+                                        "schoolUrl": {
+                                          "type": "string",
+                                          "format": "uri"
+                                        },
+                                        "from": {
+                                          "type": "string"
+                                        },
+                                        "to": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": []
+                                    }
+                                  }
+                                },
+                                "required": []
+                              },
+                              "position": {
+                                "type": "integer",
+                                "minimum": -9007199254740991,
+                                "maximum": 9007199254740991
+                              }
+                            },
+                            "required": [
+                              "profileUrl",
+                              "position"
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "results"
+                      ]
+                    },
+                    "creditsUsed": {
+                      "type": "integer"
+                    },
+                    "requestId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/Error"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      }
+    },
+    "/v1/linkedin/companies/search": {
+      "post": {
+        "operationId": "linkedinCompaniesSearch",
+        "summary": "Find LinkedIn company pages by name, industry and location, with their details",
+        "description": "Costs 1 credit per 10 results, plus 1 credit per result that comes back with details.",
+        "x-credits": 1,
+        "x-credits-max": 28,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "limit": {
+                    "default": 10,
+                    "description": "How many results to return, up to 25.",
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 25
+                  },
+                  "query": {
+                    "description": "Company name or words about what it does.",
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  },
+                  "industry": {
+                    "description": "Industry, like Financial Services.",
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  },
+                  "location": {
+                    "description": "Headquarters city or region, like New York.",
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  }
+                },
+                "additionalProperties": false
+              },
+              "example": {
+                "industry": "Financial Services",
+                "location": "New York"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The data, and the credits this call used.",
+            "headers": {
+              "X-Request-ID": {
+                "$ref": "#/components/headers/RequestId"
+              },
+              "x-credits-used": {
+                "$ref": "#/components/headers/CreditsUsed"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "x-cache": {
+                "$ref": "#/components/headers/Cache"
+              },
+              "x-cache-age": {
+                "$ref": "#/components/headers/CacheAge"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data",
+                    "creditsUsed",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "success": {
+                      "const": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                              "companyUrl": {
+                                "type": "string",
+                                "format": "uri"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "description": {
+                                "type": "string"
+                              },
+                              "industry": {
+                                "type": "string"
+                              },
+                              "size": {
+                                "type": "string"
+                              },
+                              "headquarters": {
+                                "type": "string"
+                              },
+                              "followers": {
+                                "type": "integer",
+                                "minimum": -9007199254740991,
+                                "maximum": 9007199254740991
+                              },
+                              "details": {
+                                "type": "object",
+                                "additionalProperties": false,
+                                "properties": {
+                                  "companyId": {
+                                    "type": "string"
+                                  },
+                                  "website": {
+                                    "type": "string",
+                                    "format": "uri"
+                                  },
+                                  "description": {
+                                    "type": "string"
+                                  },
+                                  "industry": {
+                                    "type": "string"
+                                  },
+                                  "size": {
+                                    "type": "string"
+                                  },
+                                  "employees": {
+                                    "type": "integer",
+                                    "minimum": -9007199254740991,
+                                    "maximum": 9007199254740991
+                                  },
+                                  "headquarters": {
+                                    "type": "string"
+                                  },
+                                  "followers": {
+                                    "type": "integer",
+                                    "minimum": -9007199254740991,
+                                    "maximum": 9007199254740991
+                                  },
+                                  "founded": {
+                                    "type": "string"
+                                  },
+                                  "specialties": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "string"
+                                    }
+                                  }
+                                },
+                                "required": []
+                              },
+                              "position": {
+                                "type": "integer",
+                                "minimum": -9007199254740991,
+                                "maximum": 9007199254740991
+                              }
+                            },
+                            "required": [
+                              "companyUrl",
+                              "position"
+                            ]
+                          }
                         }
                       },
                       "required": [
@@ -7120,17 +8398,17 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "profile": {
-                    "type": "string"
-                  },
-                  "company": {
-                    "type": "string"
-                  },
                   "limit": {
                     "type": "integer",
                     "minimum": 1,
                     "maximum": 100,
                     "description": "Return at most this many results (1-100)."
+                  },
+                  "profile": {
+                    "type": "string"
+                  },
+                  "company": {
+                    "type": "string"
                   }
                 },
                 "additionalProperties": false
@@ -7262,6 +8540,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  },
                   "location": {
                     "type": "string",
                     "minLength": 2,
@@ -7329,12 +8613,6 @@
                     "type": "string",
                     "minLength": 1,
                     "description": "The cursor from the previous response. Send it as is."
-                  },
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "required": [
@@ -7839,6 +9117,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  },
                   "query": {
                     "type": "string",
                     "minLength": 1,
@@ -7871,12 +9155,6 @@
                     "type": "string",
                     "minLength": 1,
                     "description": "The cursor from the previous response. Send it as is."
-                  },
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "additionalProperties": false
@@ -8304,6 +9582,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  },
                   "query": {
                     "type": "string",
                     "maxLength": 200
@@ -8409,12 +9693,6 @@
                     "type": "string",
                     "minLength": 1,
                     "description": "The cursor from the previous response. Send it as is."
-                  },
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "additionalProperties": false
@@ -8976,6 +10254,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  },
                   "query": {
                     "type": "string",
                     "minLength": 2,
@@ -8991,12 +10275,6 @@
                       "attractions",
                       "geos"
                     ]
-                  },
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "required": [
@@ -9391,6 +10669,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  },
                   "place": {
                     "type": "string"
                   },
@@ -9413,12 +10697,6 @@
                     "type": "string",
                     "minLength": 1,
                     "description": "The cursor from the previous response. Send it as is."
-                  },
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "required": [
@@ -9633,6 +10911,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  },
                   "origin": {
                     "type": "string",
                     "pattern": "^[A-Za-z]{3}$",
@@ -9666,12 +10950,6 @@
                       "business",
                       "first"
                     ]
-                  },
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "required": [
@@ -9684,7 +10962,7 @@
               "example": {
                 "origin": "JFK",
                 "destination": "LAX",
-                "departDate": "2026-11-15"
+                "departDate": "2026-11-16"
               }
             }
           }
@@ -9926,6 +11204,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  },
                   "query": {
                     "type": "string",
                     "minLength": 1,
@@ -9955,12 +11239,6 @@
                     "type": "string",
                     "minLength": 1,
                     "description": "The cursor from the previous response. Send it as is."
-                  },
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "required": [
@@ -10619,6 +11897,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  },
                   "query": {
                     "type": "string",
                     "minLength": 1,
@@ -10638,12 +11922,6 @@
                       "ipad",
                       "mac"
                     ]
-                  },
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "required": [
@@ -10864,6 +12142,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  },
                   "app": {
                     "type": "string"
                   },
@@ -10886,12 +12170,6 @@
                     "type": "string",
                     "minLength": 1,
                     "description": "The cursor from the previous response. Send it as is."
-                  },
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "required": [
@@ -11028,6 +12306,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  },
                   "chart": {
                     "default": "free",
                     "type": "string",
@@ -11080,12 +12364,6 @@
                     "type": "string",
                     "pattern": "^[A-Za-z]{2}$",
                     "description": "ISO 3166-1 alpha-2 country code, e.g. us. Any case is accepted."
-                  },
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "additionalProperties": false
@@ -11495,6 +12773,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  },
                   "query": {
                     "type": "string",
                     "minLength": 1,
@@ -11511,12 +12795,6 @@
                     "type": "string",
                     "pattern": "^[A-Za-z]{2,3}(?:[-_][A-Za-z0-9]{2,4})?$",
                     "description": "BCP 47 language tag, e.g. en or pt-BR. Any case is accepted."
-                  },
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "required": [
@@ -11664,6 +12942,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  },
                   "app": {
                     "type": "string"
                   },
@@ -11697,12 +12981,6 @@
                     "type": "string",
                     "minLength": 1,
                     "description": "The cursor from the previous response. Send it as is."
-                  },
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "required": [
@@ -11858,6 +13136,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  },
                   "location": {
                     "type": "string",
                     "minLength": 2,
@@ -11893,12 +13177,6 @@
                     "type": "string",
                     "minLength": 1,
                     "description": "The cursor from the previous response. Send it as is."
-                  },
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "required": [
@@ -12402,18 +13680,18 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  },
                   "listing": {
                     "type": "string"
                   },
                   "month": {
                     "type": "string",
                     "pattern": "^\\d{4}-(0[1-9]|1[0-2])$"
-                  },
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "required": [
@@ -12549,6 +13827,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  },
                   "listing": {
                     "type": "string"
                   },
@@ -12566,12 +13850,6 @@
                     "type": "string",
                     "minLength": 1,
                     "description": "The cursor from the previous response. Send it as is."
-                  },
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "required": [
@@ -12718,6 +13996,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  },
                   "location": {
                     "type": "string",
                     "minLength": 2,
@@ -12763,12 +14047,6 @@
                     "type": "string",
                     "minLength": 1,
                     "description": "The cursor from the previous response. Send it as is."
-                  },
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "required": [
@@ -13259,6 +14537,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  },
                   "location": {
                     "type": "string",
                     "minLength": 2,
@@ -13303,12 +14587,6 @@
                     "type": "string",
                     "minLength": 1,
                     "description": "The cursor from the previous response. Send it as is."
-                  },
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "required": [
@@ -13707,6 +14985,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  },
                   "query": {
                     "type": "string",
                     "minLength": 1,
@@ -13724,12 +15008,6 @@
                     "type": "string",
                     "minLength": 1,
                     "description": "The cursor from the previous response. Send it as is."
-                  },
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "required": [
@@ -14120,6 +15398,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  },
                   "board": {
                     "type": "string"
                   },
@@ -14127,12 +15411,6 @@
                     "type": "string",
                     "minLength": 1,
                     "description": "The cursor from the previous response. Send it as is."
-                  },
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "required": [
@@ -14389,6 +15667,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  },
                   "profile": {
                     "type": "string"
                   },
@@ -14396,12 +15680,6 @@
                     "type": "string",
                     "minLength": 1,
                     "description": "The cursor from the previous response. Send it as is."
-                  },
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "required": [
@@ -14665,6 +15943,12 @@
                   {
                     "type": "object",
                     "properties": {
+                      "limit": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 100,
+                        "description": "Return at most this many results (1-100)."
+                      },
                       "query": {
                         "type": "string",
                         "minLength": 1,
@@ -14702,12 +15986,6 @@
                       "network": {
                         "type": "string",
                         "const": "meta"
-                      },
-                      "limit": {
-                        "type": "integer",
-                        "minimum": 1,
-                        "maximum": 100,
-                        "description": "Return at most this many results (1-100)."
                       }
                     },
                     "required": [
@@ -14719,6 +15997,12 @@
                   {
                     "type": "object",
                     "properties": {
+                      "limit": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 100,
+                        "description": "Return at most this many results (1-100)."
+                      },
                       "query": {
                         "description": "A domain like nike.com. Google's library finds ads by domain or advertiser, not by keyword.",
                         "type": "string",
@@ -14752,12 +16036,6 @@
                       "network": {
                         "type": "string",
                         "const": "google"
-                      },
-                      "limit": {
-                        "type": "integer",
-                        "minimum": 1,
-                        "maximum": 100,
-                        "description": "Return at most this many results (1-100)."
                       }
                     },
                     "required": [
@@ -14768,6 +16046,12 @@
                   {
                     "type": "object",
                     "properties": {
+                      "limit": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 100,
+                        "description": "Return at most this many results (1-100)."
+                      },
                       "query": {
                         "type": "string",
                         "minLength": 1,
@@ -14791,12 +16075,6 @@
                       "network": {
                         "type": "string",
                         "const": "tiktok"
-                      },
-                      "limit": {
-                        "type": "integer",
-                        "minimum": 1,
-                        "maximum": 100,
-                        "description": "Return at most this many results (1-100)."
                       }
                     },
                     "required": [
@@ -14807,6 +16085,12 @@
                   {
                     "type": "object",
                     "properties": {
+                      "limit": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 100,
+                        "description": "Return at most this many results (1-100)."
+                      },
                       "query": {
                         "type": "string",
                         "maxLength": 500
@@ -14837,12 +16121,6 @@
                       "network": {
                         "type": "string",
                         "const": "linkedin"
-                      },
-                      "limit": {
-                        "type": "integer",
-                        "minimum": 1,
-                        "maximum": 100,
-                        "description": "Return at most this many results (1-100)."
                       }
                     },
                     "required": [
@@ -14853,6 +16131,12 @@
                   {
                     "type": "object",
                     "properties": {
+                      "limit": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 100,
+                        "description": "Return at most this many results (1-100)."
+                      },
                       "query": {
                         "type": "string",
                         "minLength": 1,
@@ -14875,12 +16159,6 @@
                       "network": {
                         "type": "string",
                         "const": "microsoft"
-                      },
-                      "limit": {
-                        "type": "integer",
-                        "minimum": 1,
-                        "maximum": 100,
-                        "description": "Return at most this many results (1-100)."
                       }
                     },
                     "required": [
@@ -14891,6 +16169,12 @@
                   {
                     "type": "object",
                     "properties": {
+                      "limit": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 100,
+                        "description": "Return at most this many results (1-100)."
+                      },
                       "query": {
                         "description": "Not supported. Pinterest's ads library has no keyword search. Use advertiser to filter by advertiser name.",
                         "type": "string",
@@ -14916,12 +16200,6 @@
                       "network": {
                         "type": "string",
                         "const": "pinterest"
-                      },
-                      "limit": {
-                        "type": "integer",
-                        "minimum": 1,
-                        "maximum": 100,
-                        "description": "Return at most this many results (1-100)."
                       }
                     },
                     "required": [
@@ -16801,6 +18079,12 @@
                   {
                     "type": "object",
                     "properties": {
+                      "limit": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 100,
+                        "description": "Return at most this many results (1-100)."
+                      },
                       "query": {
                         "type": "string",
                         "minLength": 1,
@@ -16814,12 +18098,6 @@
                       "network": {
                         "type": "string",
                         "const": "google"
-                      },
-                      "limit": {
-                        "type": "integer",
-                        "minimum": 1,
-                        "maximum": 100,
-                        "description": "Return at most this many results (1-100)."
                       }
                     },
                     "required": [
@@ -16831,6 +18109,12 @@
                   {
                     "type": "object",
                     "properties": {
+                      "limit": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 100,
+                        "description": "Return at most this many results (1-100)."
+                      },
                       "query": {
                         "type": "string",
                         "minLength": 1,
@@ -16839,12 +18123,6 @@
                       "network": {
                         "type": "string",
                         "const": "microsoft"
-                      },
-                      "limit": {
-                        "type": "integer",
-                        "minimum": 1,
-                        "maximum": 100,
-                        "description": "Return at most this many results (1-100)."
                       }
                     },
                     "required": [
@@ -16992,6 +18270,155 @@
                           },
                           "required": []
                         }
+                      ]
+                    },
+                    "creditsUsed": {
+                      "type": "integer"
+                    },
+                    "requestId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/Error"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      }
+    },
+    "/v1/ai/answer": {
+      "post": {
+        "operationId": "aiAnswer",
+        "summary": "Ask an AI assistant a question and get its answer with the sources it cites",
+        "description": "Costs 3 credits per call.",
+        "x-credits": 3,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "prompt": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 2000,
+                    "description": "The question to ask, worded the way a buyer would ask an AI assistant, e.g. What is the best CRM for a small business? Up to 2000 characters."
+                  },
+                  "engine": {
+                    "default": "gemini",
+                    "description": "Which AI assistant answers: gemini or chatgpt.",
+                    "type": "string",
+                    "enum": [
+                      "gemini",
+                      "chatgpt"
+                    ]
+                  }
+                },
+                "required": [
+                  "prompt"
+                ],
+                "additionalProperties": false
+              },
+              "example": {
+                "prompt": "What is the best CRM for a small business?"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The data, and the credits this call used.",
+            "headers": {
+              "X-Request-ID": {
+                "$ref": "#/components/headers/RequestId"
+              },
+              "x-credits-used": {
+                "$ref": "#/components/headers/CreditsUsed"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "x-cache": {
+                "$ref": "#/components/headers/Cache"
+              },
+              "x-cache-age": {
+                "$ref": "#/components/headers/CacheAge"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data",
+                    "creditsUsed",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "success": {
+                      "const": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "engine": {
+                          "type": "string",
+                          "enum": [
+                            "gemini",
+                            "chatgpt"
+                          ]
+                        },
+                        "prompt": {
+                          "type": "string"
+                        },
+                        "answer": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "sources": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                              "url": {
+                                "type": "string",
+                                "format": "uri"
+                              },
+                              "title": {
+                                "type": "string"
+                              },
+                              "domain": {
+                                "type": "string",
+                                "minLength": 1
+                              }
+                            },
+                            "required": [
+                              "url",
+                              "domain"
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "engine",
+                        "answer",
+                        "sources"
                       ]
                     },
                     "creditsUsed": {
