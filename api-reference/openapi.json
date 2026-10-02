@@ -2685,6 +2685,11 @@
         "operationId": "redditSearch",
         "summary": "Search Reddit posts, comments, subreddits and users",
         "description": "Costs 1 credit per call. Pages with cursor.",
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
         "x-credits": 1,
         "requestBody": {
           "required": true,
@@ -4259,6 +4264,11 @@
         "operationId": "mapsSearch",
         "summary": "Search places on Google Maps by keyword and location",
         "description": "Costs 1 credit per call.",
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
         "x-credits": 1,
         "requestBody": {
           "required": true,
@@ -9580,19 +9590,10 @@
                       "pt",
                       "it",
                       "gr",
-                      "mt",
-                      "cy",
                       "pl",
                       "cz",
-                      "sk",
                       "hu",
                       "ro",
-                      "bg",
-                      "hr",
-                      "si",
-                      "ee",
-                      "lv",
-                      "lt",
                       "fi",
                       "se",
                       "no",
@@ -9920,19 +9921,10 @@
                       "pt",
                       "it",
                       "gr",
-                      "mt",
-                      "cy",
                       "pl",
                       "cz",
-                      "sk",
                       "hu",
                       "ro",
-                      "bg",
-                      "hr",
-                      "si",
-                      "ee",
-                      "lv",
-                      "lt",
                       "fi",
                       "se",
                       "no",
