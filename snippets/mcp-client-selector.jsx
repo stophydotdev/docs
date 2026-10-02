@@ -1,8 +1,8 @@
 // Setup chooser shared by the introduction and the MCP pages.
-// variant: "keyless" (default, no key), "key" (API key header) or "signin" (browser sign-in on /mcp-oauth).
+// variant: "keyless" (default, no key), "key" (API key header) or "signin" (browser sign-in on mcp.stophy.dev/mcp).
 // Keep each command aligned with the corresponding client's current config format.
 export const McpClientSelector = ({ variant = "keyless", showSeeAll = true }) => {
-  const url = variant === "signin" ? "https://api.stophy.dev/mcp-oauth" : "https://api.stophy.dev/mcp";
+  const url = variant === "signin" ? "https://mcp.stophy.dev/mcp" : "https://api.stophy.dev/mcp";
   const withKey = variant === "key";
   const json = (lines) => lines.join("\n");
   const cursorConfig = withKey
