@@ -57,7 +57,7 @@ stophy logout
 Name the source, then the command:
 
 ```bash
-stophy youtube search "bun runtime" --limit 5
+stophy youtube search "bun runtime"
 stophy maps search --query dentist --location Berlin
 stophy reddit subreddit rust
 stophy transcript https://youtu.be/M4TufsFlv_o
@@ -77,14 +77,13 @@ By default, lists print one row per result with its title and link, and other re
 stophy reddit search "bun runtime" --json
 ```
 
-`--limit` keeps at most that many results from a page and costs the same.
-
 ## Page through results
 
-When there are more results, the output ends with a cursor. Pass it back to get the next page:
+Commands for sites with numbered pages take `--page`. Commands for sites with their own cursor end their output with a cursor when there is more; pass it back to get the next page:
 
 ```bash
-stophy reddit search "bun runtime" --cursor "eyJvZmZzZXQiOjI1fQ"
+stophy google search "bun runtime" --page 2
+stophy reddit search "bun runtime" --cursor "<cursor from the last output>"
 ```
 
 ## Save the output

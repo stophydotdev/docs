@@ -47,7 +47,7 @@ from stophy import Stophy
 
 stophy = Stophy(api_key=os.environ["STOPHY_API_KEY"])
 
-posts = stophy.reddit.search(query="bun runtime", limit=10)
+posts = stophy.reddit.search(query="bun runtime")
 print(posts["data"]["results"], posts["creditsUsed"])
 
 transcript = stophy.transcript(video="https://youtu.be/dQw4w9WgXcQ")
@@ -57,7 +57,7 @@ ads = stophy.ads.search(network="meta", query="running shoes")
 print(ads["data"]["results"])
 ```
 
-Responses are plain dictionaries shaped like the [API reference](/api-reference/introduction): `success`, `data`, `creditsUsed` and `requestId`. `data` is one flat dict, and lists are in `data["results"]`. `limit` keeps at most that many results from the page, at the same price.
+Responses are plain dictionaries shaped like the [API reference](/api-reference/introduction): `success`, `data`, `creditsUsed` and `requestId`. `data` is one flat dict, and lists are in `data["results"]`.
 
 Methods follow the endpoint id, with keyword arguments in snake_case. Nested ids are nested attributes: `reddit.search` is `stophy.reddit.search(...)`. An endpoint with a single name is a method on the client: `stophy.transcript(...)`. A JSON field named `from` is passed as `from_`.
 
@@ -75,7 +75,7 @@ from stophy import AsyncStophy
 
 async def main() -> None:
     async with AsyncStophy() as stophy:
-        result = await stophy.google.search(query="bun runtime", limit=3)
+        result = await stophy.google.search(query="bun runtime")
         for item in result["data"]["results"]:
             print(item["title"])
 

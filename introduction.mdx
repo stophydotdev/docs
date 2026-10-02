@@ -5,7 +5,7 @@ og:title: "Introduction | Stophy"
 og:description: "Stophy is the web data layer for AI agents. Live, structured web data as typed JSON. One flat JSON response per call, one key, from $0.80 per 1,000 credits."
 ---
 
-Stophy gives your agent or app structured public web data from one API: search results, video, social posts, places, jobs, shopping, apps, property, ads, and flight prices. Every call returns one flat JSON object at a price you can see before you call, from 1 to 5 credits, except transcripts of videos without captions.
+Stophy gives your agent or app structured public web data from one API: search results, video, social posts, places, jobs, shopping, apps, property, ads, and flight prices. Every call returns one flat JSON object at a price you can see before you call, from 1 to 4 credits, except transcripts of videos without captions.
 
 ## Three ways in
 
@@ -28,7 +28,7 @@ Google search works without a key, so you can run this as it is:
 ```bash
 curl -X POST https://api.stophy.dev/v1/google/search \
   -H "content-type: application/json" \
-  -d '{"query":"bun runtime","limit":2}'
+  -d '{"query":"bun runtime"}'
 ```
 
 ```json
