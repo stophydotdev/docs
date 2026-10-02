@@ -2,6 +2,6 @@
 import { Stophy } from "stophy";
 
 const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
-const result = await stophy.linkedin.people.search({ title: "Head of Marketing", query: "SaaS" });
+const result = await stophy.linkedin.people.search({ query: "SaaS", title: "Head of Marketing" });
 console.log(result.data.results);
 ```

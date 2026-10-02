@@ -1,9 +1,9 @@
 ---
 title: 'AI answer API'
 sidebarTitle: 'Answer'
-description: 'Ask an AI assistant a question and get its answer with the sources it cites. Call the AI answer API for JSON. 3 credits per call.'
+description: 'Ask an AI assistant a question and get its answer with the sources it cites. Call the AI answer API for JSON. 1 credit per call.'
 og:title: 'AI answer API | Stophy'
-og:description: 'Ask an AI assistant a question and get its answer with the sources it cites. Call the AI answer API for JSON. 3 credits per call.'
+og:description: 'Ask an AI assistant a question and get its answer with the sources it cites. Call the AI answer API for JSON. 1 credit per call.'
 openapi: 'api-reference/openapi.json POST /v1/ai/answer'
 ---
 
@@ -16,7 +16,7 @@ import CliExample from "/snippets/examples/ai.answer/cli.mdx";
 
 - **Endpoint:** `ai.answer`
 - **Returns:** `data` has `engine`, `prompt`, `answer`, `sources`.
-- **Cost:** 3 credits per call. Failed calls cost nothing.
+- **Cost:** 1 credit per call. Failed calls cost nothing.
 - **Paging:** No.
 
 Pick the assistant with `engine`: `gemini` or `chatgpt`. Returns its answer and the pages it cites.

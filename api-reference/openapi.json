@@ -314,13 +314,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "limit": {
-                    "default": 10,
-                    "description": "How many results to return, up to 100.",
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100
-                  },
                   "query": {
                     "type": "string",
                     "minLength": 1,
@@ -360,6 +353,13 @@
                       "year",
                       "all"
                     ]
+                  },
+                  "limit": {
+                    "default": 10,
+                    "description": "How many results to return, up to 100.",
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100
                   }
                 },
                 "required": [
@@ -417,67 +417,6 @@
                       "type": "object",
                       "additionalProperties": false,
                       "properties": {
-                        "results": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "additionalProperties": false,
-                            "properties": {
-                              "url": {
-                                "type": "string",
-                                "format": "uri"
-                              },
-                              "title": {
-                                "type": "string",
-                                "minLength": 1
-                              },
-                              "description": {
-                                "description": "Text shown under the title.",
-                                "type": "string"
-                              },
-                              "date": {
-                                "description": "Day shown on the result, when there is one.",
-                                "type": "string",
-                                "format": "date",
-                                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
-                              },
-                              "sitelinks": {
-                                "description": "Links listed under the result.",
-                                "type": "array",
-                                "items": {
-                                  "type": "object",
-                                  "additionalProperties": false,
-                                  "properties": {
-                                    "title": {
-                                      "type": "string",
-                                      "minLength": 1,
-                                      "description": "Link text."
-                                    },
-                                    "url": {
-                                      "type": "string",
-                                      "format": "uri",
-                                      "description": "Destination URL."
-                                    }
-                                  },
-                                  "required": [
-                                    "title",
-                                    "url"
-                                  ]
-                                }
-                              },
-                              "position": {
-                                "type": "integer",
-                                "exclusiveMinimum": 0,
-                                "maximum": 9007199254740991
-                              }
-                            },
-                            "required": [
-                              "url",
-                              "title",
-                              "position"
-                            ]
-                          }
-                        },
                         "aiOverview": {
                           "type": "object",
                           "additionalProperties": false,
@@ -556,6 +495,67 @@
                             "title"
                           ]
                         },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                              "url": {
+                                "type": "string",
+                                "format": "uri"
+                              },
+                              "title": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "description": {
+                                "description": "Text shown under the title.",
+                                "type": "string"
+                              },
+                              "date": {
+                                "description": "Day shown on the result, when there is one.",
+                                "type": "string",
+                                "format": "date",
+                                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
+                              },
+                              "sitelinks": {
+                                "description": "Links listed under the result.",
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "additionalProperties": false,
+                                  "properties": {
+                                    "title": {
+                                      "type": "string",
+                                      "minLength": 1,
+                                      "description": "Link text."
+                                    },
+                                    "url": {
+                                      "type": "string",
+                                      "format": "uri",
+                                      "description": "Destination URL."
+                                    }
+                                  },
+                                  "required": [
+                                    "title",
+                                    "url"
+                                  ]
+                                }
+                              },
+                              "position": {
+                                "type": "integer",
+                                "exclusiveMinimum": 0,
+                                "maximum": 9007199254740991
+                              }
+                            },
+                            "required": [
+                              "url",
+                              "title",
+                              "position"
+                            ]
+                          }
+                        },
                         "peopleAlsoAsk": {
                           "type": "array",
                           "items": {
@@ -632,13 +632,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "limit": {
-                    "default": 10,
-                    "description": "How many articles to return, up to 50. Headlines (no query) give up to 10.",
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 50
-                  },
                   "query": {
                     "type": "string",
                     "minLength": 1,
@@ -693,6 +686,13 @@
                       "year",
                       "all"
                     ]
+                  },
+                  "limit": {
+                    "default": 10,
+                    "description": "How many articles to return, up to 50. Headlines (no query) give up to 10.",
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 50
                   }
                 },
                 "additionalProperties": false
@@ -831,13 +831,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "limit": {
-                    "default": 20,
-                    "description": "How many images to return, up to 100.",
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100
-                  },
                   "query": {
                     "type": "string",
                     "minLength": 1,
@@ -852,6 +845,13 @@
                     "type": "string",
                     "pattern": "^[A-Za-z]{2}$",
                     "description": "Two-letter language code like en or pt. Any case is accepted."
+                  },
+                  "limit": {
+                    "default": 20,
+                    "description": "How many images to return, up to 100.",
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100
                   }
                 },
                 "required": [
@@ -989,8 +989,8 @@
       "post": {
         "operationId": "googleAiMode",
         "summary": "Ask Google AI Mode a question and get its answer with the sources it cites",
-        "description": "Costs 2 credits per call.",
-        "x-credits": 2,
+        "description": "Costs 1 credit per call.",
+        "x-credits": 1,
         "requestBody": {
           "required": true,
           "content": {
@@ -1126,8 +1126,8 @@
       "post": {
         "operationId": "googleShopping",
         "summary": "Compare product prices and sellers on Google Shopping by country",
-        "description": "Costs 2 credits per call.",
-        "x-credits": 2,
+        "description": "Costs 1 credit per call.",
+        "x-credits": 1,
         "requestBody": {
           "required": true,
           "content": {
@@ -1135,13 +1135,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "limit": {
-                    "default": 20,
-                    "description": "How many products to return, up to 40.",
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 40
-                  },
                   "query": {
                     "type": "string",
                     "minLength": 1,
@@ -1156,6 +1149,13 @@
                     "type": "string",
                     "pattern": "^[A-Za-z]{2}$",
                     "description": "Two-letter language code like en or pt. Any case is accepted."
+                  },
+                  "limit": {
+                    "default": 20,
+                    "description": "How many products to return, up to 40.",
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 40
                   }
                 },
                 "required": [
@@ -1312,12 +1312,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
-                  },
                   "query": {
                     "type": "string",
                     "minLength": 1,
@@ -1353,6 +1347,12 @@
                       "relevance",
                       "top"
                     ]
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
                   },
                   "cursor": {
                     "type": "string",
@@ -1929,12 +1929,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
-                  },
                   "video": {
                     "type": "string"
                   },
@@ -1951,6 +1945,12 @@
                       "top",
                       "newest"
                     ]
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
                   },
                   "cursor": {
                     "type": "string",
@@ -2121,12 +2121,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
-                  },
                   "channel": {
                     "type": "string",
                     "minLength": 2,
@@ -2142,6 +2136,12 @@
                       "playlists",
                       "posts"
                     ]
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
                   },
                   "cursor": {
                     "type": "string",
@@ -2472,14 +2472,14 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "playlist": {
+                    "type": "string"
+                  },
                   "limit": {
                     "type": "integer",
                     "minimum": 1,
                     "maximum": 100,
                     "description": "Return at most this many results (1-100)."
-                  },
-                  "playlist": {
-                    "type": "string"
                   },
                   "cursor": {
                     "type": "string",
@@ -2690,12 +2690,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
-                  },
                   "query": {
                     "type": "string",
                     "minLength": 1,
@@ -2737,6 +2731,12 @@
                       "year",
                       "all"
                     ]
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
                   },
                   "cursor": {
                     "type": "string",
@@ -3364,12 +3364,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
-                  },
                   "subreddit": {
                     "type": "string"
                   },
@@ -3393,6 +3387,12 @@
                       "year",
                       "all"
                     ]
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
                   },
                   "cursor": {
                     "type": "string",
@@ -3683,12 +3683,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
-                  },
                   "profile": {
                     "type": "string"
                   },
@@ -3709,6 +3703,12 @@
                       "hot",
                       "top"
                     ]
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
                   },
                   "cursor": {
                     "type": "string",
@@ -4030,12 +4030,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
-                  },
                   "domain": {
                     "type": "string"
                   },
@@ -4047,6 +4041,12 @@
                       "newest",
                       "top"
                     ]
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
                   },
                   "cursor": {
                     "type": "string",
@@ -4279,8 +4279,8 @@
       "post": {
         "operationId": "mapsSearch",
         "summary": "Search places on Google Maps by keyword and location",
-        "description": "Costs 3 credits per call. Pages with cursor.",
-        "x-credits": 3,
+        "description": "Costs 1 credit per call. Pages with cursor.",
+        "x-credits": 1,
         "requestBody": {
           "required": true,
           "content": {
@@ -4288,12 +4288,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
-                  },
                   "query": {
                     "type": "string",
                     "minLength": 1,
@@ -4303,11 +4297,6 @@
                     "type": "string",
                     "minLength": 2,
                     "maxLength": 200
-                  },
-                  "cursor": {
-                    "type": "string",
-                    "minLength": 1,
-                    "description": "The cursor from the previous response. Send it as is."
                   },
                   "country": {
                     "default": "us",
@@ -4320,6 +4309,17 @@
                     "type": "string",
                     "pattern": "^[A-Za-z]{2,3}(?:[-_][A-Za-z0-9]{2,4})?$",
                     "description": "BCP 47 language tag, e.g. en or pt-BR. Any case is accepted."
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  },
+                  "cursor": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "The cursor from the previous response. Send it as is."
                   }
                 },
                 "required": [
@@ -4696,12 +4696,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
-                  },
                   "place": {
                     "type": "string"
                   },
@@ -4715,16 +4709,22 @@
                       "lowest"
                     ]
                   },
-                  "cursor": {
-                    "type": "string",
-                    "minLength": 1,
-                    "description": "The cursor from the previous response. Send it as is."
-                  },
                   "language": {
                     "default": "en",
                     "type": "string",
                     "pattern": "^[A-Za-z]{2,3}(?:[-_][A-Za-z0-9]{2,4})?$",
                     "description": "BCP 47 language tag, e.g. en or pt-BR. Any case is accepted."
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  },
+                  "cursor": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "The cursor from the previous response. Send it as is."
                   }
                 },
                 "required": [
@@ -4914,14 +4914,14 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "profile": {
+                    "type": "string"
+                  },
                   "limit": {
                     "type": "integer",
                     "minimum": 1,
                     "maximum": 100,
                     "description": "Return at most this many results (1-100)."
-                  },
-                  "profile": {
-                    "type": "string"
                   },
                   "cursor": {
                     "type": "string",
@@ -5537,17 +5537,17 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
-                  },
                   "post": {
                     "type": "string"
                   },
                   "comment": {
                     "type": "string"
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
                   },
                   "cursor": {
                     "type": "string",
@@ -5706,14 +5706,14 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "profile": {
+                    "type": "string"
+                  },
                   "limit": {
                     "type": "integer",
                     "minimum": 1,
                     "maximum": 100,
                     "description": "Return at most this many results (1-100)."
-                  },
-                  "profile": {
-                    "type": "string"
                   },
                   "cursor": {
                     "type": "string",
@@ -6225,14 +6225,14 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "hashtag": {
+                    "type": "string"
+                  },
                   "limit": {
                     "type": "integer",
                     "minimum": 1,
                     "maximum": 100,
                     "description": "Return at most this many results (1-100)."
-                  },
-                  "hashtag": {
-                    "type": "string"
                   },
                   "cursor": {
                     "type": "string",
@@ -6464,18 +6464,18 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
-                  },
                   "video": {
                     "type": "string"
                   },
                   "comment": {
                     "type": "string",
                     "pattern": "^\\d{5,25}$"
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
                   },
                   "cursor": {
                     "type": "string",
@@ -6631,12 +6631,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
-                  },
                   "query": {
                     "type": "string",
                     "minLength": 1,
@@ -6649,6 +6643,12 @@
                       "videos",
                       "users"
                     ]
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
                   },
                   "cursor": {
                     "type": "string",
@@ -6918,8 +6918,8 @@
       "post": {
         "operationId": "metaAdsPage",
         "summary": "Get the ads a Facebook page runs",
-        "description": "Costs 5 credits per call. Pages with cursor.",
-        "x-credits": 5,
+        "description": "Costs 1 credit per call. Pages with cursor.",
+        "x-credits": 1,
         "requestBody": {
           "required": true,
           "content": {
@@ -6927,12 +6927,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
-                  },
                   "page": {
                     "type": "string"
                   },
@@ -6959,6 +6953,12 @@
                       "video",
                       "text"
                     ]
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
                   },
                   "cursor": {
                     "type": "string",
@@ -7255,8 +7255,8 @@
       "post": {
         "operationId": "linkedinJobsSearch",
         "summary": "Search LinkedIn jobs",
-        "description": "Costs 3 credits per call. Pages with cursor.",
-        "x-credits": 3,
+        "description": "Costs 1 credit per call. Pages with cursor.",
+        "x-credits": 1,
         "requestBody": {
           "required": true,
           "content": {
@@ -7264,12 +7264,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
-                  },
                   "query": {
                     "type": "string",
                     "maxLength": 200
@@ -7287,6 +7281,12 @@
                       "month",
                       "all"
                     ]
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
                   },
                   "cursor": {
                     "type": "string",
@@ -7456,13 +7456,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "limit": {
-                    "default": 10,
-                    "description": "How many results to return, up to 25.",
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 25
-                  },
                   "query": {
                     "description": "Free words to match, like a skill or industry.",
                     "type": "string",
@@ -7486,13 +7479,20 @@
                     "type": "string",
                     "minLength": 1,
                     "maxLength": 120
+                  },
+                  "limit": {
+                    "default": 10,
+                    "description": "How many results to return, up to 25.",
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 25
                   }
                 },
                 "additionalProperties": false
               },
               "example": {
-                "title": "Head of Marketing",
-                "query": "SaaS"
+                "query": "SaaS",
+                "title": "Head of Marketing"
               }
             }
           }
@@ -7701,13 +7701,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "limit": {
-                    "default": 10,
-                    "description": "How many results to return, up to 25.",
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 25
-                  },
                   "query": {
                     "description": "Company name or words about what it does.",
                     "type": "string",
@@ -7725,6 +7718,13 @@
                     "type": "string",
                     "minLength": 1,
                     "maxLength": 120
+                  },
+                  "limit": {
+                    "default": 10,
+                    "description": "How many results to return, up to 25.",
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 25
                   }
                 },
                 "additionalProperties": false
@@ -8398,17 +8398,17 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
-                  },
                   "profile": {
                     "type": "string"
                   },
                   "company": {
                     "type": "string"
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "additionalProperties": false
@@ -8531,8 +8531,8 @@
       "post": {
         "operationId": "zillowSearch",
         "summary": "Search homes for sale, for rent or sold",
-        "description": "Costs 3 credits per call. Pages with cursor.",
-        "x-credits": 3,
+        "description": "Costs 2 credits per call. Pages with cursor.",
+        "x-credits": 2,
         "requestBody": {
           "required": true,
           "content": {
@@ -8540,12 +8540,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
-                  },
                   "location": {
                     "type": "string",
                     "minLength": 2,
@@ -8609,6 +8603,12 @@
                     "minLength": 1,
                     "maxLength": 200
                   },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
+                  },
                   "cursor": {
                     "type": "string",
                     "minLength": 1,
@@ -8670,6 +8670,11 @@
                       "type": "object",
                       "additionalProperties": false,
                       "properties": {
+                        "total": {
+                          "type": "integer",
+                          "minimum": -9007199254740991,
+                          "maximum": 9007199254740991
+                        },
                         "results": {
                           "type": "array",
                           "items": {
@@ -8802,11 +8807,6 @@
                             ]
                           }
                         },
-                        "total": {
-                          "type": "integer",
-                          "minimum": -9007199254740991,
-                          "maximum": 9007199254740991
-                        },
                         "cursor": {
                           "type": "string"
                         }
@@ -8839,8 +8839,8 @@
       "post": {
         "operationId": "zillowProperty",
         "summary": "Get a home's details, price and Zestimate",
-        "description": "Costs 2 credits per call.",
-        "x-credits": 2,
+        "description": "Costs 1 credit per call.",
+        "x-credits": 1,
         "requestBody": {
           "required": true,
           "content": {
@@ -9108,8 +9108,8 @@
       "post": {
         "operationId": "upworkSearch",
         "summary": "Search Upwork jobs",
-        "description": "Costs 3 credits per call. Pages with cursor.",
-        "x-credits": 3,
+        "description": "Costs 1 credit per call. Pages with cursor.",
+        "x-credits": 1,
         "requestBody": {
           "required": true,
           "content": {
@@ -9117,12 +9117,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
-                  },
                   "query": {
                     "type": "string",
                     "minLength": 1,
@@ -9150,6 +9144,12 @@
                       "intermediate",
                       "expert"
                     ]
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
                   },
                   "cursor": {
                     "type": "string",
@@ -9209,6 +9209,11 @@
                       "type": "object",
                       "additionalProperties": false,
                       "properties": {
+                        "total": {
+                          "type": "integer",
+                          "minimum": -9007199254740991,
+                          "maximum": 9007199254740991
+                        },
                         "results": {
                           "type": "array",
                           "items": {
@@ -9276,11 +9281,6 @@
                               "jobUrl"
                             ]
                           }
-                        },
-                        "total": {
-                          "type": "integer",
-                          "minimum": -9007199254740991,
-                          "maximum": 9007199254740991
                         },
                         "cursor": {
                           "type": "string"
@@ -9582,12 +9582,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
-                  },
                   "query": {
                     "type": "string",
                     "maxLength": 200
@@ -9688,6 +9682,12 @@
                       "week",
                       "month"
                     ]
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
                   },
                   "cursor": {
                     "type": "string",
@@ -10254,12 +10254,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
-                  },
                   "query": {
                     "type": "string",
                     "minLength": 2,
@@ -10275,6 +10269,12 @@
                       "attractions",
                       "geos"
                     ]
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "required": [
@@ -10669,12 +10669,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
-                  },
                   "place": {
                     "type": "string"
                   },
@@ -10692,6 +10686,12 @@
                       "minimum": 1,
                       "maximum": 5
                     }
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
                   },
                   "cursor": {
                     "type": "string",
@@ -10902,8 +10902,8 @@
       "post": {
         "operationId": "googletravelFlights",
         "summary": "Search flights with prices and times",
-        "description": "Costs 5 credits per call.",
-        "x-credits": 5,
+        "description": "Costs 1 credit per call.",
+        "x-credits": 1,
         "requestBody": {
           "required": true,
           "content": {
@@ -10911,12 +10911,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
-                  },
                   "origin": {
                     "type": "string",
                     "pattern": "^[A-Za-z]{3}$",
@@ -10950,6 +10944,12 @@
                       "business",
                       "first"
                     ]
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "required": [
@@ -11195,8 +11195,8 @@
       "post": {
         "operationId": "walmartSearch",
         "summary": "Search Walmart products",
-        "description": "Costs 5 credits per call. Pages with cursor.",
-        "x-credits": 5,
+        "description": "Costs 4 credits per call. Pages with cursor.",
+        "x-credits": 4,
         "requestBody": {
           "required": true,
           "content": {
@@ -11204,12 +11204,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
-                  },
                   "query": {
                     "type": "string",
                     "minLength": 1,
@@ -11234,6 +11228,12 @@
                   "maxPrice": {
                     "type": "number",
                     "minimum": 0
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
                   },
                   "cursor": {
                     "type": "string",
@@ -11296,6 +11296,11 @@
                       "type": "object",
                       "additionalProperties": false,
                       "properties": {
+                        "total": {
+                          "type": "integer",
+                          "minimum": -9007199254740991,
+                          "maximum": 9007199254740991
+                        },
                         "results": {
                           "type": "array",
                           "items": {
@@ -11352,11 +11357,6 @@
                               "isSponsored"
                             ]
                           }
-                        },
-                        "total": {
-                          "type": "integer",
-                          "minimum": -9007199254740991,
-                          "maximum": 9007199254740991
                         },
                         "cursor": {
                           "type": "string"
@@ -11897,12 +11897,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
-                  },
                   "query": {
                     "type": "string",
                     "minLength": 1,
@@ -11922,6 +11916,12 @@
                       "ipad",
                       "mac"
                     ]
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "required": [
@@ -12142,12 +12142,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
-                  },
                   "app": {
                     "type": "string"
                   },
@@ -12165,6 +12159,12 @@
                       "highest",
                       "lowest"
                     ]
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
                   },
                   "cursor": {
                     "type": "string",
@@ -12306,12 +12306,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
-                  },
                   "chart": {
                     "default": "free",
                     "type": "string",
@@ -12364,6 +12358,12 @@
                     "type": "string",
                     "pattern": "^[A-Za-z]{2}$",
                     "description": "ISO 3166-1 alpha-2 country code, e.g. us. Any case is accepted."
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "additionalProperties": false
@@ -12773,12 +12773,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
-                  },
                   "query": {
                     "type": "string",
                     "minLength": 1,
@@ -12795,6 +12789,12 @@
                     "type": "string",
                     "pattern": "^[A-Za-z]{2,3}(?:[-_][A-Za-z0-9]{2,4})?$",
                     "description": "BCP 47 language tag, e.g. en or pt-BR. Any case is accepted."
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "required": [
@@ -12942,12 +12942,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
-                  },
                   "app": {
                     "type": "string"
                   },
@@ -12976,6 +12970,12 @@
                     "type": "integer",
                     "minimum": 1,
                     "maximum": 5
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
                   },
                   "cursor": {
                     "type": "string",
@@ -13127,8 +13127,8 @@
       "post": {
         "operationId": "airbnbSearch",
         "summary": "Search Airbnb stays by place and dates",
-        "description": "Costs 3 credits per call. Pages with cursor.",
-        "x-credits": 3,
+        "description": "Costs 1 credit per call. Pages with cursor.",
+        "x-credits": 1,
         "requestBody": {
           "required": true,
           "content": {
@@ -13136,12 +13136,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
-                  },
                   "location": {
                     "type": "string",
                     "minLength": 2,
@@ -13172,6 +13166,12 @@
                     "description": "Highest average nightly rate in USD, before taxes and fees. Compare with pricePerNight, which includes them.",
                     "type": "number",
                     "minimum": 0
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
                   },
                   "cursor": {
                     "type": "string",
@@ -13680,18 +13680,18 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
-                  },
                   "listing": {
                     "type": "string"
                   },
                   "month": {
                     "type": "string",
                     "pattern": "^\\d{4}-(0[1-9]|1[0-2])$"
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
                   }
                 },
                 "required": [
@@ -13827,12 +13827,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
-                  },
                   "listing": {
                     "type": "string"
                   },
@@ -13845,6 +13839,12 @@
                       "highest",
                       "lowest"
                     ]
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
                   },
                   "cursor": {
                     "type": "string",
@@ -13904,6 +13904,11 @@
                       "type": "object",
                       "additionalProperties": false,
                       "properties": {
+                        "total": {
+                          "type": "integer",
+                          "minimum": -9007199254740991,
+                          "maximum": 9007199254740991
+                        },
                         "results": {
                           "type": "array",
                           "items": {
@@ -13950,11 +13955,6 @@
                             "required": []
                           }
                         },
-                        "total": {
-                          "type": "integer",
-                          "minimum": -9007199254740991,
-                          "maximum": 9007199254740991
-                        },
                         "cursor": {
                           "type": "string"
                         }
@@ -13987,8 +13987,8 @@
       "post": {
         "operationId": "rightmoveSearch",
         "summary": "Search UK homes for sale or rent",
-        "description": "Costs 3 credits per call. Pages with cursor.",
-        "x-credits": 3,
+        "description": "Costs 1 credit per call. Pages with cursor.",
+        "x-credits": 1,
         "requestBody": {
           "required": true,
           "content": {
@@ -13996,12 +13996,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
-                  },
                   "location": {
                     "type": "string",
                     "minLength": 2,
@@ -14042,6 +14036,12 @@
                       "priceHigh",
                       "priceLow"
                     ]
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
                   },
                   "cursor": {
                     "type": "string",
@@ -14104,6 +14104,11 @@
                       "type": "object",
                       "additionalProperties": false,
                       "properties": {
+                        "total": {
+                          "type": "integer",
+                          "minimum": -9007199254740991,
+                          "maximum": 9007199254740991
+                        },
                         "results": {
                           "type": "array",
                           "items": {
@@ -14223,11 +14228,6 @@
                               "isAuction"
                             ]
                           }
-                        },
-                        "total": {
-                          "type": "integer",
-                          "minimum": -9007199254740991,
-                          "maximum": 9007199254740991
                         },
                         "cursor": {
                           "type": "string"
@@ -14528,8 +14528,8 @@
       "post": {
         "operationId": "immoscoutSearch",
         "summary": "Search German homes for rent or sale",
-        "description": "Costs 3 credits per call. Pages with cursor.",
-        "x-credits": 3,
+        "description": "Costs 1 credit per call. Pages with cursor.",
+        "x-credits": 1,
         "requestBody": {
           "required": true,
           "content": {
@@ -14537,12 +14537,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
-                  },
                   "location": {
                     "type": "string",
                     "minLength": 2,
@@ -14582,6 +14576,12 @@
                       "priceHigh",
                       "largest"
                     ]
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
                   },
                   "cursor": {
                     "type": "string",
@@ -14644,6 +14644,11 @@
                       "type": "object",
                       "additionalProperties": false,
                       "properties": {
+                        "total": {
+                          "type": "integer",
+                          "minimum": -9007199254740991,
+                          "maximum": 9007199254740991
+                        },
                         "results": {
                           "type": "array",
                           "items": {
@@ -14718,11 +14723,6 @@
                               "isNew"
                             ]
                           }
-                        },
-                        "total": {
-                          "type": "integer",
-                          "minimum": -9007199254740991,
-                          "maximum": 9007199254740991
                         },
                         "cursor": {
                           "type": "string"
@@ -14985,12 +14985,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "limit": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 100,
-                    "description": "Return at most this many results (1-100)."
-                  },
                   "query": {
                     "type": "string",
                     "minLength": 1,
@@ -15003,6 +14997,12 @@
                       "pins",
                       "videos"
                     ]
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Return at most this many results (1-100)."
                   },
                   "cursor": {
                     "type": "string",
@@ -15398,14 +15398,14 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "board": {
+                    "type": "string"
+                  },
                   "limit": {
                     "type": "integer",
                     "minimum": 1,
                     "maximum": 100,
                     "description": "Return at most this many results (1-100)."
-                  },
-                  "board": {
-                    "type": "string"
                   },
                   "cursor": {
                     "type": "string",
@@ -15667,14 +15667,14 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "profile": {
+                    "type": "string"
+                  },
                   "limit": {
                     "type": "integer",
                     "minimum": 1,
                     "maximum": 100,
                     "description": "Return at most this many results (1-100)."
-                  },
-                  "profile": {
-                    "type": "string"
                   },
                   "cursor": {
                     "type": "string",
@@ -15932,8 +15932,8 @@
       "post": {
         "operationId": "adsSearch",
         "summary": "Search a public ad library: Meta, Google, TikTok, LinkedIn, Microsoft or Pinterest",
-        "description": "Costs 5 credits per call. Pages with cursor.",
-        "x-credits": 5,
+        "description": "Costs 1 credit per call. Pages with cursor.",
+        "x-credits": 1,
         "requestBody": {
           "required": true,
           "content": {
@@ -15943,16 +15943,14 @@
                   {
                     "type": "object",
                     "properties": {
-                      "limit": {
-                        "type": "integer",
-                        "minimum": 1,
-                        "maximum": 100,
-                        "description": "Return at most this many results (1-100)."
-                      },
                       "query": {
                         "type": "string",
                         "minLength": 1,
                         "maxLength": 200
+                      },
+                      "network": {
+                        "type": "string",
+                        "const": "meta"
                       },
                       "country": {
                         "default": "us",
@@ -15978,14 +15976,16 @@
                           "text"
                         ]
                       },
+                      "limit": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 100,
+                        "description": "Return at most this many results (1-100)."
+                      },
                       "cursor": {
                         "type": "string",
                         "minLength": 1,
                         "description": "The cursor from the previous response. Send it as is."
-                      },
-                      "network": {
-                        "type": "string",
-                        "const": "meta"
                       }
                     },
                     "required": [
@@ -15997,11 +15997,9 @@
                   {
                     "type": "object",
                     "properties": {
-                      "limit": {
-                        "type": "integer",
-                        "minimum": 1,
-                        "maximum": 100,
-                        "description": "Return at most this many results (1-100)."
+                      "network": {
+                        "type": "string",
+                        "const": "google"
                       },
                       "query": {
                         "description": "A domain like nike.com. Google's library finds ads by domain or advertiser, not by keyword.",
@@ -16028,14 +16026,16 @@
                           "video"
                         ]
                       },
+                      "limit": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 100,
+                        "description": "Return at most this many results (1-100)."
+                      },
                       "cursor": {
                         "type": "string",
                         "minLength": 1,
                         "description": "The cursor from the previous response. Send it as is."
-                      },
-                      "network": {
-                        "type": "string",
-                        "const": "google"
                       }
                     },
                     "required": [
@@ -16046,11 +16046,9 @@
                   {
                     "type": "object",
                     "properties": {
-                      "limit": {
-                        "type": "integer",
-                        "minimum": 1,
-                        "maximum": 100,
-                        "description": "Return at most this many results (1-100)."
+                      "network": {
+                        "type": "string",
+                        "const": "tiktok"
                       },
                       "query": {
                         "type": "string",
@@ -16067,14 +16065,16 @@
                         "pattern": "^[A-Za-z]{2}$",
                         "description": "European country code like de. TikTok publishes ads for these countries only. Any case is accepted."
                       },
+                      "limit": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 100,
+                        "description": "Return at most this many results (1-100)."
+                      },
                       "cursor": {
                         "type": "string",
                         "minLength": 1,
                         "description": "The cursor from the previous response. Send it as is."
-                      },
-                      "network": {
-                        "type": "string",
-                        "const": "tiktok"
                       }
                     },
                     "required": [
@@ -16085,11 +16085,9 @@
                   {
                     "type": "object",
                     "properties": {
-                      "limit": {
-                        "type": "integer",
-                        "minimum": 1,
-                        "maximum": 100,
-                        "description": "Return at most this many results (1-100)."
+                      "network": {
+                        "type": "string",
+                        "const": "linkedin"
                       },
                       "query": {
                         "type": "string",
@@ -16113,14 +16111,16 @@
                           "all"
                         ]
                       },
+                      "limit": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 100,
+                        "description": "Return at most this many results (1-100)."
+                      },
                       "cursor": {
                         "type": "string",
                         "minLength": 1,
                         "description": "The cursor from the previous response. Send it as is."
-                      },
-                      "network": {
-                        "type": "string",
-                        "const": "linkedin"
                       }
                     },
                     "required": [
@@ -16131,11 +16131,9 @@
                   {
                     "type": "object",
                     "properties": {
-                      "limit": {
-                        "type": "integer",
-                        "minimum": 1,
-                        "maximum": 100,
-                        "description": "Return at most this many results (1-100)."
+                      "network": {
+                        "type": "string",
+                        "const": "microsoft"
                       },
                       "query": {
                         "type": "string",
@@ -16151,14 +16149,16 @@
                         "pattern": "^[A-Za-z]{2}$",
                         "description": "EU/EEA country code like de. Microsoft publishes ads for these countries only. Any case is accepted."
                       },
+                      "limit": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 100,
+                        "description": "Return at most this many results (1-100)."
+                      },
                       "cursor": {
                         "type": "string",
                         "minLength": 1,
                         "description": "The cursor from the previous response. Send it as is."
-                      },
-                      "network": {
-                        "type": "string",
-                        "const": "microsoft"
                       }
                     },
                     "required": [
@@ -16169,11 +16169,14 @@
                   {
                     "type": "object",
                     "properties": {
-                      "limit": {
-                        "type": "integer",
-                        "minimum": 1,
-                        "maximum": 100,
-                        "description": "Return at most this many results (1-100)."
+                      "country": {
+                        "type": "string",
+                        "pattern": "^[A-Za-z]{2}$",
+                        "description": "EU country code like fr, or br or tr. Pinterest publishes ads for these countries only. Any case is accepted."
+                      },
+                      "network": {
+                        "type": "string",
+                        "const": "pinterest"
                       },
                       "query": {
                         "description": "Not supported. Pinterest's ads library has no keyword search. Use advertiser to filter by advertiser name.",
@@ -16181,25 +16184,22 @@
                         "minLength": 1,
                         "maxLength": 200
                       },
-                      "country": {
-                        "type": "string",
-                        "pattern": "^[A-Za-z]{2}$",
-                        "description": "EU country code like fr, or br or tr. Pinterest publishes ads for these countries only. Any case is accepted."
-                      },
                       "advertiser": {
                         "description": "Advertiser name to filter by. Pinterest does not publish advertiser names on the ads themselves, so results carry no advertiser.",
                         "type": "string",
                         "minLength": 1,
                         "maxLength": 200
                       },
+                      "limit": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 100,
+                        "description": "Return at most this many results (1-100)."
+                      },
                       "cursor": {
                         "type": "string",
                         "minLength": 1,
                         "description": "The cursor from the previous response. Send it as is."
-                      },
-                      "network": {
-                        "type": "string",
-                        "const": "pinterest"
                       }
                     },
                     "required": [
@@ -16475,6 +16475,16 @@
                           "type": "object",
                           "additionalProperties": false,
                           "properties": {
+                            "totalMin": {
+                              "type": "integer",
+                              "minimum": -9007199254740991,
+                              "maximum": 9007199254740991
+                            },
+                            "totalMax": {
+                              "type": "integer",
+                              "minimum": -9007199254740991,
+                              "maximum": 9007199254740991
+                            },
                             "results": {
                               "type": "array",
                               "items": {
@@ -16541,16 +16551,6 @@
                                 ]
                               }
                             },
-                            "totalMin": {
-                              "type": "integer",
-                              "minimum": -9007199254740991,
-                              "maximum": 9007199254740991
-                            },
-                            "totalMax": {
-                              "type": "integer",
-                              "minimum": -9007199254740991,
-                              "maximum": 9007199254740991
-                            },
                             "cursor": {
                               "type": "string"
                             }
@@ -16566,6 +16566,11 @@
                             },
                             "advertiserName": {
                               "type": "string"
+                            },
+                            "total": {
+                              "type": "integer",
+                              "minimum": -9007199254740991,
+                              "maximum": 9007199254740991
                             },
                             "results": {
                               "type": "array",
@@ -16627,11 +16632,6 @@
                                 ]
                               }
                             },
-                            "total": {
-                              "type": "integer",
-                              "minimum": -9007199254740991,
-                              "maximum": 9007199254740991
-                            },
                             "cursor": {
                               "type": "string"
                             }
@@ -16642,6 +16642,11 @@
                           "type": "object",
                           "additionalProperties": false,
                           "properties": {
+                            "total": {
+                              "type": "integer",
+                              "minimum": -9007199254740991,
+                              "maximum": 9007199254740991
+                            },
                             "results": {
                               "type": "array",
                               "items": {
@@ -16694,11 +16699,6 @@
                                 ]
                               }
                             },
-                            "total": {
-                              "type": "integer",
-                              "minimum": -9007199254740991,
-                              "maximum": 9007199254740991
-                            },
                             "cursor": {
                               "type": "string"
                             }
@@ -16709,6 +16709,11 @@
                           "type": "object",
                           "additionalProperties": false,
                           "properties": {
+                            "total": {
+                              "type": "integer",
+                              "minimum": -9007199254740991,
+                              "maximum": 9007199254740991
+                            },
                             "results": {
                               "type": "array",
                               "items": {
@@ -16747,11 +16752,6 @@
                                 },
                                 "required": []
                               }
-                            },
-                            "total": {
-                              "type": "integer",
-                              "minimum": -9007199254740991,
-                              "maximum": 9007199254740991
                             },
                             "cursor": {
                               "type": "string"
@@ -16918,8 +16918,8 @@
       "post": {
         "operationId": "adsAd",
         "summary": "Get one ad's details from Meta, Google, TikTok, LinkedIn, Microsoft or Pinterest",
-        "description": "Costs 5 credits per call.",
-        "x-credits": 5,
+        "description": "Costs 1 credit per call.",
+        "x-credits": 1,
         "requestBody": {
           "required": true,
           "content": {
@@ -16946,15 +16946,15 @@
                   {
                     "type": "object",
                     "properties": {
-                      "advertiser": {
-                        "type": "string"
-                      },
                       "ad": {
                         "type": "string"
                       },
                       "network": {
                         "type": "string",
                         "const": "google"
+                      },
+                      "advertiser": {
+                        "type": "string"
                       }
                     },
                     "required": [
@@ -18079,25 +18079,25 @@
                   {
                     "type": "object",
                     "properties": {
-                      "limit": {
-                        "type": "integer",
-                        "minimum": 1,
-                        "maximum": 100,
-                        "description": "Return at most this many results (1-100)."
-                      },
                       "query": {
                         "type": "string",
                         "minLength": 1,
                         "maxLength": 200
+                      },
+                      "network": {
+                        "type": "string",
+                        "const": "google"
                       },
                       "country": {
                         "type": "string",
                         "pattern": "^[A-Za-z]{2}$",
                         "description": "Country code like de. Advertisers are matched on ads shown in this country, wherever the advertiser is based. Any case is accepted."
                       },
-                      "network": {
-                        "type": "string",
-                        "const": "google"
+                      "limit": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 100,
+                        "description": "Return at most this many results (1-100)."
                       }
                     },
                     "required": [
@@ -18109,12 +18109,6 @@
                   {
                     "type": "object",
                     "properties": {
-                      "limit": {
-                        "type": "integer",
-                        "minimum": 1,
-                        "maximum": 100,
-                        "description": "Return at most this many results (1-100)."
-                      },
                       "query": {
                         "type": "string",
                         "minLength": 1,
@@ -18123,6 +18117,12 @@
                       "network": {
                         "type": "string",
                         "const": "microsoft"
+                      },
+                      "limit": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 100,
+                        "description": "Return at most this many results (1-100)."
                       }
                     },
                     "required": [
@@ -18134,8 +18134,8 @@
                 ]
               },
               "example": {
-                "network": "google",
-                "query": "nike"
+                "query": "nike",
+                "network": "google"
               }
             }
           }
@@ -18186,6 +18186,12 @@
                           "type": "object",
                           "additionalProperties": false,
                           "properties": {
+                            "domains": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
                             "results": {
                               "type": "array",
                               "items": {
@@ -18224,12 +18230,6 @@
                                   "isVerified"
                                 ]
                               }
-                            },
-                            "domains": {
-                              "type": "array",
-                              "items": {
-                                "type": "string"
-                              }
                             }
                           },
                           "required": []
@@ -18238,6 +18238,11 @@
                           "type": "object",
                           "additionalProperties": false,
                           "properties": {
+                            "total": {
+                              "type": "integer",
+                              "minimum": -9007199254740991,
+                              "maximum": 9007199254740991
+                            },
                             "results": {
                               "type": "array",
                               "items": {
@@ -18261,11 +18266,6 @@
                                   "isVerified"
                                 ]
                               }
-                            },
-                            "total": {
-                              "type": "integer",
-                              "minimum": -9007199254740991,
-                              "maximum": 9007199254740991
                             }
                           },
                           "required": []
@@ -18296,8 +18296,8 @@
       "post": {
         "operationId": "aiAnswer",
         "summary": "Ask an AI assistant a question and get its answer with the sources it cites",
-        "description": "Costs 3 credits per call.",
-        "x-credits": 3,
+        "description": "Costs 1 credit per call.",
+        "x-credits": 1,
         "requestBody": {
           "required": true,
           "content": {

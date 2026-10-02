@@ -1,9 +1,9 @@
 ---
 title: 'Google AI Mode API'
 sidebarTitle: 'AI Mode'
-description: 'Ask Google AI Mode a question and get its answer with the sources it cites. Call the Google AI Mode API for JSON. 2 credits per call.'
+description: 'Ask Google AI Mode a question and get its answer with the sources it cites. Call the Google AI Mode API for JSON. 1 credit per call.'
 og:title: 'Google AI Mode API | Stophy'
-og:description: 'Ask Google AI Mode a question and get its answer with the sources it cites. Call the Google AI Mode API for JSON. 2 credits per call.'
+og:description: 'Ask Google AI Mode a question and get its answer with the sources it cites. Call the Google AI Mode API for JSON. 1 credit per call.'
 openapi: 'api-reference/openapi.json POST /v1/google/aiMode'
 ---
 
@@ -16,7 +16,7 @@ import CliExample from "/snippets/examples/google.aiMode/cli.mdx";
 
 - **Endpoint:** `google.aiMode`
 - **Returns:** `data` has `prompt`, `answer`, `sources`.
-- **Cost:** 2 credits per call. Failed calls cost nothing.
+- **Cost:** 1 credit per call. Failed calls cost nothing.
 - **Paging:** No.
 
 Returns Google's AI Mode answer as text, with the pages it cites in `sources`.
