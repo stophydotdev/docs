@@ -18,7 +18,7 @@ Returns your recent paid calls, 50 per page, newest first. Needs an API key. Fre
 </ParamField>
 
 <ParamField query="endpoint" type="string">
-  Only calls to this endpoint id, such as `web.search`.
+  Only calls to this endpoint id, such as `google.search`.
 </ParamField>
 
 <ParamField query="apiKeyId" type="string">
@@ -30,7 +30,7 @@ Returns your recent paid calls, 50 per page, newest first. Needs an API key. Fre
   <Expandable title="properties">
     <ResponseField name="id" type="string">The log entry ID.</ResponseField>
     <ResponseField name="createdAt" type="string">When the call was made, as an ISO 8601 time.</ResponseField>
-    <ResponseField name="endpoint" type="string">The endpoint id, such as `web.search`.</ResponseField>
+    <ResponseField name="endpoint" type="string">The endpoint id, such as `google.search`.</ResponseField>
     <ResponseField name="credits" type="integer">Credits the call used.</ResponseField>
     <ResponseField name="apiKeyId" type="string | null">The API key used.</ResponseField>
     <ResponseField name="apiKeyName" type="string | null">That key's name.</ResponseField>
@@ -52,7 +52,7 @@ Returns your recent paid calls, 50 per page, newest first. Needs an API key. Fre
 
 <RequestExample>
 ```bash cURL icon="terminal"
-curl "https://api.stophy.dev/v1/logs?days=7&page=0&endpoint=web.search" \
+curl "https://api.stophy.dev/v1/logs?days=7&page=0&endpoint=google.search" \
   -H "Authorization: Bearer $STOPHY_API_KEY"
 ```
 </RequestExample>
@@ -60,7 +60,7 @@ curl "https://api.stophy.dev/v1/logs?days=7&page=0&endpoint=web.search" \
 <ResponseExample>
 ```json 200
 {
-  "endpoints": ["web.search", "youtube.search"],
+  "endpoints": ["google.search", "youtube.search"],
   "logs": [
     {
       "apiKeyId": "string",
@@ -68,7 +68,7 @@ curl "https://api.stophy.dev/v1/logs?days=7&page=0&endpoint=web.search" \
       "createdAt": "2026-09-28T00:00:00.000Z",
       "credits": 1,
       "durationMs": null,
-      "endpoint": "web.search",
+      "endpoint": "google.search",
       "id": "string",
       "method": "POST",
       "response": "success",

@@ -27,12 +27,12 @@ from stophy import Stophy
 stophy = Stophy(api_key=os.environ["STOPHY_API_KEY"])
 ```
 
-Without a key, web search still works:
+Without a key, Google search still works:
 
 ```python
 from stophy import Stophy
 
-result = Stophy().web.search(query="bun runtime")
+result = Stophy().google.search(query="bun runtime")
 print(result["data"]["results"])
 ```
 
@@ -75,7 +75,7 @@ from stophy import AsyncStophy
 
 async def main() -> None:
     async with AsyncStophy() as stophy:
-        result = await stophy.web.search(query="bun runtime", limit=3)
+        result = await stophy.google.search(query="bun runtime", limit=3)
         for item in result["data"]["results"]:
             print(item["title"])
 
@@ -136,7 +136,7 @@ stophy = Stophy(
 
 | Option | Default | What it does |
 | --- | --- | --- |
-| `api_key` | `STOPHY_API_KEY` | Your API key. Leave it unset to use web search only. |
+| `api_key` | `STOPHY_API_KEY` | Your API key. Leave it unset to use Google search only. |
 | `base_url` | `STOPHY_BASE_URL` or `https://api.stophy.dev` | Where requests go |
 | `timeout` | `30.0` | Timeout in seconds |
 | `max_retries` | `2` | Retries for network errors and `429`/`5xx`. `0` turns them off. |
@@ -160,7 +160,7 @@ stophy = Stophy(api_key=os.environ["STOPHY_API_KEY"])
 usage = stophy.usage()
 print(usage["balanceMicros"], usage["creditsUsed"], usage["requestCount"])
 
-logs = stophy.logs(days=7, page=0, endpoint="web.search")
+logs = stophy.logs(days=7, page=0, endpoint="google.search")
 for entry in logs["logs"]:
     print(entry["createdAt"], entry["endpoint"], entry["credits"])
 ```

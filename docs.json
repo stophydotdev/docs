@@ -132,13 +132,22 @@
             ]
           },
           {
-            "group": "Web search",
-            "icon": "globe",
+            "group": "Search and AI answers",
+            "icon": "magnifying-glass",
             "pages": [
               {
-                "group": "Web",
+                "group": "Google",
                 "pages": [
-                  "api-reference/endpoint/web-search"
+                  "api-reference/endpoint/google-search",
+                  "api-reference/endpoint/google-news",
+                  "api-reference/endpoint/google-images",
+                  "api-reference/endpoint/google-aiMode"
+                ]
+              },
+              {
+                "group": "AI",
+                "pages": [
+                  "api-reference/endpoint/ai-answer"
                 ]
               }
             ]
@@ -202,7 +211,9 @@
                 "pages": [
                   "api-reference/endpoint/linkedin-company",
                   "api-reference/endpoint/linkedin-profile",
-                  "api-reference/endpoint/linkedin-posts"
+                  "api-reference/endpoint/linkedin-posts",
+                  "api-reference/endpoint/linkedin-people-search",
+                  "api-reference/endpoint/linkedin-companies-search"
                 ]
               },
               {
@@ -289,6 +300,12 @@
                 "pages": [
                   "api-reference/endpoint/walmart-search",
                   "api-reference/endpoint/walmart-product"
+                ]
+              },
+              {
+                "group": "Google",
+                "pages": [
+                  "api-reference/endpoint/google-shopping"
                 ]
               }
             ]
@@ -790,6 +807,10 @@
     {
       "source": "/v1/channel",
       "destination": "/api-reference/endpoint/youtube-channel"
+    },
+    {
+      "source": "/api-reference/endpoint/web-search",
+      "destination": "/api-reference/endpoint/google-search"
     }
   ],
   "integrations": {

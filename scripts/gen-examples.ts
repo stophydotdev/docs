@@ -5,7 +5,7 @@
 // Output: snippets/examples/<endpoint-id>/{ts,python,curl,cli}.mdx
 // Every file it writes is overwritten on each run: the catalog is the source
 // of truth, not these files. Import them into a page with, for example:
-//   import Ts from '/snippets/examples/web.search/ts.mdx';
+//   import Ts from '/snippets/examples/google.search/ts.mdx';
 // and place the import inside a <CodeGroup>.
 
 import { rm } from "node:fs/promises";

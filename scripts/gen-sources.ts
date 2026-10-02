@@ -32,15 +32,15 @@ interface Area {
 // shown first; `variations` are 2-3 more calls shown further down the page.
 const AREAS: Area[] = [
   {
-    title: "Web search",
+    title: "Search and AI answers",
     slug: "web",
-    icon: "globe",
+    icon: "magnifying-glass",
     description:
-      "Search the web and get ranked results with titles, links and descriptions as structured JSON.",
-    endpoints: ["web.search"],
-    example: "web.search",
-    variations: [],
-    tip: "Web search works without a key. Every other endpoint needs one.",
+      "Search Google, Google News and Google Images, and ask Google AI Mode, Gemini or ChatGPT a question. Get results and cited sources as JSON.",
+    endpoints: ["google.search", "google.news", "google.images", "google.aiMode", "ai.answer"],
+    example: "google.search",
+    variations: ["google.news", "ai.answer"],
+    tip: "Google search works without a key, up to 10 results per call. Every other endpoint needs one.",
   },
   {
     title: "Video",
@@ -58,10 +58,10 @@ const AREAS: Area[] = [
     slug: "social",
     icon: "users",
     description:
-      "Search and read posts, profiles, and comments across Reddit, Instagram, LinkedIn, and Pinterest.",
-    endpoints: ["reddit.search", "reddit.post", "reddit.subreddit", "reddit.user", "reddit.domain", "instagram.profile", "instagram.post", "instagram.comments", "linkedin.company", "linkedin.profile", "linkedin.posts", "pinterest.search", "pinterest.pin", "pinterest.board", "pinterest.user"],
+      "Search and read posts, profiles, and comments across Reddit, Instagram, LinkedIn, and Pinterest. Find people and companies on LinkedIn.",
+    endpoints: ["reddit.search", "reddit.post", "reddit.subreddit", "reddit.user", "reddit.domain", "instagram.profile", "instagram.post", "instagram.comments", "linkedin.people.search", "linkedin.companies.search", "linkedin.company", "linkedin.profile", "linkedin.posts", "pinterest.search", "pinterest.pin", "pinterest.board", "pinterest.user"],
     example: "reddit.search",
-    variations: ["instagram.profile", "linkedin.profile"],
+    variations: ["linkedin.people.search", "instagram.profile"],
     tip: "Endpoints that return `results` page. See [Page through results](/guides/paging).",
   },
   {
@@ -91,11 +91,11 @@ const AREAS: Area[] = [
     slug: "shopping",
     icon: "cart-shopping",
     description:
-      "Search Walmart products and get the price, ratings, and details for any product as structured JSON.",
-    endpoints: ["walmart.search", "walmart.product"],
-    example: "walmart.search",
-    variations: ["walmart.product"],
-    tip: "Walmart search costs 5 credits and a product lookup costs 3. Pass the product link from a search result into `walmart.product`.",
+      "Compare prices and sellers on Google Shopping in 24 countries, and search Walmart products with their price, ratings, and details.",
+    endpoints: ["google.shopping", "walmart.search", "walmart.product"],
+    example: "google.shopping",
+    variations: ["walmart.search", "walmart.product"],
+    tip: "Google Shopping costs 2 credits. Walmart search costs 5 credits and a product lookup costs 3. Pass the product link from a Walmart search result into `walmart.product`.",
   },
   {
     title: "Apps",
@@ -136,28 +136,26 @@ const AREAS: Area[] = [
 // the docs repo's builder report for the exact command). Used instead of a
 // schema-guessed sample for the endpoints that actually answer without a key.
 const LIVE_RESPONSES: Record<string, JsonObject> = {
-  "web.search": {
+  "google.search": {
     "success": true,
     "data": {
       "results": [
         {
-          "title": "Bun — A fast all-in-one JavaScript runtime",
           "url": "https://bun.com/",
-          "description": "Bundle, install, and run JavaScript & TypeScript — all in Bun. Bun is a fast JavaScript runtime & toolkit with a bundler, test runner, and npm-compatible package manager built in.",
-          "domain": "bun.com",
+          "title": "Bun — A fast all-in-one JavaScript runtime",
+          "description": "Bun is a fast JavaScript runtime & toolkit. All in one. Runtime, package manager, test runner and bundler in a single binary. Use bun install or bun test in an ...",
           "position": 1
         },
         {
-          "title": "GitHub - oven-sh/bun: Incredibly fast JavaScript runtime, bundler, test runner, and package manager – all in one",
           "url": "https://github.com/oven-sh/bun",
-          "description": "At its core is the Bun runtime, a fast JavaScript runtime designed as a drop-in replacement for Node.js.",
-          "domain": "github.com",
+          "title": "oven-sh/bun: Incredibly fast JavaScript runtime, bundler ...",
+          "description": "At its core is the Bun runtime, a fast JavaScript runtime designed as a drop-in replacement for Node.js. It's written in Rust and powered by JavaScriptCore ...",
           "position": 2
         }
       ]
     },
     "creditsUsed": 0,
-    "requestId": "0094bdbc-2935-4184-8df9-f476e561a522"
+    "requestId": "44eea069-e571-4dd8-95b4-cd56e641701a"
   },
   "youtube.search": {
     "success": true,

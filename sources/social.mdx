@@ -1,8 +1,8 @@
 ---
 title: 'Social'
-description: 'Search and read posts, profiles, and comments across Reddit, Instagram, LinkedIn, and Pinterest.'
+description: 'Search and read posts, profiles, and comments across Reddit, Instagram, LinkedIn, and Pinterest. Find people and companies on LinkedIn.'
 og:title: 'Social | Stophy'
-og:description: 'Search and read posts, profiles, and comments across Reddit, Instagram, LinkedIn, and Pinterest.'
+og:description: 'Search and read posts, profiles, and comments across Reddit, Instagram, LinkedIn, and Pinterest. Find people and companies on LinkedIn.'
 icon: 'users'
 ---
 
@@ -12,16 +12,16 @@ import RedditSearchTs from '/snippets/examples/reddit.search/ts.mdx';
 import RedditSearchPython from '/snippets/examples/reddit.search/python.mdx';
 import RedditSearchCurl from '/snippets/examples/reddit.search/curl.mdx';
 import RedditSearchCli from '/snippets/examples/reddit.search/cli.mdx';
+import LinkedinPeopleSearchTs from '/snippets/examples/linkedin.people.search/ts.mdx';
+import LinkedinPeopleSearchPython from '/snippets/examples/linkedin.people.search/python.mdx';
+import LinkedinPeopleSearchCurl from '/snippets/examples/linkedin.people.search/curl.mdx';
+import LinkedinPeopleSearchCli from '/snippets/examples/linkedin.people.search/cli.mdx';
 import InstagramProfileTs from '/snippets/examples/instagram.profile/ts.mdx';
 import InstagramProfilePython from '/snippets/examples/instagram.profile/python.mdx';
 import InstagramProfileCurl from '/snippets/examples/instagram.profile/curl.mdx';
 import InstagramProfileCli from '/snippets/examples/instagram.profile/cli.mdx';
-import LinkedinProfileTs from '/snippets/examples/linkedin.profile/ts.mdx';
-import LinkedinProfilePython from '/snippets/examples/linkedin.profile/python.mdx';
-import LinkedinProfileCurl from '/snippets/examples/linkedin.profile/curl.mdx';
-import LinkedinProfileCli from '/snippets/examples/linkedin.profile/cli.mdx';
 
-Search and read posts, profiles, and comments across Reddit, Instagram, LinkedIn, and Pinterest. See every field in the [Social reference](/api-reference/endpoint/reddit-search), or try it in the [playground](https://stophy.dev/playground).
+Search and read posts, profiles, and comments across Reddit, Instagram, LinkedIn, and Pinterest. Find people and companies on LinkedIn. See every field in the [Social reference](/api-reference/endpoint/reddit-search), or try it in the [playground](https://stophy.dev/playground).
 
 ## Search Reddit posts, comments, subreddits and users
 
@@ -78,7 +78,7 @@ The response:
     ]
   },
   "creditsUsed": 1,
-  "requestId": "eaaf3ef0-3adf-4fdb-bf71-7c448bf5de32"
+  "requestId": "ff0e30a1-acbc-4e95-a35e-36dcf8aabfcc"
 }
 ```
 
@@ -94,6 +94,8 @@ The response:
 | [Get a profile's bio, stats and a page of its posts and reels](/api-reference/endpoint/instagram-profile) | 2 credits |
 | [Get a post or reel, with its top comments](/api-reference/endpoint/instagram-post) | 1 credit |
 | [Get a post's comments, or the replies to one comment](/api-reference/endpoint/instagram-comments) | 1 credit |
+| [Find public LinkedIn profiles by job title, company and location, with their details](/api-reference/endpoint/linkedin-people-search) | From 1 credit |
+| [Find LinkedIn company pages by name, industry and location, with their details](/api-reference/endpoint/linkedin-companies-search) | From 1 credit |
 | [Get a company's profile, size and industry](/api-reference/endpoint/linkedin-company) | 1 credit |
 | [Get a person's profile](/api-reference/endpoint/linkedin-profile) | 1 credit |
 | [Get a person's or company's latest public posts](/api-reference/endpoint/linkedin-posts) | 1 credit |
@@ -104,6 +106,15 @@ The response:
 
 ## More ways to call it
 
+### Find public LinkedIn profiles by job title, company and location, with their details
+
+<CodeGroup>
+  <LinkedinPeopleSearchTs />
+  <LinkedinPeopleSearchPython />
+  <LinkedinPeopleSearchCurl />
+  <LinkedinPeopleSearchCli />
+</CodeGroup>
+
 ### Get a profile's bio, stats and a page of its posts and reels
 
 <CodeGroup>
@@ -111,15 +122,6 @@ The response:
   <InstagramProfilePython />
   <InstagramProfileCurl />
   <InstagramProfileCli />
-</CodeGroup>
-
-### Get a person's profile
-
-<CodeGroup>
-  <LinkedinProfileTs />
-  <LinkedinProfilePython />
-  <LinkedinProfileCurl />
-  <LinkedinProfileCli />
 </CodeGroup>
 
 <Tip>Endpoints that return `results` page. See [Page through results](/guides/paging).</Tip>

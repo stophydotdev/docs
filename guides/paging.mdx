@@ -69,7 +69,7 @@ Set your own stop, like the 100 results above. Some sources have many pages.
 Every endpoint that returns `results` takes `limit`, from 1 to 100. It keeps at most that many results from the page. The price stays the same, and the `cursor` still points to the next page.
 
 ```bash
-curl -X POST https://api.stophy.dev/v1/web/search \
+curl -X POST https://api.stophy.dev/v1/google/search \
   -H "content-type: application/json" \
   -d '{"query":"bun runtime","limit":2}'
 ```
