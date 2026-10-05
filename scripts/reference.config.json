@@ -283,9 +283,9 @@
     }
   ],
   "notes": {
-    "tiktok.transcript": "Videos over 3 minutes are refused, and refused calls cost nothing.",
-    "google.ads.search": "Google's ad library does not search by keyword. To search by name, find the advertiser id with google.ads.advertisers first.",
-    "pinterest.ads.search": "It takes `country` and `advertiser`, not a keyword."
+    "tiktok.transcript": "Videos longer than 3 minutes are rejected with `invalidRequest`. Rejected requests are not billed.",
+    "google.ads.search": "The Google ad library does not support keyword search. To search by advertiser name, first resolve the advertiser ID with google.ads.advertisers.",
+    "pinterest.ads.search": "This method filters by `country` and `advertiser`. Keyword search is not supported."
   },
   "holds": {
     "google.search": "`data` has the web results in `results`, Google's AI Overview when it shows one, related questions and related searches.",
@@ -389,58 +389,58 @@
     "google.trends.regions": "`data.results` lists the regions, each with one value for each query."
   },
   "requests": {
-    "google.news": "Send `query` or `topic`, not both.",
-    "google.scholar": "Send `query`, or `citesId` to list the works that cite a result.",
-    "google.ads.search": "Send `query`, `advertiser` or `domain`."
+    "google.news": "Exactly one of `query` or `topic` is required.",
+    "google.scholar": "At least one of `query` or `citesId` is required. Set `citesId` to list the works that cite a result.",
+    "google.ads.search": "At least one of `query`, `advertiser` or `domain` is required."
   },
   "cursorHours": {
     "youtube.channel": 6
   },
   "fields": {
-    "cursor": "Send it back as `cursor` to get the next page. The last page has none.",
-    "repliesCursor": "Send it as `comment` to get this comment's replies.",
-    "page": "The page number this response holds.",
-    "totalPages": "How many pages match.",
-    "total": "How many results match in all, not only on this page.",
-    "totalMin": "With `totalMax`, the range for how many ads match.",
-    "position": "Where the result sits in the list, starting at 1.",
-    "publishedAt": "When it was published, as a UTC time.",
-    "durationSeconds": "Length in seconds.",
+    "cursor": "The pagination token. Pass it as `cursor` to retrieve the next page. Omitted on the last page.",
+    "repliesCursor": "A token. Pass it as `comment` to retrieve the replies to this comment.",
+    "page": "The page number of this response.",
+    "totalPages": "The number of pages that match the request.",
+    "total": "The total number of matching results, across all pages.",
+    "totalMin": "With `totalMax`, the range for the number of matching ads.",
+    "position": "The 1-based position of the result in the list.",
+    "publishedAt": "The publication time, in UTC.",
+    "durationSeconds": "The duration, in seconds.",
     "firstShownAt": "The first day the ad was shown.",
     "lastShownAt": "The last day the ad was shown.",
-    "reachMin": "With `reachMax`, the range for how many people the ad reached.",
-    "impressionsMin": "With `impressionsMax`, the range for how many times the ad was shown.",
-    "adsMin": "With `adsMax`, the range for how many ads the advertiser runs.",
-    "paidBy": "Who paid for the ad.",
+    "reachMin": "With `reachMax`, the range for the number of people the ad reached.",
+    "impressionsMin": "With `impressionsMax`, the range for the number of times the ad was shown.",
+    "adsMin": "With `adsMax`, the range for the number of ads the advertiser runs.",
+    "paidBy": "The entity that paid for the ad.",
     "score": "Upvotes minus downvotes.",
-    "upvotePercent": "The share of votes that are upvotes, as a percent.",
-    "depth": "How far down the thread the comment sits.",
-    "isSubmitter": "True when the commenter wrote the post.",
-    "createdAt": "When it was created, as a UTC time.",
-    "rating": "Star rating, out of 5.",
-    "reviews": "How many reviews the rating is based on.",
-    "ratings": "How many ratings the app has.",
-    "sold": "How many units were sold.",
-    "zestimate": "Zillow's estimate of what the home is worth.",
-    "values": "Search interest for each query. 100 is the peak.",
-    "isPartial": "True when the period has not ended yet.",
-    "averages": "The average interest for each query over the whole range.",
-    "volume": "How many searches the trend has.",
-    "increasePercent": "How much searches grew, as a percent.",
-    "isBest": "True for the options Google marks as best.",
-    "openStatus": "Whether the place is open now, as Google words it.",
-    "aiOverview": "Google's AI Overview. Left out when Google shows none.",
-    "peopleAlsoAsk": "Questions Google shows under the results.",
-    "relatedSearches": "Searches Google suggests.",
-    "answer": "Google's answer, as text.",
-    "countries": "The countries where the ad was shown.",
-    "videos": "How many videos there are.",
-    "clientTotalSpent": "How much the client has spent in all.",
-    "posts": "How many posts there are.",
-    "statusText": "Zillow's own label for the listing, like Active.",
-    "daysOnZillow": "Days since the home was listed.",
-    "rank": "Where the entry sits in the list, starting at 1.",
-    "likes": "How many likes."
+    "upvotePercent": "The share of votes that are upvotes, as a percentage.",
+    "depth": "The nesting level of the comment in the thread. Top-level comments are 0.",
+    "isSubmitter": "`true` if the commenter is the author of the post.",
+    "createdAt": "The creation time, in UTC.",
+    "rating": "The average star rating, on a scale of 1 to 5.",
+    "reviews": "The number of reviews the rating is based on.",
+    "ratings": "The number of ratings the app has received.",
+    "sold": "The number of units sold.",
+    "zestimate": "The Zillow estimate of the home's market value.",
+    "values": "Search interest for each query, relative to the peak value of 100.",
+    "isPartial": "`true` if the period has not ended.",
+    "averages": "The mean interest for each query over the full range.",
+    "volume": "The search volume of the trend.",
+    "increasePercent": "The growth in search volume, as a percentage.",
+    "isBest": "`true` for the options Google marks as best.",
+    "openStatus": "The current opening status, as displayed by Google.",
+    "aiOverview": "The Google AI Overview. Omitted when Google does not display one.",
+    "peopleAlsoAsk": "The questions Google displays below the results.",
+    "relatedSearches": "The searches Google suggests.",
+    "answer": "The answer text returned by Google.",
+    "countries": "The countries in which the ad was shown.",
+    "videos": "The number of videos.",
+    "clientTotalSpent": "The total amount the client has spent.",
+    "posts": "The number of posts.",
+    "statusText": "The listing status label as displayed by Zillow, such as `Active`.",
+    "daysOnZillow": "The number of days since the home was listed.",
+    "rank": "The 1-based position of the entry in the list.",
+    "likes": "The number of likes."
   },
   "fieldsFor": {
     "youtube.transcript": {
@@ -650,13 +650,12 @@
     "google.maps.search.openNow": "Only places open at the time of the search."
   },
   "optionValues": {
-    "google.flights.returnDate": "Date, `YYYY-MM-DD`.",
-    "linkedin.jobs.search.company": "Text, or a list of 1 to 5.",
-    "indeed.search.distanceMiles": "`0`, `5`, `10`, `15`, `25`, `35`, `50` or `100`. Default `25`.",
-    "google.flights.departureTime": "Object with `earliest` and `latest`, in hours from 0 to 24.",
-    "google.flights.arrivalTime": "Object with `earliest` and `latest`, in hours from 0 to 24.",
-    "cursor": "Text from the previous response.",
-    "repliesCursor": "Text from the previous response."
+    "google.flights.returnDate": "Format: `YYYY-MM-DD`.",
+    "linkedin.jobs.search.company": "Accepts a string or an array of 1 to 5 strings.",
+    "indeed.search.distanceMiles": "Acceptable values are `0`, `5`, `10`, `15`, `25`, `35`, `50` and `100`. If unset, defaults to `25`.",
+    "google.flights.departureTime": "An object with `earliest` and `latest`, each an hour from 0 to 24.",
+    "google.flights.arrivalTime": "An object with `earliest` and `latest`, each an hour from 0 to 24.",
+    "repliesCursor": ""
   },
   "next": {
     "amazon.suggest": [
@@ -1109,13 +1108,13 @@
   },
   "bestWhenNotes": {
     "instagram.comments": "",
-    "instagram.post": "A comment's reply count can be missing here. Send that comment's id to instagram.comments to get the real count and the replies.",
-    "instagram.search": "Each result is the search card: caption, author and views. Likes, comments and media are on instagram.post.",
-    "linkedin.posts": "It returns the latest public posts LinkedIn shows for the page, reposts included. That is usually up to 10. Older posts are not available, and there is no cursor.",
-    "linkedin.ads.search": "Run dates, impressions and who paid show only in linkedin.ads.ad, and only for ads shown in the EU. Pass an EU country to get them.",
-    "upwork.search": "Hours needed, project length and hourly rate apply to hourly jobs only."
+    "instagram.post": "The reply count of a comment can be absent in this response. To retrieve the exact count and the replies, pass the comment ID to instagram.comments.",
+    "instagram.search": "Each result contains the fields of the search card: caption, author and view count. Likes, comments and media are returned by instagram.post.",
+    "linkedin.posts": "Returns the most recent public posts that LinkedIn displays for the page, including reposts. This is typically at most 10 posts. Older posts are not available, and this method is not paginated.",
+    "linkedin.ads.search": "Run dates, impressions and the paying entity are returned only by linkedin.ads.ad, and only for ads shown in the EU. To retrieve them, set an EU country.",
+    "upwork.search": "`workload`, `duration` and the hourly rate filters apply to hourly jobs only."
   },
   "pagingNotes": {
-    "google.search": "Without an API key there is no paging."
+    "google.search": "Requests without an API key return the first page only."
   }
 }
