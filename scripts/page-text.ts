@@ -86,7 +86,7 @@ function thirdPerson(summary: string): string {
   const text = summary.replace(/\.$/, "");
   const [first = "", ...rest] = text.split(" ");
   const verb = THIRD_PERSON[first];
-  const likened = (line: string) => line.replace(/, like (its|the|Reddit's) /, ", equivalent to $1 ").replace(/, like /, ", such as ");
+  const likened = (line: string) => line.replace(/ and get /g, " and returns ").replace(/, and get /g, ", and returns ").replace(/ and open /g, " and opens ").replace(/ and see /g, " and returns ").replace(/ and read /g, " and reads ").replace(/ and list /g, " and lists ").replace(/, or read /g, ", or returns ").replace(/\. Get /g, ". Returns ").replace(/\. Read /g, ". Returns ").replace(/, like (its|the|Reddit's) /, ", equivalent to $1 ").replace(/, like /, ", such as ");
   if (verb !== undefined) return likened([verb, ...rest].join(" ")).replace(/^Sends a question to Google AI Mode a question and get/, "Sends a question to Google AI Mode and returns");
   if (/^(A|An|The) /.test(text)) return `Returns ${lowerFirst(text)}`;
   return text;
@@ -100,11 +100,16 @@ function whenToUse(op: CatalogEndpoint): string {
   const one = sendOne(op);
   if (one.length === 0) return "";
   const kinds: Record<string, string> = { Url: "URL", Id: "ID", Code: "code" };
-  const first = one[0] ?? "";
-  const suffix = first.match(/(Url|Id|Code)$/)?.[1];
-  const thing = suffix === undefined ? first.replace(/name$/, "") : first.slice(0, -suffix.length);
-  const forms = one.map((field) => kinds[field.match(/(Url|Id|Code)$/)?.[1] ?? ""] ?? field);
-  return `The ${thing} is identified by its ${list(forms, "or")}.`;
+  const things: string[] = [];
+  const forms: string[] = [];
+  for (const field of one) {
+    const suffix = field.match(/(Url|Id|Code)$/)?.[1];
+    const thing = suffix === undefined ? field.replace(/name$/, "") : field.slice(0, -suffix.length);
+    if (!things.includes(thing)) things.push(thing);
+    const form = suffix === undefined ? field : (kinds[suffix] ?? field);
+    if (!forms.includes(form)) forms.push(form);
+  }
+  return `The ${list(things, "or")} is identified by its ${list(forms, "or")}.`;
 }
 
 // Sentences of bestWhen that are facts about the endpoint, not advice on when to use it.
