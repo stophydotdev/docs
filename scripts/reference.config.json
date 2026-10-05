@@ -659,165 +659,149 @@
     "repliesCursor": "Text from the previous response."
   },
   "next": {
-    "google.search": [
-      "google.news",
-      "google.aiMode",
-      "google.trends.related"
-    ],
-    "google.news": [
-      "google.search",
-      "google.trends.related"
-    ],
-    "google.images": [
-      "google.search",
-      "google.videos"
-    ],
-    "google.aiMode": [
-      "google.search",
-      "google.news"
-    ],
-    "google.shopping": [
-      "amazon.search",
-      "google.search"
-    ],
-    "google.suggest": [
-      "google.search",
-      "google.news",
-      "google.trends.interest"
-    ],
-    "google.ads.search": [
-      "google.ads.ad",
-      "google.ads.advertisers"
-    ],
-    "google.ads.ad": [
-      "google.ads.search",
-      "google.ads.advertisers"
-    ],
-    "google.ads.advertisers": [
+    "amazon.suggest": [
       [
-        "google.ads.search",
-        "Send an `advertiserId` as `advertiser`, or a domain from `domains` as `domain`, to list the ads."
+        "amazon.search",
+        "Send a suggestion as `query` to search products."
+      ]
+    ],
+    "amazon.product": [
+      [
+        "amazon.search",
+        "Send the product's `title` as `query` to find similar products."
+      ]
+    ],
+    "google.search": [
+      [
+        "google.aiMode",
+        "Send a question from `peopleAlsoAsk` as `query` to get Google's AI answer."
       ],
       [
-        "meta.ads.search",
-        "Send the advertiser's name as `query` to see its ads in the Meta ad library."
+        "google.search",
+        "Send an entry from `relatedSearches` as `query` to search it."
+      ]
+    ],
+    "google.aiMode": [
+      [
+        "google.search",
+        "Send the same `query` to see the web results for the question."
+      ]
+    ],
+    "google.suggest": [
+      [
+        "google.search",
+        "Send a suggestion as `query` to search it."
+      ],
+      [
+        "google.news",
+        "Send a suggestion as `query` to read the news on it."
+      ],
+      [
+        "google.trends.interest",
+        "Send a suggestion as `queries` to see its interest over time."
+      ]
+    ],
+    "google.shopping": [
+      [
+        "google.shopping",
+        "Send a `filter` from `filters` to narrow the products."
+      ],
+      [
+        "amazon.search",
+        "Send a product's `title` as `query` to compare prices on Amazon."
+      ]
+    ],
+    "google.patents": [
+      [
+        "google.patents",
+        "Send an `assignee` or `inventor` from `results` to list more of their patents."
       ]
     ],
     "google.scholar": [
       [
         "google.scholar",
         "Send a result's `citesId` as `citesId` to list the works that cite it."
-      ],
-      "google.patents"
+      ]
     ],
     "google.videos": [
-      "youtube.search",
-      "tiktok.search"
-    ],
-    "google.jobs": [
-      "linkedin.jobs.search",
-      "indeed.search"
-    ],
-    "google.patents": [
-      "google.scholar",
-      "google.search"
-    ],
-    "youtube.suggest": [
-      "youtube.search",
-      "google.trends.interest"
-    ],
-    "youtube.comments": [
-      [
-        "youtube.comments",
-        "Send a comment's `repliesCursor` as `comment` to get its replies."
-      ],
       [
         "youtube.video",
-        "Send the same `videoId` to get the video's stats and description."
+        "Send a YouTube `url` as `videoUrl` to get the video's stats and description."
       ],
       [
         "youtube.transcript",
-        "Send the same `videoId` to get what the video says."
+        "Send a YouTube `url` as `videoUrl` to get what the video says."
+      ],
+      [
+        "tiktok.video",
+        "Send a TikTok `url` as `videoUrl` to get the video's caption and stats."
       ]
     ],
-    "reddit.subreddits": [
-      "reddit.search"
+    "google.jobs": [
+      [
+        "linkedin.jobs.search",
+        "Send a job's `title` as `query`, with its `location`, to see the same role on LinkedIn."
+      ],
+      [
+        "indeed.search",
+        "Send a job's `title` as `query`, with its `location`, to see the same role on Indeed."
+      ]
     ],
-    "google.maps.place": [
-      "google.maps.search"
+    "google.ads.ad": [
+      [
+        "google.ads.search",
+        "Send the `advertiserId` as `advertiser` to list the advertiser's ads."
+      ]
+    ],
+    "google.ads.advertisers": [
+      [
+        "google.ads.search",
+        "Send an `advertiserId` as `advertiser`, or a domain from `domains` as `domain`, to list the ads."
+      ]
+    ],
+    "google.ads.search": [
+      [
+        "google.ads.search",
+        "Send an `advertiserId` as `advertiser` to list that advertiser's ads."
+      ]
+    ],
+    "google.flights": [
+      [
+        "google.hotels",
+        "Send a leg's `destinationName` as `query` to find where to stay."
+      ]
+    ],
+    "google.hotels": [
+      [
+        "tripadvisor.search",
+        "Send a hotel's `name` as `query` to find its Tripadvisor page."
+      ]
     ],
     "google.maps.reviews": [
       [
         "google.maps.place",
-        "Send the same `placeId` to get the place's address, hours and contact details."
-      ],
-      "google.maps.search"
-    ],
-    "instagram.transcript": [
-      [
-        "instagram.post",
-        "Send the same code as `postCode` to get the reel's stats and top comments."
-      ],
-      [
-        "instagram.comments",
-        "Send the same code as `postCode` to get the reel's comments."
+        "Send the same `placeUrl` to get the place's address, hours and contact details."
       ]
     ],
-    "tiktok.comments": [
+    "google.trends.interest": [
       [
-        "tiktok.video",
-        "Send the same `videoId` to get the video's caption and stats."
-      ]
-    ],
-    "tiktok.shop.reviews": [
-      [
-        "tiktok.shop.product",
-        "Send the same `productId` to get the product's price, stock and seller."
-      ],
-      "tiktok.shop.search"
-    ],
-    "meta.ads.page": [
-      "meta.ads.search"
-    ],
-    "linkedin.company": [
-      [
-        "linkedin.jobs.search",
-        "Send the company's `companyId` as `company` to list its open jobs."
-      ]
-    ],
-    "linkedin.posts": [
-      [
-        "linkedin.profile",
-        "Send the same `profileUrl` or `profileId` to get the person's headline, roles and education."
+        "google.trends.regions",
+        "Send the same `queries` to see where they are searched most."
       ],
       [
-        "linkedin.company",
-        "Send the same `companyUrl` or `companyId` to get the company's industry and size."
+        "google.trends.related",
+        "Send one of the same queries as `query` to see the searches related to it."
       ]
     ],
-    "zillow.search": [
-      "zillow.property",
+    "google.trends.regions": [
       [
-        "zillow.search",
-        "Send the same `location` with filters such as `minPrice` or `hasPool` to narrow the homes."
-      ]
-    ],
-    "zillow.property": [
-      [
-        "zillow.search",
-        "Send a `location`, with `status` set to `sold`, to see what nearby homes sold for."
+        "google.trends.interest",
+        "Send the same `queries` to see how interest changed over time."
       ],
       [
-        "google.maps.search",
-        "Send a `query` and the home's town as `location` to find places nearby."
+        "google.trends.related",
+        "Send one of the same queries as `query` to see the searches related to it."
       ]
-    ],
-    "upwork.search": [
-      "linkedin.jobs.search"
-    ],
-    "upwork.job": [
-      "upwork.search",
-      "indeed.search"
     ],
     "google.trends.related": [
       [
@@ -847,133 +831,144 @@
         "Send a trend's `query` as `queries` to see its interest over time."
       ]
     ],
-    "indeed.search": [
-      "linkedin.jobs.search"
-    ],
-    "indeed.job": [
-      "indeed.search",
-      "linkedin.jobs.search"
-    ],
-    "tripadvisor.place": [
-      "tripadvisor.search"
-    ],
-    "tripadvisor.reviews": [
-      "tripadvisor.search"
-    ],
-    "google.flights": [
+    "youtube.suggest": [
       [
-        "google.hotels",
-        "Send the destination as `query` to find where to stay."
+        "youtube.search",
+        "Send a suggestion as `query` to search YouTube."
       ],
       [
-        "google.flights",
-        "Send the same route with another `departDate` to compare prices."
+        "google.trends.interest",
+        "Send a suggestion as `queries` to see its interest over time."
       ]
     ],
-    "google.hotels": [
+    "youtube.comments": [
       [
-        "tripadvisor.search",
-        "Send the same `query` to compare ratings and reviews."
+        "youtube.comments",
+        "Send a comment's `repliesCursor` as `comment` to get its replies."
       ],
       [
-        "google.flights",
-        "Send `origin`, `destination` and `departDate` to find flights there."
+        "youtube.video",
+        "Send the same `videoId` to get the video's stats and description."
+      ],
+      [
+        "youtube.transcript",
+        "Send the same `videoId` to get what the video says."
       ]
     ],
-    "amazon.search": [
-      "amazon.bestsellers"
-    ],
-    "amazon.product": [
-      "amazon.search",
-      "amazon.bestsellers"
-    ],
-    "amazon.bestsellers": [
-      "amazon.search"
-    ],
-    "appstore.app": [
-      "appstore.search"
-    ],
-    "appstore.reviews": [
+    "instagram.transcript": [
       [
-        "appstore.app",
-        "Send the same `appId` to get the app's details."
+        "instagram.post",
+        "Send the same code as `postCode` to get the reel's stats and top comments."
       ],
-      "appstore.search"
-    ],
-    "google.play.app": [
-      "google.play.search"
-    ],
-    "google.play.reviews": [
       [
-        "google.play.app",
-        "Send the same `appId` to get the app's details."
-      ],
-      "google.play.search"
+        "instagram.comments",
+        "Send the same code as `postCode` to get the reel's comments."
+      ]
     ],
-    "meta.ads.search": [
-      "meta.ads.page"
+    "tiktok.comments": [
+      [
+        "tiktok.video",
+        "Send the same `videoId` to get the video's caption and stats."
+      ]
+    ],
+    "tiktok.shop.reviews": [
+      [
+        "tiktok.shop.product",
+        "Send the same `productId` to get the product's price, stock and seller."
+      ]
+    ],
+    "tiktok.ads.ad": [
+      [
+        "tiktok.ads.search",
+        "Send the `advertiserName` as `advertiser` to list the advertiser's ads."
+      ]
+    ],
+    "linkedin.ads.ad": [
+      [
+        "linkedin.ads.search",
+        "Send the `advertiserName` as `advertiser` to list the advertiser's ads."
+      ]
+    ],
+    "linkedin.company": [
+      [
+        "linkedin.jobs.search",
+        "Send the company's `companyId` as `company` to list its open jobs."
+      ]
+    ],
+    "linkedin.posts": [
+      [
+        "linkedin.profile",
+        "Send the same `profileUrl` or `profileId` to get the person's headline, roles and education."
+      ],
+      [
+        "linkedin.company",
+        "Send the same `companyUrl` or `companyId` to get the company's industry and size."
+      ]
     ],
     "meta.ads.ad": [
       [
         "meta.ads.page",
         "Send the ad's `pageId` as `advertiser` to list every ad the page runs."
-      ],
-      "meta.ads.search"
+      ]
     ],
-    "linkedin.ads.search": [
-      "meta.ads.search"
-    ],
-    "linkedin.ads.ad": [
-      "linkedin.ads.search",
-      "meta.ads.search"
-    ],
-    "microsoft.ads.search": [
-      "microsoft.ads.advertisers"
+    "meta.ads.search": [
+      [
+        "meta.ads.page",
+        "Send an ad's `pageId` as `advertiser` to list every ad the page runs."
+      ]
     ],
     "microsoft.ads.ad": [
-      "microsoft.ads.search",
-      "microsoft.ads.advertisers"
+      [
+        "microsoft.ads.search",
+        "Send the `advertiserId` as `advertiser` to list the advertiser's ads."
+      ]
     ],
     "microsoft.ads.advertisers": [
       [
         "microsoft.ads.search",
         "Send an `advertiserId` as `advertiser` to list the advertiser's ads."
-      ],
-      "meta.ads.search"
+      ]
     ],
-    "pinterest.ads.search": [
-      "pinterest.search"
+    "microsoft.ads.search": [
+      [
+        "microsoft.ads.search",
+        "Send an `advertiserId` as `advertiser` to list that advertiser's ads."
+      ]
     ],
     "pinterest.ads.ad": [
-      "pinterest.ads.search",
-      "pinterest.search"
+      [
+        "pinterest.ads.search",
+        "Send one of the `countries` as `country` to see more ads shown there."
+      ]
     ],
-    "amazon.suggest": [
+    "appstore.reviews": [
       [
-        "amazon.search",
-        "Send a suggestion as `query` to search products."
-      ],
-      "amazon.bestsellers"
+        "appstore.app",
+        "Send the same `appId` to get the app's details."
+      ]
     ],
-    "google.trends.interest": [
+    "google.play.reviews": [
       [
-        "google.trends.regions",
-        "Send the same `queries` to see where they are searched most."
-      ],
-      [
-        "google.trends.related",
-        "Send a query to see the searches related to it."
-      ],
-      "google.news"
+        "google.play.app",
+        "Send the same `appId` to get the app's details."
+      ]
     ],
-    "google.trends.regions": [
+    "indeed.job": [
       [
-        "google.trends.interest",
-        "Send the same `queries` to see how interest changed over time."
-      ],
+        "indeed.search",
+        "Send the job's `title` as `query` to find similar jobs."
+      ]
+    ],
+    "upwork.job": [
       [
-        "google.trends.related",
-        "Send a query to see the searches related to it."
+        "upwork.search",
+        "Send the job's `title` as `query` to find similar jobs."
+      ]
+    ],
+    "zillow.property": [
+      [
+        "zillow.search",
+        "Send the home's `addressCity` and `addressRegion` as `location` to see nearby homes."
       ]
     ]
   },

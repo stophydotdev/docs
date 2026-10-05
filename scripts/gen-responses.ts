@@ -15,6 +15,13 @@ if (liveDir === undefined) throw new Error("Set STOPHY_LIVE_DIR to the folder wi
 
 const MAX_STRING = 120;
 const PRIVATE_FIELDS = new Set(["agentName", "agentPhone", "agentEmail", "developerEmail"]);
+const PHONE_FIELD = /phone/i;
+
+const EMAIL = /[\w.+-]+@[\w-]+(?:\.[\w-]+)+/g;
+const PHONE = /\+\d[\d\s().-]{6,}\d|\(?\b\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}\b/g;
+
+// Contact details in any string become fixed placeholders.
+const maskContacts = (text: string) => text.replace(EMAIL, "name@example.com").replace(PHONE, "+1 555 0100");
 
 const isEmpty = (value: Json) =>
   value === null || value === "" || (Array.isArray(value) && value.length === 0) || (isObject(value) && Object.keys(value).length === 0);
@@ -31,22 +38,34 @@ function clean(value: Json): Json {
   if (isObject(value)) {
     const entries = Object.entries(value)
       .filter(([key]) => !PRIVATE_FIELDS.has(key))
-      .map(([key, item]) => [key, clean(item)] as const)
+      .map(([key, item]) => [key, PHONE_FIELD.test(key) && typeof item === "string" ? "+1 555 0100" : clean(item)] as const)
       .filter(([, item]) => !isEmpty(item));
     return Object.fromEntries(entries);
   }
-  return value;
+  return typeof value === "string" ? maskContacts(value) : value;
 }
 
+// Rows where a private person writes about their health, family, money or home are never shown.
+const PERSONAL = /cancer|surviv|diagnos|funeral|surgery|chemo|my (late )?(wife|husband|son|daughter|mother|father|mom|dad)\b|bankrupt|foreclos|my address/i;
+const isPersonal = (row: Json): boolean => JSON.stringify(row).match(PERSONAL) !== null;
+
 // One row of each top-level list, or one row of each of the first two kinds when a list mixes kinds.
-function rows(list: Json[]): Json[] {
+function rows(all: Json[]): Json[] {
+  const list = all.filter((row) => !isPersonal(row));
   const kinds = [...new Set(list.map(kindOf))];
   if (kinds.length < 2 || kinds[0] === undefined) return list.slice(0, 1);
   return kinds.slice(0, 2).flatMap((kind) => list.filter((item) => kindOf(item) === kind).slice(0, 1));
 }
 
+// Cut at the last space when there is one in the second half, so a placeholder is never split.
+function cutAtWord(text: string): string {
+  const cut = text.slice(0, MAX_STRING - 1);
+  const space = cut.search(/\s\S*$/);
+  return space > MAX_STRING / 2 ? cut.slice(0, space) : cut;
+}
+
 function shorten(value: Json, top: boolean): Json {
-  if (typeof value === "string") return value.length > MAX_STRING ? `${value.slice(0, MAX_STRING - 1)}…` : value;
+  if (typeof value === "string") return value.length > MAX_STRING ? `${cutAtWord(value)}…` : value;
   if (Array.isArray(value)) {
     const kept = top ? rows(value) : value.slice(0, value.every(isObject) ? 1 : 2);
     return kept.map((item) => shorten(item, false));

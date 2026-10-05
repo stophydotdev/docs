@@ -397,9 +397,12 @@ function derivedLinks(input: PageInput): Link[] {
   const { endpoint, catalog } = input;
   const returned = fieldNames(input.schema);
   const family = endpoint.id.split(".")[0];
+  const pair = endpoint.id.split(".").slice(0, 2).join(".");
+  const narrowFamily = /\.(ads|shop)\./.test(endpoint.id);
   const links: (Link & { score: number })[] = [];
   for (const other of catalog) {
     if (other.id === endpoint.id || other.id.split(".")[0] !== family) continue;
+    if (narrowFamily && other.id.split(".").slice(0, 2).join(".") !== pair) continue;
     const identities = [...new Set([...sendOne(other), ...required(other)])].filter(identityInput);
     const sends = identities.filter((name) => (ALIASES[name] ?? [name]).some((alias) => returned.has(alias)));
     if (sends.length === 0) continue;
@@ -435,8 +438,7 @@ function nextSection(input: PageInput): string[] {
     const lead = sends.length === 0 ? "Use it" : `Send ${list(sends.map(code), "and")}`;
     return `- ${link}: ${lead} to ${asVerb(target.summary)}.`;
   });
-  if (lines.length < 2) problems.push(`${endpoint.id} has ${lines.length} next links; add some to "next" in reference.config.json`);
-  return ["## Next", "", ...lines];
+  return lines.length === 0 ? [] : ["## Next", "", ...lines];
 }
 
 // --- the page ---------------------------------------------------------------------
@@ -453,6 +455,7 @@ export function requestIntro(op: CatalogEndpoint, config: TextConfig): string {
 export function body(input: PageInput, example: string[]): string[] {
   const { endpoint, config } = input;
   const options = optionsSection(input);
+  const next = nextSection(input);
   return [
     opening(endpoint),
     "",
@@ -466,7 +469,6 @@ export function body(input: PageInput, example: string[]): string[] {
     ...(options.length === 0 ? [] : ["", ...options]),
     "",
     ...costSection(input),
-    "",
-    ...nextSection(input),
+    ...(next.length === 0 ? [] : ["", ...next]),
   ];
 }

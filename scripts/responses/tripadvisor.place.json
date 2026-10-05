@@ -18,7 +18,7 @@
     "priceLevel": "$$$$",
     "priceRangeText": "$1,662 - $2,737",
     "hotelClass": 5,
-    "description": "Opened in 1906 by hotelier César Ritz, The Ritz London is one of the world’s most iconic hotels, situated on Piccadilly…",
+    "description": "Opened in 1906 by hotelier César Ritz, The Ritz London is one of the world’s most iconic hotels, situated on…",
     "addressFull": "150 Piccadilly, London W1J 9BR England",
     "addressStreet": "150 Piccadilly",
     "addressCity": "London",
@@ -26,9 +26,9 @@
     "addressPostalCode": "W1J 9BR",
     "latitude": 51.507088,
     "longitude": -0.141628,
-    "phone": "+44 20 7493 8181",
+    "phone": "+1 555 0100",
     "website": "https://www.theritzlondon.com/?scid=45f93f1b-bd77-45c9-8dab-83b6a417f6fe&y_source=1_NDIyOTQyMS03NjktbG9jYXRpb24ud2Vic2l…",
-    "email": "reservations@theritzlondon.com",
+    "email": "name@example.com",
     "neighborhoods": [
       "St. James's"
     ],

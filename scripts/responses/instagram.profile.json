@@ -28,7 +28,7 @@
         "postCode": "DdG4RIxIPyf",
         "postUrl": "https://www.instagram.com/p/DdG4RIxIPyf/",
         "type": "reel",
-        "text": "Presented by @Rolex. Welcome to Africa 🌍 Africa Earth’s Wild Home takes you deep into the heart of our wildest contine…",
+        "text": "Presented by @Rolex. Welcome to Africa 🌍 Africa Earth’s Wild Home takes you deep into the heart of our wildest…",
         "hashtags": [
           "Rolex",
           "PerpetualPlanet"
@@ -70,17 +70,25 @@
         ]
       },
       {
-        "postId": "4001371264819931359",
-        "postCode": "DeHufcWDCjf",
-        "postUrl": "https://www.instagram.com/p/DeHufcWDCjf/",
+        "postId": "4000517920972154463",
+        "postCode": "DeEsdp9ISZf",
+        "postUrl": "https://www.instagram.com/p/DeEsdp9ISZf/",
         "type": "photo",
-        "text": "Women in this Sardinian mountain village have high odds of living to 100. Researchers have identified it as a new blue …",
-        "publishedAt": "2026-10-05T17:17:36.000Z",
-        "likes": 18685,
-        "comments": 146,
-        "thumbnailUrl": "https://scontent-xxc1-1.cdninstagram.com/v/t51.82787-15/836459311_18704612227019133_3330865553228481301_n.jpg?stp=c0.13…",
+        "text": "Presented by @Rolex. Conservation ecologist and Rolex National Geographic Perpetual Planet Explorer Matt Shirley has…",
+        "hashtags": [
+          "Rolex",
+          "AfricaEarthsWildHome"
+        ],
+        "mentions": [
+          "rolex",
+          "hammond_robin"
+        ],
+        "publishedAt": "2026-10-04T13:02:58.000Z",
+        "likes": 28807,
+        "comments": 73,
+        "thumbnailUrl": "https://scontent-xxc1-1.cdninstagram.com/v/t51.82787-15/838090435_18704188369019133_3459482282107908109_n.jpg?stp=c0.16…",
         "imageUrls": [
-          "https://scontent-xxc1-1.cdninstagram.com/v/t51.82787-15/836459311_18704612227019133_3330865553228481301_n.jpg?stp=dst-j…"
+          "https://scontent-xxc1-1.cdninstagram.com/v/t51.82787-15/838090435_18704188369019133_3459482282107908109_n.jpg?stp=dst-j…"
         ],
         "isPinned": false,
         "authorId": "787132",
@@ -89,13 +97,10 @@
         "authorUrl": "https://www.instagram.com/natgeo/",
         "authorAvatarUrl": "https://scontent-xxc1-1.cdninstagram.com/v/t51.82787-19/683576066_18653628823019133_9051036240972105113_n.jpg?stp=dst-j…",
         "authorIsVerified": true,
-        "taggedUsers": [
-          "natgeoscience"
-        ],
-        "coauthors": [
-          "natgeoscience"
-        ],
-        "isPaidPartnership": false
+        "isPaidPartnership": true,
+        "sponsors": [
+          "rolex"
+        ]
       }
     ],
     "cursor": "3999067523172763307_787132"
