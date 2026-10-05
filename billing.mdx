@@ -21,7 +21,7 @@ Stophy uses credits. You buy credits ahead of time and each successful call uses
 
 ## What a call costs
 
-Most calls cost 1 credit. A few cost 2 credits, and a few charge by the number of results. Transcripts depend on the video (see below). The price of a call does not change with how many results come back, except for the long lists in the last two rows. Errors and empty results cost nothing.
+Most calls cost 1 credit. A few cost 2 credits, and a few charge by the number of results. Transcripts depend on the video (see below). The price of a call does not change with how many results come back, except for the five long lists. Errors and empty results cost nothing.
 
 | Cost | Endpoints |
 | --- | --- |
@@ -32,7 +32,7 @@ Most calls cost 1 credit. A few cost 2 credits, and a few charge by the number o
 
 The five long lists take `limit`. Send it to return fewer results and pay for fewer.
 
-One call returns one page. To get the next page, send the `cursor` or the next `page` from the response in a new call, which costs the same again and continues with no gaps. Find an endpoint's cost in the [API reference](/api-reference/introduction), on each source page, or in `credits` in `GET https://api.stophy.dev/v1/endpoints`.
+One call returns one page. To get the next page, send the `cursor` or the next `page` in a new call. Each page costs the same again. A page continues where the last one stopped, with no gaps. Find an endpoint's cost in the [API reference](/api-reference/introduction), on each source page, or in `credits` in `GET https://api.stophy.dev/v1/endpoints`.
 
 Failed calls cost nothing. A call that Stophy refuses, for example a TikTok video over 3 minutes sent to `tiktok.transcript`, costs nothing either.
 

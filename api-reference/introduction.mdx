@@ -101,9 +101,11 @@ A failed call returns an error status and `{ "success": false, "error": { ... } 
 
 ## One call, one page, one price
 
-Each call returns one page and costs a fixed price, whatever it returns. Most calls cost 1 credit and some cost 2. The exceptions are five long lists that cost 1 credit per 10 results, and Instagram and TikTok transcripts, which cost more when the audio has to be transcribed. See [Credits and billing](/billing). Endpoints that page take `page` (send `page: 2`, then `3`, until `data.results` is empty) or `cursor` (send back the `cursor` from the response). Endpoints without either return everything in one call. See [Page through results](/guides/paging).
+Each call returns one page. Most calls cost 1 credit and some cost 2. Five long lists cost 1 credit per 10 results. Instagram and TikTok transcripts cost more when the audio has to be transcribed. See [Credits and billing](/billing).
 
-Inputs are flat too. There are no nested option objects, and the JSON body is the only input: there is no output format to choose.
+Some endpoints take `page`: send `page: 2`, then `3`, until `data.results` is empty. Others take `cursor`: send back the `cursor` from the response. The rest return everything in one call. See [Page through results](/guides/paging).
+
+Inputs are flat too. The JSON body is the only input, and there is no output format to choose.
 
 ## Send a link or an id
 

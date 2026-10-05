@@ -35,7 +35,7 @@ You should see JSON like this, with `creditsUsed` at `0`:
 }
 ```
 
-`data.results` is one page, as the site shows it. Endpoints that page take `page` (send `page: 2`, then `3`, until `data.results` is empty) or `cursor` (send back the `cursor` from the response). See [Page through results](/guides/paging).
+`data.results` is one page of results, as the site shows it. To get more, some endpoints take `page`: send `page: 2`, then `3`, until `data.results` is empty. Others take `cursor`: send back the `cursor` from the response. See [Page through results](/guides/paging).
 
 ## 2. Get an API key
 
@@ -57,7 +57,7 @@ Send the key as a bearer token. This is the same call as step 1, now under your 
   <WebSearchCli />
 </CodeGroup>
 
-It returns the same shape as before. With a key, it costs 1 credit instead of being free. Every call to an endpoint costs the same, however many results it returns, except the five long lists that charge 1 credit per 10 results. See [Credits and billing](/billing).
+It returns the same shape as before. With a key, it costs 1 credit instead of being free. Most calls cost the same however many results they return. Five long lists charge 1 credit per 10 results, and transcripts depend on the video. See [Credits and billing](/billing).
 
 ## Next steps
 
