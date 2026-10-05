@@ -1,8 +1,8 @@
 ---
 title: "Introduction"
-description: "Use the Stophy REST API: one base URL, bearer key authentication, a JSON body for every endpoint, and one flat response for every call."
+description: "Use the Stophy REST API: one base URL, bearer key authentication, a JSON body for every endpoint, and one response envelope for every call."
 og:title: "API reference | Stophy"
-og:description: "Use the Stophy REST API: one base URL, bearer key authentication, a JSON body for every endpoint, and one flat response for every call."
+og:description: "Use the Stophy REST API: one base URL, bearer key authentication, a JSON body for every endpoint, and one response envelope for every call."
 mode: "wide"
 ---
 
@@ -95,7 +95,7 @@ A successful call returns exactly `success`, `data`, `creditsUsed`, and `request
 }
 ```
 
-`data` is one flat object. A list is `data.results`, with `data.cursor` when there is another page. A value that belongs to something carries its owner in the name: `videoId`, `videoUrl`, `channelName`, `placeId`, `latitude`. Empty values are left out.
+`data` is a single object. A list is returned in `data.results`, with `data.cursor` when another page exists. Fields are not nested by owner: a value that belongs to a related resource carries that resource in its name, such as `videoId`, `videoUrl`, `channelName` and `placeId`. Empty values are omitted.
 
 A failed call returns an error status and `{ "success": false, "error": { ... } }`. See [Errors](/api-reference/errors).
 
@@ -105,7 +105,7 @@ Each call returns one page. Most calls cost 1 credit and some cost 2. Five long 
 
 Some endpoints take `page`: send `page: 2`, then `3`, until `data.results` is empty. Others take `cursor`: send back the `cursor` from the response. The rest return everything in one call. See [Page through results](/guides/paging).
 
-Inputs are flat too. The JSON body is the only input, and there is no output format to choose.
+Request parameters are top-level fields of the JSON body. The body is the only input, and the response format is fixed.
 
 ## Send a link or an id
 

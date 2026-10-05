@@ -57,7 +57,7 @@ ads = stophy.meta.ads.search(query="running shoes")
 print(ads["data"]["results"])
 ```
 
-Responses are plain dictionaries shaped like the [API reference](/api-reference/introduction): `success`, `data`, `creditsUsed` and `requestId`. `data` is one flat dict, and lists are in `data["results"]`.
+Responses are plain dictionaries shaped like the [API reference](/api-reference/introduction): `success`, `data`, `creditsUsed` and `requestId`. `data` is a single dict, and lists are in `data["results"]`.
 
 Methods follow the endpoint id, with keyword arguments in snake_case. Nested ids are nested attributes: `reddit.search` is `stophy.reddit.search(...)`, and `google.maps.search` is `stophy.google.maps.search(...)`. A JSON field named `from` is passed as `from_`.
 

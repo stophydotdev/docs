@@ -41,7 +41,7 @@ npm install -g @stophy/cli
 ## What every client does
 
 - Reads `STOPHY_API_KEY` from your environment, so you rarely pass a key by hand.
-- Returns the response as typed JSON: `success`, `data`, `creditsUsed` and `requestId`.
+- Returns the response envelope: `success`, `data`, `creditsUsed` and `requestId`.
 - Retries network errors and `429`/`5xx` responses with backoff, honoring `Retry-After`.
 - Reads account usage and recent calls.
 
