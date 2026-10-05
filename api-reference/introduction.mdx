@@ -15,14 +15,14 @@ Every Stophy endpoint uses the same base URL and bearer key. Data endpoints take
 ## Features
 
 <CardGroup cols={3}>
-  <Card title="Search and AI answers" icon="magnifying-glass" color="f5d90a" href="/sources/web">Google results, news and images, and answers from AI assistants.</Card>
-  <Card title="Video" icon="video" color="f5d90a" href="/sources/video">YouTube and TikTok videos, transcripts and comments.</Card>
+  <Card title="Search and AI answers" icon="magnifying-glass" color="f5d90a" href="/sources/web">Google results, news, images, papers and trends, and Google AI Mode answers.</Card>
+  <Card title="Video" icon="video" color="f5d90a" href="/sources/video">YouTube, TikTok and Instagram videos, transcripts and comments.</Card>
   <Card title="Social" icon="users" color="f5d90a" href="/sources/social">Posts, profiles and comments from Reddit, Instagram, LinkedIn and Pinterest.</Card>
-  <Card title="Places and travel" icon="map-location-dot" color="f5d90a" href="/sources/places-and-travel">Google Maps and Tripadvisor places and reviews, flights and Airbnb.</Card>
-  <Card title="Jobs" icon="briefcase" color="f5d90a" href="/sources/jobs">Job listings from LinkedIn, Indeed and Upwork.</Card>
-  <Card title="Shopping" icon="cart-shopping" color="f5d90a" href="/sources/shopping">Walmart products and prices.</Card>
+  <Card title="Places and travel" icon="map-location-dot" color="f5d90a" href="/sources/places-and-travel">Google Maps and Tripadvisor places and reviews, hotels and flights.</Card>
+  <Card title="Jobs" icon="briefcase" color="f5d90a" href="/sources/jobs">Job listings from Google Jobs, LinkedIn, Indeed and Upwork.</Card>
+  <Card title="Shopping" icon="cart-shopping" color="f5d90a" href="/sources/shopping">Amazon, Google Shopping and TikTok Shop products and prices.</Card>
   <Card title="Apps" icon="mobile-screen" color="f5d90a" href="/sources/apps">App Store and Google Play apps, reviews and charts.</Card>
-  <Card title="Real estate" icon="house" color="f5d90a" href="/sources/real-estate">Homes from Zillow, Rightmove and ImmoScout24.</Card>
+  <Card title="Real estate" icon="house" color="f5d90a" href="/sources/real-estate">Homes for sale, for rent and sold from Zillow.</Card>
   <Card title="Ads" icon="bullhorn" color="f5d90a" href="/sources/ads">Ad libraries from Meta, Google, TikTok, LinkedIn, Microsoft and Pinterest.</Card>
 </CardGroup>
 
@@ -34,7 +34,7 @@ See every endpoint in the sidebar, grouped the same way.
 https://api.stophy.dev
 ```
 
-Every endpoint is a `POST` with a JSON object body. The path is `/v1/` plus the endpoint id with dots as slashes: `google.search` is `/v1/google/search`, and `transcript` is `/v1/transcript`. Unknown input fields return `400`.
+Every endpoint is a `POST` with a JSON object body. The path is `/v1/` plus the endpoint id with dots as slashes: `google.search` is `/v1/google/search`, and `youtube.transcript` is `/v1/youtube/transcript`. Unknown input fields return `400`.
 
 ## Authentication
 
@@ -101,6 +101,10 @@ A failed call returns an error status and `{ "success": false, "error": { ... } 
 
 ## One call, one page, one price
 
-Each call returns one page and costs a fixed price, from 1 to 4 credits, whatever it returns. The exception is `transcript`: it costs 2 credits, or more when the audio has to be transcribed. See [Credits and billing](/billing). Endpoints that page take `page` (send `page: 2` while `data.hasMore` is true) or `cursor` (send back the `cursor` from the response). Endpoints without either return everything in one call. See [Page through results](/guides/paging).
+Each call returns one page and costs a fixed price, whatever it returns. Most calls cost 1 credit and some cost 2. The exceptions are five long lists that cost 1 credit per 10 results, and Instagram and TikTok transcripts, which cost more when the audio has to be transcribed. See [Credits and billing](/billing). Endpoints that page take `page` (send `page: 2`, then `3`, until `data.results` is empty) or `cursor` (send back the `cursor` from the response). Endpoints without either return everything in one call. See [Page through results](/guides/paging).
 
 Inputs are flat too. There are no nested option objects, and the JSON body is the only input: there is no output format to choose.
+
+## Send a link or an id
+
+To point at one thing, a request names it the way the response does. Send its link or its id, never both: `videoUrl` or `videoId`, `placeUrl` or `placeId`, `userUrl` or `username`, `postUrl` or `postId` (Instagram: `postCode`), and so on. Each endpoint's reference lists the pair. Sending both, or neither, returns a `400`.

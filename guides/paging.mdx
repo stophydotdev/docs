@@ -1,17 +1,17 @@
 ---
 title: "Page through results"
-description: "Get more than one page from Stophy: send page 2, 3 and on while hasMore is true, or send back the cursor from each response until none comes back."
+description: "Get more than one page from Stophy: send page 2, 3 and on until a page has no results, or send back the cursor from each response until none comes back."
 og:title: "Page through results | Stophy"
-og:description: "Get more than one page from Stophy: send page 2, 3 and on while hasMore is true, or send back the cursor from each response until none comes back."
+og:description: "Get more than one page from Stophy: send page 2, 3 and on until a page has no results, or send back the cursor from each response until none comes back."
 ---
 
 One call returns one page, the way the site shows it. A page holds what the site puts on it, so the number of results changes from call to call. Each endpoint pages in one of three ways, and its page in the [API reference](/api-reference/introduction) says which:
 
 | The endpoint takes | How to get the next page | Examples |
 | --- | --- | --- |
-| `page` | Send the same input with `page: 2`, then `3`, while `data.hasMore` is `true`. | Google search, Google News, Zillow, Walmart, Upwork |
+| `page` | Send the same input with `page: 2`, then `3`, until `data.results` is empty. An empty page costs nothing. | Google search, Google News, Google Maps search, Zillow, Amazon, Upwork |
 | `cursor` | Send the same input with the `cursor` from the last response, until a response has no `cursor`. | YouTube, Reddit, TikTok, Instagram |
-| neither | There is no next page. One call returns everything the site shows for that input. | Google Maps search, Airbnb search, Google Images |
+| neither | There is no next page. One call returns everything the site shows for that input. | Google Maps place, App Store search, Google Images |
 
 Keep the rest of the input the same between pages. Each page is a normal call and costs its normal price.
 
@@ -32,7 +32,7 @@ for (let page = 1; page <= 5; page += 1) {
   });
   const { data } = await response.json();
   results.push(...data.results);
-  if (!data.hasMore) break;
+  if (data.results.length === 0) break;
 }
 ```
 
@@ -50,7 +50,7 @@ for page in range(1, 6):
     )
     data = response.json()["data"]
     results += data["results"]
-    if not data.get("hasMore"):
+    if not data["results"]:
         break
 ```
 
@@ -107,4 +107,4 @@ Set your own stop, like the 5 pages or 100 results above. Some sources have many
 
 ## Keep fewer results
 
-There is no `limit`; sending one returns a 400 that says how that endpoint pages. To keep a model's context small, take the rows you need from `data.results`, or use `fields` through the [MCP server](/mcp-server) to keep only some keys.
+Only `google.images`, `youtube.charts`, `appstore.search`, `appstore.top` and `google.play.search` take `limit`. Send it to return fewer results and pay for fewer: these endpoints cost 1 credit per 10 results. On every other endpoint, sending `limit` returns a 400. To keep a model's context small, take the rows you need from `data.results`, or use `fields` through the [MCP server](/mcp-server) to keep only some keys.

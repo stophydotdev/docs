@@ -2,6 +2,6 @@
 from stophy import Stophy
 
 stophy = Stophy()  # reads STOPHY_API_KEY
-result = stophy.pinterest.board(board="https://www.pinterest.com/example/example-board/")
+result = stophy.pinterest.board(board_url="https://www.pinterest.com/marthastewart/kitchen-ideas/")
 print(result["data"]["results"])
 ```

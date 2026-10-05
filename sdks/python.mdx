@@ -27,7 +27,7 @@ from stophy import Stophy
 stophy = Stophy(api_key=os.environ["STOPHY_API_KEY"])
 ```
 
-Without a key, Google search still works:
+Without a key, Google search, Google News, YouTube search, video details and transcripts, Reddit search and Google Maps search still work. Here is Google search:
 
 ```python
 from stophy import Stophy
@@ -50,18 +50,18 @@ stophy = Stophy(api_key=os.environ["STOPHY_API_KEY"])
 posts = stophy.reddit.search(query="bun runtime")
 print(posts["data"]["results"], posts["creditsUsed"])
 
-transcript = stophy.transcript(video="https://youtu.be/dQw4w9WgXcQ")
+transcript = stophy.youtube.transcript(video_url="https://youtu.be/dQw4w9WgXcQ")
 print(transcript["data"]["text"])
 
-ads = stophy.ads.search(network="meta", query="running shoes")
+ads = stophy.meta.ads.search(query="running shoes")
 print(ads["data"]["results"])
 ```
 
 Responses are plain dictionaries shaped like the [API reference](/api-reference/introduction): `success`, `data`, `creditsUsed` and `requestId`. `data` is one flat dict, and lists are in `data["results"]`.
 
-Methods follow the endpoint id, with keyword arguments in snake_case. Nested ids are nested attributes: `reddit.search` is `stophy.reddit.search(...)`. An endpoint with a single name is a method on the client: `stophy.transcript(...)`. A JSON field named `from` is passed as `from_`.
+Methods follow the endpoint id, with keyword arguments in snake_case. Nested ids are nested attributes: `reddit.search` is `stophy.reddit.search(...)`, and `google.maps.search` is `stophy.google.maps.search(...)`. A JSON field named `from` is passed as `from_`.
 
-The ad endpoints cover several ad libraries. Pick one with the `network` keyword. The type checker follows the choice.
+To point at one thing, send its link or its id, never both: `video_url` or `video_id`, `place_url` or `place_id`, `user_url` or `username`. The type checker shows the pair.
 
 ## Async
 

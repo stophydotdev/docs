@@ -36,66 +36,66 @@ const AREAS: Area[] = [
     slug: "web",
     icon: "magnifying-glass",
     description:
-      "Search Google, Google News and Google Images, and ask Google AI Mode, Gemini or ChatGPT a question. Get results and cited sources as JSON.",
-    endpoints: ["google.search", "google.news", "google.images", "google.aiMode", "ai.answer"],
+      "Search Google, Google News, Images, Videos, Scholar and Patents, ask Google AI Mode a question, and read what people search for. Get results and cited sources as JSON.",
+    endpoints: ["google.search", "google.news", "google.images", "google.videos", "google.scholar", "google.patents", "google.aiMode", "google.suggest", "google.trends.related", "google.trends.trending", "google.trends.interest", "google.trends.regions"],
     example: "google.search",
-    variations: ["google.news", "ai.answer"],
-    tip: "Google search works without a key, up to 10 results per call. Every other endpoint needs one.",
+    variations: ["google.news", "google.scholar"],
+    tip: "Google search and Google News work without a key, with no paging. Google AI Mode costs 2 credits, Google Images costs 1 credit per 10 images, and every other endpoint costs 1 credit.",
   },
   {
     title: "Video",
     slug: "video",
     icon: "video",
     description:
-      "Search YouTube and TikTok, and open any video, channel, or playlist. Get transcripts from YouTube, TikTok and Instagram videos, and read comments.",
-    endpoints: ["youtube.search", "youtube.video", "transcript", "youtube.comments", "youtube.channel", "youtube.playlist", "tiktok.profile", "tiktok.video", "tiktok.hashtag", "tiktok.comments", "tiktok.search"],
+      "Search YouTube and TikTok, and open any video, channel, or playlist. Get transcripts from YouTube, TikTok and Instagram videos, read comments, and see the YouTube charts.",
+    endpoints: ["youtube.search", "youtube.suggest", "youtube.video", "youtube.transcript", "youtube.comments", "youtube.related", "youtube.channel", "youtube.channel.search", "youtube.playlist", "youtube.hashtag", "youtube.post", "youtube.charts", "tiktok.profile", "tiktok.video", "tiktok.transcript", "tiktok.hashtag", "tiktok.sound", "tiktok.comments", "tiktok.search", "instagram.transcript"],
     example: "youtube.search",
-    variations: ["transcript", "tiktok.profile"],
-    tip: "Every endpoint on this page needs an API key. Transcripts cost 2 credits when the video has captions and more when the audio has to be transcribed: see [Credits and billing](/billing). TikTok videos over 3 minutes can't be transcribed.",
+    variations: ["youtube.transcript", "tiktok.profile"],
+    tip: "YouTube search, video details and transcripts work without a key. A YouTube transcript costs 1 credit and comes from the captions. TikTok and Instagram transcripts cost 1 credit when the video has captions and 2 credits plus 1 credit per 10 seconds of audio when it does not: see [Credits and billing](/billing). TikTok videos over 3 minutes can't be transcribed. YouTube charts cost 1 credit per 10 results.",
   },
   {
     title: "Social",
     slug: "social",
     icon: "users",
     description:
-      "Search and read posts, profiles, and comments across Reddit, Instagram, LinkedIn, and Pinterest. Find people and companies on LinkedIn.",
-    endpoints: ["reddit.search", "reddit.post", "reddit.subreddit", "reddit.user", "reddit.domain", "instagram.profile", "instagram.post", "instagram.comments", "linkedin.people.search", "linkedin.companies.search", "linkedin.company", "linkedin.profile", "linkedin.posts", "pinterest.search", "pinterest.pin", "pinterest.board", "pinterest.user"],
+      "Search and read posts, profiles, and comments across Reddit, Instagram, LinkedIn, and Pinterest. Get a LinkedIn profile, company, or its latest posts.",
+    endpoints: ["reddit.search", "reddit.post", "reddit.subreddit", "reddit.user", "reddit.domain", "reddit.discussions", "reddit.subreddits", "instagram.profile", "instagram.profile.reels", "instagram.post", "instagram.comments", "instagram.search", "linkedin.company", "linkedin.profile", "linkedin.posts", "pinterest.search", "pinterest.pin", "pinterest.board", "pinterest.profile"],
     example: "reddit.search",
-    variations: ["linkedin.people.search", "instagram.profile"],
-    tip: "Endpoints that return `results` page. See [Page through results](/guides/paging).",
+    variations: ["instagram.profile", "linkedin.profile"],
+    tip: "Reddit search works without a key. Instagram profile and LinkedIn profile cost 2 credits. Endpoints that return a `cursor` or a `page` page. See [Page through results](/guides/paging).",
   },
   {
     title: "Places and travel",
     slug: "places-and-travel",
     icon: "map-location-dot",
     description:
-      "Find places on Google Maps and Tripadvisor with their reviews, and search flights on Google Travel. Get stays, calendars, and reviews from Airbnb.",
-    endpoints: ["maps.search", "maps.place", "maps.reviews", "tripadvisor.search", "tripadvisor.place", "tripadvisor.reviews", "googletravel.flights", "airbnb.search", "airbnb.listing", "airbnb.calendar", "airbnb.reviews"],
-    example: "maps.search",
-    variations: ["airbnb.search"],
-    tip: "Pass the place id from a Google Maps search, the place link from a Tripadvisor search, or the listing link from an Airbnb search into that source's other endpoints.",
+      "Find places on Google Maps and Tripadvisor with their reviews, and search hotels and flights on Google. Filter by rating, traveler type, dates, and more.",
+    endpoints: ["google.maps.search", "google.maps.place", "google.maps.reviews", "tripadvisor.search", "tripadvisor.place", "tripadvisor.reviews", "google.hotels", "google.flights"],
+    example: "google.maps.search",
+    variations: ["google.hotels", "google.flights"],
+    tip: "Google Maps search works without a key. Pass the place id from a Google Maps search, or the place link from a Tripadvisor search, into that source's other endpoints.",
   },
   {
     title: "Jobs",
     slug: "jobs",
     icon: "briefcase",
     description:
-      "Search job listings on LinkedIn, Indeed, and Upwork. Get the full posting, pay, and requirements for any job as structured JSON.",
-    endpoints: ["linkedin.jobs.search", "linkedin.jobs.job", "upwork.search", "upwork.job", "indeed.search", "indeed.job"],
-    example: "linkedin.jobs.search",
+      "Search job listings on Google Jobs, LinkedIn, Indeed, and Upwork. Get the full posting, pay, and requirements for any job as structured JSON.",
+    endpoints: ["google.jobs", "linkedin.jobs.search", "linkedin.jobs.job", "upwork.search", "upwork.job", "indeed.search", "indeed.job"],
+    example: "google.jobs",
     variations: ["indeed.search", "upwork.search"],
-    tip: "Pass the job link from a search result into that site's job lookup endpoint for the full posting.",
+    tip: "Pass the job link from a search result into that site's job endpoint for the full posting.",
   },
   {
     title: "Shopping",
     slug: "shopping",
     icon: "cart-shopping",
     description:
-      "Compare prices and sellers on Google Shopping in 24 countries, and search Walmart products with their price, ratings, and details.",
-    endpoints: ["google.shopping", "walmart.search", "walmart.product"],
-    example: "google.shopping",
-    variations: ["walmart.search", "walmart.product"],
-    tip: "Google Shopping costs 2 credits. Walmart search costs 5 credits and a product lookup costs 3. Pass the product link from a Walmart search result into `walmart.product`.",
+      "Compare prices and sellers on Google Shopping, search Amazon products and best sellers, and search TikTok Shop products, sellers and reviews.",
+    endpoints: ["google.shopping", "amazon.search", "amazon.product", "amazon.bestsellers", "amazon.suggest", "tiktok.shop.search", "tiktok.shop.products", "tiktok.shop.product", "tiktok.shop.reviews"],
+    example: "amazon.search",
+    variations: ["amazon.product", "google.shopping"],
+    tip: "Amazon search, product and best sellers, and Google Shopping cost 2 credits. Pass the product link from an Amazon search result into `amazon.product`.",
   },
   {
     title: "Apps",
@@ -103,21 +103,21 @@ const AREAS: Area[] = [
     icon: "mobile-screen",
     description:
       "Search the App Store and Google Play. Get any app's details and reviews, and the App Store top charts, as structured JSON.",
-    endpoints: ["appstore.app", "appstore.search", "appstore.reviews", "appstore.top", "googleplay.app", "googleplay.search", "googleplay.reviews"],
+    endpoints: ["appstore.app", "appstore.search", "appstore.reviews", "appstore.top", "google.play.app", "google.play.search", "google.play.reviews"],
     example: "appstore.search",
-    variations: ["googleplay.reviews", "appstore.top"],
-    tip: "Pass an App Store app id or a Google Play package name from a search result into that store's other endpoints. Review endpoints page. See [Page through results](/guides/paging).",
+    variations: ["google.play.reviews", "appstore.top"],
+    tip: "Pass an App Store app id or a Google Play package name from a search result into that store's other endpoints. Search and chart endpoints cost 1 credit per 10 apps, and `limit` returns fewer. Review endpoints page. See [Page through results](/guides/paging).",
   },
   {
     title: "Real estate",
     slug: "real-estate",
     icon: "house",
     description:
-      "Search homes for sale and rent on Zillow, Rightmove, and ImmoScout24. Get the price, photos, and details for any listing as JSON.",
-    endpoints: ["zillow.search", "zillow.property", "rightmove.search", "rightmove.property", "immoscout.search", "immoscout.listing"],
+      "Search homes for sale, for rent, and sold on Zillow with more than 20 filters. Get the price, photos, and details for any listing as JSON.",
+    endpoints: ["zillow.search", "zillow.property"],
     example: "zillow.search",
-    variations: ["rightmove.search", "immoscout.search"],
-    tip: "Pass the listing link from a search result into that site's property endpoint for the full listing.",
+    variations: ["zillow.property"],
+    tip: "Zillow search and Zillow property cost 2 credits. Pass the property link from a search result into `zillow.property` for the full listing.",
   },
   {
     title: "Ads",
@@ -125,10 +125,10 @@ const AREAS: Area[] = [
     icon: "bullhorn",
     description:
       "Search the public ad libraries of Meta, Google, TikTok, LinkedIn, Microsoft, and Pinterest. Get each ad's creative and copy, and find advertisers.",
-    endpoints: ["meta.ads.page", "ads.search", "ads.ad", "ads.advertisers"],
-    example: "ads.search",
-    variations: ["ads.ad", "ads.advertisers"],
-    tip: "`ads.search`, `ads.ad` and `ads.advertisers` take a `network`. Each ad library needs a keyword, an advertiser, or both. Pinterest takes an advertiser and no keyword. Google takes a keyword only when it is a domain. See each endpoint's reference for what it accepts.",
+    endpoints: ["meta.ads.search", "meta.ads.ad", "meta.ads.page", "google.ads.search", "google.ads.ad", "google.ads.advertisers", "tiktok.ads.search", "tiktok.ads.ad", "linkedin.ads.search", "linkedin.ads.ad", "microsoft.ads.search", "microsoft.ads.ad", "microsoft.ads.advertisers", "pinterest.ads.search", "pinterest.ads.ad"],
+    example: "meta.ads.search",
+    variations: ["google.ads.search", "google.ads.advertisers"],
+    tip: "Each ad library has its own search, ad and, for Google and Microsoft, advertisers endpoints. Each library needs a keyword, an advertiser, or both. Pinterest takes an advertiser and no keyword. Google takes a domain or an advertiser, not a keyword. See each endpoint's reference for what it accepts.",
   },
 ];
 
@@ -199,7 +199,7 @@ const LIVE_RESPONSES: Record<string, JsonObject> = {
     "creditsUsed": 1,
     "requestId": "2fe9dbad-fc48-4890-9751-0b24b596035b"
   },
-  "transcript": {
+  "youtube.transcript": {
     "success": true,
     "data": {
       "videoId": "dQw4w9WgXcQ",
@@ -209,7 +209,7 @@ const LIVE_RESPONSES: Record<string, JsonObject> = {
       "durationSeconds": 213,
       "text": "[♪♪♪] ♪ We're no strangers to love ♪ ♪ You know the rules and so do I ♪ ♪ A full commitment's what I'm thinking of ♪ …"
     },
-    "creditsUsed": 2,
+    "creditsUsed": 1,
     "requestId": "b61dc157-0de6-43fd-97ae-564b39d62bdf"
   }
 };

@@ -44,7 +44,7 @@ stophy login --api-key st_...
 export STOPHY_API_KEY="st_..."
 ```
 
-Each computer gets its own key. Google search works without logging in.
+Each computer gets its own key. Google search, Google News, Google Maps search, Reddit search, YouTube search, YouTube video and YouTube transcript work without logging in.
 
 Log out and revoke this computer's key:
 
@@ -58,14 +58,14 @@ Name the source, then the command:
 
 ```bash
 stophy youtube search "bun runtime"
-stophy maps search --query dentist --location Berlin
+stophy google maps search --query dentist --location Berlin
 stophy reddit subreddit rust
-stophy transcript https://youtu.be/M4TufsFlv_o
-stophy ads advertisers nike --network google
-stophy ads search nike --network meta
+stophy youtube transcript https://youtu.be/M4TufsFlv_o
+stophy google ads advertisers nike
+stophy meta ads search nike
 ```
 
-When a command needs a choice such as `--network`, give it as an option.
+To point at one thing, give its link or its id as the argument, like `stophy youtube video M4TufsFlv_o`, or use the matching option, like `--videoUrl` or `--videoId`. Send one, not both.
 
 Run `stophy <source> --help` to see what a source can do, and `stophy <source> <command> --help` for every option on one command. If you give a value an option does not accept, the CLI stops before it calls Stophy and lists which values work.
 

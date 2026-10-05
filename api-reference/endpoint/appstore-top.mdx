@@ -1,9 +1,9 @@
 ---
 title: 'App Store top charts API'
 sidebarTitle: 'Top charts'
-description: 'Get App Store top charts. Call the App Store top charts API and get JSON back in one request. 1 credit per call. Failed calls cost nothing.'
+description: 'Get App Store top charts. Call the App Store top charts API and get JSON back in one request. From 1 credit per call. Failed calls cost nothing.'
 og:title: 'App Store top charts API | Stophy'
-og:description: 'Get App Store top charts. Call the App Store top charts API and get JSON back in one request. 1 credit per call. Failed calls cost nothing.'
+og:description: 'Get App Store top charts. Call the App Store top charts API and get JSON back in one request. From 1 credit per call. Failed calls cost nothing.'
 openapi: 'api-reference/openapi.json POST /v1/appstore/top'
 ---
 
@@ -16,10 +16,10 @@ import CliExample from "/snippets/examples/appstore.top/cli.mdx";
 
 - **Endpoint:** `appstore.top`
 - **Returns:** `data` has `results`.
-- **Cost:** 1 credit per call. Failed calls cost nothing.
+- **Cost:** 1 credit per 10 apps (10 credits at most). Failed calls cost nothing.
 - **Paging:** No.
 
-Pick a `chart` (free, paid or grossing), a `device`, a `genre` and a `country`.
+Pick a `chart` (free, paid or grossing), a `device`, a `genre` and a `country`. Send `limit` to get fewer apps and pay for fewer.
 
 ## Example
 

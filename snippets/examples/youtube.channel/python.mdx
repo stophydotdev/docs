@@ -2,6 +2,6 @@
 from stophy import Stophy
 
 stophy = Stophy()  # reads STOPHY_API_KEY
-result = stophy.youtube.channel(channel="@mkbhd")
+result = stophy.youtube.channel(channel_id="@mkbhd")
 print(result["data"]["results"])
 ```

@@ -20,26 +20,30 @@ const SNIPPETS_DIR = "snippets/examples";
 // search result, so these are hand-picked, realistic values for the ones the
 // catalog leaves out.
 const FALLBACK_EXAMPLES: Record<string, JsonObject> = {
-  "reddit.post": { post: "https://www.reddit.com/r/rust/comments/1c8x9k2/why_i_switched_to_rust/" },
-  "maps.place": { place: "ChIJN1t_tDeuEmsRUsoyG83frY4" },
-  "maps.reviews": { place: "ChIJN1t_tDeuEmsRUsoyG83frY4" },
-  "instagram.post": { post: "https://www.instagram.com/p/C1a2B3cD4eF/" },
-  "instagram.comments": { post: "https://www.instagram.com/p/C1a2B3cD4eF/" },
-  "ads.ad": { network: "meta", ad: "1234567890123456" },
-  "linkedin.jobs.job": { job: "https://www.linkedin.com/jobs/view/3812345678" },
-  "zillow.property": { property: "https://www.zillow.com/homedetails/123-Main-St-New-York-NY-10001/12345678_zpid/" },
-  "upwork.job": { job: "https://www.upwork.com/jobs/~0123456789abcdef01" },
-  "airbnb.listing": { listing: "https://www.airbnb.com/rooms/12345678" },
-  "airbnb.calendar": { listing: "https://www.airbnb.com/rooms/12345678" },
-  "airbnb.reviews": { listing: "https://www.airbnb.com/rooms/12345678" },
-  "rightmove.property": { property: "https://www.rightmove.co.uk/properties/123456789" },
-  "immoscout.listing": { listing: "https://www.immobilienscout24.de/expose/123456789" },
-  "pinterest.pin": { pin: "https://www.pinterest.com/pin/123456789012345678/" },
-  "pinterest.board": { board: "https://www.pinterest.com/example/example-board/" },
-  "indeed.job": { job: "21a9db51a8d45b9d" },
-  "tripadvisor.place": { place: "https://www.tripadvisor.com/Attraction_Review-g187147-d188151-Reviews-Eiffel_Tower-Paris_Ile_de_France.html" },
-  "tripadvisor.reviews": { place: "https://www.tripadvisor.com/Attraction_Review-g187147-d188151-Reviews-Eiffel_Tower-Paris_Ile_de_France.html" },
-  "walmart.product": { product: "https://www.walmart.com/ip/32-onn-HD-Powered-by-VIZIO/17942205635" },
+  "reddit.post": { postUrl: "https://www.reddit.com/r/programming/comments/1abc2de/example_post/" },
+  "reddit.discussions": { postUrl: "https://www.reddit.com/r/programming/comments/1abc2de/example_post/" },
+  "google.maps.place": { placeId: "ChIJN1t_tDeuEmsRUsoyG83frY4" },
+  "google.maps.reviews": { placeId: "ChIJN1t_tDeuEmsRUsoyG83frY4" },
+  "instagram.post": { postUrl: "https://www.instagram.com/p/DdG4RIxIPyf/" },
+  "instagram.comments": { postUrl: "https://www.instagram.com/p/DdG4RIxIPyf/" },
+  "google.ads.ad": { adUrl: "https://adstransparency.google.com/advertiser/AR18378488041124659201/creative/CR12345678901234567890" },
+  "meta.ads.ad": { adUrl: "https://www.facebook.com/ads/library/?id=1234567890123456" },
+  "tiktok.ads.ad": { adUrl: "https://library.tiktok.com/ads/detail?ad_id=1756783467412593" },
+  "linkedin.ads.ad": { adUrl: "https://www.linkedin.com/ad-library/detail/1234567" },
+  "microsoft.ads.ad": { adId: "1234567890" },
+  "pinterest.ads.ad": { adUrl: "https://ads.pinterest.com/ads-repository/1234567890123456/" },
+  "tiktok.shop.products": { shopUrl: "https://shop.tiktok.com/us/store/shop/7495291731420235534" },
+  "tiktok.shop.product": { productUrl: "https://shop.tiktok.com/us/pdp/p/1729592969712207012" },
+  "tiktok.shop.reviews": { productUrl: "https://shop.tiktok.com/us/pdp/p/1729592969712207012" },
+  "linkedin.jobs.job": { jobUrl: "https://www.linkedin.com/jobs/view/4012345678" },
+  "zillow.property": { propertyUrl: "https://www.zillow.com/homedetails/123-Main-St-Austin-TX-78701/29383449_zpid/" },
+  "upwork.job": { jobUrl: "https://www.upwork.com/jobs/~021234567890123456789" },
+  "indeed.job": { jobId: "a1b2c3d4e5f60718" },
+  "pinterest.pin": { pinUrl: "https://www.pinterest.com/pin/1234567890123456/" },
+  "pinterest.board": { boardUrl: "https://www.pinterest.com/marthastewart/kitchen-ideas/" },
+  "tripadvisor.place": { placeUrl: "https://www.tripadvisor.com/Hotel_Review-g186338-d187591-Reviews-The_Ritz_London.html" },
+  "tripadvisor.reviews": { placeUrl: "https://www.tripadvisor.com/Hotel_Review-g186338-d187591-Reviews-The_Ritz_London.html" },
+  "amazon.product": { productUrl: "https://www.amazon.com/dp/B0CX23V2ZK" },
 };
 
 // --- naming -----------------------------------------------------------
@@ -99,7 +103,7 @@ function cliValue(value: Json): string | undefined {
 
 // --- schema helpers -------------------------------------------------------
 
-/** The CLI's positional argument: the one required free-text field, else `query`. Choices such as `network` stay flags. */
+/** The CLI's positional argument: the one required free-text field, else `query`. Choices such as `type` stay flags. */
 function positionalField(op: CatalogEndpoint): string | undefined {
   const properties = (op.input?.properties as JsonObject | undefined) ?? {};
   const required = Array.isArray(op.input?.required) ? (op.input?.required as string[]) : [];
@@ -136,7 +140,9 @@ function dataProperties(op: CatalogEndpoint, spec: JsonObject): string[] {
 // of the input first (`domain`, `query`) or a bare `id` ahead of the payload.
 // These name the field that is actually worth printing in an example.
 const PRIMARY_FIELD_OVERRIDES: Record<string, string> = {
-  transcript: "text",
+  "youtube.transcript": "text",
+  "tiktok.transcript": "text",
+  "instagram.transcript": "text",
   "youtube.video": "title",
 };
 
@@ -219,7 +225,7 @@ const rawCatalog = await fetchCatalog();
 const spec = (await Bun.file(file("api-reference/openapi.json")).json()) as JsonObject;
 
 const EXAMPLE_OVERRIDES: Record<string, JsonObject> = {
-  transcript: { video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" },
+  "youtube.transcript": { videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" },
 };
 
 const catalog: CatalogEndpoint[] = rawCatalog.endpoints.map((op) => {

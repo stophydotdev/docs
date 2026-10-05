@@ -141,13 +141,15 @@
                   "api-reference/endpoint/google-search",
                   "api-reference/endpoint/google-news",
                   "api-reference/endpoint/google-images",
-                  "api-reference/endpoint/google-aiMode"
-                ]
-              },
-              {
-                "group": "AI",
-                "pages": [
-                  "api-reference/endpoint/ai-answer"
+                  "api-reference/endpoint/google-videos",
+                  "api-reference/endpoint/google-scholar",
+                  "api-reference/endpoint/google-patents",
+                  "api-reference/endpoint/google-aiMode",
+                  "api-reference/endpoint/google-suggest",
+                  "api-reference/endpoint/google-trends-related",
+                  "api-reference/endpoint/google-trends-trending",
+                  "api-reference/endpoint/google-trends-interest",
+                  "api-reference/endpoint/google-trends-regions"
                 ]
               }
             ]
@@ -160,16 +162,17 @@
                 "group": "YouTube",
                 "pages": [
                   "api-reference/endpoint/youtube-search",
+                  "api-reference/endpoint/youtube-suggest",
                   "api-reference/endpoint/youtube-video",
+                  "api-reference/endpoint/youtube-transcript",
                   "api-reference/endpoint/youtube-comments",
+                  "api-reference/endpoint/youtube-related",
                   "api-reference/endpoint/youtube-channel",
-                  "api-reference/endpoint/youtube-playlist"
-                ]
-              },
-              {
-                "group": "Transcript",
-                "pages": [
-                  "api-reference/endpoint/transcript"
+                  "api-reference/endpoint/youtube-channel-search",
+                  "api-reference/endpoint/youtube-playlist",
+                  "api-reference/endpoint/youtube-hashtag",
+                  "api-reference/endpoint/youtube-post",
+                  "api-reference/endpoint/youtube-charts"
                 ]
               },
               {
@@ -177,9 +180,17 @@
                 "pages": [
                   "api-reference/endpoint/tiktok-profile",
                   "api-reference/endpoint/tiktok-video",
+                  "api-reference/endpoint/tiktok-transcript",
                   "api-reference/endpoint/tiktok-hashtag",
+                  "api-reference/endpoint/tiktok-sound",
                   "api-reference/endpoint/tiktok-comments",
                   "api-reference/endpoint/tiktok-search"
+                ]
+              },
+              {
+                "group": "Instagram",
+                "pages": [
+                  "api-reference/endpoint/instagram-transcript"
                 ]
               }
             ]
@@ -195,15 +206,19 @@
                   "api-reference/endpoint/reddit-post",
                   "api-reference/endpoint/reddit-subreddit",
                   "api-reference/endpoint/reddit-user",
-                  "api-reference/endpoint/reddit-domain"
+                  "api-reference/endpoint/reddit-domain",
+                  "api-reference/endpoint/reddit-discussions",
+                  "api-reference/endpoint/reddit-subreddits"
                 ]
               },
               {
                 "group": "Instagram",
                 "pages": [
                   "api-reference/endpoint/instagram-profile",
+                  "api-reference/endpoint/instagram-profile-reels",
                   "api-reference/endpoint/instagram-post",
-                  "api-reference/endpoint/instagram-comments"
+                  "api-reference/endpoint/instagram-comments",
+                  "api-reference/endpoint/instagram-search"
                 ]
               },
               {
@@ -211,9 +226,7 @@
                 "pages": [
                   "api-reference/endpoint/linkedin-company",
                   "api-reference/endpoint/linkedin-profile",
-                  "api-reference/endpoint/linkedin-posts",
-                  "api-reference/endpoint/linkedin-people-search",
-                  "api-reference/endpoint/linkedin-companies-search"
+                  "api-reference/endpoint/linkedin-posts"
                 ]
               },
               {
@@ -222,7 +235,7 @@
                   "api-reference/endpoint/pinterest-search",
                   "api-reference/endpoint/pinterest-pin",
                   "api-reference/endpoint/pinterest-board",
-                  "api-reference/endpoint/pinterest-user"
+                  "api-reference/endpoint/pinterest-profile"
                 ]
               }
             ]
@@ -232,11 +245,13 @@
             "icon": "map-location-dot",
             "pages": [
               {
-                "group": "Google Maps",
+                "group": "Google",
                 "pages": [
-                  "api-reference/endpoint/maps-search",
-                  "api-reference/endpoint/maps-place",
-                  "api-reference/endpoint/maps-reviews"
+                  "api-reference/endpoint/google-maps-search",
+                  "api-reference/endpoint/google-maps-place",
+                  "api-reference/endpoint/google-maps-reviews",
+                  "api-reference/endpoint/google-hotels",
+                  "api-reference/endpoint/google-flights"
                 ]
               },
               {
@@ -246,21 +261,6 @@
                   "api-reference/endpoint/tripadvisor-place",
                   "api-reference/endpoint/tripadvisor-reviews"
                 ]
-              },
-              {
-                "group": "Google Travel",
-                "pages": [
-                  "api-reference/endpoint/googletravel-flights"
-                ]
-              },
-              {
-                "group": "Airbnb",
-                "pages": [
-                  "api-reference/endpoint/airbnb-search",
-                  "api-reference/endpoint/airbnb-listing",
-                  "api-reference/endpoint/airbnb-calendar",
-                  "api-reference/endpoint/airbnb-reviews"
-                ]
               }
             ]
           },
@@ -268,6 +268,12 @@
             "group": "Jobs",
             "icon": "briefcase",
             "pages": [
+              {
+                "group": "Google",
+                "pages": [
+                  "api-reference/endpoint/google-jobs"
+                ]
+              },
               {
                 "group": "LinkedIn",
                 "pages": [
@@ -296,16 +302,27 @@
             "icon": "cart-shopping",
             "pages": [
               {
-                "group": "Walmart",
-                "pages": [
-                  "api-reference/endpoint/walmart-search",
-                  "api-reference/endpoint/walmart-product"
-                ]
-              },
-              {
                 "group": "Google",
                 "pages": [
                   "api-reference/endpoint/google-shopping"
+                ]
+              },
+              {
+                "group": "Amazon",
+                "pages": [
+                  "api-reference/endpoint/amazon-search",
+                  "api-reference/endpoint/amazon-product",
+                  "api-reference/endpoint/amazon-bestsellers",
+                  "api-reference/endpoint/amazon-suggest"
+                ]
+              },
+              {
+                "group": "TikTok Shop",
+                "pages": [
+                  "api-reference/endpoint/tiktok-shop-search",
+                  "api-reference/endpoint/tiktok-shop-products",
+                  "api-reference/endpoint/tiktok-shop-product",
+                  "api-reference/endpoint/tiktok-shop-reviews"
                 ]
               }
             ]
@@ -324,11 +341,11 @@
                 ]
               },
               {
-                "group": "Google Play",
+                "group": "Google",
                 "pages": [
-                  "api-reference/endpoint/googleplay-app",
-                  "api-reference/endpoint/googleplay-search",
-                  "api-reference/endpoint/googleplay-reviews"
+                  "api-reference/endpoint/google-play-app",
+                  "api-reference/endpoint/google-play-search",
+                  "api-reference/endpoint/google-play-reviews"
                 ]
               }
             ]
@@ -343,20 +360,6 @@
                   "api-reference/endpoint/zillow-search",
                   "api-reference/endpoint/zillow-property"
                 ]
-              },
-              {
-                "group": "Rightmove",
-                "pages": [
-                  "api-reference/endpoint/rightmove-search",
-                  "api-reference/endpoint/rightmove-property"
-                ]
-              },
-              {
-                "group": "ImmoScout24",
-                "pages": [
-                  "api-reference/endpoint/immoscout-search",
-                  "api-reference/endpoint/immoscout-listing"
-                ]
               }
             ]
           },
@@ -367,15 +370,46 @@
               {
                 "group": "Meta Ads",
                 "pages": [
+                  "api-reference/endpoint/meta-ads-search",
+                  "api-reference/endpoint/meta-ads-ad",
                   "api-reference/endpoint/meta-ads-page"
                 ]
               },
               {
-                "group": "Ads",
+                "group": "Google",
                 "pages": [
-                  "api-reference/endpoint/ads-search",
-                  "api-reference/endpoint/ads-ad",
-                  "api-reference/endpoint/ads-advertisers"
+                  "api-reference/endpoint/google-ads-search",
+                  "api-reference/endpoint/google-ads-ad",
+                  "api-reference/endpoint/google-ads-advertisers"
+                ]
+              },
+              {
+                "group": "TikTok",
+                "pages": [
+                  "api-reference/endpoint/tiktok-ads-search",
+                  "api-reference/endpoint/tiktok-ads-ad"
+                ]
+              },
+              {
+                "group": "LinkedIn",
+                "pages": [
+                  "api-reference/endpoint/linkedin-ads-search",
+                  "api-reference/endpoint/linkedin-ads-ad"
+                ]
+              },
+              {
+                "group": "Microsoft",
+                "pages": [
+                  "api-reference/endpoint/microsoft-ads-search",
+                  "api-reference/endpoint/microsoft-ads-ad",
+                  "api-reference/endpoint/microsoft-ads-advertisers"
+                ]
+              },
+              {
+                "group": "Pinterest",
+                "pages": [
+                  "api-reference/endpoint/pinterest-ads-search",
+                  "api-reference/endpoint/pinterest-ads-ad"
                 ]
               }
             ]
@@ -593,28 +627,12 @@
       "destination": "/sources/web"
     },
     {
-      "source": "/api-reference/endpoint/google-ads-ad",
-      "destination": "/api-reference/endpoint/ads-ad"
-    },
-    {
-      "source": "/api-reference/endpoint/google-ads-advertisers",
-      "destination": "/api-reference/endpoint/ads-advertisers"
-    },
-    {
-      "source": "/api-reference/endpoint/google-ads-search",
-      "destination": "/api-reference/endpoint/ads-search"
-    },
-    {
       "source": "/api-reference/endpoint/instagram-comments-replies",
       "destination": "/api-reference/endpoint/instagram-comments"
     },
     {
       "source": "/api-reference/endpoint/instagram-posts",
       "destination": "/api-reference/endpoint/instagram-profile"
-    },
-    {
-      "source": "/api-reference/endpoint/instagram-transcript",
-      "destination": "/api-reference/endpoint/transcript"
     },
     {
       "source": "/api-reference/endpoint/instagram-url",
@@ -631,14 +649,6 @@
     {
       "source": "/api-reference/endpoint/kick-videos",
       "destination": "/sources/video"
-    },
-    {
-      "source": "/api-reference/endpoint/linkedin-ads-ad",
-      "destination": "/api-reference/endpoint/ads-ad"
-    },
-    {
-      "source": "/api-reference/endpoint/linkedin-ads-search",
-      "destination": "/api-reference/endpoint/ads-search"
     },
     {
       "source": "/api-reference/endpoint/linkedin-company-posts",
@@ -659,34 +669,6 @@
     {
       "source": "/api-reference/endpoint/mastodon-profile",
       "destination": "/sources/social"
-    },
-    {
-      "source": "/api-reference/endpoint/meta-ads-ad",
-      "destination": "/api-reference/endpoint/ads-ad"
-    },
-    {
-      "source": "/api-reference/endpoint/meta-ads-search",
-      "destination": "/api-reference/endpoint/ads-search"
-    },
-    {
-      "source": "/api-reference/endpoint/microsoft-ads-ad",
-      "destination": "/api-reference/endpoint/ads-ad"
-    },
-    {
-      "source": "/api-reference/endpoint/microsoft-ads-advertisers",
-      "destination": "/api-reference/endpoint/ads-advertisers"
-    },
-    {
-      "source": "/api-reference/endpoint/microsoft-ads-search",
-      "destination": "/api-reference/endpoint/ads-search"
-    },
-    {
-      "source": "/api-reference/endpoint/pinterest-ads-ad",
-      "destination": "/api-reference/endpoint/ads-ad"
-    },
-    {
-      "source": "/api-reference/endpoint/pinterest-ads-search",
-      "destination": "/api-reference/endpoint/ads-search"
     },
     {
       "source": "/api-reference/endpoint/quora-question",
@@ -718,23 +700,15 @@
     },
     {
       "source": "/api-reference/endpoint/snapchat-ads-ad",
-      "destination": "/api-reference/endpoint/ads-ad"
+      "destination": "/sources/ads"
     },
     {
       "source": "/api-reference/endpoint/snapchat-ads-search",
-      "destination": "/api-reference/endpoint/ads-search"
+      "destination": "/sources/ads"
     },
     {
       "source": "/api-reference/endpoint/snapchat-profile",
       "destination": "/sources/social"
-    },
-    {
-      "source": "/api-reference/endpoint/tiktok-ads-ad",
-      "destination": "/api-reference/endpoint/ads-ad"
-    },
-    {
-      "source": "/api-reference/endpoint/tiktok-ads-search",
-      "destination": "/api-reference/endpoint/ads-search"
     },
     {
       "source": "/api-reference/endpoint/tiktok-comments-replies",
@@ -743,10 +717,6 @@
     {
       "source": "/api-reference/endpoint/tiktok-posts",
       "destination": "/api-reference/endpoint/tiktok-profile"
-    },
-    {
-      "source": "/api-reference/endpoint/tiktok-transcript",
-      "destination": "/api-reference/endpoint/transcript"
     },
     {
       "source": "/api-reference/endpoint/tiktok-url",
@@ -771,10 +741,6 @@
     {
       "source": "/api-reference/endpoint/youtube-comments-replies",
       "destination": "/api-reference/endpoint/youtube-comments"
-    },
-    {
-      "source": "/api-reference/endpoint/youtube-transcript",
-      "destination": "/api-reference/endpoint/transcript"
     },
     {
       "source": "/guides/markdown",
@@ -811,6 +777,106 @@
     {
       "source": "/api-reference/endpoint/web-search",
       "destination": "/api-reference/endpoint/google-search"
+    },
+    {
+      "source": "/api-reference/endpoint/ads-ad",
+      "destination": "/api-reference/endpoint/meta-ads-ad"
+    },
+    {
+      "source": "/api-reference/endpoint/ads-advertisers",
+      "destination": "/api-reference/endpoint/google-ads-advertisers"
+    },
+    {
+      "source": "/api-reference/endpoint/ads-search",
+      "destination": "/api-reference/endpoint/meta-ads-search"
+    },
+    {
+      "source": "/api-reference/endpoint/ai-answer",
+      "destination": "/api-reference/endpoint/google-aiMode"
+    },
+    {
+      "source": "/api-reference/endpoint/airbnb-calendar",
+      "destination": "/sources/places-and-travel"
+    },
+    {
+      "source": "/api-reference/endpoint/airbnb-listing",
+      "destination": "/sources/places-and-travel"
+    },
+    {
+      "source": "/api-reference/endpoint/airbnb-reviews",
+      "destination": "/sources/places-and-travel"
+    },
+    {
+      "source": "/api-reference/endpoint/airbnb-search",
+      "destination": "/sources/places-and-travel"
+    },
+    {
+      "source": "/api-reference/endpoint/googleplay-app",
+      "destination": "/api-reference/endpoint/google-play-app"
+    },
+    {
+      "source": "/api-reference/endpoint/googleplay-reviews",
+      "destination": "/api-reference/endpoint/google-play-reviews"
+    },
+    {
+      "source": "/api-reference/endpoint/googleplay-search",
+      "destination": "/api-reference/endpoint/google-play-search"
+    },
+    {
+      "source": "/api-reference/endpoint/googletravel-flights",
+      "destination": "/api-reference/endpoint/google-flights"
+    },
+    {
+      "source": "/api-reference/endpoint/immoscout-listing",
+      "destination": "/sources/real-estate"
+    },
+    {
+      "source": "/api-reference/endpoint/immoscout-search",
+      "destination": "/sources/real-estate"
+    },
+    {
+      "source": "/api-reference/endpoint/rightmove-property",
+      "destination": "/sources/real-estate"
+    },
+    {
+      "source": "/api-reference/endpoint/rightmove-search",
+      "destination": "/sources/real-estate"
+    },
+    {
+      "source": "/api-reference/endpoint/linkedin-companies-search",
+      "destination": "/sources/social"
+    },
+    {
+      "source": "/api-reference/endpoint/linkedin-people-search",
+      "destination": "/sources/social"
+    },
+    {
+      "source": "/api-reference/endpoint/maps-place",
+      "destination": "/api-reference/endpoint/google-maps-place"
+    },
+    {
+      "source": "/api-reference/endpoint/maps-reviews",
+      "destination": "/api-reference/endpoint/google-maps-reviews"
+    },
+    {
+      "source": "/api-reference/endpoint/maps-search",
+      "destination": "/api-reference/endpoint/google-maps-search"
+    },
+    {
+      "source": "/api-reference/endpoint/pinterest-user",
+      "destination": "/api-reference/endpoint/pinterest-profile"
+    },
+    {
+      "source": "/api-reference/endpoint/transcript",
+      "destination": "/api-reference/endpoint/youtube-transcript"
+    },
+    {
+      "source": "/api-reference/endpoint/walmart-product",
+      "destination": "/api-reference/endpoint/amazon-product"
+    },
+    {
+      "source": "/api-reference/endpoint/walmart-search",
+      "destination": "/api-reference/endpoint/amazon-search"
     }
   ],
   "integrations": {

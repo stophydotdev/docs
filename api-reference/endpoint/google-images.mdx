@@ -1,9 +1,9 @@
 ---
 title: 'Google images API'
 sidebarTitle: 'Images'
-description: 'Search Google Images and get each full-size image with the page it comes from. Call the Google images API for JSON. 1 credit per call.'
+description: 'Search Google Images and get each full-size image with the page it comes from. Call the Google images API for JSON. From 1 credit per call.'
 og:title: 'Google images API | Stophy'
-og:description: 'Search Google Images and get each full-size image with the page it comes from. Call the Google images API for JSON. 1 credit per call.'
+og:description: 'Search Google Images and get each full-size image with the page it comes from. Call the Google images API for JSON. From 1 credit per call.'
 openapi: 'api-reference/openapi.json POST /v1/google/images'
 ---
 
@@ -16,8 +16,10 @@ import CliExample from "/snippets/examples/google.images/cli.mdx";
 
 - **Endpoint:** `google.images`
 - **Returns:** `data` has `results`.
-- **Cost:** 1 credit per call. Failed calls cost nothing.
+- **Cost:** 1 credit per 10 images (10 credits at most). Failed calls cost nothing.
 - **Paging:** No.
+
+Send `limit` to get fewer images and pay for fewer.
 
 ## Example
 

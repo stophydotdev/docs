@@ -35,7 +35,7 @@ interface Operation {
   credits: number | undefined;
   creditsMax: number | undefined;
   terms: string | undefined;
-  pages: boolean;
+  pages: "cursor" | "page" | undefined;
   input: JsonObject | undefined;
   example: JsonObject | undefined;
   data: JsonObject | undefined;
@@ -51,6 +51,13 @@ const config = (await Bun.file(file("scripts/reference.config.json")).json()) as
 
 const isObject = (value: Json | undefined): value is JsonObject =>
   typeof value === "object" && value !== null && !Array.isArray(value);
+
+// A source is the first part of the id, or the first two when the config names
+// them, like google.maps or tiktok.shop.
+function sourceOf(parts: string[]): string {
+  const two = parts.slice(0, 2).join(".");
+  return config.sources[two] === undefined ? (parts[0] ?? two) : two;
+}
 
 function operations(): Operation[] {
   const paths = spec.paths as JsonObject;
@@ -74,11 +81,11 @@ function operations(): Operation[] {
         path,
         slug: parts.join("-"),
         summary: typeof op.summary === "string" ? op.summary : id,
-        source: parts[0] ?? id,
+        source: sourceOf(parts),
         credits: typeof op["x-credits"] === "number" ? op["x-credits"] : undefined,
         creditsMax: typeof op["x-credits-max"] === "number" ? op["x-credits-max"] : undefined,
         terms: typeof op.description === "string" ? op.description : undefined,
-        pages: propertiesOf(input).includes("cursor"),
+        pages: propertiesOf(input).includes("cursor") ? "cursor" : propertiesOf(input).includes("page") ? "page" : undefined,
         input,
         example,
         data,
@@ -180,9 +187,12 @@ function endpointPage(op: Operation): string {
   const title = op.id === "endpoints" ? "Endpoint catalog API" : seoTitle(op);
   const description = op.id === "endpoints" ? CATALOG_DESCRIPTION : seoDescription(op);
   const sidebar = op.id === "endpoints" ? "List Endpoints" : endpointTitle(op);
-  const paging = op.pages
-    ? `Yes. Send the \`cursor\` from the response to get the next page. See [Page through results](/guides/paging).`
-    : "No.";
+  const paging =
+    op.pages === "cursor"
+      ? `Yes. Send the \`cursor\` from the response to get the next page. See [Page through results](/guides/paging).`
+      : op.pages === "page"
+        ? `Yes. Send \`page: 2\`, then \`3\`, until \`data.results\` is empty. See [Page through results](/guides/paging).`
+        : "No.";
   const facts = [
     op.id === "endpoints" ? undefined : `- **Endpoint:** \`${op.id}\``,
     returns(op) === "" ? undefined : `- **Returns:** ${returns(op)}`,

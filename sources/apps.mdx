@@ -12,10 +12,10 @@ import AppstoreSearchTs from '/snippets/examples/appstore.search/ts.mdx';
 import AppstoreSearchPython from '/snippets/examples/appstore.search/python.mdx';
 import AppstoreSearchCurl from '/snippets/examples/appstore.search/curl.mdx';
 import AppstoreSearchCli from '/snippets/examples/appstore.search/cli.mdx';
-import GoogleplayReviewsTs from '/snippets/examples/googleplay.reviews/ts.mdx';
-import GoogleplayReviewsPython from '/snippets/examples/googleplay.reviews/python.mdx';
-import GoogleplayReviewsCurl from '/snippets/examples/googleplay.reviews/curl.mdx';
-import GoogleplayReviewsCli from '/snippets/examples/googleplay.reviews/cli.mdx';
+import GooglePlayReviewsTs from '/snippets/examples/google.play.reviews/ts.mdx';
+import GooglePlayReviewsPython from '/snippets/examples/google.play.reviews/python.mdx';
+import GooglePlayReviewsCurl from '/snippets/examples/google.play.reviews/curl.mdx';
+import GooglePlayReviewsCli from '/snippets/examples/google.play.reviews/cli.mdx';
 import AppstoreTopTs from '/snippets/examples/appstore.top/ts.mdx';
 import AppstoreTopPython from '/snippets/examples/appstore.top/python.mdx';
 import AppstoreTopCurl from '/snippets/examples/appstore.top/curl.mdx';
@@ -81,7 +81,7 @@ The response:
     ]
   },
   "creditsUsed": 1,
-  "requestId": "86888a01-4552-4afe-8984-10800bd8db9e"
+  "requestId": "3e96a2b2-2c1f-4d4e-87f8-cc5c64034c8b"
 }
 ```
 
@@ -90,22 +90,22 @@ The response:
 | Endpoint | Cost |
 | --- | --- |
 | [Get an app's details from the App Store](/api-reference/endpoint/appstore-app) | 1 credit |
-| [Search App Store apps](/api-reference/endpoint/appstore-search) | 1 credit |
+| [Search App Store apps](/api-reference/endpoint/appstore-search) | From 1 credit |
 | [Get an app's App Store reviews](/api-reference/endpoint/appstore-reviews) | 1 credit |
-| [Get App Store top charts](/api-reference/endpoint/appstore-top) | 1 credit |
-| [Get an app's details from Google Play](/api-reference/endpoint/googleplay-app) | 1 credit |
-| [Search Google Play apps](/api-reference/endpoint/googleplay-search) | 1 credit |
-| [Get an app's Google Play reviews](/api-reference/endpoint/googleplay-reviews) | 1 credit |
+| [Get App Store top charts](/api-reference/endpoint/appstore-top) | From 1 credit |
+| [Get an app's details from Google Play](/api-reference/endpoint/google-play-app) | 1 credit |
+| [Search Google Play apps](/api-reference/endpoint/google-play-search) | From 1 credit |
+| [Get an app's Google Play reviews](/api-reference/endpoint/google-play-reviews) | 1 credit |
 
 ## More ways to call it
 
 ### Get an app's Google Play reviews
 
 <CodeGroup>
-  <GoogleplayReviewsTs />
-  <GoogleplayReviewsPython />
-  <GoogleplayReviewsCurl />
-  <GoogleplayReviewsCli />
+  <GooglePlayReviewsTs />
+  <GooglePlayReviewsPython />
+  <GooglePlayReviewsCurl />
+  <GooglePlayReviewsCli />
 </CodeGroup>
 
 ### Get App Store top charts
@@ -117,4 +117,4 @@ The response:
   <AppstoreTopCli />
 </CodeGroup>
 
-<Tip>Pass an App Store app id or a Google Play package name from a search result into that store's other endpoints. Review endpoints page. See [Page through results](/guides/paging).</Tip>
+<Tip>Pass an App Store app id or a Google Play package name from a search result into that store's other endpoints. Search and chart endpoints cost 1 credit per 10 apps, and `limit` returns fewer. Review endpoints page. See [Page through results](/guides/paging).</Tip>

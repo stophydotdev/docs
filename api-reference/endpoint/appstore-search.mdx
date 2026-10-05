@@ -1,9 +1,9 @@
 ---
 title: 'App Store search API'
 sidebarTitle: 'Search'
-description: 'Search App Store apps. Call the App Store search API and get JSON back in one request. 1 credit per call. Failed calls cost nothing.'
+description: 'Search App Store apps. Call the App Store search API and get JSON back in one request. From 1 credit per call. Failed calls cost nothing.'
 og:title: 'App Store search API | Stophy'
-og:description: 'Search App Store apps. Call the App Store search API and get JSON back in one request. 1 credit per call. Failed calls cost nothing.'
+og:description: 'Search App Store apps. Call the App Store search API and get JSON back in one request. From 1 credit per call. Failed calls cost nothing.'
 openapi: 'api-reference/openapi.json POST /v1/appstore/search'
 ---
 
@@ -16,8 +16,10 @@ import CliExample from "/snippets/examples/appstore.search/cli.mdx";
 
 - **Endpoint:** `appstore.search`
 - **Returns:** `data` has `results`.
-- **Cost:** 1 credit per call. Failed calls cost nothing.
+- **Cost:** 1 credit per 10 apps (5 credits at most). Failed calls cost nothing.
 - **Paging:** No.
+
+Send `limit` to get fewer apps and pay for fewer.
 
 ## Example
 
