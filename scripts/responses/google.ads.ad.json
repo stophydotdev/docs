@@ -1,0 +1,28 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "adId": "CR00462730911658541057",
+    "adUrl": "https://adstransparency.google.com/advertiser/AR16735076323512287233/creative/CR00462730911658541057",
+    "advertiserId": "AR16735076323512287233",
+    "advertiserName": "Nike, Inc.",
+    "advertiserUrl": "https://adstransparency.google.com/advertiser/AR16735076323512287233",
+    "format": "text",
+    "lastShownAt": "2026-10-05T20:27:35.000Z",
+    "imageUrl": "https://tpc.googlesyndication.com/archive/simgad/5743239130676952852",
+    "advertiserCountry": "US",
+    "advertiserIsVerified": true,
+    "paidBy": "Nike, Inc.",
+    "variations": [
+      {
+        "imageUrl": "https://tpc.googlesyndication.com/archive/simgad/5743239130676952852"
+      }
+    ],
+    "regions": [
+      {
+        "country": "US",
+        "lastShownAt": "2026-09-01T00:00:00.000Z"
+      }
+    ]
+  }
+}

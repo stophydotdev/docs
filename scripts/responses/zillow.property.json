@@ -1,0 +1,43 @@
+{
+  "live": true,
+  "creditsUsed": 2,
+  "data": {
+    "propertyId": "29399286",
+    "propertyUrl": "https://www.zillow.com/homedetails/106-W-32nd-St-Austin-TX-78705/29399286_zpid/",
+    "status": "FOR_SALE",
+    "homeType": "SINGLE_FAMILY",
+    "price": 2200000,
+    "priceCurrency": "USD",
+    "addressFull": "106 W 32nd St, Austin, TX 78705",
+    "addressStreet": "106 W 32nd St",
+    "addressCity": "Austin",
+    "addressRegion": "TX",
+    "addressPostalCode": "78705",
+    "latitude": 30.297354,
+    "longitude": -97.736565,
+    "bedrooms": 4,
+    "bathrooms": 3,
+    "sqft": 2911,
+    "lotSize": 9801,
+    "lotSizeUnit": "Square Feet",
+    "yearBuilt": 1925,
+    "description": "The Spurgeon Bell House is a designated City of Austin historic landmark located in the Aldridge Place Historic Distric…",
+    "imageUrls": [
+      "https://photos.zillowstatic.com/fp/53de2e39052ef79395ed54f9e73dfded-uncropped_scaled_within_1536_1152.jpg"
+    ],
+    "daysOnZillow": 2,
+    "views": 772,
+    "saves": 77,
+    "propertyTaxRate": 1.46,
+    "mlsId": "7637220",
+    "mlsName": "Unlock MLS",
+    "brokerName": "Kuper Sotheby's Int'l Realty",
+    "brokerPhone": "(512) 217-1047",
+    "facts": [
+      {
+        "name": "bathrooms",
+        "value": "3"
+      }
+    ]
+  }
+}

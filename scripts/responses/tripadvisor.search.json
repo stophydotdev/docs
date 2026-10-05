@@ -1,0 +1,19 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "results": [
+      {
+        "placeId": "187591",
+        "placeUrl": "https://www.tripadvisor.com/Hotel_Review-g186338-d187591-Reviews-The_Ritz_London_Hotel-London_England.html",
+        "name": "The Ritz London Hotel",
+        "type": "accommodation",
+        "address": "150 Piccadilly",
+        "parent": "London, England",
+        "latitude": 51.507088,
+        "longitude": -0.141628,
+        "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/33/be/ef/d4/the-ritz-london-entrance.jpg?w=1200&h=900&s=1"
+      }
+    ]
+  }
+}

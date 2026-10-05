@@ -1,0 +1,20 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "results": [
+      {
+        "reviewId": "1a4c762b-2485-43c9-b650-26f156a0bb8e",
+        "reviewUrl": "https://play.google.com/store/apps/details?id=com.spotify.music&reviewId=1a4c762b-2485-43c9-b650-26f156a0bb8e",
+        "rating": 5,
+        "text": "wonderful",
+        "authorName": "Catherine Karnes",
+        "authorAvatarUrl": "https://play-lh.googleusercontent.com/a-/ALV-UjVTvMvluNuCMD5by8WaWKHREjxco1xFbkGxTiAYWQR56WM3NQ",
+        "publishedAt": "2026-10-04T20:41:00.000Z",
+        "likes": 0,
+        "appVersion": "9.1.88.2204"
+      }
+    ],
+    "cursor": "Cs4BIsUBAV8d1P1XyJzoCkS2MkuhVw8-kSz5Novn3dcOEAaUonNI3-AUKSEanOvKpDWreoUnFQ5wxw35brKzwAbyPz1gFz18G5S5_YzCDNXUNJ7H9NAofms…"
+  }
+}

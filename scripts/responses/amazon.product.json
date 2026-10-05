@@ -1,0 +1,46 @@
+{
+  "live": true,
+  "creditsUsed": 2,
+  "data": {
+    "productId": "B0HDB41H28",
+    "productUrl": "https://www.amazon.com/dp/B0HDB41H28",
+    "title": "Wireless Earbuds, Bluetooth 5.3 Headphones HiFi Stereo 50H Playback LED Digital Display Ear Buds with ENC Noise Canceli…",
+    "brand": "Fhumsh",
+    "price": 18.98,
+    "originalPrice": 249.99,
+    "priceCurrency": "USD",
+    "availability": "In Stock",
+    "rating": 4.6,
+    "reviews": 270,
+    "bullets": [
+      "Ergonomic Wireless Earbuds for All-Day Wear:3-size medical-grade gel tips (S/M/L) conform to 99% ear contours, includin…"
+    ],
+    "imageUrls": [
+      "https://m.media-amazon.com/images/I/618n7fFdFXL._AC_SL1500_.jpg"
+    ],
+    "variants": [
+      {
+        "productId": "B0HDHBQ98Q",
+        "options": "Color: Rosegold"
+      }
+    ],
+    "sellerName": "Fhumsh-JW US",
+    "sellerId": "A2ZKWS9M1UYYSZ",
+    "sellerShipsFrom": "Amazon",
+    "categories": [
+      "Electronics"
+    ],
+    "bestSellersRank": [
+      {
+        "rank": 48,
+        "category": "Electronics"
+      }
+    ],
+    "specs": [
+      {
+        "name": "Brand",
+        "value": "Fhumsh"
+      }
+    ]
+  }
+}

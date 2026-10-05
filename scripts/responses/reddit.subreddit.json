@@ -1,0 +1,43 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "subredditId": "2qh1i",
+    "subredditName": "AskReddit",
+    "subredditUrl": "https://www.reddit.com/r/AskReddit/",
+    "title": "Ask Reddit...",
+    "description": "r/AskReddit is the place to ask and answer thought-provoking questions.",
+    "members": 59813591,
+    "createdAt": "2008-01-25T03:52:15.000Z",
+    "avatarUrl": "https://styles.redditmedia.com/t5_2qh1i/styles/communityIcon_p6kb2m6b185b1.png?width=256&s=c28b9f038c305e139b62739f2133…",
+    "isNsfw": false,
+    "rules": [
+      {
+        "title": "Rule 1 - Questions must be clear and direct and may not use the body textbox",
+        "description": "* All questions must be clear, written in English, and conclude with a question mark\n* All context in the title must be…"
+      }
+    ],
+    "results": [
+      {
+        "type": "post",
+        "postId": "1w6eajz",
+        "postUrl": "https://www.reddit.com/r/AskReddit/comments/1w6eajz/askreddit_is_looking_for_new_moderators/",
+        "title": "AskReddit is looking for new moderators!",
+        "text": "As you can probably imagine, r/AskReddit is very busy with nearly 60 million members, over a million comments posted ev…",
+        "authorId": "ytpt7",
+        "authorUsername": "AskRedditModerators",
+        "authorUrl": "https://www.reddit.com/user/AskRedditModerators/",
+        "subreddit": "AskReddit",
+        "score": 208,
+        "upvotePercent": 93,
+        "comments": 0,
+        "publishedAt": "2026-09-03T17:39:04.000Z",
+        "flair": "Modpost",
+        "isNsfw": false,
+        "isVideo": false,
+        "isPinned": true
+      }
+    ],
+    "cursor": "t3_1wyi2sl"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "userId": "127905465618821121",
+    "username": "khaby.lame",
+    "userUrl": "https://www.tiktok.com/@khaby.lame",
+    "name": "Khabane lame",
+    "bio": "Se vuoi ridere sei nel posto giusto😎 If u wanna laugh u r in the right place😎",
+    "avatarUrl": "https://p19-common-sign.tiktokcdn-us.com/tos-useast8-avt-0068-tx2/08987e23b94057953fd4f1738694bf5f~tplv-tiktokx-cropcen…",
+    "isVerified": true,
+    "isPrivate": false,
+    "isOrganization": false,
+    "language": "en",
+    "createdAt": "2016-08-10T22:02:34.000Z",
+    "followers": 162986955,
+    "following": 81,
+    "likes": 2685369103,
+    "videos": 1357,
+    "results": [
+      {
+        "videoId": "7691740195418377502",
+        "videoUrl": "https://www.tiktok.com/@khaby.lame/video/7691740195418377502",
+        "type": "video",
+        "text": "Just give me 5 more minutes 😭#learnfromkhaby #comedy ",
+        "hashtags": [
+          "learnfromkhaby",
+          "comedy"
+        ],
+        "publishedAt": "2026-10-01T16:40:54.000Z",
+        "durationSeconds": 34,
+        "thumbnailUrl": "https://p16-common-sign.tiktokcdn-us.com/tos-useast8-p-0068-tx2/o0jRDQRMAbfFAlZX8eqGQcARBqerRfAHR7gVSU~tplv-tiktokx-ori…",
+        "views": 3100000,
+        "likes": 323800,
+        "comments": 5782,
+        "shares": 21200,
+        "saves": 14931,
+        "authorId": "127905465618821121",
+        "authorUsername": "khaby.lame",
+        "authorName": "Khabane lame",
+        "authorUrl": "https://www.tiktok.com/@khaby.lame",
+        "authorAvatarUrl": "https://p16-common-sign.tiktokcdn-us.com/tos-useast8-avt-0068-tx2/08987e23b94057953fd4f1738694bf5f~tplv-tiktokx-cropcen…",
+        "authorIsVerified": true,
+        "audioId": "7691740326570019615",
+        "audioTitle": "original sound",
+        "audioArtist": "Khabane lame",
+        "audioIsOriginal": true,
+        "isAd": false,
+        "isAiGenerated": true
+      }
+    ],
+    "cursor": "1780067181164"
+  }
+}

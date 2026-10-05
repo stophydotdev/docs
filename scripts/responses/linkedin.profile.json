@@ -1,0 +1,30 @@
+{
+  "live": true,
+  "creditsUsed": 2,
+  "data": {
+    "profileId": "satyanadella",
+    "profileUrl": "https://www.linkedin.com/in/satyanadella",
+    "name": "Satya Nadella",
+    "headline": "Chairman and CEO at Microsoft",
+    "location": "Redmond, Washington, United States",
+    "about": "As chairman and CEO of Microsoft, I define my mission and that of my company as empowering every person and every organ…",
+    "followers": 12205170,
+    "roles": [
+      {
+        "title": "Chairman and CEO",
+        "companyName": "Microsoft",
+        "companyUrl": "https://www.linkedin.com/company/microsoft",
+        "from": "Feb 2014",
+        "isCurrent": true
+      }
+    ],
+    "education": [
+      {
+        "school": "The University of Chicago Booth School of Business",
+        "schoolUrl": "https://www.linkedin.com/school/universityofchicagoboothschoolofbusiness",
+        "from": "1994",
+        "to": "1996"
+      }
+    ]
+  }
+}

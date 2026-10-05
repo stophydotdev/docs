@@ -1,0 +1,39 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "results": [
+      {
+        "videoId": "7223827494913215786",
+        "videoUrl": "https://www.tiktok.com/@jenna_bushhager/video/7223827494913215786",
+        "type": "video",
+        "text": "#WorldBookDay is 4/23, and I've joined the #BookTok community to share our favorite books with you all! Duet to share y…",
+        "hashtags": [
+          "worldbookday",
+          "booktok"
+        ],
+        "publishedAt": "2023-04-19T18:20:30.000Z",
+        "durationSeconds": 82,
+        "thumbnailUrl": "https://p19-common-sign.tiktokcdn-us.com/tos-useast5-p-0068-tx/ce0ee016ff8a483e8271ed4b4faebb3a~tplv-tiktokx-origin.ima…",
+        "views": 39100,
+        "likes": 997,
+        "comments": 32,
+        "shares": 36,
+        "saves": 134,
+        "authorId": "6915876645917082629",
+        "authorUsername": "jenna_bushhager",
+        "authorName": "Jenna Bush Hager",
+        "authorUrl": "https://www.tiktok.com/@jenna_bushhager",
+        "authorAvatarUrl": "https://p16-common-sign.tiktokcdn-us.com/tos-useast8-avt-0068-tx2/0707efff51851e19e5e88f36bd87a298~tplv-tiktokx-cropcen…",
+        "authorIsVerified": true,
+        "audioId": "7223827501163006766",
+        "audioTitle": "original sound",
+        "audioArtist": "Jenna Bush Hager",
+        "audioIsOriginal": true,
+        "isAd": false,
+        "isAiGenerated": true
+      }
+    ],
+    "cursor": "53"
+  }
+}

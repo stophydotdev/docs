@@ -1,0 +1,20 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "results": [
+      {
+        "advertiserId": "AR06641858037806006273",
+        "advertiserName": "Nike",
+        "advertiserCountry": "KE",
+        "advertiserUrl": "https://adstransparency.google.com/advertiser/AR06641858037806006273",
+        "isVerified": false,
+        "adsMin": 1,
+        "adsMax": 1
+      }
+    ],
+    "domains": [
+      "nike.sk"
+    ]
+  }
+}

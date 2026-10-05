@@ -1,0 +1,27 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "videoId": "p0fybvFyOlM",
+    "videoUrl": "https://www.youtube.com/watch?v=p0fybvFyOlM",
+    "title": "A total disaster",
+    "channelId": "UCUyeluBRhGPCW4rPe_UvBZQ",
+    "channelName": "The PrimeTime",
+    "channelUrl": "https://www.youtube.com/channel/UCUyeluBRhGPCW4rPe_UvBZQ",
+    "channelUsername": "ThePrimeTimeagen",
+    "durationSeconds": 799,
+    "views": 699503,
+    "thumbnailUrl": "https://i.ytimg.com/vi/p0fybvFyOlM/hqdefault.jpg",
+    "isShort": false,
+    "isLive": false,
+    "publishedAt": "2026-10-03T03:48:31.000Z",
+    "description": "Sandbox aren't enough. Your agents need a devbox. A full development environment with all your dependencies. https://tr…",
+    "likes": 10482,
+    "category": "Science & Technology",
+    "tags": [
+      "programming"
+    ],
+    "comments": 1100,
+    "channelSubscribers": 1170000
+  }
+}

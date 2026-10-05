@@ -1,0 +1,19 @@
+{
+  "live": false,
+  "creditsUsed": 1,
+  "data": {
+    "results": [
+      {
+        "title": "How to bake sourdough bread at home",
+        "url": "https://www.example.com/watch?v=abc123",
+        "site": "YouTube",
+        "channelName": "Example Bakery",
+        "durationSeconds": 754,
+        "publishedAt": "2026-09-12T00:00:00.000Z",
+        "description": "A step by step guide to your first sourdough loaf.",
+        "position": 1
+      }
+    ],
+    "page": 1
+  }
+}

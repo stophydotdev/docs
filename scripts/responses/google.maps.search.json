@@ -1,0 +1,42 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "results": [
+      {
+        "placeId": "0x865b33ee6a9856e5:0x5064d03fde124e36",
+        "googlePlaceId": "ChIJ5VaYau4zW4YRNk4S3j_QZFA",
+        "placeUrl": "https://www.google.com/maps?cid=5792983993432559158",
+        "name": "Mojo Coffee Lakeline",
+        "categories": [
+          "Coffee shop"
+        ],
+        "address": "12206 Ranch Rd 620 N, Austin, TX 78750",
+        "latitude": 30.462303,
+        "longitude": -97.817188,
+        "rating": 4.7,
+        "reviews": 679,
+        "photos": 268,
+        "phone": "+17379003700",
+        "website": "http://www.mojodrivethru.com/",
+        "hours": [
+          {
+            "days": "Monday",
+            "times": [
+              "5:30 AM–8 PM"
+            ]
+          }
+        ],
+        "hoursToday": "5:30 AM–8 PM",
+        "openStatus": "Open · Closes 8 PM",
+        "timezone": "America/Chicago",
+        "thumbnailUrl": "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWlPKARR4YyKDk76jDBsFhgsqjIvxLr7sKpLPhAnAWtgf2_0l9wx3yKJUF1vlNqaEE0Ao_eQ…",
+        "attributes": [
+          "Wheelchair accessible entrance",
+          "Wheelchair accessible parking lot"
+        ]
+      }
+    ],
+    "page": 1
+  }
+}

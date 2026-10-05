@@ -1,0 +1,25 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "results": [
+      {
+        "adId": "1871322782235922",
+        "adUrl": "https://library.tiktok.com/ads/detail/?ad_id=1871322782235922",
+        "advertiserName": "adidas AG",
+        "headline": "adidas Hyperboost Euphoria",
+        "firstShownAt": "2026-07-30T00:00:00.000Z",
+        "lastShownAt": "2026-07-30T00:00:00.000Z",
+        "reachMin": 0,
+        "reachMax": 1000,
+        "videoUrl": "https://library.tiktok.com/api/v1/cdn/1791233250/video/aHR0cHM6Ly92NzcudGlrdG9rY2RuLmNvbS8yYjJmM2I1OTJlZDUzYWUyZTE5NDY1…",
+        "thumbnailUrl": "https://p16-common-sign.tiktokcdn.com/tos-alisg-p-0051c001-sg/ocWADVmTAmAiP6zVOz19NgNcBaIZEwYAlBniU~tplv-tiktokx-origin…",
+        "imageUrls": [
+          "https://p16-common-sign.tiktokcdn.com/tos-alisg-p-0051c001-sg/ocWADVmTAmAiP6zVOz19NgNcBaIZEwYAlBniU~tplv-tiktokx-origin…"
+        ]
+      }
+    ],
+    "total": 5000,
+    "cursor": "eyJsYXN0X3NvcnQiOlsyNy40MjgyOTcsMTc4MzgxNDQwMDAwMF0sIm5leHRfY3Vyc29yIjoxMn0="
+  }
+}

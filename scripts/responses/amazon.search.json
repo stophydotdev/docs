@@ -1,0 +1,23 @@
+{
+  "live": true,
+  "creditsUsed": 2,
+  "data": {
+    "results": [
+      {
+        "productId": "B0HDB41H28",
+        "productUrl": "https://www.amazon.com/dp/B0HDB41H28",
+        "title": "Wireless Earbuds, Bluetooth 5.3 Headphones HiFi Stereo 50H Playback LED Digital Display Ear Buds with ENC Noise Canceli…",
+        "imageUrl": "https://m.media-amazon.com/images/I/618n7fFdFXL._AC_UY218_.jpg",
+        "price": 18.98,
+        "originalPrice": 249.99,
+        "priceCurrency": "USD",
+        "rating": 4.6,
+        "reviews": 270,
+        "boughtPastMonth": 4000,
+        "isSponsored": false
+      }
+    ],
+    "total": 27654,
+    "page": 1
+  }
+}

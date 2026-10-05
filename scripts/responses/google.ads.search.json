@@ -1,0 +1,24 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "results": [
+      {
+        "adId": "CR00462730911658541057",
+        "adUrl": "https://adstransparency.google.com/advertiser/AR16735076323512287233/creative/CR00462730911658541057",
+        "advertiserId": "AR16735076323512287233",
+        "advertiserName": "Nike, Inc.",
+        "advertiserUrl": "https://adstransparency.google.com/advertiser/AR16735076323512287233",
+        "domain": "nike.com",
+        "format": "text",
+        "firstShownAt": "2022-11-30T14:47:52.000Z",
+        "lastShownAt": "2026-10-05T20:27:35.000Z",
+        "daysShown": 1350,
+        "imageUrl": "https://tpc.googlesyndication.com/archive/simgad/5743239130676952852"
+      }
+    ],
+    "totalMin": 100000,
+    "totalMax": 200000,
+    "cursor": "CgoAP7zmi4ohfCUHEhBNRhEc0rwv/RRMIVUAAAAAGgn8+Ghj+Osc6yI="
+  }
+}

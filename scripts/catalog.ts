@@ -6,7 +6,9 @@ export type JsonObject = { [key: string]: Json };
 
 export interface CatalogEndpoint {
   id: string;
+  title?: string;
   summary: string;
+  bestWhen?: string | null;
   method: "GET" | "POST";
   path: string;
   credits?: number;
@@ -28,7 +30,13 @@ export interface Catalog {
 
 export const CATALOG_URL = process.env.STOPHY_CATALOG_URL ?? "https://api.stophy.dev/v1/endpoints";
 
+// The catalog is either the live URL or, for a catalog saved before the API ships,
+// a path to a JSON file holding the endpoint list (STOPHY_CATALOG_URL=./catalog.json).
 export async function fetchCatalog(): Promise<Catalog> {
+  if (!/^https?:/.test(CATALOG_URL)) {
+    const saved = (await Bun.file(CATALOG_URL).json()) as Catalog | CatalogEndpoint[];
+    return Array.isArray(saved) ? { sources: [], endpoints: saved } : saved;
+  }
   const response = await fetch(CATALOG_URL);
   if (!response.ok) throw new Error(`GET ${CATALOG_URL} returned ${response.status}`);
   return (await response.json()) as Catalog;

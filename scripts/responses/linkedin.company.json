@@ -1,0 +1,19 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "companyId": "microsoft",
+    "companyUrl": "https://www.linkedin.com/company/microsoft",
+    "name": "Microsoft",
+    "industry": "Software Development",
+    "size": "10,001+ employees",
+    "employees": 231728,
+    "headquarters": "Redmond, Washington",
+    "website": "https://news.microsoft.com/",
+    "followers": 29232105,
+    "description": "Every company has a mission. What's ours? To empower every person and every organization to achieve more. We believe te…",
+    "specialties": [
+      "Business Software"
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "results": [
+      {
+        "advertiserId": "4295000966",
+        "advertiserName": "Nike - EMEA",
+        "advertiserCountry": "Netherlands",
+        "isVerified": true
+      }
+    ],
+    "total": 18
+  }
+}

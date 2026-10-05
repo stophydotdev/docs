@@ -1,0 +1,27 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "results": [
+      {
+        "type": "post",
+        "postId": "1vn2sjm",
+        "postUrl": "https://www.reddit.com/r/typescript/comments/1vn2sjm/i_would_like_to_personally_apologize_to_the/",
+        "title": "I would like to personally apologize to the creators of TypeScript",
+        "text": "When I first started using it for work I hated it and cursed it. The syntax was weird and confusing. Annoying type erro…",
+        "authorId": "klojyedp",
+        "authorUsername": "PusheenHater",
+        "authorUrl": "https://www.reddit.com/user/PusheenHater/",
+        "subreddit": "typescript",
+        "score": 236,
+        "upvotePercent": 91,
+        "comments": 71,
+        "publishedAt": "2026-08-13T06:27:01.000Z",
+        "isNsfw": false,
+        "isVideo": false,
+        "isPinned": false
+      }
+    ],
+    "cursor": "t3_1lk2fng"
+  }
+}

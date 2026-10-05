@@ -1,0 +1,15 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "results": [
+      {
+        "code": "CH",
+        "name": "Switzerland",
+        "values": {
+          "bitcoin": 100
+        }
+      }
+    ]
+  }
+}

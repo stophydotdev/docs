@@ -1,0 +1,12 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "results": [
+      {
+        "query": "bitcoin price",
+        "value": 100
+      }
+    ]
+  }
+}

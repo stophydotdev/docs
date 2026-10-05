@@ -1,0 +1,23 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "results": [
+      {
+        "query": "france vs belgium",
+        "volume": 100000,
+        "increasePercent": 1000,
+        "startedAt": "2026-10-05T17:50:00.000Z",
+        "isActive": true,
+        "related": [
+          "france vs belgium",
+          "france national football team"
+        ],
+        "categories": [
+          "sports"
+        ],
+        "trendUrl": "https://trends.google.com/trends/explore?q=france+vs+belgium&geo=US&date=now+1-d"
+      }
+    ]
+  }
+}

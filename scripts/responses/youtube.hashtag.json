@@ -1,0 +1,24 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "results": [
+      {
+        "type": "video",
+        "videoId": "NGF2WGKX5dU",
+        "videoUrl": "https://www.youtube.com/watch?v=NGF2WGKX5dU",
+        "title": "The Complete Sourdough Starter Guide",
+        "channelId": "UCepVey5oiinAQGgT06r-h5A",
+        "channelName": "Mary's Nest",
+        "channelUrl": "https://www.youtube.com/channel/UCepVey5oiinAQGgT06r-h5A",
+        "channelUsername": "MarysNest",
+        "durationSeconds": 1840,
+        "views": 688100,
+        "thumbnailUrl": "https://i.ytimg.com/vi/NGF2WGKX5dU/hqdefault.jpg",
+        "isShort": false,
+        "isLive": false,
+        "publishedAt": "2019-10-06T04:02:42.000Z"
+      }
+    ]
+  }
+}
