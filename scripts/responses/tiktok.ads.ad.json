@@ -1,0 +1,48 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "adId": "1871322782235922",
+    "adUrl": "https://library.tiktok.com/ads/detail/?ad_id=1871322782235922",
+    "advertiserName": "adidas AG",
+    "headline": "adidas Hyperboost Euphoria",
+    "firstShownAt": "2026-07-30T00:00:00.000Z",
+    "lastShownAt": "2026-07-30T00:00:00.000Z",
+    "reachMin": 0,
+    "reachMax": 1000,
+    "videoUrl": "https://library.tiktok.com/api/v1/cdn/1791233253/video/aHR0cHM6Ly92NzcudGlrdG9rY2RuLmNvbS9mMWE4ZmZhNTczZjRjZmEwNDk0ZTk4…",
+    "thumbnailUrl": "https://p16-common-sign.tiktokcdn.com/tos-alisg-p-0051c001-sg/ocWADVmTAmAiP6zVOz19NgNcBaIZEwYAlBniU~tplv-tiktokx-origin…",
+    "imageUrls": [
+      "https://p16-common-sign.tiktokcdn.com/tos-alisg-p-0051c001-sg/ocWADVmTAmAiP6zVOz19NgNcBaIZEwYAlBniU~tplv-tiktokx-origin…"
+    ],
+    "advertiserId": "6885261436319171329",
+    "advertiserCountry": "United Kingdom",
+    "paidBy": "PHD INTERNATIONAL LIMITED",
+    "linkUrl": "https://ad.doubleclick.net/ddm/clk/645481797;451468138;a?utm_source=tiktok&utm_medium=paid",
+    "ctaText": "Learn more",
+    "objective": "Video views",
+    "category": "Apparel & Accessories",
+    "audienceSizeMin": 2500000,
+    "audienceSizeMax": 3000000,
+    "impressionsMin": 0,
+    "impressionsMax": 1000,
+    "countries": [
+      "DE"
+    ],
+    "interests": "Men's Shoes, Fitness Training Supplies, Exercise & Fitness, Coffee, Gaming Devices, Sports & Fitness, Health &…",
+    "regions": [
+      {
+        "country": "DE",
+        "impressionsMin": 0,
+        "impressionsMax": 1000,
+        "ages": [
+          "18-24"
+        ],
+        "genders": [
+          "female",
+          "male"
+        ]
+      }
+    ]
+  }
+}

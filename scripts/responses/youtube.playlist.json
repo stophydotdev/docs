@@ -1,0 +1,33 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "playlistId": "PLFgquLnL59alCl_2TQvOiD5Vgm1hCaGSI",
+    "playlistUrl": "https://www.youtube.com/playlist?list=PLFgquLnL59alCl_2TQvOiD5Vgm1hCaGSI",
+    "title": "Popular Music Videos",
+    "channelId": "UC-9-kyTW8ZkZNDHQJ6FgpwQ",
+    "channelName": "Music",
+    "channelUrl": "https://www.youtube.com/channel/UC-9-kyTW8ZkZNDHQJ6FgpwQ",
+    "videos": 182,
+    "views": 1045669467,
+    "thumbnailUrl": "https://i.ytimg.com/vi/fOT0BUpITw8/hqdefault.jpg",
+    "results": [
+      {
+        "type": "video",
+        "videoId": "fOT0BUpITw8",
+        "videoUrl": "https://www.youtube.com/watch?v=fOT0BUpITw8",
+        "title": "BELLAKEO (Video Oficial) - Peso Pluma, Anitta",
+        "channelId": "UCzrM_068Odho89mTRrrxqbA",
+        "channelName": "Peso Pluma",
+        "channelUrl": "https://www.youtube.com/channel/UCzrM_068Odho89mTRrrxqbA",
+        "durationSeconds": 235,
+        "views": 765000000,
+        "thumbnailUrl": "https://i.ytimg.com/vi/fOT0BUpITw8/hqdefault.jpg",
+        "isShort": false,
+        "isLive": false,
+        "publishedAt": "2024-10-05T09:08:51.000Z"
+      }
+    ],
+    "cursor": "4qmFsgKBARIkVkxQTEZncXVMbkw1OWFsQ2xfMlRRdk9pRDVWZ20xaENhR1NJGjRDQUY2SGxCVU9rTkhVV2xGUlZrMVVXdGFRazFVWXpOT1JFazFUWHBSZVU…"
+  }
+}

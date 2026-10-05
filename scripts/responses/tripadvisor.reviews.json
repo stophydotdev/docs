@@ -1,0 +1,40 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "placeId": "187591",
+    "placeName": "The Ritz London Hotel",
+    "placeType": "accommodation",
+    "placeUrl": "https://www.tripadvisor.com/Hotel_Review-g186338-d187591-Reviews-The_Ritz_London_Hotel-London_England.html",
+    "total": 2099,
+    "results": [
+      {
+        "reviewId": "1062698613",
+        "reviewUrl": "https://www.tripadvisor.com/ShowUserReviews-g186338-d187591-r1062698613-The_Ritz_London_Hotel-London_England.html",
+        "rating": 5,
+        "title": "Luxury At It's Finest",
+        "text": "The Ritz is luxury at its finest, blending the highest level of professional service with a sense of comfort and…",
+        "language": "en",
+        "createdDate": "2026-06-02",
+        "stayMonth": "2026-05",
+        "tripType": "couples",
+        "helpful": 0,
+        "subRatings": [
+          {
+            "name": "Value",
+            "rating": 5
+          }
+        ],
+        "authorName": "Michael M",
+        "authorUsername": "Michael_MandM",
+        "authorUrl": "https://www.tripadvisor.com/Profile/Michael_MandM",
+        "authorAddress": "Penrith, Australia",
+        "authorContributions": 777,
+        "ownerReplyText": "Dear Michael M,\n\nWe are delighted to read that you enjoyed your stay with us. We hope to welcome you back to The Ritz…",
+        "ownerReplyDate": "2026-06-05",
+        "ownerReplyAuthor": "General Manager"
+      }
+    ],
+    "page": 1
+  }
+}

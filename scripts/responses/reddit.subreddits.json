@@ -1,0 +1,19 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "results": [
+      {
+        "type": "subreddit",
+        "subredditId": "2qs0k",
+        "subredditName": "Home",
+        "subredditUrl": "https://www.reddit.com/r/Home/",
+        "title": "Home",
+        "members": 432281,
+        "createdAt": "2009-01-25T02:25:57.000Z",
+        "isNsfw": false
+      }
+    ],
+    "cursor": "t5_2cneq"
+  }
+}

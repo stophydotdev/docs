@@ -1,0 +1,7 @@
+```python Python icon="python"
+from stophy import Stophy
+
+stophy = Stophy()  # reads STOPHY_API_KEY
+result = stophy.tiktok.ads.ad(ad_url="https://library.tiktok.com/ads/detail?ad_id=1756783467412593")
+print(result["data"])
+```

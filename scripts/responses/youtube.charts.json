@@ -1,0 +1,24 @@
+{
+  "live": true,
+  "creditsUsed": 10,
+  "data": {
+    "chart": "topSongs",
+    "country": "us",
+    "throughDate": "2026-10-01",
+    "results": [
+      {
+        "position": 1,
+        "periodsOnChart": 1,
+        "title": "Patient Zero",
+        "artists": [
+          "Taylor Swift"
+        ],
+        "views": 7084018,
+        "videoId": "BpR280fXISA",
+        "videoUrl": "https://www.youtube.com/watch?v=BpR280fXISA",
+        "releaseDate": "2026-09-25",
+        "label": "Taylor Swift"
+      }
+    ]
+  }
+}

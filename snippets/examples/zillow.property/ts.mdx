@@ -2,6 +2,6 @@
 import { Stophy } from "stophy";
 
 const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
-const result = await stophy.zillow.property({ property: "https://www.zillow.com/homedetails/123-Main-St-New-York-NY-10001/12345678_zpid/" });
+const result = await stophy.zillow.property({ propertyUrl: "https://www.zillow.com/homedetails/123-Main-St-Austin-TX-78701/29383449_zpid/" });
 console.log(result.data);
 ```

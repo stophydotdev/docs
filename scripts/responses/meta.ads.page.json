@@ -1,0 +1,44 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "results": [
+      {
+        "adId": "1789492875400267",
+        "adUrl": "https://www.facebook.com/ads/library/?id=1789492875400267",
+        "pageId": "89516513179",
+        "pageName": "Nordstrom Rack",
+        "pageUrl": "https://facebook.com/NordstromRack",
+        "pageAvatarUrl": "https://scontent-mia3-2.xx.fbcdn.net/v/t39.35426-6/762676880_1995711797802100_2468483212592961094_n.jpg?stp=dst-jpg_s60…",
+        "pageCategories": [
+          "Clothing (Brand)"
+        ],
+        "pageLikes": 2518828,
+        "isActive": true,
+        "firstShownAt": "2026-08-03T07:00:00.000Z",
+        "platforms": [
+          "facebook",
+          "instagram"
+        ],
+        "format": "dpa",
+        "text": "Save up to 70% off top brands.",
+        "linkUrl": "https://www.nordstromrack.com/",
+        "ctaText": "Shop now",
+        "cards": [
+          {
+            "text": "Save up to 70% off top brands.",
+            "linkUrl": "https://www.nordstromrack.com/s/14th-and-union-the-wallin-stretch-twill-trim-fit-chino-pants-30-34-inseam/8925507",
+            "linkTitle": "14th & Union The Wallin Stretch Twill Trim Fit Chino Pants - 30-34\" Inseam",
+            "ctaText": "Shop Now",
+            "imageUrl": "https://scontent-mia3-3.xx.fbcdn.net/v/t39.35426-6/762676781_1036954042308934_4193412466397981962_n.jpg?_nc_cat=107&ccb…"
+          }
+        ],
+        "versions": 1,
+        "countries": [
+          "US"
+        ]
+      }
+    ],
+    "cursor": "AQHTYm1gog6XNyvJ--FrIKuEKkEAPrxD9q6sGYtVGkuUcpUvlW1kMfUmNB0aT9A-8zoD"
+  }
+}

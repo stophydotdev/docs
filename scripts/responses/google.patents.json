@@ -1,0 +1,24 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "results": [
+      {
+        "patentId": "WO2013104046A1",
+        "title": "A system and method for assuring operational readiness of a mission critical …",
+        "snippet": "A SYSTEM AND METHOD FOR ASSURING OPERATIONAL READINESS OF A MISSION CRITICAL BATTERY HAVING A LONG STORAGE PERIOD…",
+        "assignee": "Panacis Inc.",
+        "inventor": "Steve Carkner",
+        "priorityDate": "2012-01-09",
+        "filingDate": "2012-12-19",
+        "publicationDate": "2013-07-18",
+        "language": "en",
+        "patentUrl": "https://patents.google.com/patent/WO2013104046A1/en",
+        "pdfUrl": "https://patentimages.storage.googleapis.com/4f/16/c5/b5bc207e6ec556/WO2013104046A1.pdf",
+        "thumbnailUrl": "https://patentimages.storage.googleapis.com/c6/b7/47/f2e1e172e74da8/pctca2012050916-appb-P000004-000001.png",
+        "position": 1
+      }
+    ],
+    "page": 1
+  }
+}

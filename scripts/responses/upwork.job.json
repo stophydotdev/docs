@@ -1,0 +1,31 @@
+{
+  "live": false,
+  "creditsUsed": 1,
+  "data": {
+    "jobId": "~021234567890123456789",
+    "jobUrl": "https://www.upwork.com/jobs/~021234567890123456789",
+    "title": "React developer for a dashboard",
+    "description": "We need a React developer to build a reporting dashboard.",
+    "skills": [
+      "React",
+      "TypeScript"
+    ],
+    "type": "hourly",
+    "experienceLevel": "intermediate",
+    "workload": "partTime",
+    "duration": "oneToThreeMonths",
+    "hourlyRateMin": 30,
+    "hourlyRateMax": 60,
+    "publishedAt": "2026-10-05T09:30:00.000Z",
+    "applicants": 12,
+    "hired": 0,
+    "interviewing": 2,
+    "invitesSent": 3,
+    "positions": 1,
+    "clientCountry": "United States",
+    "clientTotalSpent": 18000,
+    "clientHires": 24,
+    "clientReviews": 18,
+    "clientRating": 4.9
+  }
+}

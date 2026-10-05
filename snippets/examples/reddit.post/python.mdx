@@ -2,6 +2,6 @@
 from stophy import Stophy
 
 stophy = Stophy()  # reads STOPHY_API_KEY
-result = stophy.reddit.post(post="https://www.reddit.com/r/rust/comments/1c8x9k2/why_i_switched_to_rust/")
-print(result["data"])
+result = stophy.reddit.post(post_url="https://www.reddit.com/r/programming/comments/1abc2de/example_post/")
+print(result["data"]["results"])
 ```

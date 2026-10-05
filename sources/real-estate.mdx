@@ -1,8 +1,8 @@
 ---
 title: 'Real estate'
-description: 'Search homes for sale and rent on Zillow, Rightmove, and ImmoScout24. Get the price, photos, and details for any listing as JSON.'
+description: 'Search homes for sale, for rent, and sold on Zillow with more than 20 filters. Get the price, photos, and details for any listing as JSON.'
 og:title: 'Real estate | Stophy'
-og:description: 'Search homes for sale and rent on Zillow, Rightmove, and ImmoScout24. Get the price, photos, and details for any listing as JSON.'
+og:description: 'Search homes for sale, for rent, and sold on Zillow with more than 20 filters. Get the price, photos, and details for any listing as JSON.'
 icon: 'house'
 ---
 
@@ -12,16 +12,12 @@ import ZillowSearchTs from '/snippets/examples/zillow.search/ts.mdx';
 import ZillowSearchPython from '/snippets/examples/zillow.search/python.mdx';
 import ZillowSearchCurl from '/snippets/examples/zillow.search/curl.mdx';
 import ZillowSearchCli from '/snippets/examples/zillow.search/cli.mdx';
-import RightmoveSearchTs from '/snippets/examples/rightmove.search/ts.mdx';
-import RightmoveSearchPython from '/snippets/examples/rightmove.search/python.mdx';
-import RightmoveSearchCurl from '/snippets/examples/rightmove.search/curl.mdx';
-import RightmoveSearchCli from '/snippets/examples/rightmove.search/cli.mdx';
-import ImmoscoutSearchTs from '/snippets/examples/immoscout.search/ts.mdx';
-import ImmoscoutSearchPython from '/snippets/examples/immoscout.search/python.mdx';
-import ImmoscoutSearchCurl from '/snippets/examples/immoscout.search/curl.mdx';
-import ImmoscoutSearchCli from '/snippets/examples/immoscout.search/cli.mdx';
+import ZillowPropertyTs from '/snippets/examples/zillow.property/ts.mdx';
+import ZillowPropertyPython from '/snippets/examples/zillow.property/python.mdx';
+import ZillowPropertyCurl from '/snippets/examples/zillow.property/curl.mdx';
+import ZillowPropertyCli from '/snippets/examples/zillow.property/cli.mdx';
 
-Search homes for sale and rent on Zillow, Rightmove, and ImmoScout24. Get the price, photos, and details for any listing as JSON. See every field in the [Real estate reference](/api-reference/endpoint/zillow-search), or try it in the [playground](https://stophy.dev/playground).
+Search homes for sale, for rent, and sold on Zillow with more than 20 filters. Get the price, photos, and details for any listing as JSON. See every field in the [Real estate reference](/api-reference/endpoint/zillow-search), or try it in the [playground](https://stophy.dev/playground).
 
 ## Search homes for sale, for rent or sold
 
@@ -77,11 +73,10 @@ The response:
       }
     ],
     "page": 1,
-    "hasMore": false,
     "totalPages": 1234
   },
   "creditsUsed": 2,
-  "requestId": "11236c03-7332-4465-a53d-68a0aefadf61"
+  "requestId": "b0128a30-e624-4c2d-a36d-71cfccc624e3"
 }
 ```
 
@@ -90,30 +85,17 @@ The response:
 | Endpoint | Cost |
 | --- | --- |
 | [Search homes for sale, for rent or sold](/api-reference/endpoint/zillow-search) | 2 credits |
-| [Get a home's details, price and Zestimate](/api-reference/endpoint/zillow-property) | 1 credit |
-| [Search UK homes for sale or rent](/api-reference/endpoint/rightmove-search) | 1 credit |
-| [Get a Rightmove property's details](/api-reference/endpoint/rightmove-property) | 1 credit |
-| [Search German homes for rent or sale](/api-reference/endpoint/immoscout-search) | 1 credit |
-| [Get an ImmoScout listing's details](/api-reference/endpoint/immoscout-listing) | 1 credit |
+| [Get a home's details, price and Zestimate](/api-reference/endpoint/zillow-property) | 2 credits |
 
 ## More ways to call it
 
-### Search UK homes for sale or rent
+### Get a home's details, price and Zestimate
 
 <CodeGroup>
-  <RightmoveSearchTs />
-  <RightmoveSearchPython />
-  <RightmoveSearchCurl />
-  <RightmoveSearchCli />
+  <ZillowPropertyTs />
+  <ZillowPropertyPython />
+  <ZillowPropertyCurl />
+  <ZillowPropertyCli />
 </CodeGroup>
 
-### Search German homes for rent or sale
-
-<CodeGroup>
-  <ImmoscoutSearchTs />
-  <ImmoscoutSearchPython />
-  <ImmoscoutSearchCurl />
-  <ImmoscoutSearchCli />
-</CodeGroup>
-
-<Tip>Pass the listing link from a search result into that site's property endpoint for the full listing.</Tip>
+<Tip>Zillow search and Zillow property cost 2 credits. Pass the property link from a search result into `zillow.property` for the full listing.</Tip>

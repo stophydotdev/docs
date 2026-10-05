@@ -1,0 +1,36 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "aiOverview": {
+      "text": "The best project management software depends on your team's specific workflow, size, and goals, with top platforms…"
+    },
+    "results": [
+      {
+        "type": "web",
+        "url": "https://www.reddit.com/r/projectmanagement/comments/1dogwhv/looking_for_a_project_management_software_with/",
+        "title": "Looking for a project management software with specific ...",
+        "description": "Microsoft Access, Smartsuite, NocoDB, Fibery, Zoho Creator, Baserow), Asana is capable of this. Use Monday.com. Look…",
+        "position": 1
+      },
+      {
+        "type": "post",
+        "url": "https://www.linkedin.com/pulse/12-must-have-tools-project-managers-successful-project-managers-sszdf",
+        "text": "12 Must-Have Tools for Project Managers",
+        "site": "LinkedIn",
+        "authorName": "Successful Project Managers",
+        "publishedAt": "2026-09-17T07:00:00.000Z",
+        "position": 5
+      }
+    ],
+    "peopleAlsoAsk": [
+      {
+        "question": "Which is the most popular project management software?"
+      }
+    ],
+    "relatedSearches": [
+      "Best project management software reddit"
+    ],
+    "page": 1
+  }
+}

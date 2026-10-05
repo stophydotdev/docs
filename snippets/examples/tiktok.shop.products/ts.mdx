@@ -1,0 +1,7 @@
+```typescript TypeScript icon="/images/icons/typescript.svg"
+import { Stophy } from "stophy";
+
+const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
+const result = await stophy.tiktok.shop.products({ shopUrl: "https://shop.tiktok.com/us/store/shop/7495291731420235534" });
+console.log(result.data.results);
+```

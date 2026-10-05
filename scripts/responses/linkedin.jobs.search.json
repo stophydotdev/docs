@@ -1,0 +1,20 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "results": [
+      {
+        "jobId": "4471906326",
+        "jobUrl": "https://www.linkedin.com/jobs/view/4471906326",
+        "title": "Software Engineer III, Foundation Services, Google Cloud",
+        "companyName": "Google",
+        "companyUrl": "https://www.linkedin.com/company/google",
+        "companyAvatarUrl": "https://media.licdn.com/dms/image/v2/D4E0BAQGv3cqOuUMY7g/company-logo_100_100/B4EZmhegXHGcAU-/0/1759350753990/google_lo…",
+        "location": "Kirkland, WA",
+        "publishedAt": "2026-09-29T00:00:00.000Z",
+        "insight": "Actively Hiring"
+      }
+    ],
+    "page": 1
+  }
+}

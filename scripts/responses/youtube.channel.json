@@ -1,0 +1,37 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "channelId": "UCBJycsmduvYEL83R_U4JriQ",
+    "channelUrl": "https://www.youtube.com/channel/UCBJycsmduvYEL83R_U4JriQ",
+    "channelName": "Marques Brownlee",
+    "channelUsername": "mkbhd",
+    "description": "MKBHD: Quality Tech Videos | YouTuber | Geek | Consumer Electronics | Tech Head | Internet Personality!\n…",
+    "subscribers": 21300000,
+    "videos": 1800,
+    "avatarUrl": "https://yt3.googleusercontent.com/qu4TmIaYUlS41-dJ9gZ7DUR3nilvmB5_11i6OKSdvNnBNiyOusZP1bMN6ICnuxtjFBb6ioKgRQ=s900-c-k-c…",
+    "bannerUrl": "https://yt3.googleusercontent.com/zi_48HwHU4s0Hnb6tZuvRzTfCPHrLEnrtIMDLzMauDEyDmURh9JZ4wrNd3lKr7m9uVnT4YjYKw=w2560-fcro…",
+    "country": "United States",
+    "joinedDate": "2008-03-21",
+    "totalViews": 5744272029,
+    "results": [
+      {
+        "type": "video",
+        "videoId": "3iRUwVzRDZQ",
+        "videoUrl": "https://www.youtube.com/watch?v=3iRUwVzRDZQ",
+        "title": "Xiaomi 18 Fold: How Does This Happen?",
+        "channelId": "UCBJycsmduvYEL83R_U4JriQ",
+        "channelName": "Marques Brownlee",
+        "channelUrl": "https://www.youtube.com/channel/UCBJycsmduvYEL83R_U4JriQ",
+        "channelUsername": "mkbhd",
+        "durationSeconds": 647,
+        "views": 8100000,
+        "thumbnailUrl": "https://i.ytimg.com/vi/3iRUwVzRDZQ/hqdefault.jpg",
+        "isShort": false,
+        "isLive": false,
+        "publishedAt": "2026-10-03T20:46:58.000Z"
+      }
+    ],
+    "cursor": "4qmFsgLZCRIYVUNCSnljc21kdXZZRUw4M1JfVTRKcmlRGrwJOGdhRUJ4cUJCM3ItQmpyN0Jnb2tObUl5TjJJeU5UUXRNREF3TUMweVl6UmpMV0pqTUdVdFp…"
+  }
+}

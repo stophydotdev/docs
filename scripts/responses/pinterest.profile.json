@@ -1,0 +1,50 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "userId": "32088353503445352",
+    "username": "marthastewart",
+    "userUrl": "https://www.pinterest.com/marthastewart/",
+    "name": "Martha Stewart",
+    "avatarUrl": "https://i.pinimg.com/280x280_RS/c8/11/4c/c8114c783347e27daef00e5d4a6ac4f3.jpg",
+    "followers": 1868060,
+    "bio": "Daily recipes, crafts, and inspiration from Martha Stewart.",
+    "website": "http://marthastewart.com",
+    "following": 322,
+    "pins": 105458,
+    "boards": 174,
+    "isVerified": true,
+    "isPrivate": false,
+    "createdAt": "2011-09-15T07:56:17.000Z",
+    "results": [
+      {
+        "pinId": "49328558414951308",
+        "pinUrl": "https://www.pinterest.com/pin/49328558414951308/",
+        "title": "Do Mums Come Back Every Year? How to Keep Them Blooming Each Fall",
+        "text": "Yes, perennial mums will come back every year—if you care for them the right way. Here, gardening experts provide some…",
+        "altText": "many pink flowers are growing in the garden",
+        "linkUrl": "https://www.marthastewart.com/do-mums-come-back-every-year-12159330?utm_campaign=marthastewart_6ac401c97b1ba300014d59a4…",
+        "domain": "marthastewart.com",
+        "publishedAt": "2026-10-05T20:00:09.000Z",
+        "imageUrl": "https://i.pinimg.com/originals/4f/fa/68/4ffa68ab16dd1768bcb1879e149da1a9.jpg",
+        "imageWidth": 1000,
+        "imageHeight": 667,
+        "dominantColor": "#552626",
+        "saves": 1,
+        "reposts": 0,
+        "comments": 0,
+        "isPromoted": false,
+        "authorId": "32088353503445352",
+        "authorUsername": "marthastewart",
+        "authorName": "Martha Stewart",
+        "authorUrl": "https://www.pinterest.com/marthastewart/",
+        "authorAvatarUrl": "https://i.pinimg.com/140x140_RS/c8/11/4c/c8114c783347e27daef00e5d4a6ac4f3.jpg",
+        "authorIsVerified": true,
+        "boardId": "49328627107623443",
+        "boardName": "Fresh Fall Ideas",
+        "boardUrl": "https://www.pinterest.com/herbacinusa/fresh-fall-ideas/"
+      }
+    ],
+    "cursor": "Pz8zMjA4ODIxNjA5OTcwODU1NToxNzkwOTc0ODEyfDEwNDU2ODY4NTYyODM4NzEqR1FMKnxmZjliM2VkOGEzYzE4MjQ0NDAxZjA5ODdjMTg3OWIwYTAyYzZ…"
+  }
+}

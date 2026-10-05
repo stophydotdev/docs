@@ -1,0 +1,21 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "results": [
+      {
+        "commentId": "7652752342874718983",
+        "text": "the cameraman",
+        "authorId": "7642245892504519701",
+        "authorUsername": "fatimaart65",
+        "authorName": "FatimaArtist 🎨",
+        "authorUrl": "https://www.tiktok.com/@fatimaart65",
+        "authorAvatarUrl": "https://p16-common-sign.tiktokcdn-us.com/tos-alisg-avt-0068/b3dcfceeddca1dc92f9dfc8ed794539c~tplv-tiktokx-cropcenter:10…",
+        "likes": 4560,
+        "replies": 19,
+        "publishedAt": "2026-06-18T15:07:46.000Z"
+      }
+    ],
+    "cursor": "20"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "results": [
+      {
+        "commentId": "UgxzofZjVZTGbGSqq9N4AaABAg",
+        "commentUrl": "https://www.youtube.com/watch?v=p0fybvFyOlM&lc=UgxzofZjVZTGbGSqq9N4AaABAg",
+        "text": "Sandbox aren't enough. Your agents need a devbox. A full development environment with all your dependencies.…",
+        "authorId": "UCUyeluBRhGPCW4rPe_UvBZQ",
+        "authorName": "ThePrimeTimeagen",
+        "authorUsername": "ThePrimeTimeagen",
+        "authorUrl": "https://www.youtube.com/channel/UCUyeluBRhGPCW4rPe_UvBZQ",
+        "likes": 33,
+        "replies": 8,
+        "publishedAt": "2026-10-03T20:46:53.000Z",
+        "isPinned": true,
+        "isHearted": false,
+        "isChannelOwner": true,
+        "repliesCursor": "Eg0SC3AwZnlidkZ5T2xNGAYygwEaUBIaVWd4em9mWmpWWlRHYkdTcXE5TjRBYUFCQWciAggAKhhVQ1V5ZWx1QlJoR1BDVzRyUGVfVXZCWlEyC3AwZnlidkZ…"
+      }
+    ],
+    "cursor": "Eg0SC3AwZnlidkZ5T2xNGAYygQMK1wJnZXRfcmFua2VkX3N0cmVhbXMtLUNxWUJDSUFFRlJlMzBUZ2Ftd0VLbGdFSTJGOFFnQVFZQnlLTEFkdDllSzZveXJ…"
+  }
+}

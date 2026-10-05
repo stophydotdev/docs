@@ -1,0 +1,38 @@
+{
+  "live": false,
+  "creditsUsed": 1,
+  "data": {
+    "results": [
+      {
+        "jobId": "eyJqb2JfdGl0bGUiOiJTb2Z0d2FyZSBFbmdpbmVlciJ9",
+        "title": "Software Engineer",
+        "companyName": "Example Corp",
+        "location": "Austin, TX",
+        "via": "Example Jobs",
+        "publishedAt": "2026-10-01T00:00:00.000Z",
+        "jobType": "Full-time",
+        "salary": "140K–170K a year",
+        "benefits": [
+          "Health insurance",
+          "Paid time off"
+        ],
+        "apply": [
+          {
+            "site": "Example Jobs",
+            "url": "https://jobs.example.com/software-engineer"
+          }
+        ],
+        "qualifications": [
+          "3 years of experience"
+        ],
+        "responsibilities": [
+          "Build and ship features"
+        ],
+        "description": "Build and run the services behind our product.",
+        "jobUrl": "https://www.google.com/search?q=software+engineer&ibp=htl;jobs",
+        "position": 1
+      }
+    ],
+    "cursor": "CgJUWBIFSm9icxo"
+  }
+}

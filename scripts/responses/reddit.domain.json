@@ -1,0 +1,30 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "results": [
+      {
+        "type": "post",
+        "postId": "1wyjhhf",
+        "postUrl": "https://www.reddit.com/r/iCanHazApps/comments/1wyjhhf/icanhazmusic_100/",
+        "title": "iCanHazMusic 1.0.0",
+        "text": "Swift rewrite with tons of new features and improvements. Most notable stuff:\n\n* new playback engine with gapless…",
+        "authorId": "t55c1",
+        "authorUsername": "deseven",
+        "authorUrl": "https://www.reddit.com/user/deseven/",
+        "subreddit": "iCanHazApps",
+        "score": 1,
+        "upvotePercent": 100,
+        "comments": 0,
+        "publishedAt": "2026-10-05T20:33:36.000Z",
+        "flair": "iCHM",
+        "linkUrl": "https://github.com/deseven/iCanHazMusic/releases/tag/1.0.0",
+        "thumbnailUrl": "https://external-preview.redd.it/dlNI3NnIo3ucVqxGH7qdi1tbGEEuEFeM4LrwnBLBBe8.png?auto=webp&s=679e2601c17e26cb46b127d102…",
+        "isNsfw": false,
+        "isVideo": false,
+        "isPinned": false
+      }
+    ],
+    "cursor": "t3_1wyg1aq"
+  }
+}

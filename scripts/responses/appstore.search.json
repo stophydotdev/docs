@@ -1,0 +1,49 @@
+{
+  "live": true,
+  "creditsUsed": 5,
+  "data": {
+    "results": [
+      {
+        "appId": "1110145109",
+        "appUrl": "https://apps.apple.com/gb/app/notes/id1110145109",
+        "bundleId": "com.apple.mobilenotes",
+        "name": "Notes",
+        "developerId": "284417353",
+        "developerName": "Apple",
+        "developerUrl": "https://apps.apple.com/gb/developer/apple/id284417353",
+        "seller": "Apple Distribution International",
+        "price": 0,
+        "priceCurrency": "GBP",
+        "priceText": "Free",
+        "genres": [
+          "Productivity"
+        ],
+        "primaryGenreId": "6007",
+        "primaryGenre": "Productivity",
+        "contentRating": "4+",
+        "description": "Notes is the best place to jot down quick thoughts or to save longer notes filled with checklists, images, web links,…",
+        "releaseNotes": "Bug Fixes and Feature Enhancements",
+        "version": "2.6",
+        "releasedAt": "2016-05-23T21:11:44.000Z",
+        "updatedAt": "2026-09-14T20:09:43.000Z",
+        "minimumOsVersion": "15.0",
+        "sizeBytes": 6054912,
+        "languages": [
+          "AR",
+          "CA"
+        ],
+        "rating": 4.78604,
+        "ratings": 68400,
+        "iconUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/bc/b1/1c/bcb11c9d-ea61-089f-3b84-0f8911dd175d/notesCalistoga-0-0-…",
+        "screenshotUrls": [
+          "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/04/16/68/041668d9-0672-cb3c-2e98-a9bf013e5594/1_Notes_scree…",
+          "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/6e/6f/21/6e6f2140-71b0-4545-6ad6-0e87b1401418/2_Notes_PDF_S…"
+        ],
+        "ipadScreenshotUrls": [
+          "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/02/f6/94/02f69477-9ea2-56ee-4fb5-53aea34b17f5/1_Notes_iPad_…",
+          "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/1f/ba/f4/1fbaf44d-ab61-8bdf-647e-999381c5bf74/2_Notes_iPad_…"
+        ]
+      }
+    ]
+  }
+}

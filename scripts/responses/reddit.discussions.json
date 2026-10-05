@@ -1,0 +1,24 @@
+{
+  "live": false,
+  "creditsUsed": 1,
+  "data": {
+    "results": [
+      {
+        "type": "post",
+        "postId": "1abc2de",
+        "postUrl": "https://www.reddit.com/r/programming/comments/1abc2de/example_post/",
+        "title": "Example article worth reading",
+        "authorUsername": "example_user",
+        "subreddit": "programming",
+        "score": 412,
+        "upvotePercent": 96,
+        "comments": 58,
+        "publishedAt": "2026-10-02T14:20:00.000Z",
+        "isNsfw": false,
+        "isVideo": false,
+        "isPinned": false
+      }
+    ],
+    "cursor": "t3_1abc2de"
+  }
+}

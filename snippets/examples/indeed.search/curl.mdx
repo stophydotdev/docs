@@ -2,5 +2,5 @@
 curl -X POST https://api.stophy.dev/v1/indeed/search \
   -H "Authorization: Bearer $STOPHY_API_KEY" \
   -H "content-type: application/json" \
-  -d '{"query":"data analyst","location":"Chicago, IL"}'
+  -d '{"query":"data analyst","location":"Chicago, IL","datePosted":"last7Days"}'
 ```

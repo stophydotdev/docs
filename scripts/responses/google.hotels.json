@@ -1,0 +1,26 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "checkIn": "2026-11-19",
+    "checkOut": "2026-11-20",
+    "results": [
+      {
+        "name": "Santa Luzia BB - HOrigem - Double Room, River View",
+        "hotelId": "ChkQicjQ0reM7_U9Gg0vZy8xMXo0Y25fNDlzEAI",
+        "hotelUrl": "https://www.google.com/travel/hotels/entity/ChkQicjQ0reM7_U9Gg0vZy8xMXo0Y25fNDlzEAI?hl=en&gl=us&curr=USD&ts=CAESCgoCCAM…",
+        "price": 76,
+        "totalPrice": 80,
+        "priceCurrency": "USD",
+        "rating": 5,
+        "reviews": 8,
+        "amenities": [
+          "Sleeps 2",
+          "7 bedrooms"
+        ],
+        "position": 1
+      }
+    ],
+    "page": 1
+  }
+}

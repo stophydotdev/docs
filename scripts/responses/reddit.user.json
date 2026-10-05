@@ -1,0 +1,47 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "userId": "1w72",
+    "username": "spez",
+    "userUrl": "https://www.reddit.com/user/spez/",
+    "postKarma": 184509,
+    "commentKarma": 756493,
+    "createdAt": "2005-06-06T04:00:00.000Z",
+    "avatarUrl": "https://styles.redditmedia.com/t5_3k30p/styles/profileIcon_uj015iwx9s7g1.png?width=256&height=256&crop=256:256,smart&s=…",
+    "isVerified": true,
+    "results": [
+      {
+        "type": "comment",
+        "commentId": "p1wosm9",
+        "commentUrl": "https://www.reddit.com/r/u_spez/comments/1vgbkge/modernizing_reddits_infrastructure_with_you/p1wosm9/",
+        "text": "That was the thinking. Otherwise it would be easier to just replicate the UI. ",
+        "score": 13,
+        "publishedAt": "2026-08-05T18:31:50.000Z",
+        "subreddit": "u_spez",
+        "postId": "1vgbkge",
+        "postTitle": "Modernizing Reddit’s infrastructure with you"
+      },
+      {
+        "type": "post",
+        "postId": "1vgbkge",
+        "postUrl": "https://www.reddit.com/r/u_spez/comments/1vgbkge/modernizing_reddits_infrastructure_with_you/",
+        "title": "Modernizing Reddit’s infrastructure with you",
+        "text": "Hi everyone,\n\nLast May, I shared how we were building Reddit for its [next…",
+        "authorId": "1w72",
+        "authorUsername": "spez",
+        "authorUrl": "https://www.reddit.com/user/spez/",
+        "subreddit": "u_spez",
+        "score": 350,
+        "upvotePercent": 84,
+        "comments": 472,
+        "publishedAt": "2026-08-05T16:03:56.000Z",
+        "thumbnailUrl": "https://external-preview.redd.it/-_NM9QKmwnaF7Ti3sXwY6oJD9PVQrQGXBx1288oLFXw.png?auto=webp&s=58d39b335111d200e60a1e6fa3…",
+        "isNsfw": false,
+        "isVideo": false,
+        "isPinned": false
+      }
+    ],
+    "cursor": "t1_opmb76u"
+  }
+}

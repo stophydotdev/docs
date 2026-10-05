@@ -1,100 +1,122 @@
 {
   "sources": {
     "google": "Google",
-    "ai": "AI",
     "youtube": "YouTube",
-    "transcript": "Transcript",
     "reddit": "Reddit",
-    "maps": "Google Maps",
     "instagram": "Instagram",
     "tiktok": "TikTok",
+    "tiktok.shop": "TikTok Shop",
     "meta": "Meta Ads",
     "linkedin": "LinkedIn",
     "zillow": "Zillow",
     "upwork": "Upwork",
-    "googletravel": "Google Travel",
-    "airbnb": "Airbnb",
-    "rightmove": "Rightmove",
-    "immoscout": "ImmoScout24",
     "pinterest": "Pinterest",
-    "ads": "Ads",
     "indeed": "Indeed",
     "tripadvisor": "Tripadvisor",
-    "walmart": "Walmart",
+    "amazon": "Amazon",
     "appstore": "App Store",
-    "googleplay": "Google Play"
+    "microsoft": "Microsoft"
   },
   "titles": {
     "google.search": "Search",
     "google.news": "News",
     "google.images": "Images",
+    "google.videos": "Videos",
+    "google.scholar": "Scholar",
+    "google.patents": "Patents",
     "google.aiMode": "AI Mode",
-    "google.shopping": "Shopping",
-    "ai.answer": "Answer",
+    "google.suggest": "Suggestions",
+    "google.trends.related": "Related searches",
+    "google.trends.trending": "Trending now",
+    "google.trends.interest": "Trends interest over time",
+    "google.trends.regions": "Trends by region",
     "youtube.search": "Search",
+    "youtube.suggest": "Suggestions",
     "youtube.video": "Video",
-    "transcript": "Transcript",
+    "youtube.transcript": "Transcript",
     "youtube.comments": "Comments",
+    "youtube.related": "Related videos",
     "youtube.channel": "Channel",
+    "youtube.channel.search": "Channel search",
     "youtube.playlist": "Playlist",
+    "youtube.hashtag": "Hashtag",
+    "youtube.post": "Post",
+    "youtube.charts": "Charts",
+    "tiktok.profile": "Profile",
+    "tiktok.video": "Video",
+    "tiktok.transcript": "Transcript",
+    "tiktok.hashtag": "Hashtag",
+    "tiktok.sound": "Sound",
+    "tiktok.comments": "Comments",
+    "tiktok.search": "Search",
+    "instagram.transcript": "Transcript",
     "reddit.search": "Search",
     "reddit.post": "Post",
     "reddit.subreddit": "Subreddit",
     "reddit.user": "User",
     "reddit.domain": "Posts by domain",
-    "maps.search": "Search",
-    "maps.place": "Place",
-    "maps.reviews": "Reviews",
+    "reddit.discussions": "Other discussions",
+    "reddit.subreddits": "Communities",
     "instagram.profile": "Profile",
+    "instagram.profile.reels": "Reels",
     "instagram.post": "Post",
     "instagram.comments": "Comments",
-    "tiktok.profile": "Profile",
-    "tiktok.video": "Video",
-    "tiktok.hashtag": "Hashtag",
-    "tiktok.comments": "Comments",
-    "tiktok.search": "Search",
-    "meta.ads.page": "Page",
-    "linkedin.jobs.search": "Search jobs",
-    "linkedin.jobs.job": "Job",
+    "instagram.search": "Search",
     "linkedin.company": "Company",
     "linkedin.profile": "Profile",
     "linkedin.posts": "Posts",
-    "zillow.search": "Search",
-    "zillow.property": "Property",
-    "upwork.search": "Search",
-    "upwork.job": "Job",
-    "googletravel.flights": "Flights",
-    "airbnb.search": "Search",
-    "airbnb.listing": "Listing",
-    "airbnb.calendar": "Calendar",
-    "airbnb.reviews": "Reviews",
-    "rightmove.search": "Search",
-    "rightmove.property": "Property",
-    "immoscout.search": "Search",
-    "immoscout.listing": "Listing",
     "pinterest.search": "Search",
     "pinterest.pin": "Pin",
     "pinterest.board": "Board",
-    "pinterest.user": "Profile",
-    "ads.search": "Search",
-    "ads.ad": "Ad",
-    "ads.advertisers": "Advertisers",
-    "indeed.search": "Search",
-    "indeed.job": "Job",
+    "pinterest.profile": "Profile",
+    "google.maps.search": "Maps search",
+    "google.maps.place": "Maps place",
+    "google.maps.reviews": "Maps reviews",
     "tripadvisor.search": "Search",
     "tripadvisor.place": "Place",
     "tripadvisor.reviews": "Reviews",
-    "walmart.search": "Search",
-    "walmart.product": "Product",
+    "google.hotels": "Hotels",
+    "google.flights": "Flights",
+    "google.jobs": "Jobs",
+    "linkedin.jobs.search": "Search jobs",
+    "linkedin.jobs.job": "Job",
+    "upwork.search": "Search",
+    "upwork.job": "Job",
+    "indeed.search": "Search",
+    "indeed.job": "Job",
+    "google.shopping": "Shopping",
+    "amazon.search": "Search",
+    "amazon.product": "Product",
+    "amazon.bestsellers": "Best sellers",
+    "amazon.suggest": "Suggestions",
+    "tiktok.shop.search": "Product search",
+    "tiktok.shop.products": "Products",
+    "tiktok.shop.product": "Product",
+    "tiktok.shop.reviews": "Reviews",
     "appstore.app": "App",
     "appstore.search": "Search",
     "appstore.reviews": "Reviews",
     "appstore.top": "Top charts",
-    "googleplay.app": "App",
-    "googleplay.search": "Search",
-    "googleplay.reviews": "Reviews",
-    "linkedin.people.search": "Search people",
-    "linkedin.companies.search": "Search companies"
+    "google.play.app": "Play app",
+    "google.play.search": "Play search",
+    "google.play.reviews": "Play reviews",
+    "zillow.search": "Search",
+    "zillow.property": "Property",
+    "meta.ads.search": "Search",
+    "meta.ads.ad": "Ad details",
+    "meta.ads.page": "Page",
+    "google.ads.search": "Search ads",
+    "google.ads.ad": "Ad",
+    "google.ads.advertisers": "Advertisers",
+    "tiktok.ads.search": "Search ads",
+    "tiktok.ads.ad": "Ad",
+    "linkedin.ads.search": "Search ads",
+    "linkedin.ads.ad": "Ad",
+    "microsoft.ads.search": "Search ads",
+    "microsoft.ads.ad": "Ad",
+    "microsoft.ads.advertisers": "Advertisers",
+    "pinterest.ads.search": "Search ads",
+    "pinterest.ads.ad": "Ad"
   },
   "areas": [
     {
@@ -105,8 +127,15 @@
         "google.search",
         "google.news",
         "google.images",
+        "google.videos",
+        "google.scholar",
+        "google.patents",
         "google.aiMode",
-        "ai.answer"
+        "google.suggest",
+        "google.trends.related",
+        "google.trends.trending",
+        "google.trends.interest",
+        "google.trends.regions"
       ]
     },
     {
@@ -115,16 +144,25 @@
       "icon": "video",
       "endpoints": [
         "youtube.search",
+        "youtube.suggest",
         "youtube.video",
-        "transcript",
+        "youtube.transcript",
         "youtube.comments",
+        "youtube.related",
         "youtube.channel",
+        "youtube.channel.search",
         "youtube.playlist",
+        "youtube.hashtag",
+        "youtube.post",
+        "youtube.charts",
         "tiktok.profile",
         "tiktok.video",
+        "tiktok.transcript",
         "tiktok.hashtag",
+        "tiktok.sound",
         "tiktok.comments",
-        "tiktok.search"
+        "tiktok.search",
+        "instagram.transcript"
       ]
     },
     {
@@ -137,18 +175,20 @@
         "reddit.subreddit",
         "reddit.user",
         "reddit.domain",
+        "reddit.discussions",
+        "reddit.subreddits",
         "instagram.profile",
+        "instagram.profile.reels",
         "instagram.post",
         "instagram.comments",
+        "instagram.search",
         "linkedin.company",
         "linkedin.profile",
         "linkedin.posts",
         "pinterest.search",
         "pinterest.pin",
         "pinterest.board",
-        "pinterest.user",
-        "linkedin.people.search",
-        "linkedin.companies.search"
+        "pinterest.profile"
       ]
     },
     {
@@ -156,17 +196,14 @@
       "slug": "places-and-travel",
       "icon": "map-location-dot",
       "endpoints": [
-        "maps.search",
-        "maps.place",
-        "maps.reviews",
+        "google.maps.search",
+        "google.maps.place",
+        "google.maps.reviews",
         "tripadvisor.search",
         "tripadvisor.place",
         "tripadvisor.reviews",
-        "googletravel.flights",
-        "airbnb.search",
-        "airbnb.listing",
-        "airbnb.calendar",
-        "airbnb.reviews"
+        "google.hotels",
+        "google.flights"
       ]
     },
     {
@@ -174,6 +211,7 @@
       "slug": "jobs",
       "icon": "briefcase",
       "endpoints": [
+        "google.jobs",
         "linkedin.jobs.search",
         "linkedin.jobs.job",
         "upwork.search",
@@ -187,9 +225,15 @@
       "slug": "shopping",
       "icon": "cart-shopping",
       "endpoints": [
-        "walmart.search",
-        "walmart.product",
-        "google.shopping"
+        "google.shopping",
+        "amazon.search",
+        "amazon.product",
+        "amazon.bestsellers",
+        "amazon.suggest",
+        "tiktok.shop.search",
+        "tiktok.shop.products",
+        "tiktok.shop.product",
+        "tiktok.shop.reviews"
       ]
     },
     {
@@ -201,9 +245,9 @@
         "appstore.search",
         "appstore.reviews",
         "appstore.top",
-        "googleplay.app",
-        "googleplay.search",
-        "googleplay.reviews"
+        "google.play.app",
+        "google.play.search",
+        "google.play.reviews"
       ]
     },
     {
@@ -212,11 +256,7 @@
       "icon": "house",
       "endpoints": [
         "zillow.search",
-        "zillow.property",
-        "rightmove.search",
-        "rightmove.property",
-        "immoscout.search",
-        "immoscout.listing"
+        "zillow.property"
       ]
     },
     {
@@ -224,28 +264,858 @@
       "slug": "ads",
       "icon": "bullhorn",
       "endpoints": [
+        "meta.ads.search",
+        "meta.ads.ad",
         "meta.ads.page",
-        "ads.search",
-        "ads.ad",
-        "ads.advertisers"
+        "google.ads.search",
+        "google.ads.ad",
+        "google.ads.advertisers",
+        "tiktok.ads.search",
+        "tiktok.ads.ad",
+        "linkedin.ads.search",
+        "linkedin.ads.ad",
+        "microsoft.ads.search",
+        "microsoft.ads.ad",
+        "microsoft.ads.advertisers",
+        "pinterest.ads.search",
+        "pinterest.ads.ad"
       ]
     }
   ],
   "notes": {
-    "google.search": "Filter with `within`, `country`, `language`, and domains to include or exclude. Keys a result does not have are left out. Without a key you get up to 10 results.",
-    "google.news": "Search by `query`, or leave it out and pick a `topic` for the top headlines.",
-    "google.aiMode": "Returns Google's AI Mode answer as text, with the pages it cites in `sources`.",
-    "ai.answer": "Pick the assistant with `engine`: `gemini` or `chatgpt`. Returns its answer and the pages it cites.",
-    "linkedin.people.search": "Results come with profile details when LinkedIn shows them publicly. A result without details costs no extra credit.",
-    "linkedin.companies.search": "Results come with company page details. A result without details costs no extra credit.",
-    "transcript": "Pass a YouTube, TikTok or Instagram link in `video`. Set `includeTimestamps` to get each line with its time. When there are no captions, the audio is transcribed and `transcribedSeconds` says how much. TikTok videos over 3 minutes are refused, and refused calls cost nothing.",
-    "youtube.channel": "A cursor expires after 6 hours. Start again from the first page when it does.",
-    "reddit.search": "With `type` set to `users` there is one page and no cursor.",
-    "tiktok.profile": "The profile's videos come back in `results`. Page with `cursor`.",
-    "instagram.profile": "`posts` is the profile's post count. Its latest posts come back in `results`. Page with `cursor`.",
-    "airbnb.search": "Returns up to about 110 listings, 18 to a page. Page with `cursor`.",
-    "linkedin.posts": "Returns only the few posts LinkedIn shows publicly.",
-    "ads.search": "On Meta, `mediaType` keeps image, video or text ads. Pinterest takes `advertiser` and rejects `query`. Google takes `query` only when it is a domain. To search Google by name, find the advertiser id with Ads advertisers first. On LinkedIn, `within` limits how recent the ads are.",
-    "appstore.top": "Pick a `chart` (free, paid or grossing), a `device`, a `genre` and a `country`."
+    "tiktok.transcript": "Videos over 3 minutes are refused, and refused calls cost nothing.",
+    "google.ads.search": "Google's ad library does not search by keyword. To search by name, find the advertiser id with google.ads.advertisers first.",
+    "pinterest.ads.search": "It takes `country` and `advertiser`, not a keyword."
+  },
+  "holds": {
+    "google.search": "`data` has the web results in `results`, Google's AI Overview when it shows one, related questions and related searches.",
+    "google.news": "`data.results` lists the articles, each with its publisher and time.",
+    "google.images": "`data.results` lists the images, each with its full-size link and the page it comes from.",
+    "google.aiMode": "`data` has Google's answer in `answer` and the pages it cites in `sources`.",
+    "google.shopping": "`data.results` lists the products with price and seller, and `filters` lists the choices Google offers to narrow them.",
+    "google.suggest": "`data.results` lists the suggestions, best first.",
+    "google.ads.search": "`data.results` lists the ads, each with its advertiser and the days it ran.",
+    "google.ads.ad": "`data` has the ad's advertiser, format and creative, and the countries it ran in.",
+    "google.ads.advertisers": "`data.results` lists the advertisers that match, each with a range for how many ads it runs.",
+    "google.scholar": "`data.results` lists the papers, books and cases, each with its authors, year and the number of works that cite it.",
+    "google.videos": "`data.results` lists the videos, each with its site, channel and length.",
+    "google.jobs": "`data.results` lists the openings, each with its company, location and links to apply.",
+    "google.patents": "`data.results` lists the patents, each with its owner, inventor, dates and link.",
+    "youtube.suggest": "`data.results` lists the suggestions, best first.",
+    "youtube.search": "`data.results` lists videos, channels and playlists, and each row has a `type`.",
+    "youtube.transcript": "`data` has what the video says as one block of `text`.",
+    "youtube.video": "`data` has the video's title, channel, stats, description and tags, plus chapters and most replayed moments when it has them.",
+    "youtube.comments": "`data.results` lists the comments, or the replies when you send `comment`.",
+    "youtube.channel": "`data` has the channel's profile, and `results` lists the items on the tab you picked.",
+    "youtube.channel.search": "`data.results` lists the channel's videos that match your query.",
+    "youtube.related": "`data.results` lists the videos YouTube suggests next.",
+    "youtube.hashtag": "`data.results` lists the videos on the hashtag page.",
+    "youtube.post": "`data` has the post's text, images and likes, and `results` lists its comments.",
+    "youtube.charts": "`data.results` lists the chart entries in order, each with its position.",
+    "youtube.playlist": "`data` has the playlist's details, and `results` lists a page of its videos.",
+    "reddit.search": "`data.results` lists posts, subreddits or users, depending on `type`.",
+    "reddit.post": "`data` has the post, and `results` lists its comments.",
+    "reddit.subreddit": "`data` has the subreddit's details and rules, and `results` lists a page of its posts.",
+    "reddit.user": "`data` has the user's profile and karma, and `results` lists a page of their posts and comments.",
+    "reddit.domain": "`data.results` lists the posts that link to the website.",
+    "reddit.discussions": "`data.results` lists the posts that shared the same link.",
+    "reddit.subreddits": "`data.results` lists the communities.",
+    "google.maps.search": "`data.results` lists the places, each with its rating, address, contact details and opening hours.",
+    "google.maps.place": "`data` has the place's address, rating, hours and contact details.",
+    "google.maps.reviews": "`data.results` lists the reviews, each with its rating, date and author.",
+    "instagram.comments": "`data.results` lists the comments, or the replies when you send `comment`.",
+    "instagram.post": "`data` has the post or reel, and `results` lists its top comments.",
+    "instagram.profile": "`data` has the profile's bio and stats, and `results` lists a page of its posts and reels.",
+    "instagram.profile.reels": "`data.results` lists the profile's reels with their views.",
+    "instagram.search": "`data.results` lists the matching posts and reels, each with its caption, author and views.",
+    "instagram.transcript": "`data` has what the video says as one block of `text`.",
+    "tiktok.profile": "`data` has the profile's bio and stats, and `results` lists a page of its videos.",
+    "tiktok.video": "`data` has the video's caption, stats, author and music.",
+    "tiktok.hashtag": "`data.results` lists a page of videos for the hashtag.",
+    "tiktok.sound": "`data` has the sound's details, and `results` lists a page of videos that use it.",
+    "tiktok.comments": "`data.results` lists the comments, or the replies when you send `comment`.",
+    "tiktok.search": "`data.results` lists videos or users, depending on `type`.",
+    "tiktok.transcript": "`data` has what the video says as one block of `text`.",
+    "tiktok.ads.search": "`data.results` lists the ads, each with its advertiser and how many people it reached.",
+    "tiktok.ads.ad": "`data` has the ad's advertiser, dates, reach and the countries it ran in.",
+    "tiktok.shop.search": "`data.results` lists the products, each with its price, units sold and shop.",
+    "tiktok.shop.products": "`data` has the shop's name, rating and sales, and `results` lists its products.",
+    "tiktok.shop.product": "`data` has the product's price, stock, seller and images.",
+    "tiktok.shop.reviews": "`data` has the product's rating, and `results` lists the first page of its reviews.",
+    "meta.ads.page": "`data.results` lists the ads the page runs, each with its text, format and platforms.",
+    "linkedin.jobs.search": "`data.results` lists the jobs, each with its company, location and posting date.",
+    "linkedin.jobs.job": "`data` has the job's company, location, pay, seniority and description.",
+    "linkedin.company": "`data` has the company's industry, size, headquarters, website and description.",
+    "linkedin.profile": "`data` has the person's headline, location, about text, roles and education.",
+    "linkedin.posts": "`data.results` lists the latest public posts, each with its text, likes and date.",
+    "zillow.search": "`data.results` lists the homes, each with its price, address, size and status.",
+    "zillow.property": "`data` has the home's price, address, size, description, photos and facts.",
+    "upwork.search": "`data.results` lists the jobs, each with its budget or hourly rate, skills and posting date.",
+    "upwork.job": "`data` has the job's description, budget and skills, and what the job page shows about the client.",
+    "google.trends.related": "`data.results` lists the related searches, each with a score.",
+    "google.trends.trending": "`data.results` lists what is trending, each with its search volume and start time.",
+    "indeed.search": "`data.results` lists the jobs, each with its company, pay, location and posting date.",
+    "indeed.job": "`data` has the job's company, pay, location and full description.",
+    "tripadvisor.search": "`data.results` lists the places, each with its type, address and link.",
+    "tripadvisor.place": "`data` has the place's rating, ranking, price range, address and contact details.",
+    "tripadvisor.reviews": "`data` names the place, and `results` lists a page of its reviews.",
+    "google.flights": "`data.results` lists the flight options, each with its price, airlines, stops, times and legs.",
+    "google.hotels": "`data.results` lists the hotels, each with its price per night, total price, rating and amenities.",
+    "amazon.search": "`data.results` lists the products, each with its price, rating and review count.",
+    "amazon.product": "`data` has the product's price, rating, description points, images, variants and seller.",
+    "amazon.bestsellers": "`data.results` lists the best sellers in the category, in rank order.",
+    "appstore.app": "`data` has the app's description, developer, price, ratings, version and screenshots.",
+    "appstore.search": "`data.results` lists the matching apps, each with its developer, price and rating.",
+    "appstore.reviews": "`data.results` lists a page of the app's reviews.",
+    "appstore.top": "`data.results` lists the apps on the chart, in rank order.",
+    "google.play.app": "`data` has the app's description, developer, installs, ratings, price and version.",
+    "google.play.search": "`data.results` lists the matching apps, each with its developer, installs and rating.",
+    "google.play.reviews": "`data.results` lists the app's reviews, each with its rating, text and app version.",
+    "pinterest.search": "`data.results` lists the pins or videos, each with its image, link and author.",
+    "pinterest.pin": "`data` has the pin's image, link, saves and author.",
+    "pinterest.board": "`data` has the board's details, and `results` lists a page of its pins.",
+    "pinterest.profile": "`data` has the profile's bio and counts, and `results` lists a page of its pins.",
+    "meta.ads.search": "`data.results` lists the ads that match, each with its page, text, format and platforms.",
+    "meta.ads.ad": "`data` has the ad's page, text, format, platforms and the advertiser's details.",
+    "linkedin.ads.search": "`data.results` lists the ads, each with its advertiser, text and images.",
+    "linkedin.ads.ad": "`data` has the ad's advertiser, text and images, and who paid for it.",
+    "microsoft.ads.search": "`data.results` lists the ads, each with its advertiser, headline and text.",
+    "microsoft.ads.ad": "`data` has the ad's text, dates, impressions, countries and targeting.",
+    "microsoft.ads.advertisers": "`data.results` lists the advertisers that match.",
+    "pinterest.ads.search": "`data.results` lists the ads, each with its dates, reach and audience.",
+    "pinterest.ads.ad": "`data` has the ad's text, dates, reach and audience.",
+    "amazon.suggest": "`data.results` lists the suggestions, best first.",
+    "google.trends.interest": "`data.results` lists search interest over time, newest first, with one value for each query.",
+    "google.trends.regions": "`data.results` lists the regions, each with one value for each query."
+  },
+  "requests": {
+    "google.news": "Send `query` or `topic`, not both.",
+    "google.scholar": "Send `query`, or `citesId` to list the works that cite a result.",
+    "google.ads.search": "Send `query`, `advertiser` or `domain`."
+  },
+  "cursorHours": {
+    "youtube.channel": 6
+  },
+  "fields": {
+    "cursor": "Send it back as `cursor` to get the next page. The last page has none.",
+    "repliesCursor": "Send it as `comment` to get this comment's replies.",
+    "page": "The page number this response holds.",
+    "totalPages": "How many pages match.",
+    "total": "How many results match in all, not only on this page.",
+    "totalMin": "With `totalMax`, the range for how many ads match.",
+    "position": "Where the result sits in the list, starting at 1.",
+    "publishedAt": "When it was published, as a UTC time.",
+    "durationSeconds": "Length in seconds.",
+    "firstShownAt": "The first day the ad was shown.",
+    "lastShownAt": "The last day the ad was shown.",
+    "reachMin": "With `reachMax`, the range for how many people the ad reached.",
+    "impressionsMin": "With `impressionsMax`, the range for how many times the ad was shown.",
+    "adsMin": "With `adsMax`, the range for how many ads the advertiser runs.",
+    "paidBy": "Who paid for the ad.",
+    "score": "Upvotes minus downvotes.",
+    "upvotePercent": "The share of votes that are upvotes, as a percent.",
+    "depth": "How far down the thread the comment sits.",
+    "isSubmitter": "True when the commenter wrote the post.",
+    "createdAt": "When it was created, as a UTC time.",
+    "rating": "Star rating, out of 5.",
+    "reviews": "How many reviews the rating is based on.",
+    "ratings": "How many ratings the app has.",
+    "sold": "How many units were sold.",
+    "zestimate": "Zillow's estimate of what the home is worth.",
+    "values": "Search interest for each query. 100 is the peak.",
+    "isPartial": "True when the period has not ended yet.",
+    "averages": "The average interest for each query over the whole range.",
+    "volume": "How many searches the trend has.",
+    "increasePercent": "How much searches grew, as a percent.",
+    "isBest": "True for the options Google marks as best.",
+    "openStatus": "Whether the place is open now, as Google words it.",
+    "aiOverview": "Google's AI Overview. Left out when Google shows none.",
+    "peopleAlsoAsk": "Questions Google shows under the results.",
+    "relatedSearches": "Searches Google suggests.",
+    "answer": "Google's answer, as text.",
+    "countries": "The countries where the ad was shown.",
+    "videos": "How many videos there are.",
+    "clientTotalSpent": "How much the client has spent in all.",
+    "posts": "How many posts there are.",
+    "statusText": "Zillow's own label for the listing, like Active.",
+    "daysOnZillow": "Days since the home was listed.",
+    "rank": "Where the entry sits in the list, starting at 1.",
+    "likes": "How many likes."
+  },
+  "fieldsFor": {
+    "youtube.transcript": {
+      "text": "The whole transcript as one block.",
+      "isAutoGenerated": "True when YouTube wrote the captions, not a person.",
+      "language": "The language of the transcript."
+    },
+    "instagram.transcript": {
+      "text": "The whole transcript as one block.",
+      "transcribedSeconds": "Seconds of audio that were transcribed when the video had no captions. The price depends on it.",
+      "isAutoGenerated": "True when the captions were generated, not written by a person."
+    },
+    "tiktok.transcript": {
+      "text": "The whole transcript as one block.",
+      "transcribedSeconds": "Seconds of audio that were transcribed when the video had no captions. The price depends on it.",
+      "isAutoGenerated": "True when the captions were generated, not written by a person."
+    },
+    "instagram.profile": {
+      "posts": "How many posts the profile has. Its latest posts are in `results`."
+    },
+    "google.ads.advertisers": {
+      "adsMin": "With `adsMax`, the range for how many ads the advertiser runs.",
+      "domains": "Domains that match your query."
+    },
+    "youtube.comments": {
+      "repliesCursor": "Send it as `comment` to get this comment's replies."
+    },
+    "youtube.channel": {
+      "videos": "How many videos the channel has."
+    },
+    "tiktok.sound": {
+      "videos": "How many videos use the sound."
+    },
+    "reddit.post": {
+      "cursor": "Send it back as `cursor` to get the rest of the comments."
+    },
+    "google.search": {
+      "likes": "At least this many likes.",
+      "comments": "At least this many comments.",
+      "site": "Where the result was found, like YouTube or Reddit.",
+      "publishedAt": "When it was published. For videos it is approximate, because Google shows only how long ago."
+    },
+    "google.news": {
+      "source": ""
+    },
+    "google.shopping": {
+      "filters": "Google's choices for narrowing the search. Send one back as `filter`.",
+      "price": "",
+      "seller": "",
+      "originalPrice": ""
+    },
+    "google.scholar": {
+      "citesId": "",
+      "citations": "How many works cite this one.",
+      "format": "",
+      "publication": ""
+    },
+    "google.jobs": {
+      "via": "",
+      "salary": "",
+      "publishedAt": ""
+    },
+    "google.videos": {
+      "site": "",
+      "publishedAt": ""
+    },
+    "google.patents": {
+      "patentId": ""
+    },
+    "google.trends.related": {
+      "value": "How popular the related search is. 100 is the most popular."
+    },
+    "google.flights": {
+      "price": "",
+      "legs": "",
+      "departureLocalTime": "",
+      "isBest": "True for the options Google marks as best."
+    },
+    "google.hotels": {
+      "price": "",
+      "totalPrice": "",
+      "deal": ""
+    },
+    "youtube.charts": {
+      "throughDate": "",
+      "periodsOnChart": ""
+    },
+    "youtube.video": {
+      "mostReplayedAtSeconds": "",
+      "publishedAt": ""
+    },
+    "upwork.search": {
+      "type": "Whether the job pays by the hour (`hourly`) or a fixed price (`fixed`).",
+      "workload": "",
+      "duration": ""
+    },
+    "upwork.job": {
+      "type": "Whether the job pays by the hour (`hourly`) or a fixed price (`fixed`).",
+      "workload": "",
+      "duration": "",
+      "clientTotalSpent": "How much the client has spent in all."
+    },
+    "zillow.search": {
+      "price": "Asking price, monthly rent, or the sale price of a sold home. Left out when Zillow shows none, such as for sold homes in states that keep sale prices private."
+    },
+    "zillow.property": {
+      "price": "Asking price, monthly rent, or the sale price of a sold home. Left out when Zillow shows none, such as for sold homes in states that keep sale prices private."
+    },
+    "linkedin.company": {
+      "size": "The size band LinkedIn shows for the company.",
+      "employees": "The employee count LinkedIn shows."
+    },
+    "linkedin.profile": {
+      "roles": "The person's jobs. `isCurrent` marks the current one."
+    },
+    "tripadvisor.search": {
+      "placeUrl": "Send it as `placeUrl` to get the place's details or reviews.",
+      "type": "The kind of place."
+    },
+    "amazon.product": {
+      "rank": "The product's rank among the best sellers in that category."
+    }
+  },
+  "optionText": {
+    "adults": "How many adults.",
+    "advertiser": "Only ads from this advertiser.",
+    "google.ads.search.advertiser": "An advertiser id from Google ads advertisers.",
+    "microsoft.ads.search.advertiser": "An advertiser id from Microsoft ads advertisers.",
+    "tiktok.ads.search.advertiser": "Only ads from this advertiser name.",
+    "after": "Only patents dated after this day. `dateType` picks which date counts.",
+    "before": "Only patents dated before this day. `dateType` picks which date counts.",
+    "assignee": "Only patents owned by this company or person.",
+    "inventor": "Only patents by this inventor.",
+    "brand": "Only products from this brand.",
+    "cabin": "The cabin class.",
+    "google.trends.trending.category": "Only trends in this category.",
+    "amazon.search.category": "The category to search in, by name or id.",
+    "appstore.top.chart": "Which chart to read.",
+    "color": "Only images in this color.",
+    "comment": "A comment id from an earlier response. Returns that comment's replies.",
+    "device": "The Apple device store to read.",
+    "domain": "A domain like `nike.com`.",
+    "youtube.search.duration": "Only videos of this length.",
+    "excludeDomains": "Leave out results from these domains.",
+    "includeDomains": "Only results from these domains.",
+    "experienceLevel": "Only jobs that ask for this level.",
+    "features": "Only videos with these features.",
+    "fileType": "Only files of this type.",
+    "freeCancellation": "Only hotels you can cancel for free.",
+    "genre": "Only apps in this genre.",
+    "homeTypes": "Only these kinds of home.",
+    "includePatents": "Include patents in the results.",
+    "includeTimestamps": "Return each line with its start and end time, in `segments`.",
+    "upwork.search.jobType": "Hourly jobs or fixed-price jobs.",
+    "google.patents.language": "The language of the patents.",
+    "tripadvisor.reviews.language": "The language of the reviews, or `all`.",
+    "linkedin.jobs.search.location": "The city or area to search in.",
+    "tripadvisor.search.location": "Narrow the search to this place.",
+    "maxBedrooms": "Most bedrooms.",
+    "minBedrooms": "Fewest bedrooms.",
+    "minBathrooms": "Fewest bathrooms.",
+    "minSqft": "Smallest size, in square feet.",
+    "maxSqft": "Largest size, in square feet.",
+    "minPrice": "Lowest price.",
+    "maxPrice": "Highest price.",
+    "google.ads.search.mediaType": "Only ads of this type.",
+    "google.maps.search.minRating": "Only places rated at least this high.",
+    "amazon.search.minRating": "Only products rated at least this high.",
+    "prioritize": "What to put first.",
+    "query": "Words to search for.",
+    "google.news.query": "Words to search for. Send `query` or `topic`, not both.",
+    "google.play.reviews.rating": "Only reviews with this many stars.",
+    "ratings": "Only reviews with these star ratings, from 1 to 5.",
+    "resolution": "How finely to split the results by place.",
+    "returnDate": "The return date. Leave it out for a one-way trip.",
+    "size": "Only images of this size.",
+    "google.patents.sort": "How to order the patents.",
+    "youtube.comments.sort": "Which comments come first.",
+    "reddit.subreddits.sort": "Which communities come first.",
+    "google.maps.reviews.sort": "Which reviews come first.",
+    "zillow.search.sort": "How to order the homes.",
+    "upwork.search.sort": "How to order the jobs.",
+    "google.hotels.sort": "How to order the hotels.",
+    "appstore.reviews.sort": "Which reviews come first.",
+    "specialOffers": "Only hotels with special offers.",
+    "google.patents.status": "Granted patents or applications.",
+    "meta.ads.page.status": "Active ads, inactive ads or both.",
+    "meta.ads.search.status": "Active ads, inactive ads or both.",
+    "zillow.search.status": "Homes for sale, for rent or sold.",
+    "reddit.search.subreddit": "Search inside one subreddit.",
+    "tab": "Which part of the profile to read.",
+    "google.images.time": "Only images from this period.",
+    "google.images.type": "The kind of image.",
+    "google.patents.type": "Patents or designs.",
+    "reddit.search.type": "What to search for.",
+    "instagram.search.type": "All results, or reels only.",
+    "tiktok.search.type": "Videos or users.",
+    "tripadvisor.search.type": "The kind of place.",
+    "pinterest.search.type": "Pins or videos.",
+    "uploadDate": "Only videos uploaded in this period.",
+    "within": "How recent the ads are.",
+    "google.news.topic": "The top 10 headlines in one section, instead of a search. Send `query` or `topic`, not both.",
+    "reddit.search.sort": "`relevance` matches the words anywhere in a post. The other sorts match the exact phrase.",
+    "google.play.reviews.sort": "Which reviews come first.",
+    "google.hotels.minPrice": "Lowest price per night.",
+    "google.hotels.maxPrice": "Highest price per night.",
+    "google.maps.search.openNow": "Only places open at the time of the search."
+  },
+  "optionValues": {
+    "google.flights.returnDate": "Date, `YYYY-MM-DD`.",
+    "linkedin.jobs.search.company": "Text, or a list of 1 to 5.",
+    "indeed.search.distanceMiles": "`0`, `5`, `10`, `15`, `25`, `35`, `50` or `100`. Default `25`.",
+    "google.flights.departureTime": "Object with `earliest` and `latest`, in hours from 0 to 24.",
+    "google.flights.arrivalTime": "Object with `earliest` and `latest`, in hours from 0 to 24.",
+    "cursor": "Text from the previous response.",
+    "repliesCursor": "Text from the previous response."
+  },
+  "next": {
+    "amazon.suggest": [
+      [
+        "amazon.search",
+        "Send a suggestion as `query` to search products."
+      ]
+    ],
+    "amazon.product": [
+      [
+        "amazon.search",
+        "Send the product's `title` as `query` to find similar products."
+      ]
+    ],
+    "google.search": [
+      [
+        "google.aiMode",
+        "Send a question from `peopleAlsoAsk` as `query` to get Google's AI answer."
+      ],
+      [
+        "google.search",
+        "Send an entry from `relatedSearches` as `query` to search it."
+      ]
+    ],
+    "google.aiMode": [
+      [
+        "google.search",
+        "Send the same `query` to see the web results for the question."
+      ]
+    ],
+    "google.suggest": [
+      [
+        "google.search",
+        "Send a suggestion as `query` to search it."
+      ],
+      [
+        "google.news",
+        "Send a suggestion as `query` to read the news on it."
+      ],
+      [
+        "google.trends.interest",
+        "Send a suggestion as `queries` to see its interest over time."
+      ]
+    ],
+    "google.shopping": [
+      [
+        "google.shopping",
+        "Send a `filter` from `filters` to narrow the products."
+      ],
+      [
+        "amazon.search",
+        "Send a product's `title` as `query` to compare prices on Amazon."
+      ]
+    ],
+    "google.patents": [
+      [
+        "google.patents",
+        "Send an `assignee` or `inventor` from `results` to list more of their patents."
+      ]
+    ],
+    "google.scholar": [
+      [
+        "google.scholar",
+        "Send a result's `citesId` as `citesId` to list the works that cite it."
+      ]
+    ],
+    "google.videos": [
+      [
+        "youtube.video",
+        "Send a YouTube `url` as `videoUrl` to get the video's stats and description."
+      ],
+      [
+        "youtube.transcript",
+        "Send a YouTube `url` as `videoUrl` to get what the video says."
+      ],
+      [
+        "tiktok.video",
+        "Send a TikTok `url` as `videoUrl` to get the video's caption and stats."
+      ]
+    ],
+    "google.jobs": [
+      [
+        "linkedin.jobs.search",
+        "Send a job's `title` as `query`, with its `location`, to see the same role on LinkedIn."
+      ],
+      [
+        "indeed.search",
+        "Send a job's `title` as `query`, with its `location`, to see the same role on Indeed."
+      ]
+    ],
+    "google.ads.ad": [
+      [
+        "google.ads.search",
+        "Send the `advertiserId` as `advertiser` to list the advertiser's ads."
+      ]
+    ],
+    "google.ads.advertisers": [
+      [
+        "google.ads.search",
+        "Send an `advertiserId` as `advertiser`, or a domain from `domains` as `domain`, to list the ads."
+      ]
+    ],
+    "google.ads.search": [
+      [
+        "google.ads.search",
+        "Send an `advertiserId` as `advertiser` to list that advertiser's ads."
+      ]
+    ],
+    "google.flights": [
+      [
+        "google.hotels",
+        "Send a leg's `destinationName` as `query` to find where to stay."
+      ]
+    ],
+    "google.hotels": [
+      [
+        "tripadvisor.search",
+        "Send a hotel's `name` as `query` to find its Tripadvisor page."
+      ]
+    ],
+    "google.maps.reviews": [
+      [
+        "google.maps.place",
+        "Send the same `placeUrl` to get the place's address, hours and contact details."
+      ]
+    ],
+    "google.trends.interest": [
+      [
+        "google.trends.regions",
+        "Send the same `queries` to see where they are searched most."
+      ],
+      [
+        "google.trends.related",
+        "Send one of the same queries as `query` to see the searches related to it."
+      ]
+    ],
+    "google.trends.regions": [
+      [
+        "google.trends.interest",
+        "Send the same `queries` to see how interest changed over time."
+      ],
+      [
+        "google.trends.related",
+        "Send one of the same queries as `query` to see the searches related to it."
+      ]
+    ],
+    "google.trends.related": [
+      [
+        "google.trends.interest",
+        "Send queries from `results` as `queries` to see their interest over time."
+      ],
+      [
+        "google.trends.regions",
+        "Send queries from `results` as `queries` to see where they are searched most."
+      ],
+      [
+        "google.search",
+        "Send a related search as `query` to see the results for it."
+      ]
+    ],
+    "google.trends.trending": [
+      [
+        "google.search",
+        "Send a trend's `query` to search for it."
+      ],
+      [
+        "google.news",
+        "Send a trend's `query` to read the news on it."
+      ],
+      [
+        "google.trends.interest",
+        "Send a trend's `query` as `queries` to see its interest over time."
+      ]
+    ],
+    "youtube.suggest": [
+      [
+        "youtube.search",
+        "Send a suggestion as `query` to search YouTube."
+      ],
+      [
+        "google.trends.interest",
+        "Send a suggestion as `queries` to see its interest over time."
+      ]
+    ],
+    "youtube.comments": [
+      [
+        "youtube.comments",
+        "Send a comment's `repliesCursor` as `comment` to get its replies."
+      ],
+      [
+        "youtube.video",
+        "Send the same `videoId` to get the video's stats and description."
+      ],
+      [
+        "youtube.transcript",
+        "Send the same `videoId` to get what the video says."
+      ]
+    ],
+    "instagram.transcript": [
+      [
+        "instagram.post",
+        "Send the same code as `postCode` to get the reel's stats and top comments."
+      ],
+      [
+        "instagram.comments",
+        "Send the same code as `postCode` to get the reel's comments."
+      ]
+    ],
+    "tiktok.comments": [
+      [
+        "tiktok.video",
+        "Send the same `videoId` to get the video's caption and stats."
+      ]
+    ],
+    "tiktok.shop.reviews": [
+      [
+        "tiktok.shop.product",
+        "Send the same `productId` to get the product's price, stock and seller."
+      ]
+    ],
+    "tiktok.ads.ad": [
+      [
+        "tiktok.ads.search",
+        "Send the `advertiserName` as `advertiser` to list the advertiser's ads."
+      ]
+    ],
+    "linkedin.ads.ad": [
+      [
+        "linkedin.ads.search",
+        "Send the `advertiserName` as `advertiser` to list the advertiser's ads."
+      ]
+    ],
+    "linkedin.company": [
+      [
+        "linkedin.jobs.search",
+        "Send the company's `companyId` as `company` to list its open jobs."
+      ]
+    ],
+    "linkedin.posts": [
+      [
+        "linkedin.profile",
+        "Send the same `profileUrl` or `profileId` to get the person's headline, roles and education."
+      ],
+      [
+        "linkedin.company",
+        "Send the same `companyUrl` or `companyId` to get the company's industry and size."
+      ]
+    ],
+    "meta.ads.ad": [
+      [
+        "meta.ads.page",
+        "Send the ad's `pageId` as `advertiser` to list every ad the page runs."
+      ]
+    ],
+    "meta.ads.search": [
+      [
+        "meta.ads.page",
+        "Send an ad's `pageId` as `advertiser` to list every ad the page runs."
+      ]
+    ],
+    "microsoft.ads.ad": [
+      [
+        "microsoft.ads.search",
+        "Send the `advertiserId` as `advertiser` to list the advertiser's ads."
+      ]
+    ],
+    "microsoft.ads.advertisers": [
+      [
+        "microsoft.ads.search",
+        "Send an `advertiserId` as `advertiser` to list the advertiser's ads."
+      ]
+    ],
+    "microsoft.ads.search": [
+      [
+        "microsoft.ads.search",
+        "Send an `advertiserId` as `advertiser` to list that advertiser's ads."
+      ]
+    ],
+    "pinterest.ads.ad": [
+      [
+        "pinterest.ads.search",
+        "Send one of the `countries` as `country` to see more ads shown there."
+      ]
+    ],
+    "appstore.reviews": [
+      [
+        "appstore.app",
+        "Send the same `appId` to get the app's details."
+      ]
+    ],
+    "google.play.reviews": [
+      [
+        "google.play.app",
+        "Send the same `appId` to get the app's details."
+      ]
+    ],
+    "indeed.job": [
+      [
+        "indeed.search",
+        "Send the job's `title` as `query` to find similar jobs."
+      ]
+    ],
+    "upwork.job": [
+      [
+        "upwork.search",
+        "Send the job's `title` as `query` to find similar jobs."
+      ]
+    ],
+    "zillow.property": [
+      [
+        "zillow.search",
+        "Send the home's `addressCity` and `addressRegion` as `location` to see nearby homes."
+      ]
+    ]
+  },
+  "optionRewrites": {
+    "Reddit's own time filter. Leave out for Reddit's default.": "Only posts from this period. Leave it out for Reddit's default.",
+    "Reddit's own sort.": "How to order the results.",
+    "Reddit's own comment sort.": "How to order the comments.",
+    "Google Trends' own top-level category.": "Only searches in this category.",
+    "Google Trends' own time range.": "How far back to look.",
+    "Google Trends' own search type: web, images, news, shopping or youtube.": "Where the searches were made.",
+    "Google's Tools time filter. Leave out for any time.": "Only results from this period. Leave it out for any time.",
+    "The Ad Library's own Platform filter: only ads shown on at least one of these platforms.": "Only ads shown on at least one of these platforms.",
+    "The Ad Library's own Media type filter: image, video, or text (no image or video).": "Only ads of this type. `text` means no image or video.",
+    "The Ad Library's own Language filter: a two-letter code like en. Only ads written in this language.": "Only ads written in this language. Two-letter code, like `en`.",
+    "The Ad Library's own Impressions by date: ads shown on or before this day.": "Only ads shown on or before this day.",
+    "The Ad Library's own Impressions by date: ads shown on or after this day.": "Only ads shown on or after this day.",
+    "Zillow's own Year built minimum.": "Only homes built in or after this year.",
+    "Zillow's own Year built maximum.": "Only homes built in or before this year.",
+    "Zillow's own \"Waterfront\" filter. Only matching homes when true.": "Only waterfront homes.",
+    "Zillow's own \"Single-story only\" filter. Only matching homes when true.": "Only single-story homes.",
+    "Zillow's own \"Pets Allowed\" filter. Only matching homes when true. Rentals only: needs status forRent.": "Only places that allow pets. Rentals only: set `status` to `forRent`.",
+    "Zillow's own Parking spots filter: at least this many (1 to 4).": "Only homes with at least this many parking spots.",
+    "Zillow's own \"Must have price reduction\" filter. Only matching homes when true.": "Only homes with a price cut.",
+    "Zillow's own \"Must have pool\" filter. Only matching homes when true.": "Only homes with a pool.",
+    "Zillow's own \"Must have open house\" filter. Only matching homes when true.": "Only homes with an open house.",
+    "Zillow's own \"Must have garage\" filter. Only matching homes when true.": "Only homes with a garage.",
+    "Zillow's own \"Must have A/C\" filter. Only matching homes when true.": "Only homes with air conditioning.",
+    "Zillow's own \"Must have 3D Tour\" filter. Only matching homes when true.": "Only homes with a 3D tour.",
+    "Zillow's own Max HOA: the highest monthly HOA fee in USD. 0 means no HOA fee.": "Highest monthly HOA fee, in USD. `0` means no HOA fee.",
+    "Zillow's own Lot size minimum, in square feet.": "Smallest lot, in square feet.",
+    "Zillow's own Lot size maximum, in square feet.": "Largest lot, in square feet.",
+    "Zillow's own Days on Zillow filter: listed in the last 1, 7, 14, 30 or 90 days, or 6, 12, 24 or 36 months. For sold homes it means sold in the last N.": "Only homes listed in the last 1, 7, 14, 30 or 90 days, or 6, 12, 24 or 36 months. For sold homes, it means sold in that time.",
+    "YouTube's own sort for the videos, shorts and live tabs.": "How to order the items on the videos, shorts and live tabs.",
+    "YouTube's own comment sort.": "Which comments come first.",
+    "YouTube's own channel tab. Releases are a music channel's albums.": "Which tab of the channel to read. `releases` are a music channel's albums.",
+    "YouTube Charts' own chart.": "Which chart to read.",
+    "One of YouTube Charts' own countries as a 2-letter code, or global.": "Two-letter country code, or `global`.",
+    "Which date before and after compare: Google Patents' own date choice.": "Which date `before` and `after` compare to.",
+    "Upwork's hours needed: full time, part time, or as needed. Only hourly jobs say this, so the search stays hourly.": "Hours needed: full time, part time or as needed. Only hourly jobs say this, so the search stays hourly.",
+    "Upwork's project length: under one month, one to three months, three to six months, or more than six months. Only hourly jobs say this, so the search stays hourly.": "Project length: under one month, one to three months, three to six months or over six months. Only hourly jobs say this, so the search stays hourly.",
+    "Tripadvisor's own Traveler type filter: families, couples, solo, business or friends. Only reviews from these travelers.": "Only reviews from these travelers.",
+    "Tripadvisor's own Time of year filter: marMay, junAug, sepNov or decFeb. Only reviews written in these months of the year.": "Only reviews written in these months of the year.",
+    "Tripadvisor's own Sort by: mostRecent (Most recent) or detailed (Detailed reviews, ordered by recency and how much they say).": "`mostRecent` puts the newest first. `detailed` orders by recency and by how much a review says.",
+    "TikTok's Sort by, for videos. Leave out for Relevance.": "How to order videos. Leave it out for relevance.",
+    "TikTok's Date posted, for videos. Leave out for All time.": "Only videos from this period. Leave it out for all time.",
+    "Scholar's own sort. Newest lists recent additions first.": "How to order the results. `newest` lists recent additions first.",
+    "Scholar's own include citations: works known only from citations.": "Include works that Scholar knows only from citations.",
+    "Scholar's own Custom range: up to this year.": "Only works up to this year.",
+    "Scholar's own Custom range: from this year.": "Only works from this year on.",
+    "Scholar's own Any type, Review articles, or Case law.": "Any type, review articles or case law.",
+    "Google Patents' own Patent office, like US, EP, WO, CN or JP.": "Patent office, like `US`, `EP`, `WO`, `CN` or `JP`.",
+    "Google Patents' own Litigation: has related litigation, or no known.": "Only patents with related litigation (`has`), or with none known (`none`).",
+    "Google's own Duration: short is under 4 min, medium 4–20, long 20+.": "Video length: `short` is under 4 minutes, `medium` is 4 to 20 and `long` is over 20.",
+    "Google's own High quality.": "Only high quality videos.",
+    "Google's own Closed captioned.": "Only videos with captions.",
+    "Google's Verbatim: search the exact words, with no spelling fixes.": "Search the exact words, with no spelling fixes.",
+    "Google's own Platform filter: where the ad was shown.": "Where the ad was shown.",
+    "Google's own Date range: ads shown on or before this day.": "Only ads shown on or before this day.",
+    "Google's own Date range: ads shown on or after this day.": "Only ads shown on or after this day.",
+    "Google News' own sort: by relevance or newest first.": "Order by relevance or newest first.",
+    "Google Maps' own Hours filter, Open now: only places open at the moment of the search.": "Only places open at the time of the search.",
+    "Google Jobs' own Remote chip.": "Only remote jobs.",
+    "Google Jobs' own No degree chip.": "Only jobs that need no degree.",
+    "Google Jobs' own Job type.": "Only this type of job.",
+    "Google Jobs' own Date posted.": "Only jobs posted in this period.",
+    "Google Hotels' own Property type.": "Only these kinds of property.",
+    "Google Hotels' own Hotel class, as star counts like [4, 5].": "Only hotels with these star ratings, like `[4, 5]`.",
+    "Google Hotels' own Guest rating.": "Only hotels with at least this guest rating.",
+    "Google Hotels' own Amenities. Every one must be offered.": "Only hotels that offer every one of these.",
+    "Google Flights' Times filter for the outbound departure.": "Limit the outbound departure to these hours of the day.",
+    "Google Flights' Times filter for the outbound arrival.": "Limit the outbound arrival to these hours of the day.",
+    "Google Flights' Stops filter.": "How many stops to allow.",
+    "Google Flights' Price filter, in USD for all adults.": "Highest price, in USD, for all adults.",
+    "Google Flights' Duration filter.": "Longest trip, in hours.",
+    "Google Flights' Bags filter: prices include this many checked bags.": "Include this many checked bags in the price.",
+    "Google Flights' Bags filter: prices include this many carry-on bags.": "Include this many carry-on bags in the price.",
+    "Google Flights' Airlines filter, as airline codes like KQ or EK.": "Only these airlines, as codes like `KQ` or `EK`.",
+    "European country code like de. TikTok publishes ads for these countries only. Any case is accepted.": "Two-letter code of a European country, like `de`. TikTok shows ads for these countries only.",
+    "EU/EEA country code like de. Microsoft publishes ads for these countries only. Any case is accepted.": "Two-letter code of an EU or EEA country, like `de`. Microsoft publishes ads for these countries only.",
+    "Defaults to tomorrow.": "The check-in date. Defaults to tomorrow.",
+    "Defaults to one night after checkIn.": "The check-out date. Defaults to one night after `checkIn`.",
+    "Daily exists for topVideos and topShortsSongs only.": "`daily` is only available for `topVideos` and `topShortsSongs`.",
+    "Creative Commons, or commercial and other licenses.": "Only images with this license.",
+    "Country code like de. Only ads shown in this country are returned. Any case is accepted.": "Two-letter country code, like `de`. Only ads shown there are returned.",
+    "Country code like de. Advertisers are matched on ads shown in this country, wherever the advertiser is based. Any case is accepted.": "Two-letter country code, like `de`. Advertisers match on ads shown there, wherever they are based.",
+    "City, region or postal code, e.g. Kansas City, MO.": "City, region or postal code, like Kansas City, MO.",
+    "A result's citesId: lists the works that cite it, like Scholar's Cited by.": "A result's `citesId`. Lists the works that cite it.",
+    "Amazon's own sort. avgCustomerReview is Avg. Customer Review: highest rated first, not most reviewed.": "How to order the products. `avgCustomerReview` puts the highest rated first, not the most reviewed.",
+    "A filter from a previous response's filters. Its page already holds earlier choices; a selected one removes it.": "A filter from the `filters` of an earlier response. Choices you already picked are applied. Sending a chosen one again removes it.",
+    "Advertiser name to filter by. Pinterest does not publish advertiser names on the ads themselves, so results carry no advertiser.": "Only ads from this advertiser. Results do not name the advertiser.",
+    "Advertiser id like AR18378488041124659201. Send it with adId; adUrl already has it.": "Advertiser id, like `AR18378488041124659201`. Send it with `adId`. A link already has it.",
+    "A domain like nike.com. Google's library finds ads by domain or advertiser, not by keyword.": "A domain like `nike.com`.",
+    "A comment id or link: returns that comment's thread, like Reddit's own link.": "A comment id or link. Returns that comment's thread.",
+    "Indeed's own Sort by.": "How to order the jobs.",
+    "Indeed's own Remote filter: Remote, or Hybrid work.": "Only remote or hybrid jobs.",
+    "Indeed's own Job type.": "Only this type of job.",
+    "Indeed's own Experience level.": "Only jobs for this level.",
+    "Indeed's own Education.": "Only jobs that ask for this education.",
+    "Indeed's own Distance from the location. 0 is the exact location only.": "How far from the location to look, in miles. `0` is the exact location only.",
+    "Indeed's own Date posted. A relisted job keeps its first publishedAt and shows the new date in indexedAt.": "Only jobs posted in this period. A relisted job keeps its first `publishedAt` and shows the new date in `indexedAt`.",
+    "LinkedIn's own Under 10 applicants.": "Only jobs with fewer than 10 applicants.",
+    "LinkedIn's own Easy Apply.": "Only Easy Apply jobs.",
+    "LinkedIn's own Date posted.": "Only jobs posted in this period.",
+    "One company or up to five: LinkedIn URLs, slugs like google, or company ids.": "One company, or up to five. Use LinkedIn links, slugs like `google`, or company ids.",
+    "ISO 4217 currency code, e.g. USD.": "Three-letter currency code, like `USD`.",
+    "One age per child, like [7, 12].": "One age for each child, like `[7, 12]`.",
+    "Instagram's comment order. Leave out for newest. Replies have no order filter.": "How to order the comments. Leave it out for newest. Replies have no order.",
+    "Google Trends' own Trend status: all, or only trends still rising.": "All trends, or only the ones still rising.",
+    "Google Trends' own Trending now time range.": "How far back to look.",
+    "Google Trends' own sort.": "How to order the trends."
+  },
+  "labels": {
+    "google.suggest": "Google suggestions",
+    "google.trends.related": "Google Trends related searches",
+    "google.trends.trending": "Google Trends trending now",
+    "google.trends.interest": "Google Trends interest over time",
+    "google.trends.regions": "Google Trends by region",
+    "google.ads.search": "Google ads search",
+    "google.ads.ad": "Google ad details",
+    "google.ads.advertisers": "Google advertisers",
+    "tiktok.ads.search": "TikTok ads search",
+    "tiktok.ads.ad": "TikTok ad details",
+    "linkedin.ads.search": "LinkedIn ads search",
+    "linkedin.ads.ad": "LinkedIn ad details",
+    "microsoft.ads.search": "Microsoft ads search",
+    "microsoft.ads.ad": "Microsoft ad details",
+    "microsoft.ads.advertisers": "Microsoft advertisers",
+    "pinterest.ads.search": "Pinterest ads search",
+    "pinterest.ads.ad": "Pinterest ad details",
+    "meta.ads.search": "Meta ads search",
+    "meta.ads.ad": "Meta ad details",
+    "meta.ads.page": "Meta ads by page",
+    "linkedin.jobs.search": "LinkedIn jobs search",
+    "linkedin.jobs.job": "LinkedIn job",
+    "reddit.subreddits": "Reddit communities",
+    "instagram.profile.reels": "Instagram profile reels",
+    "appstore.top": "App Store top charts"
+  },
+  "bestWhenNotes": {
+    "instagram.comments": "",
+    "instagram.post": "A comment's reply count can be missing here. Send that comment's id to instagram.comments to get the real count and the replies.",
+    "instagram.search": "Each result is the search card: caption, author and views. Likes, comments and media are on instagram.post.",
+    "linkedin.posts": "It returns the latest public posts LinkedIn shows for the page, reposts included. That is usually up to 10. Older posts are not available, and there is no cursor.",
+    "linkedin.ads.search": "Run dates, impressions and who paid show only in linkedin.ads.ad, and only for ads shown in the EU. Pass an EU country to get them.",
+    "upwork.search": "Hours needed, project length and hourly rate apply to hourly jobs only."
+  },
+  "pagingNotes": {
+    "google.search": "Without an API key there is no paging."
   }
 }

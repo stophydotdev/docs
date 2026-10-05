@@ -21,32 +21,35 @@ Stophy uses credits. You buy credits ahead of time and each successful call uses
 
 ## What a call costs
 
-Every endpoint has a fixed price per call, from 1 to 4 credits, except `transcript`, which depends on the video (see below). The price does not change with how many results come back. Errors and empty results cost nothing.
+Most calls cost 1 credit. A few cost 2 credits, and a few charge by the number of results. Transcripts depend on the video (see below). The price of a call does not change with how many results come back, except for the five long lists. Errors and empty results cost nothing.
 
 | Cost | Endpoints |
 | --- | --- |
-| 5 credits | `googletravel.flights`, `ads.search`, `ads.ad`, `meta.ads.page`, `walmart.search` |
-| 3 credits | `maps.search`, `airbnb.search`, `zillow.search`, `rightmove.search`, `immoscout.search`, `upwork.search`, `linkedin.jobs.search`, `walmart.product` |
-| 2 credits | `instagram.profile`, `zillow.property` |
-| 1 credit | Everything else, including every Reddit, Indeed, Tripadvisor, App Store and Google Play endpoint, and `ads.advertisers` |
-| From 2 credits | `transcript`, see below |
+| 1 credit | Everything not listed below, including every Google Search, News, Maps, Hotels, Flights and Jobs endpoint, every Reddit, YouTube, TikTok, Indeed, Upwork, Tripadvisor, App Store and Google Play call except the long lists, and every ad library endpoint |
+| 2 credits | `amazon.search`, `amazon.product`, `amazon.bestsellers`, `zillow.search`, `zillow.property`, `instagram.profile`, `linkedin.profile`, `google.aiMode`, `google.shopping` |
+| 1 credit per 10 results | `google.images`, `youtube.charts`, `appstore.search`, `appstore.top`, `google.play.search` |
+| From 1 credit | `instagram.transcript` and `tiktok.transcript`, see below |
 
-One call returns one page. To get the next page, send the `cursor` from the response in a new call, which costs the same again and continues with no gaps. Find an endpoint's cost in the [API reference](/api-reference/introduction), on each source page, or in `credits` in `GET https://api.stophy.dev/v1/endpoints`.
+The five long lists take `limit`. Send it to return fewer results and pay for fewer.
 
-Failed calls cost nothing. A call that Stophy refuses, for example a TikTok video over 3 minutes sent to `transcript`, costs nothing either.
+One call returns one page. To get the next page, send the `cursor` or the next `page` in a new call. Each page costs the same again. A page continues where the last one stopped, with no gaps. Find an endpoint's cost in the [API reference](/api-reference/introduction), on each source page, or in `credits` in `GET https://api.stophy.dev/v1/endpoints`.
 
-### Transcript
+Failed calls cost nothing. A call that Stophy refuses, for example a TikTok video over 3 minutes sent to `tiktok.transcript`, costs nothing either.
 
-`transcript` costs 2 credits when the video has captions. When it has none, the audio is transcribed instead and the call costs 2 credits plus 1 credit for every 10 seconds of audio, up to 30 minutes, so 182 credits at most. Audio is rounded up to the next 10 seconds. A video without captions that is longer than 30 minutes is refused and costs nothing.
+### Transcripts
+
+`youtube.transcript` reads a video's captions and costs 1 credit.
+
+`instagram.transcript` and `tiktok.transcript` cost 1 credit when the video has captions. When it has none, the audio is transcribed instead and the call costs 2 credits plus 1 credit for every 10 seconds of audio. Instagram audio goes up to 30 minutes, so 182 credits at most. TikTok audio goes up to 3 minutes, so 20 credits at most. Audio is rounded up to the next 10 seconds. A video without captions that is longer than the limit is refused and costs nothing.
 
 The response has `transcribedSeconds` when the audio was transcribed, and `creditsUsed` has what the call cost.
 
 | Video | Credits |
 | --- | --- |
-| Has captions | 2 |
+| Has captions | 1 |
 | No captions, 60 seconds | 8 |
-| No captions, 5 minutes | 32 |
-| No captions, 30 minutes | 182 |
+| No captions, 3 minutes | 20 |
+| No captions, 30 minutes (Instagram only) | 182 |
 
 The catalog at `GET https://api.stophy.dev/v1/endpoints` has `credits` for the lowest price and `pricing` for the terms when the price varies.
 

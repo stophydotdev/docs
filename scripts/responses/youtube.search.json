@@ -1,0 +1,37 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "results": [
+      {
+        "type": "video",
+        "videoId": "Wc0ZJo06oAw",
+        "videoUrl": "https://www.youtube.com/watch?v=Wc0ZJo06oAw",
+        "title": "The Ultimate Rust Beginners Guide (2026)",
+        "channelId": "UCt6XPuD8u3YjvybuT-Xnj5A",
+        "channelName": "SBJake",
+        "channelUrl": "https://www.youtube.com/channel/UCt6XPuD8u3YjvybuT-Xnj5A",
+        "channelUsername": "SBJake",
+        "durationSeconds": 422,
+        "views": 551049,
+        "thumbnailUrl": "https://i.ytimg.com/vi/Wc0ZJo06oAw/hqdefault.jpg",
+        "isShort": false,
+        "isLive": false,
+        "publishedAt": "2025-10-05T14:57:29.000Z"
+      },
+      {
+        "type": "playlist",
+        "playlistId": "PLai5B987bZ9CoVR-QEIN9foz4QCJ0H2Y8",
+        "playlistUrl": "https://www.youtube.com/playlist?list=PLai5B987bZ9CoVR-QEIN9foz4QCJ0H2Y8",
+        "title": "The Rust Lang Book",
+        "channelId": "UCSp-OaMpsO8K0KkOqyBl7_w",
+        "channelName": "Let's Get Rusty",
+        "channelUrl": "https://www.youtube.com/channel/UCSp-OaMpsO8K0KkOqyBl7_w",
+        "channelUsername": "letsgetrusty",
+        "videos": 44,
+        "thumbnailUrl": "https://i.ytimg.com/vi/OX9HJsJUDxA/hq720.jpg?sqp=-oaymwEXCNAFEJQDSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLAWZwWdy65d2agorLt2YN…"
+      }
+    ],
+    "cursor": "seen.eyJ0b2tlbiI6IkVzNEVFZzF5ZFhOMElIUjFkRzl5YVdGc0dyd0VVMEpUUTBGUmRGaFpla0poVTIwNGQwNXRPVUprTkVsQ1NXeENUV1ZyTVdwUmEyUn…"
+  }
+}

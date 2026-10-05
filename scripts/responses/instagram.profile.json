@@ -1,0 +1,108 @@
+{
+  "live": true,
+  "creditsUsed": 2,
+  "data": {
+    "userId": "787132",
+    "username": "natgeo",
+    "userUrl": "https://www.instagram.com/natgeo/",
+    "name": "National Geographic",
+    "bio": "Step into wonder and find your inner explorer with National Geographic 🌎",
+    "bioLinkUrls": [
+      "http://visitstore.bio/natgeo"
+    ],
+    "isVerified": true,
+    "isPrivate": false,
+    "followers": 268443252,
+    "following": 194,
+    "posts": 32045,
+    "avatarUrl": "https://scontent-xxc1-1.cdninstagram.com/v/t51.82787-19/683576066_18653628823019133_9051036240972105113_n.jpg?stp=dst-j…",
+    "postsAnalyzed": 10,
+    "averageLikes": 72875,
+    "averageComments": 298,
+    "engagementRate": 0.027,
+    "postsPerWeek": 22,
+    "lastPostAt": "2026-10-05T17:17:36.000Z",
+    "results": [
+      {
+        "postId": "3983118388705688735",
+        "postCode": "DdG4RIxIPyf",
+        "postUrl": "https://www.instagram.com/p/DdG4RIxIPyf/",
+        "type": "reel",
+        "text": "Presented by @Rolex. Welcome to Africa 🌍 Africa Earth’s Wild Home takes you deep into the heart of our wildest…",
+        "hashtags": [
+          "Rolex",
+          "PerpetualPlanet"
+        ],
+        "mentions": [
+          "rolex",
+          "wunmimosaku"
+        ],
+        "publishedAt": "2026-09-10T13:00:14.000Z",
+        "likes": 78665,
+        "comments": 531,
+        "views": 870839,
+        "thumbnailUrl": "https://scontent-xxc1-1.cdninstagram.com/v/t51.82787-15/802503979_18695767555019133_6909214034622416488_n.jpg?stp=c0.42…",
+        "imageUrls": [
+          "https://scontent-xxc1-1.cdninstagram.com/v/t51.82787-15/802503979_18695767555019133_6909214034622416488_n.jpg?stp=dst-j…"
+        ],
+        "videoUrls": [
+          "https://scontent-xxc1-1.cdninstagram.com/o1/v/t2/f2/m86/AQPDJtVww4K_686Ed9TbciE3dp0nrA4iUd5M8OJJIZKcU-RmkzTGwtpi3CsZY9P…"
+        ],
+        "isPinned": true,
+        "authorId": "787132",
+        "authorUsername": "natgeo",
+        "authorName": "National Geographic",
+        "authorUrl": "https://www.instagram.com/natgeo/",
+        "authorAvatarUrl": "https://scontent-xxc1-1.cdninstagram.com/v/t51.82787-19/683576066_18653628823019133_9051036240972105113_n.jpg?stp=dst-j…",
+        "authorIsVerified": true,
+        "taggedUsers": [
+          "rolex"
+        ],
+        "coauthors": [
+          "rolex"
+        ],
+        "audioTitle": "Original audio",
+        "audioArtist": "natgeo",
+        "audioIsOriginal": true,
+        "isPaidPartnership": true,
+        "sponsors": [
+          "rolex"
+        ]
+      },
+      {
+        "postId": "4000517920972154463",
+        "postCode": "DeEsdp9ISZf",
+        "postUrl": "https://www.instagram.com/p/DeEsdp9ISZf/",
+        "type": "photo",
+        "text": "Presented by @Rolex. Conservation ecologist and Rolex National Geographic Perpetual Planet Explorer Matt Shirley has…",
+        "hashtags": [
+          "Rolex",
+          "AfricaEarthsWildHome"
+        ],
+        "mentions": [
+          "rolex",
+          "hammond_robin"
+        ],
+        "publishedAt": "2026-10-04T13:02:58.000Z",
+        "likes": 28807,
+        "comments": 73,
+        "thumbnailUrl": "https://scontent-xxc1-1.cdninstagram.com/v/t51.82787-15/838090435_18704188369019133_3459482282107908109_n.jpg?stp=c0.16…",
+        "imageUrls": [
+          "https://scontent-xxc1-1.cdninstagram.com/v/t51.82787-15/838090435_18704188369019133_3459482282107908109_n.jpg?stp=dst-j…"
+        ],
+        "isPinned": false,
+        "authorId": "787132",
+        "authorUsername": "natgeo",
+        "authorName": "National Geographic",
+        "authorUrl": "https://www.instagram.com/natgeo/",
+        "authorAvatarUrl": "https://scontent-xxc1-1.cdninstagram.com/v/t51.82787-19/683576066_18653628823019133_9051036240972105113_n.jpg?stp=dst-j…",
+        "authorIsVerified": true,
+        "isPaidPartnership": true,
+        "sponsors": [
+          "rolex"
+        ]
+      }
+    ],
+    "cursor": "3999067523172763307_787132"
+  }
+}

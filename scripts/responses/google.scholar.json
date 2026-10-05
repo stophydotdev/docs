@@ -1,0 +1,27 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "results": [
+      {
+        "title": "Seven-year efficacy of RTS, S/AS01 malaria vaccine among young African children",
+        "url": "https://www.nejm.org/doi/abs/10.1056/NEJMoa1515257",
+        "format": "pdf",
+        "authors": [
+          "A Olotu",
+          "G Fegan"
+        ],
+        "publication": "England Journal of …",
+        "year": 2016,
+        "publisher": "Mass Medical Soc",
+        "snippet": "… In an analysis that was not prespecified, the malaria exposure of each child was estimated … of malaria among…",
+        "citations": 618,
+        "citesId": "15871362944033457094",
+        "versions": 14,
+        "pdfUrl": "https://www.nejm.org/doi/pdf/10.1056/NEJMoa1515257",
+        "position": 1
+      }
+    ],
+    "page": 1
+  }
+}

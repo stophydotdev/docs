@@ -1,0 +1,48 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "cabin": "economy",
+    "tripType": "oneWay",
+    "adults": 1,
+    "results": [
+      {
+        "isBest": true,
+        "price": 139,
+        "priceCurrency": "USD",
+        "airlines": [
+          "JetBlue"
+        ],
+        "stops": 1,
+        "durationSeconds": 40440,
+        "departureLocalTime": "2026-11-19T15:45",
+        "arrivalLocalTime": "2026-11-19T23:59",
+        "legs": [
+          {
+            "flightNumber": "B6 618",
+            "airline": "JetBlue",
+            "originCode": "JFK",
+            "originName": "John F. Kennedy International Airport",
+            "destinationCode": "BOS",
+            "destinationName": "Boston Logan International Airport",
+            "departureLocalTime": "2026-11-19T15:45",
+            "arrivalLocalTime": "2026-11-19T17:03",
+            "durationSeconds": 4680,
+            "aircraft": "Airbus A220-300 Passenger",
+            "legroom": "32 inches"
+          }
+        ],
+        "layovers": [
+          {
+            "airport": "BOS",
+            "name": "Boston Logan International Airport",
+            "city": "Boston",
+            "durationSeconds": 12360
+          }
+        ],
+        "emissionsGrams": 478000,
+        "typicalEmissionsGrams": 320000
+      }
+    ]
+  }
+}

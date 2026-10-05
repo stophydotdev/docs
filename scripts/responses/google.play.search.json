@@ -1,0 +1,22 @@
+{
+  "live": true,
+  "creditsUsed": 3,
+  "data": {
+    "results": [
+      {
+        "appId": "photo.editor.photoeditor.photoeditorpro",
+        "appUrl": "https://play.google.com/store/apps/details?id=photo.editor.photoeditor.photoeditorpro",
+        "name": "Photo Editor - Polish",
+        "developerName": "InShot Inc.",
+        "summary": "✨ Powerful Photo Editor for Every Moment 🎉 Looking for an easy photo editor to transform your pictures in seconds?",
+        "genre": "Photography",
+        "installsText": "100,000,000+",
+        "installsMin": 100000000,
+        "rating": 4.8010755,
+        "price": 0,
+        "priceCurrency": "USD",
+        "iconUrl": "https://play-lh.googleusercontent.com/q-z-Sbn2WLCUb4MSmmdhVr9KRfJ4qTlgoQEUGEKsnfVEEMNPxsabpr-yngqQ15o5b6gLhaBOhGZNv6oBW…"
+      }
+    ]
+  }
+}

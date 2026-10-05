@@ -2,6 +2,6 @@
 import { Stophy } from "stophy";
 
 const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
-const result = await stophy.pinterest.board({ board: "https://www.pinterest.com/example/example-board/" });
+const result = await stophy.pinterest.board({ boardUrl: "https://www.pinterest.com/marthastewart/kitchen-ideas/" });
 console.log(result.data.results);
 ```

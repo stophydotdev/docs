@@ -1,0 +1,33 @@
+{
+  "live": true,
+  "creditsUsed": 2,
+  "data": {
+    "results": [
+      {
+        "propertyId": "29399286",
+        "propertyUrl": "https://www.zillow.com/homedetails/106-W-32nd-St-Austin-TX-78705/29399286_zpid/",
+        "status": "forSale",
+        "statusText": "Active",
+        "price": 2200000,
+        "priceCurrency": "USD",
+        "addressFull": "106 W 32nd St, Austin, TX 78705",
+        "addressStreet": "106 W 32nd St",
+        "addressCity": "Austin",
+        "addressRegion": "TX",
+        "addressPostalCode": "78705",
+        "latitude": 30.297354,
+        "longitude": -97.736565,
+        "bedrooms": 4,
+        "bathrooms": 3,
+        "sqft": 2911,
+        "homeType": "SINGLE_FAMILY",
+        "daysOnZillow": 2,
+        "brokerName": "Kuper Sotheby's Int'l Realty",
+        "imageUrl": "https://photos.zillowstatic.com/fp/53de2e39052ef79395ed54f9e73dfded-p_e.jpg"
+      }
+    ],
+    "total": 151,
+    "page": 1,
+    "totalPages": 4
+  }
+}

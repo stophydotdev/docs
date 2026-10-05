@@ -1,0 +1,32 @@
+{
+  "live": true,
+  "creditsUsed": 2,
+  "data": {
+    "filters": [
+      {
+        "group": "Suggested",
+        "options": [
+          {
+            "label": "On sale",
+            "filter": "eyJxIjoicnVubmluZyBzaG9lcyBzYWxlIiwic2hvcHJzIjoiQ0FFU0JFb0NHQUVZQmlvTmNuVnVibWx1WnlCemFHOWxjeklUQ0FZU0IwOXVJSE5oYkdVWUF…",
+            "isSelected": false
+          }
+        ]
+      }
+    ],
+    "results": [
+      {
+        "productId": "4289084346999864934",
+        "title": "Salomon Men's Speedcross 6",
+        "price": 150,
+        "priceCurrency": "USD",
+        "seller": "REI",
+        "delivery": "Free delivery",
+        "rating": 4.6,
+        "reviews": 3300,
+        "position": 1
+      }
+    ],
+    "page": 1
+  }
+}
