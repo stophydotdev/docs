@@ -877,6 +877,214 @@
     {
       "source": "/api-reference/endpoint/walmart-search",
       "destination": "/api-reference/endpoint/amazon-search"
+    },
+    {
+      "source": "/api-reference/endpoint/aliexpress-product",
+      "destination": "/sources/shopping"
+    },
+    {
+      "source": "/api-reference/endpoint/aliexpress-search",
+      "destination": "/sources/shopping"
+    },
+    {
+      "source": "/api-reference/endpoint/bluesky-followers",
+      "destination": "/sources/social"
+    },
+    {
+      "source": "/api-reference/endpoint/bluesky-post",
+      "destination": "/sources/social"
+    },
+    {
+      "source": "/api-reference/endpoint/bluesky-posts",
+      "destination": "/sources/social"
+    },
+    {
+      "source": "/api-reference/endpoint/bluesky-profile",
+      "destination": "/sources/social"
+    },
+    {
+      "source": "/api-reference/endpoint/crypto-binance-announcements",
+      "destination": "/api-reference/introduction"
+    },
+    {
+      "source": "/api-reference/endpoint/crypto-categories",
+      "destination": "/api-reference/introduction"
+    },
+    {
+      "source": "/api-reference/endpoint/crypto-coin",
+      "destination": "/api-reference/introduction"
+    },
+    {
+      "source": "/api-reference/endpoint/crypto-coins",
+      "destination": "/api-reference/introduction"
+    },
+    {
+      "source": "/api-reference/endpoint/crypto-dex-new",
+      "destination": "/api-reference/introduction"
+    },
+    {
+      "source": "/api-reference/endpoint/crypto-dex-pairs",
+      "destination": "/api-reference/introduction"
+    },
+    {
+      "source": "/api-reference/endpoint/crypto-dex-search",
+      "destination": "/api-reference/introduction"
+    },
+    {
+      "source": "/api-reference/endpoint/crypto-dex-token",
+      "destination": "/api-reference/introduction"
+    },
+    {
+      "source": "/api-reference/endpoint/crypto-history",
+      "destination": "/api-reference/introduction"
+    },
+    {
+      "source": "/api-reference/endpoint/crypto-movers",
+      "destination": "/api-reference/introduction"
+    },
+    {
+      "source": "/api-reference/endpoint/crypto-new",
+      "destination": "/api-reference/introduction"
+    },
+    {
+      "source": "/api-reference/endpoint/crypto-pump-coin",
+      "destination": "/api-reference/introduction"
+    },
+    {
+      "source": "/api-reference/endpoint/crypto-pump-coins",
+      "destination": "/api-reference/introduction"
+    },
+    {
+      "source": "/api-reference/endpoint/crypto-pump-trades",
+      "destination": "/api-reference/introduction"
+    },
+    {
+      "source": "/api-reference/endpoint/crypto-token-holders",
+      "destination": "/api-reference/introduction"
+    },
+    {
+      "source": "/api-reference/endpoint/crypto-trending",
+      "destination": "/api-reference/introduction"
+    },
+    {
+      "source": "/api-reference/endpoint/crypto-wallet",
+      "destination": "/api-reference/introduction"
+    },
+    {
+      "source": "/api-reference/endpoint/email-check",
+      "destination": "/api-reference/introduction"
+    },
+    {
+      "source": "/api-reference/endpoint/email-verify",
+      "destination": "/api-reference/introduction"
+    },
+    {
+      "source": "/api-reference/endpoint/finance-history",
+      "destination": "/api-reference/introduction"
+    },
+    {
+      "source": "/api-reference/endpoint/finance-profile",
+      "destination": "/api-reference/introduction"
+    },
+    {
+      "source": "/api-reference/endpoint/finance-quote",
+      "destination": "/api-reference/introduction"
+    },
+    {
+      "source": "/api-reference/endpoint/finance-search",
+      "destination": "/api-reference/introduction"
+    },
+    {
+      "source": "/api-reference/endpoint/finance-stock",
+      "destination": "/api-reference/introduction"
+    },
+    {
+      "source": "/api-reference/endpoint/google-trends",
+      "destination": "/api-reference/endpoint/google-trends-interest"
+    },
+    {
+      "source": "/api-reference/endpoint/shopify-collections",
+      "destination": "/sources/shopping"
+    },
+    {
+      "source": "/api-reference/endpoint/shopify-products",
+      "destination": "/sources/shopping"
+    },
+    {
+      "source": "/api-reference/endpoint/shopify-store",
+      "destination": "/sources/shopping"
+    },
+    {
+      "source": "/api-reference/endpoint/site-seo",
+      "destination": "/sources/web"
+    },
+    {
+      "source": "/api-reference/endpoint/suggest",
+      "destination": "/api-reference/endpoint/google-suggest"
+    },
+    {
+      "source": "/api-reference/endpoint/telegram-channel",
+      "destination": "/sources/social"
+    },
+    {
+      "source": "/api-reference/endpoint/telegram-post",
+      "destination": "/sources/social"
+    },
+    {
+      "source": "/api-reference/endpoint/telegram-posts",
+      "destination": "/sources/social"
+    },
+    {
+      "source": "/api-reference/endpoint/threads-post",
+      "destination": "/sources/social"
+    },
+    {
+      "source": "/api-reference/endpoint/threads-posts",
+      "destination": "/sources/social"
+    },
+    {
+      "source": "/api-reference/endpoint/threads-profile",
+      "destination": "/sources/social"
+    },
+    {
+      "source": "/api-reference/endpoint/threads-search",
+      "destination": "/sources/social"
+    },
+    {
+      "source": "/api-reference/endpoint/web-contacts",
+      "destination": "/sources/web"
+    },
+    {
+      "source": "/api-reference/endpoint/web-news",
+      "destination": "/api-reference/endpoint/google-news"
+    },
+    {
+      "source": "/api-reference/endpoint/x-post",
+      "destination": "/sources/social"
+    },
+    {
+      "source": "/api-reference/endpoint/x-tweet",
+      "destination": "/sources/social"
+    },
+    {
+      "source": "/sources/email",
+      "destination": "/api-reference/introduction"
+    },
+    {
+      "source": "/sources/finance-and-crypto",
+      "destination": "/api-reference/introduction"
+    },
+    {
+      "source": "/sdk-python",
+      "destination": "/sdks/python"
+    },
+    {
+      "source": "/api-reference/getUsage",
+      "destination": "/api-reference/usage"
+    },
+    {
+      "source": "/api-reference/getChannel",
+      "destination": "/api-reference/endpoint/youtube-channel"
     }
   ],
   "integrations": {
