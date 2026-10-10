@@ -1,21 +1,30 @@
 ---
 title: "CLI"
-description: "Install the Stophy CLI, log in with the matching code or an API key, call an endpoint, page through results, and handle errors from a script."
+description: "Install the Stophy CLI, run your first command with no login, then log in to page through results, save output, script it and check your usage."
 sidebarTitle: "CLI"
 icon: "terminal"
 og:title: "Stophy CLI | Stophy"
-og:description: "Install the Stophy CLI, log in with the matching code or an API key, call an endpoint, page through results, and handle errors from a script."
+og:description: "Install the Stophy CLI, run your first command with no login, then log in to page through results, save output, script it and check your usage."
 ---
 
-## Install
-
-Install with npm. You need Node.js 20 or later.
+The `stophy` command gets web data from your terminal, your scripts and any agent that runs shell commands.
 
 ```bash
 npm install -g @stophy/cli
+stophy google search "bun runtime"
 ```
 
-To install without Node.js, use the standalone binary:
+No account, no login. You need Node.js 20 or later.
+
+```text
+engine: google
+1. Bun — A fast all-in-one JavaScript runtime
+   https://bun.com/
+2. oven-sh/bun: Incredibly fast JavaScript runtime, bundler ...
+   https://github.com/oven-sh/bun
+```
+
+To install without Node.js, use the standalone binary.
 
 ```bash
 # macOS and Linux
@@ -25,78 +34,75 @@ curl -fsSL https://stophy.dev/install.sh | bash
 irm https://stophy.dev/install.ps1 | iex
 ```
 
-`npx -y @stophy/cli init --all` logs you in, adds Stophy's agent skills to your agents, and adds the Stophy MCP server, in one command.
+## Set up your agent
 
-## Authenticate
+```bash
+npx -y @stophy/cli init --all
+```
 
-Log in with your browser:
+This logs you in, adds Stophy's skills to your coding agents, and adds the Stophy MCP server.
+
+## Log in
+
+Without a login you can run the commands marked `free` in `stophy endpoints`. To run the rest, log in with your browser.
 
 ```bash
 stophy login --browser
 ```
 
-The CLI prints a code and opens stophy.dev. Check that the page shows the same code, then approve it. On a server with no browser, open the printed link on any other device: the CLI logs in once you approve there.
+The CLI prints a code and opens stophy.dev. Check that the page shows the same code, then approve it. On a server with no browser, open the printed link on any other device. The CLI logs in once you approve there.
 
-To use an API key instead, pass it to `login` or set it as an environment variable:
+To use an API key instead, pass it to `login` or set it in the environment.
 
 ```bash
 stophy login --api-key st_...
 export STOPHY_API_KEY="st_..."
 ```
 
-Each computer gets its own key. Google search, Google News, Google Maps search, Reddit search, YouTube search, YouTube video and YouTube transcript work without logging in.
-
-Log out and revoke this computer's key:
-
-```bash
-stophy logout
-```
+`stophy logout` logs out and revokes this computer's key.
 
 ## Make a call
 
-Name the source, then the command:
+Name the source, then the command.
 
 ```bash
 stophy youtube search "bun runtime"
-stophy google maps search --query dentist --location Berlin
 stophy reddit subreddit rust
-stophy youtube transcript https://youtu.be/M4TufsFlv_o
-stophy google ads advertisers nike
-stophy meta ads search nike
+stophy google maps search --query dentist --location Berlin
+stophy youtube transcript --videoUrl https://youtu.be/M4TufsFlv_o
 ```
 
-To point at one thing, give its link or its id as the argument, like `stophy youtube video M4TufsFlv_o`, or use the matching option, like `--videoUrl` or `--videoId`. Send one, not both.
+To point at one thing, use its link or its id with the matching option, like `--videoUrl` or `--videoId`. Send one, not both.
 
-Run `stophy <source> --help` to see what a source can do, and `stophy <source> <command> --help` for every option on one command. If you give a value an option does not accept, the CLI stops before it calls Stophy and lists which values work.
+Run `stophy <source> --help` to see what a source can do, and `stophy <source> <command> --help` for every option on one command. `stophy endpoints reddit` lists the commands for a source with their cost, and `stophy describe reddit.search` shows one command's options and an example. If a value is not one the option accepts, the CLI stops before it calls Stophy and lists the values that work.
 
 ## Read the output
 
-By default, lists print one row per result with its title and link, and other results print as `name: value` lines. Add `--json` to get the data as JSON instead, with the credits used printed to stderr. `--raw` prints the full response, including its request id.
+Lists print one row per result with its title and link. Other results print as `name: value` lines. Add `--json` for the data as JSON, with the credits used on stderr. `--raw` prints the full response, including `requestId`.
 
 ```bash
 stophy reddit search "bun runtime" --json
 ```
 
-## Page through results
-
-Commands for sites with numbered pages take `--page`. Commands for sites with their own cursor end their output with a cursor when there is more; pass it back to get the next page:
-
-```bash
-stophy google search "bun runtime" --page 2
-stophy reddit search "bun runtime" --cursor "<cursor from the last output>"
-```
-
-## Save the output
-
-`-o <path>` writes the output to a file instead of stdout:
+`-o <path>` writes the output to a file.
 
 ```bash
 stophy youtube search "bun runtime" --json -o results.json
 ```
 
-## Handle errors and retries
+## Page through results
 
-A failed call exits non-zero and writes its message to stderr. When the API says to wait, the message ends with `Retry after Ns.` and the CLI does not retry for you:
+When a command has more, its output ends with a `cursor`. Pass it back with `--cursor`. This needs a login.
+
+```bash
+stophy reddit search "bun runtime" --cursor "<cursor from the last output>"
+```
+
+Commands for sites with numbered pages take `--page`, like `stophy google search "bun runtime" --page 2`. See [Page through results](/guides/paging).
+
+## Use it in a script
+
+A failed call exits non-zero and writes its message to stderr. The message ends with the request id, and with `Retry after Ns.` when the API says to wait. The CLI does not retry for you.
 
 ```bash
 if ! stophy reddit search "bun runtime" --json -o out.json 2>err.txt; then
@@ -105,9 +111,7 @@ if ! stophy reddit search "bun runtime" --json -o out.json 2>err.txt; then
 fi
 ```
 
-To retry on a rate limit from a script, parse the wait time out of that message, or call `stophy status` first to check your account is live before a batch of calls.
-
-## Check your account
+## Check your usage
 
 ```bash
 stophy status
@@ -115,7 +119,7 @@ stophy usage
 stophy logs --days 7
 ```
 
-`status` shows your login and balance. `usage` shows your balance and all-time usage. `logs` shows your recent requests.
+`status` shows your login, balance and CLI version. `usage` shows your balance and all-time usage. `logs` shows your recent requests.
 
 ## Commands
 
@@ -126,8 +130,9 @@ stophy logs --days 7
 | `stophy logout` | Log out and revoke this computer's key |
 | `stophy <source> <command>` | Get data, for example `stophy youtube search` |
 | `stophy endpoints [word]` | List every command and its cost |
-| `stophy status` | Show your login, balance, and CLI version |
+| `stophy describe <id>` | Show one command's options, cost and an example |
+| `stophy status` | Show your login, balance and CLI version |
 | `stophy usage` | Show your balance and all-time usage |
 | `stophy logs` | Show your recent requests |
-| `stophy doctor` | Check your install, login, and connection |
+| `stophy doctor` | Check your install, login and connection |
 | `stophy version` | Show the CLI version |

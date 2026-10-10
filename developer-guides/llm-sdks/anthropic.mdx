@@ -1,21 +1,15 @@
 ---
 title: "Anthropic"
-description: "Give Claude live web search with Stophy: define a tool, run the call when Claude asks for it, and return the results as JSON."
+description: "Give Claude live web search with Stophy. Save one search function, define it as a tool, and let the tool runner call it when Claude asks."
 og:title: "Claude tool use with Stophy | Stophy"
-og:description: "Give Claude live web search with Stophy: define a tool, run the call when Claude asks for it, and return the results as JSON."
+og:description: "Give Claude live web search with Stophy. Save one search function, define it as a tool, and let the tool runner call it when Claude asks."
 ---
 
-## Setup
+Give Claude live web search. Claude asks for a search, your code calls Stophy, and Claude answers from the results.
 
-```bash
-npm install @anthropic-ai/sdk zod
-```
+## The search tool
 
-Set `ANTHROPIC_API_KEY` in your environment. `STOPHY_API_KEY` is optional for this example.
-
-## The Stophy tool
-
-This function calls Google search and returns the results as JSON, limited to 5 so the model's context stays small. It reads your key from `STOPHY_API_KEY`, and works without one.
+Save this as `stophy.ts`. It calls Google search and returns the top 5 results as JSON. It works with no key. Set `STOPHY_API_KEY` to lift the free limit.
 
 ```ts stophy.ts
 export async function stophySearch(query: string): Promise<string> {
@@ -28,12 +22,19 @@ export async function stophySearch(query: string): Promise<string> {
   });
   const body = await response.json();
   if (!body.success) throw new Error(body.error.message);
-  return JSON.stringify(body.data.results);
+  return JSON.stringify(body.data.results.slice(0, 5));
 }
 ```
-## Use it as a tool
 
-Define the search as a tool with `betaZodTool`. The tool runner calls it whenever Claude asks, and returns Claude's final message.
+## Give it to Claude
+
+```bash
+npm install @anthropic-ai/sdk zod
+```
+
+Set `ANTHROPIC_API_KEY` in your environment.
+
+`betaZodTool` defines the search as a tool. The tool runner calls it whenever Claude asks, and returns Claude's final message.
 
 ```ts
 import Anthropic from "@anthropic-ai/sdk";

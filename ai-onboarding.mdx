@@ -1,38 +1,28 @@
 ---
 title: "Build with AI"
-description: "Set up an AI agent with Stophy: get credentials, connect the MCP server, and give it agents.md, llms.txt and the live endpoint catalog."
+description: "Set up an AI agent with Stophy. Get a key, connect the MCP server, and give it agents.md, llms.txt and the live endpoint catalog."
 og:title: "Build with AI | Stophy"
-og:description: "Set up an AI agent with Stophy: get credentials, connect the MCP server, and give it agents.md, llms.txt and the live endpoint catalog."
+og:description: "Set up an AI agent with Stophy. Get a key, connect the MCP server, and give it agents.md, llms.txt and the live endpoint catalog."
 mode: "wide"
 ---
 
-If you build with an AI agent, give it [stophy.dev/agents.md](https://stophy.dev/agents.md). It explains how to choose an endpoint and add Stophy to your project.
+Give your agent [stophy.dev/agents.md](https://stophy.dev/agents.md). It says how to pick an endpoint and add Stophy to your project.
 
-- [Get credentials](#get-credentials)
-- [Set up MCP](#set-up-mcp)
-- [Agent harnesses](#agent-harnesses)
-- [LLM SDKs](#llm-sdks)
-- [Resources for agents](#resources-for-agents)
+## Connect over MCP
 
-## Get credentials
+```bash
+claude mcp add --transport http stophy https://api.stophy.dev/mcp
+```
 
-Sign up in the [dashboard](https://stophy.dev/signup) and create an API key. Set it as `STOPHY_API_KEY` in your environment. Send the key with every API request. Over MCP you can also start with no key, or sign in with your browser.
+The free endpoints work right away. Add your key as a bearer token to use every endpoint, or sign in with your browser at `https://mcp.stophy.dev/mcp`.
 
-**How you might arrive:**
+<Card title="MCP server" icon="plug" href="/mcp-server">Set up Codex, Claude Code, Cursor, OpenCode or another client.</Card>
 
-- **Docs:** start in the dashboard to get your key.
-- **API `401`:** create a key, or check the key in your `Authorization` header.
-- **Direct URL:** follow [agents.md](https://stophy.dev/agents.md), then create a key in the dashboard.
+## Get a key
 
-<Card title="Get an API key" icon="key" href="https://stophy.dev/signup">Create an account, then add a key in the dashboard.</Card>
+Sign up in the [dashboard](https://stophy.dev/signup), create a key, and save it as `STOPHY_API_KEY`. Send it with every API request.
 
-## Set up MCP
-
-Stophy's remote MCP server lets your agent find and call endpoints. It uses Streamable HTTP at `https://api.stophy.dev/mcp`. Start with no key, add a bearer key for every endpoint, or sign in at `https://mcp.stophy.dev/mcp`.
-
-<Card title="Set up Stophy MCP" icon="plug" href="/mcp-server">Connect Codex, Claude Code, Cursor, OpenCode, or another MCP client.</Card>
-
-## Agent harnesses
+## Your agent harness
 
 <CardGroup cols={4}>
   <Card title="Codex" icon="code" href="/quickstarts/codex">Add Stophy to Codex.</Card>
@@ -41,9 +31,9 @@ Stophy's remote MCP server lets your agent find and call endpoints. It uses Stre
   <Card title="Claude Desktop" icon="comments" href="/quickstarts/claude-desktop">Add Stophy to Claude Desktop.</Card>
 </CardGroup>
 
-OpenCode setup is in the [MCP setup](/mcp-server/keyless).
+OpenCode setup is in [MCP without a key or with one](/mcp-server/keyless).
 
-## LLM SDKs
+## Your LLM SDK
 
 <CardGroup cols={3}>
   <Card title="OpenAI" icon="robot" href="/developer-guides/llm-sdks/openai">Call Stophy from an OpenAI tool.</Card>
@@ -51,8 +41,6 @@ OpenCode setup is in the [MCP setup](/mcp-server/keyless).
   <Card title="Vercel AI SDK" icon="code" href="/developer-guides/llm-sdks/vercel-ai-sdk">Use Stophy with the AI SDK.</Card>
 </CardGroup>
 
-## Resources for agents
-
 <Card title="Resources for agents" icon="file-code" href="/resources" arrow>
-  agents.md, llms.txt, the OpenAPI document, and the other resources an agent can read directly.
+  agents.md, llms.txt, the OpenAPI document and the endpoint catalog.
 </Card>

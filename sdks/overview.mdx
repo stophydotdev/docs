@@ -1,24 +1,12 @@
 ---
 title: "Overview"
-description: "Pick a Stophy client: the TypeScript or Python SDK for code, or the CLI for your terminal and AI agent skills. Install lines for each."
+description: "Pick a Stophy client. Use the TypeScript or Python SDK in your code, or the CLI in your terminal and for AI agents that run shell commands."
 og:title: "SDKs overview | Stophy"
-og:description: "Pick a Stophy client: the TypeScript or Python SDK for code, or the CLI for your terminal and AI agent skills. Install lines for each."
+og:description: "Pick a Stophy client. Use the TypeScript or Python SDK in your code, or the CLI in your terminal and for AI agents that run shell commands."
 mode: "wide"
 ---
 
-Stophy ships three official clients. Each wraps the same [REST API](/api-reference/introduction): your key, retries, and errors.
-
-<CardGroup cols={3}>
-  <Card title="TypeScript" icon="node-js" href="/sdks/typescript">For Node.js, Bun, Deno and browser code. Typed inputs and results.</Card>
-  <Card title="Python" icon="python" href="/sdks/python">For Python apps and scripts. Sync and async clients.</Card>
-  <Card title="CLI" icon="terminal" href="/sdks/cli">For your terminal, scripts, and AI agents that run shell commands.</Card>
-</CardGroup>
-
-## Pick one
-
-Write code that calls Stophy and handles the result: use the **TypeScript** or **Python SDK**. Both return typed data you can use directly.
-
-Run a one-off lookup, pipe results into another command, or give an agent shell access to Stophy without writing a client: use the **CLI**. It also installs Stophy's agent skills, so a coding agent learns which endpoint to call without you wiring an SDK into the project.
+Stophy has a TypeScript SDK, a Python SDK and a CLI. Each one calls the same [API](/api-reference/introduction).
 
 ## Install
 
@@ -38,11 +26,46 @@ npm install -g @stophy/cli
 
 </CodeGroup>
 
-## What every client does
+## Make a call
 
-- Reads `STOPHY_API_KEY` from your environment, so you rarely pass a key by hand.
-- Returns the response envelope: `success`, `data`, `creditsUsed` and `requestId`.
-- Retries network errors and `429`/`5xx` responses with backoff, honoring `Retry-After`.
-- Reads account usage and recent calls.
+No account, no key.
 
-See the [TypeScript](/sdks/typescript), [Python](/sdks/python) and [CLI](/sdks/cli) pages for setup and every task.
+<CodeGroup>
+
+```ts TypeScript icon="/images/icons/typescript.svg"
+import { Stophy } from "stophy";
+
+const result = await new Stophy().google.search({ query: "bun runtime" });
+console.log(result.data.results);
+```
+
+```python Python icon="python"
+from stophy import Stophy
+
+result = Stophy().google.search(query="bun runtime")
+print(result["data"]["results"])
+```
+
+```bash CLI icon="square-terminal"
+stophy google search "bun runtime"
+```
+
+</CodeGroup>
+
+You get Google results with `creditsUsed: 0`. A key lifts the free limit.
+
+## Pick one
+
+<CardGroup cols={3}>
+  <Card title="TypeScript" icon="node-js" href="/sdks/typescript">
+    For Node.js, Bun, Deno and the browser. Typed inputs and results.
+  </Card>
+  <Card title="Python" icon="python" href="/sdks/python">
+    For Python apps and scripts. Sync and async clients.
+  </Card>
+  <Card title="CLI" icon="terminal" href="/sdks/cli">
+    For your terminal, your scripts, and agents that run shell commands.
+  </Card>
+</CardGroup>
+
+The SDKs and the CLI read `STOPHY_API_KEY` from your environment. `npx -y @stophy/cli init --all` also adds Stophy's skills and MCP server to your coding agent. See [Quickstart](/quickstart) to get a key.

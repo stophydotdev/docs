@@ -1,11 +1,11 @@
 ---
 title: "Credits and billing"
-description: "How Stophy credits work: from $0.80 per 1,000 credits, 1,000 free for new accounts, a clear price per call, and failed calls cost nothing."
+description: "Stophy credits start at $0.80 per 1,000. New accounts get 1,000 free, most calls cost 1 credit, and a call that fails or finds nothing costs nothing."
 og:title: "Credits and billing | Stophy"
-og:description: "How Stophy credits work: from $0.80 per 1,000 credits, 1,000 free for new accounts, a clear price per call, and failed calls cost nothing."
+og:description: "Stophy credits start at $0.80 per 1,000. New accounts get 1,000 free, most calls cost 1 credit, and a call that fails or finds nothing costs nothing."
 ---
 
-Stophy uses credits. You buy credits ahead of time and each successful call uses some.
+Most calls cost 1 credit, new accounts get 1,000 free, and a call that fails or finds nothing costs nothing.
 
 ## Price
 
@@ -15,53 +15,47 @@ Stophy uses credits. You buy credits ahead of time and each successful call uses
 | $100 or more | $1.20 |
 | $500 or more | $0.80 |
 
-- New accounts start with 1,000 free credits.
-- Top up at [stophy.dev](https://stophy.dev). The smallest top-up is $10.
-- Credits never expire.
+Top up at [stophy.dev](https://stophy.dev). The smallest top-up is $10. Credits never expire.
 
 ## What a call costs
 
-Most calls cost 1 credit. A few cost 2 credits, and a few charge by the number of results. Transcripts depend on the video (see below). The price of a call does not change with how many results come back, except for the five long lists. Errors and empty results cost nothing.
+Of the 110 endpoints, 94 cost 1 credit and 9 cost 2. Seven are priced per unit.
 
 | Cost | Endpoints |
 | --- | --- |
-| 1 credit | Everything not listed below, including every Google Search, News, Maps, Hotels, Flights and Jobs endpoint, every Reddit, YouTube, TikTok, Indeed, Upwork, Tripadvisor, App Store and Google Play call except the long lists, and every ad library endpoint |
 | 2 credits | `amazon.search`, `amazon.product`, `amazon.bestsellers`, `zillow.search`, `zillow.property`, `instagram.profile`, `linkedin.profile`, `google.aiMode`, `google.shopping` |
-| 1 credit per 10 results | `google.images`, `youtube.charts`, `appstore.search`, `appstore.top`, `google.play.search` |
-| From 1 credit | `instagram.transcript` and `tiktok.transcript`, see below |
+| 1 credit per 10 images | `google.images` |
+| 1 credit per 10 apps | `appstore.search`, `appstore.top`, `google.play.search` |
+| 1 credit, plus 1 for each result read in full | `google.search`, when `scrapeResults` is on |
+| 2 credits, plus 1 per 10 seconds of audio | `instagram.transcript` |
+| 1 credit with captions, or 2 credits plus 1 per 10 seconds of audio | `tiktok.transcript` |
 
-The five long lists take `limit`. Send it to return fewer results and pay for fewer.
+Every other endpoint costs 1 credit, however many results come back.
 
-One call returns one page. To get the next page, send the `cursor` or the next `page` in a new call. Each page costs the same again. A page continues where the last one stopped, with no gaps. Find an endpoint's cost in the [API reference](/api-reference/introduction), on each source page, or in `credits` in `GET https://api.stophy.dev/v1/endpoints`.
+Each endpoint's price is on its page in the [API reference](/api-reference/introduction). The catalog has it too, as `credits` and, when the price varies, `pricing`.
 
-Failed calls cost nothing. A call that Stophy refuses, for example a TikTok video over 3 minutes sent to `tiktok.transcript`, costs nothing either.
+```bash
+curl https://api.stophy.dev/v1/endpoints
+```
 
-### Transcripts
+## Transcripts
 
-`youtube.transcript` reads a video's captions and costs 1 credit.
+`youtube.transcript` costs 1 credit. For `instagram.transcript` and `tiktok.transcript`, audio is rounded up to the next 10 seconds. Instagram goes up to 30 minutes, which is 182 credits at most. TikTok goes up to 3 minutes, which is 20 credits at most. A longer video is refused and costs nothing.
 
-`instagram.transcript` and `tiktok.transcript` cost 1 credit when the video has captions. When it has none, the audio is transcribed instead and the call costs 2 credits plus 1 credit for every 10 seconds of audio. Instagram audio goes up to 30 minutes, so 182 credits at most. TikTok audio goes up to 3 minutes, so 20 credits at most. Audio is rounded up to the next 10 seconds. A video without captions that is longer than the limit is refused and costs nothing.
+When audio was transcribed, the response has `transcribedSeconds`.
 
-The response has `transcribedSeconds` when the audio was transcribed, and `creditsUsed` has what the call cost.
+## Limit the cost of a long list
 
-| Video | Credits |
-| --- | --- |
-| Has captions | 1 |
-| No captions, 60 seconds | 8 |
-| No captions, 3 minutes | 20 |
-| No captions, 30 minutes (Instagram only) | 182 |
+`google.images`, `google.ads.advertisers`, `appstore.search`, `appstore.top` and `google.play.search` take `limit`. On the priced ones, a smaller `limit` costs fewer credits.
 
-The catalog at `GET https://api.stophy.dev/v1/endpoints` has `credits` for the lowest price and `pricing` for the terms when the price varies.
+## Pages
+
+One call returns one page. The next page is a new call and costs the same again. See [Page through results](/guides/paging).
 
 ## See what a call cost
 
-Every successful response tells you:
-
-- `creditsUsed` in the JSON body
-- the `x-credits-used` header
-
-For your balance and history, use [`GET /v1/usage`](/api-reference/usage) and [`GET /v1/logs`](/api-reference/logs).
+Every successful response has `creditsUsed` in the body and an `x-credits-used` header. For your balance and history, use [`GET /v1/usage`](/api-reference/usage) and [`GET /v1/logs`](/api-reference/logs).
 
 ## Running out
 
-When your balance is too low for a call, it answers `402` with code `insufficientCredits` and nothing is charged. The error says how many credits the call needs and how many you have. Top up and try again.
+When your balance is too low, the call answers `402` with code `insufficientCredits` and charges nothing. The error says how many credits the call needs and how many you have.

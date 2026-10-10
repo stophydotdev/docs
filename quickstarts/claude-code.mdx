@@ -1,40 +1,38 @@
 ---
 title: "Claude Code"
-description: "Add Stophy to Claude Code as a remote MCP server so your agent can query the web's major platforms."
-og:title: "Claude Code MCP setup | Stophy"
-og:description: "Add Stophy to Claude Code as a remote MCP server so your agent can query the web's major platforms."
+description: "Add Stophy to Claude Code with one command. Start with no key, sign in with your browser, or use an API key to open every endpoint."
+og:title: "Claude Code | Stophy"
+og:description: "Add Stophy to Claude Code with one command. Start with no key, sign in with your browser, or use an API key to open every endpoint."
 ---
 
-## Prerequisites
+Add Stophy to [Claude Code](https://code.claude.com) with one command.
 
-- [Claude Code](https://code.claude.com)
-- A Stophy API key in `STOPHY_API_KEY`. [Get one](https://stophy.dev/signup).
+```bash
+claude mcp add --transport http stophy https://api.stophy.dev/mcp
+```
 
-No key yet? Start [without one](/mcp-server/keyless) or [sign in with your browser](/mcp-server/oauth).
+Your agent can use the free endpoints right away. Run `claude mcp get stophy` to check it.
 
-## Add Stophy
+## Sign in with your browser
+
+```bash
+claude mcp add --transport http stophy https://mcp.stophy.dev/mcp
+```
+
+Type `/mcp` in Claude Code, choose `stophy`, and pick Authenticate. This opens every endpoint.
+
+## Use an API key
 
 ```bash
 claude mcp add --transport http stophy https://api.stophy.dev/mcp --header "Authorization: Bearer $STOPHY_API_KEY"
 ```
 
-Your shell fills in the key when you run the command, and Claude Code saves it for this project on your machine. Add `--scope user` to use Stophy in every project.
+Set `STOPHY_API_KEY` first. [Get a key](https://stophy.dev/signup). Your shell fills it in, and Claude Code saves it on your machine. Add `--scope user` to use Stophy in every project.
 
-To also get one tool per endpoint for some sources, put `toolsets` on the URL:
-
-```bash
-claude mcp add --transport http stophy "https://api.stophy.dev/mcp?toolsets=reddit,youtube" --header "Authorization: Bearer $STOPHY_API_KEY"
-```
-
-## Check it
-
-Run `claude mcp get stophy`, or type `/mcp` in Claude Code. Then try:
+## Try it
 
 ```text
 Use Stophy to find the top Reddit posts about Bun this week and summarize them.
 ```
 
-## Troubleshooting
-
-- **The server shows `401`:** the key is missing or wrong. Run `claude mcp remove stophy`, check `echo $STOPHY_API_KEY` prints something, and add it again.
-- **Two `stophy` servers:** remove one with `claude mcp remove stophy`, then start a new session.
+If you see two `stophy` servers, run `claude mcp remove stophy` and add the one you want. To get one tool per endpoint for some sources, see [toolsets](/mcp-server#what-your-agent-sees).
