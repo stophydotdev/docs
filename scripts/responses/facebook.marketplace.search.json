@@ -1,0 +1,23 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "location": "Austin, Texas",
+    "latitude": 30.2677,
+    "longitude": -97.7475,
+    "results": [
+      {
+        "listingId": "2057184859004190",
+        "listingUrl": "https://www.facebook.com/marketplace/item/2057184859004190/",
+        "title": "Bike",
+        "price": 120,
+        "priceText": "$120",
+        "city": "Austin",
+        "state": "TX",
+        "imageUrl": "https://scontent.fsac1-1.fna.fbcdn.net/v/t39.84726-6/841923752_927136586881159_8879530617452165642_n.jpg?stp=c0.152.261…",
+        "publishedAt": "2026-10-09T18:24:37.000Z",
+        "isPending": false
+      }
+    ]
+  }
+}

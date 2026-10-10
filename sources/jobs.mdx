@@ -1,8 +1,8 @@
 ---
 title: 'Jobs'
-description: 'Search job listings on Google Jobs, LinkedIn, Indeed, and Upwork. Get the full posting, pay, and requirements for any job as structured JSON.'
+description: 'Search job listings on Google Jobs, LinkedIn, Indeed, Upwork and company careers pages. Get the full posting, pay and requirements for any job.'
 og:title: 'Jobs | Stophy'
-og:description: 'Search job listings on Google Jobs, LinkedIn, Indeed, and Upwork. Get the full posting, pay, and requirements for any job as structured JSON.'
+og:description: 'Search job listings on Google Jobs, LinkedIn, Indeed, Upwork and company careers pages. Get the full posting, pay and requirements for any job.'
 icon: 'briefcase'
 ---
 
@@ -21,9 +21,9 @@ import UpworkSearchPython from '/snippets/examples/upwork.search/python.mdx';
 import UpworkSearchCurl from '/snippets/examples/upwork.search/curl.mdx';
 import UpworkSearchCli from '/snippets/examples/upwork.search/cli.mdx';
 
-Search job listings on Google Jobs, LinkedIn, Indeed, and Upwork. Get the full posting, pay, and requirements for any job as structured JSON. See every field in the [Jobs reference](/api-reference/endpoint/google-jobs), or try it in the [playground](https://stophy.dev/playground).
+Search job listings on Google Jobs, LinkedIn, Indeed, Upwork and company careers pages. Get the full posting, pay and requirements for any job. See every field in the [Jobs reference](/api-reference/endpoint/google-jobs), or try it in the [playground](https://stophy.dev/playground).
 
-## Search Google Jobs: openings from many job sites, with apply links and highlights
+## Scrape Google Jobs results
 
 <CodeGroup>
   <GoogleJobsTs />
@@ -70,7 +70,7 @@ The response:
     ]
   },
   "creditsUsed": 1,
-  "requestId": "c5bca8f0-bad4-4786-9723-40cb010a6f7e"
+  "requestId": "ec5d037c-33e3-4ee3-8bf4-9c7bea77c828"
 }
 ```
 
@@ -78,17 +78,19 @@ The response:
 
 | Endpoint | Cost |
 | --- | --- |
-| [Search Google Jobs: openings from many job sites, with apply links and highlights](/api-reference/endpoint/google-jobs) | 1 credit |
-| [Search LinkedIn jobs](/api-reference/endpoint/linkedin-jobs-search) | 1 credit |
-| [Get a LinkedIn job's details](/api-reference/endpoint/linkedin-jobs-job) | 1 credit |
-| [Search Upwork jobs](/api-reference/endpoint/upwork-search) | 1 credit |
-| [Get an Upwork job's details](/api-reference/endpoint/upwork-job) | 1 credit |
-| [Search Indeed jobs](/api-reference/endpoint/indeed-search) | 1 credit |
-| [Get an Indeed job's details](/api-reference/endpoint/indeed-job) | 1 credit |
+| [Scrape Google Jobs results](/api-reference/endpoint/google-jobs) | 1 credit |
+| [Scrape LinkedIn job search results](/api-reference/endpoint/linkedin-jobs-search) | 1 credit |
+| [Scrape a LinkedIn job page](/api-reference/endpoint/linkedin-jobs-job) | 1 credit |
+| [Scrape Upwork job search results](/api-reference/endpoint/upwork-search) | 1 credit |
+| [Scrape an Upwork job page](/api-reference/endpoint/upwork-job) | 1 credit |
+| [Scrape Indeed job search results](/api-reference/endpoint/indeed-search) | 1 credit |
+| [Scrape an Indeed job page](/api-reference/endpoint/indeed-job) | 1 credit |
+| [Scrape a company's open jobs from its careers page](/api-reference/endpoint/careers-jobs) | 1 credit |
+| [Scrape one job from a company's careers page](/api-reference/endpoint/careers-job) | 1 credit |
 
 ## More ways to call it
 
-### Search Indeed jobs
+### Scrape Indeed job search results
 
 <CodeGroup>
   <IndeedSearchTs />
@@ -97,7 +99,7 @@ The response:
   <IndeedSearchCli />
 </CodeGroup>
 
-### Search Upwork jobs
+### Scrape Upwork job search results
 
 <CodeGroup>
   <UpworkSearchTs />
@@ -106,4 +108,4 @@ The response:
   <UpworkSearchCli />
 </CodeGroup>
 
-<Tip>Pass the job link from a search result into that site's job endpoint for the full posting.</Tip>
+<Tip>Pass the job link from a search result into that site's job endpoint to get the full posting.</Tip>

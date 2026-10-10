@@ -1,8 +1,8 @@
 ---
 title: 'Social'
-description: 'Search and read posts, profiles, and comments across Reddit, Instagram, LinkedIn, and Pinterest. Get a LinkedIn profile, company, or its latest posts.'
+description: 'Search and read posts, profiles and comments on Reddit, Instagram, LinkedIn, Pinterest, Facebook, X and Threads. Get a LinkedIn profile, a company, or its latest posts.'
 og:title: 'Social | Stophy'
-og:description: 'Search and read posts, profiles, and comments across Reddit, Instagram, LinkedIn, and Pinterest. Get a LinkedIn profile, company, or its latest posts.'
+og:description: 'Search and read posts, profiles and comments on Reddit, Instagram, LinkedIn, Pinterest, Facebook, X and Threads. Get a LinkedIn profile, a company, or its latest posts.'
 icon: 'users'
 ---
 
@@ -21,9 +21,9 @@ import LinkedinProfilePython from '/snippets/examples/linkedin.profile/python.md
 import LinkedinProfileCurl from '/snippets/examples/linkedin.profile/curl.mdx';
 import LinkedinProfileCli from '/snippets/examples/linkedin.profile/cli.mdx';
 
-Search and read posts, profiles, and comments across Reddit, Instagram, LinkedIn, and Pinterest. Get a LinkedIn profile, company, or its latest posts. See every field in the [Social reference](/api-reference/endpoint/reddit-search), or try it in the [playground](https://stophy.dev/playground).
+Search and read posts, profiles and comments on Reddit, Instagram, LinkedIn, Pinterest, Facebook, X and Threads. Get a LinkedIn profile, a company, or its latest posts. See every field in the [Social reference](/api-reference/endpoint/reddit-search), or try it in the [playground](https://stophy.dev/playground).
 
-## Search Reddit posts, subreddits and users
+## Scrape Reddit search results
 
 <CodeGroup>
   <RedditSearchTs />
@@ -78,7 +78,7 @@ The response:
     ]
   },
   "creditsUsed": 1,
-  "requestId": "88a2ad5a-4f37-426f-896f-bf70f9450877"
+  "requestId": "28b72093-aa11-414c-b577-ce5b1aa63604"
 }
 ```
 
@@ -86,29 +86,36 @@ The response:
 
 | Endpoint | Cost |
 | --- | --- |
-| [Search Reddit posts, subreddits and users](/api-reference/endpoint/reddit-search) | 1 credit (no key needed) |
-| [Read a post and its comment thread, with a cursor for the rest of the comments](/api-reference/endpoint/reddit-post) | 1 credit |
-| [Get a subreddit's info and a page of its posts](/api-reference/endpoint/reddit-subreddit) | 1 credit |
-| [Get a user's profile and a page of their posts and comments](/api-reference/endpoint/reddit-user) | 1 credit |
-| [Get Reddit posts that link to a website](/api-reference/endpoint/reddit-domain) | 1 credit |
-| [See where else on Reddit one link was shared, like Reddit's Other discussions](/api-reference/endpoint/reddit-discussions) | 1 credit |
-| [List Reddit's popular or newest communities](/api-reference/endpoint/reddit-subreddits) | 1 credit |
-| [Get a profile's bio, stats and a page of its posts and reels](/api-reference/endpoint/instagram-profile) | 2 credits |
-| [A profile's reels, with play counts](/api-reference/endpoint/instagram-profile-reels) | 1 credit |
-| [Get a post or reel, with its top comments](/api-reference/endpoint/instagram-post) | 1 credit |
-| [Get a post's comments, or the replies to one comment](/api-reference/endpoint/instagram-comments) | 1 credit |
-| [Search Instagram posts and reels](/api-reference/endpoint/instagram-search) | 1 credit |
-| [Get a company's profile, size and industry](/api-reference/endpoint/linkedin-company) | 1 credit |
-| [Get a person's profile](/api-reference/endpoint/linkedin-profile) | 2 credits |
-| [Get a person's or company's latest public posts](/api-reference/endpoint/linkedin-posts) | 1 credit |
-| [Search pins](/api-reference/endpoint/pinterest-search) | 1 credit |
-| [Get a pin's details](/api-reference/endpoint/pinterest-pin) | 1 credit |
-| [Get a board and a page of its pins](/api-reference/endpoint/pinterest-board) | 1 credit |
-| [Get a profile and a page of its pins](/api-reference/endpoint/pinterest-profile) | 1 credit |
+| [Scrape Reddit search results](/api-reference/endpoint/reddit-search) | 1 credit (no key needed) |
+| [Scrape a Reddit post and its comments](/api-reference/endpoint/reddit-post) | 1 credit |
+| [Scrape a subreddit and its posts](/api-reference/endpoint/reddit-subreddit) | 1 credit |
+| [Scrape a Reddit user's profile, posts and comments](/api-reference/endpoint/reddit-user) | 1 credit |
+| [Scrape where else a link was shared on Reddit](/api-reference/endpoint/reddit-discussions) | 1 credit |
+| [Scrape Reddit's popular or newest communities](/api-reference/endpoint/reddit-subreddits) | 1 credit |
+| [Scrape an Instagram profile and its posts](/api-reference/endpoint/instagram-profile) | 2 credits |
+| [Scrape an Instagram profile's reels](/api-reference/endpoint/instagram-profile-reels) | 1 credit |
+| [Scrape an Instagram post or reel](/api-reference/endpoint/instagram-post) | 1 credit |
+| [Scrape the comments of an Instagram post](/api-reference/endpoint/instagram-comments) | 1 credit |
+| [Scrape a LinkedIn company page](/api-reference/endpoint/linkedin-company) | 1 credit |
+| [Scrape a public LinkedIn profile](/api-reference/endpoint/linkedin-profile) | 2 credits |
+| [Scrape a person's or company's public LinkedIn posts](/api-reference/endpoint/linkedin-posts) | 1 credit |
+| [Scrape Pinterest search results](/api-reference/endpoint/pinterest-search) | 1 credit |
+| [Scrape a Pinterest pin](/api-reference/endpoint/pinterest-pin) | 1 credit (no key needed) |
+| [Scrape a Pinterest board and its pins](/api-reference/endpoint/pinterest-board) | 1 credit |
+| [Scrape a Pinterest profile and its pins](/api-reference/endpoint/pinterest-profile) | 1 credit |
+| [Scrape a public Facebook page's details](/api-reference/endpoint/facebook-page) | 1 credit |
+| [Scrape a public Facebook page's posts](/api-reference/endpoint/facebook-page-posts) | 1 credit |
+| [Scrape a public Facebook post, reel or video](/api-reference/endpoint/facebook-post) | 1 credit |
+| [Scrape the comments of a public Facebook post](/api-reference/endpoint/facebook-post-comments) | 1 credit |
+| [Scrape an X profile](/api-reference/endpoint/x-profile) | 1 credit (no key needed) |
+| [Scrape an X post](/api-reference/endpoint/x-post) | 1 credit (no key needed) |
+| [Scrape a Threads profile](/api-reference/endpoint/threads-profile) | 1 credit |
+| [Scrape a Threads profile's posts](/api-reference/endpoint/threads-profile-posts) | 1 credit |
+| [Scrape a Threads post and its replies](/api-reference/endpoint/threads-post) | 1 credit |
 
 ## More ways to call it
 
-### Get a profile's bio, stats and a page of its posts and reels
+### Scrape an Instagram profile and its posts
 
 <CodeGroup>
   <InstagramProfileTs />
@@ -117,7 +124,7 @@ The response:
   <InstagramProfileCli />
 </CodeGroup>
 
-### Get a person's profile
+### Scrape a public LinkedIn profile
 
 <CodeGroup>
   <LinkedinProfileTs />
@@ -126,4 +133,4 @@ The response:
   <LinkedinProfileCli />
 </CodeGroup>
 
-<Tip>Reddit search works without a key. Instagram profile and LinkedIn profile cost 2 credits. Endpoints that return a `cursor` or a `page` page. See [Page through results](/guides/paging).</Tip>
+<Tip>Reddit search, Pinterest pins, X profiles and X posts work without a key. Instagram profile and LinkedIn profile cost 2 credits. Endpoints that return a `cursor` or take a `page` give you more pages. See [Page through results](/guides/paging).</Tip>

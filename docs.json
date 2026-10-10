@@ -2,7 +2,7 @@
   "$schema": "https://mintlify.com/docs.json",
   "theme": "aspen",
   "name": "Stophy Docs",
-  "description": "Stophy docs: get structured public web data for AI agents and apps from one API. Search, social, video, places, shopping, jobs, real estate and more.",
+  "description": "Stophy is a web scraping API for AI agents. One API to search the web, read what people say, and look up products, places, jobs and homes.",
   "colors": {
     "primary": "#f5d90a",
     "light": "#f5d90a",
@@ -141,7 +141,6 @@
                   "api-reference/endpoint/google-search",
                   "api-reference/endpoint/google-news",
                   "api-reference/endpoint/google-images",
-                  "api-reference/endpoint/google-videos",
                   "api-reference/endpoint/google-scholar",
                   "api-reference/endpoint/google-patents",
                   "api-reference/endpoint/google-aiMode",
@@ -166,13 +165,9 @@
                   "api-reference/endpoint/youtube-video",
                   "api-reference/endpoint/youtube-transcript",
                   "api-reference/endpoint/youtube-comments",
-                  "api-reference/endpoint/youtube-related",
                   "api-reference/endpoint/youtube-channel",
-                  "api-reference/endpoint/youtube-channel-search",
                   "api-reference/endpoint/youtube-playlist",
-                  "api-reference/endpoint/youtube-hashtag",
-                  "api-reference/endpoint/youtube-post",
-                  "api-reference/endpoint/youtube-charts"
+                  "api-reference/endpoint/youtube-post"
                 ]
               },
               {
@@ -206,7 +201,6 @@
                   "api-reference/endpoint/reddit-post",
                   "api-reference/endpoint/reddit-subreddit",
                   "api-reference/endpoint/reddit-user",
-                  "api-reference/endpoint/reddit-domain",
                   "api-reference/endpoint/reddit-discussions",
                   "api-reference/endpoint/reddit-subreddits"
                 ]
@@ -217,8 +211,7 @@
                   "api-reference/endpoint/instagram-profile",
                   "api-reference/endpoint/instagram-profile-reels",
                   "api-reference/endpoint/instagram-post",
-                  "api-reference/endpoint/instagram-comments",
-                  "api-reference/endpoint/instagram-search"
+                  "api-reference/endpoint/instagram-comments"
                 ]
               },
               {
@@ -236,6 +229,30 @@
                   "api-reference/endpoint/pinterest-pin",
                   "api-reference/endpoint/pinterest-board",
                   "api-reference/endpoint/pinterest-profile"
+                ]
+              },
+              {
+                "group": "Facebook",
+                "pages": [
+                  "api-reference/endpoint/facebook-page",
+                  "api-reference/endpoint/facebook-page-posts",
+                  "api-reference/endpoint/facebook-post",
+                  "api-reference/endpoint/facebook-post-comments"
+                ]
+              },
+              {
+                "group": "X",
+                "pages": [
+                  "api-reference/endpoint/x-profile",
+                  "api-reference/endpoint/x-post"
+                ]
+              },
+              {
+                "group": "Threads",
+                "pages": [
+                  "api-reference/endpoint/threads-profile",
+                  "api-reference/endpoint/threads-profile-posts",
+                  "api-reference/endpoint/threads-post"
                 ]
               }
             ]
@@ -260,6 +277,22 @@
                   "api-reference/endpoint/tripadvisor-search",
                   "api-reference/endpoint/tripadvisor-place",
                   "api-reference/endpoint/tripadvisor-reviews"
+                ]
+              },
+              {
+                "group": "Airbnb",
+                "pages": [
+                  "api-reference/endpoint/airbnb-search",
+                  "api-reference/endpoint/airbnb-listing",
+                  "api-reference/endpoint/airbnb-reviews"
+                ]
+              },
+              {
+                "group": "Booking.com",
+                "pages": [
+                  "api-reference/endpoint/booking-search",
+                  "api-reference/endpoint/booking-hotel",
+                  "api-reference/endpoint/booking-hotel-reviews"
                 ]
               }
             ]
@@ -294,6 +327,13 @@
                   "api-reference/endpoint/indeed-search",
                   "api-reference/endpoint/indeed-job"
                 ]
+              },
+              {
+                "group": "Company careers",
+                "pages": [
+                  "api-reference/endpoint/careers-jobs",
+                  "api-reference/endpoint/careers-job"
+                ]
               }
             ]
           },
@@ -323,6 +363,27 @@
                   "api-reference/endpoint/tiktok-shop-products",
                   "api-reference/endpoint/tiktok-shop-product",
                   "api-reference/endpoint/tiktok-shop-reviews"
+                ]
+              },
+              {
+                "group": "eBay",
+                "pages": [
+                  "api-reference/endpoint/ebay-search",
+                  "api-reference/endpoint/ebay-item"
+                ]
+              },
+              {
+                "group": "Facebook",
+                "pages": [
+                  "api-reference/endpoint/facebook-marketplace-search"
+                ]
+              },
+              {
+                "group": "Trustpilot",
+                "pages": [
+                  "api-reference/endpoint/trustpilot-search",
+                  "api-reference/endpoint/trustpilot-company",
+                  "api-reference/endpoint/trustpilot-company-reviews"
                 ]
               }
             ]
@@ -395,21 +456,6 @@
                 "pages": [
                   "api-reference/endpoint/linkedin-ads-search",
                   "api-reference/endpoint/linkedin-ads-ad"
-                ]
-              },
-              {
-                "group": "Microsoft",
-                "pages": [
-                  "api-reference/endpoint/microsoft-ads-search",
-                  "api-reference/endpoint/microsoft-ads-ad",
-                  "api-reference/endpoint/microsoft-ads-advertisers"
-                ]
-              },
-              {
-                "group": "Pinterest",
-                "pages": [
-                  "api-reference/endpoint/pinterest-ads-search",
-                  "api-reference/endpoint/pinterest-ads-ad"
                 ]
               }
             ]

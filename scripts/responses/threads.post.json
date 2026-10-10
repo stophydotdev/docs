@@ -1,0 +1,48 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "postId": "4002237372481761947",
+    "postCode": "DeKza99kXKb",
+    "postUrl": "https://www.threads.com/@nasa/post/DeKza99kXKb",
+    "text": "Incoming: a new image from the cosmos! 🌌NASA's James Webb Space Telescope captured a stellar nursery about 3,300…",
+    "publishedAt": "2026-10-06T21:58:15.000Z",
+    "likes": 5303,
+    "replies": 111,
+    "reposts": 454,
+    "quotes": 64,
+    "shares": 105,
+    "imageUrls": [
+      "https://scontent-den2-1.cdninstagram.com/v/t51.82787-15/838249033_18122722672960389_7753548529811430766_n.jpg?stp=dst-j…"
+    ],
+    "imageDescription": "A young star cluster filled with many stars that display Webb’s unique eight-pronged diffraction pattern. At its…",
+    "isPinned": false,
+    "authorId": "28829152388",
+    "authorUsername": "nasa",
+    "authorUrl": "https://www.threads.com/@nasa",
+    "authorAvatarUrl": "https://scontent-den2-1.cdninstagram.com/v/t51.82787-19/669747085_18089786557960389_922072622069351626_n.jpg?_nc_cat=1&…",
+    "authorIsVerified": true,
+    "results": [
+      {
+        "postId": "4002237419869004072",
+        "postCode": "DeKzbqGEWEo",
+        "postUrl": "https://www.threads.com/@nasa/post/DeKzbqGEWEo",
+        "publishedAt": "2026-10-06T21:58:21.000Z",
+        "likes": 926,
+        "replies": 6,
+        "reposts": 24,
+        "quotes": 2,
+        "shares": 4,
+        "linkUrl": "https://science.nasa.gov/missions/webb/nasas-webb-captures-commotion-from-nebulas-stellar-jets/",
+        "linkTitle": "NASA's Webb Captures Commotion From Nebula’s Stellar Jets - NASA Science",
+        "isPinned": false,
+        "authorId": "28829152388",
+        "authorUsername": "nasa",
+        "authorUrl": "https://www.threads.com/@nasa",
+        "authorAvatarUrl": "https://scontent-den2-1.cdninstagram.com/v/t51.82787-19/669747085_18089786557960389_922072622069351626_n.jpg?_nc_cat=1&…",
+        "authorIsVerified": true
+      }
+    ],
+    "cursor": "rRfO6VJseyJ0IjoiZG93bndhcmRfb3RoZXJfcmVwbGllcyIsInRzIjoxNzkxNjI5MzYyODg0LCJleCI6WzE3OTk0NjY4NDIzODQzMDU4LDE4MDk1NTAwNDE…"
+  }
+}

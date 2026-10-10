@@ -1,0 +1,21 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "listingId": "53888412",
+    "total": 337,
+    "results": [
+      {
+        "reviewId": "1785576510399038758",
+        "rating": 5,
+        "text": "Très bel appartement. Très bien localisé au cœur du quartier Alfama. Endroit parfait, près des transports et lieux à…",
+        "language": "fr",
+        "translatedText": "Very nice apartment. Very well located in the heart of the Alfama district. Perfect location, close to public…",
+        "createdAt": "2026-09-29T15:01:47.000Z",
+        "authorName": "Isabelle",
+        "stayNote": "Stayed a few nights"
+      }
+    ],
+    "page": 1
+  }
+}

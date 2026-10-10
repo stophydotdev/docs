@@ -1,0 +1,39 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "itemId": "820221984535",
+    "itemUrl": "https://www.ebay.com/itm/820221984535",
+    "title": "Nintendo Switch OLED Splatoon 3 Edition Handheld Console Multicolor",
+    "price": 5.5,
+    "priceCurrency": "USD",
+    "condition": "Used",
+    "isAuction": true,
+    "bids": 3,
+    "isEnded": false,
+    "isSold": false,
+    "isAvailable": true,
+    "brand": "Nintendo",
+    "model": "Nintendo Switch (OLED Model) Splatoon 3 Edition",
+    "specifics": [
+      {
+        "name": "Brand",
+        "value": "Nintendo"
+      }
+    ],
+    "categories": [
+      "Electronics"
+    ],
+    "sellerName": "Retro Held Games",
+    "sellerFeedbackScore": 7656,
+    "sellerFeedbackPercent": 99.9,
+    "shippingCost": 20,
+    "shippingPostalCode": "95119",
+    "itemLocation": "San Diego, California, United States",
+    "listedAt": "2026-10-09T22:28:48.000Z",
+    "imageUrls": [
+      "https://i.ebayimg.com/images/g/mUMAAeSwpvhqxEl6/s-l1600.jpg"
+    ],
+    "description": "In excellent condition overall! Works great with no issues, includes everything in the photos.\n\nShips Next Business Day!"
+  }
+}

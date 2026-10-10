@@ -1,8 +1,8 @@
 ---
 title: 'Places and travel'
-description: 'Find places on Google Maps and Tripadvisor with their reviews, and search hotels and flights on Google. Filter by rating, traveler type, dates, and more.'
+description: 'Find places on Google Maps and Tripadvisor with their reviews, and search stays on Google Hotels, Airbnb and Booking.com. Search flights on Google. Filter by rating, traveler type, dates and more.'
 og:title: 'Places and travel | Stophy'
-og:description: 'Find places on Google Maps and Tripadvisor with their reviews, and search hotels and flights on Google. Filter by rating, traveler type, dates, and more.'
+og:description: 'Find places on Google Maps and Tripadvisor with their reviews, and search stays on Google Hotels, Airbnb and Booking.com. Search flights on Google. Filter by rating, traveler type, dates and more.'
 icon: 'map-location-dot'
 ---
 
@@ -21,9 +21,9 @@ import GoogleFlightsPython from '/snippets/examples/google.flights/python.mdx';
 import GoogleFlightsCurl from '/snippets/examples/google.flights/curl.mdx';
 import GoogleFlightsCli from '/snippets/examples/google.flights/cli.mdx';
 
-Find places on Google Maps and Tripadvisor with their reviews, and search hotels and flights on Google. Filter by rating, traveler type, dates, and more. See every field in the [Places and travel reference](/api-reference/endpoint/google-maps-search), or try it in the [playground](https://stophy.dev/playground).
+Find places on Google Maps and Tripadvisor with their reviews, and search stays on Google Hotels, Airbnb and Booking.com. Search flights on Google. Filter by rating, traveler type, dates and more. See every field in the [Places and travel reference](/api-reference/endpoint/google-maps-search), or try it in the [playground](https://stophy.dev/playground).
 
-## Search places on Google Maps by keyword and location
+## Scrape Google Maps search results
 
 <CodeGroup>
   <GoogleMapsSearchTs />
@@ -77,7 +77,7 @@ The response:
     "page": 1
   },
   "creditsUsed": 1,
-  "requestId": "cc56bfc2-db4e-4d82-9bb7-ee7cd3a1340f"
+  "requestId": "e27d88d4-1b6f-4017-87cb-40f5102cbf1d"
 }
 ```
 
@@ -85,18 +85,24 @@ The response:
 
 | Endpoint | Cost |
 | --- | --- |
-| [Search places on Google Maps by keyword and location](/api-reference/endpoint/google-maps-search) | 1 credit (no key needed) |
-| [Get a place's address, hours, rating and contact details](/api-reference/endpoint/google-maps-place) | 1 credit |
-| [Get a place's reviews](/api-reference/endpoint/google-maps-reviews) | 1 credit |
-| [Search hotels, restaurants and attractions](/api-reference/endpoint/tripadvisor-search) | 1 credit |
-| [Get a place's rating, ranking and details](/api-reference/endpoint/tripadvisor-place) | 1 credit |
-| [Get a place's reviews](/api-reference/endpoint/tripadvisor-reviews) | 1 credit |
-| [Search Google Hotels with prices, ratings and Google's own filters](/api-reference/endpoint/google-hotels) | 1 credit |
-| [Search flights with prices and times](/api-reference/endpoint/google-flights) | 1 credit |
+| [Scrape Google Maps search results](/api-reference/endpoint/google-maps-search) | 1 credit (no key needed) |
+| [Scrape a Google Maps place's details](/api-reference/endpoint/google-maps-place) | 1 credit |
+| [Scrape a Google Maps place's reviews](/api-reference/endpoint/google-maps-reviews) | 1 credit (no key needed) |
+| [Scrape Tripadvisor search results](/api-reference/endpoint/tripadvisor-search) | 1 credit |
+| [Scrape a Tripadvisor place page](/api-reference/endpoint/tripadvisor-place) | 1 credit |
+| [Scrape a Tripadvisor place's reviews](/api-reference/endpoint/tripadvisor-reviews) | 1 credit |
+| [Scrape Google Hotels results with prices and ratings](/api-reference/endpoint/google-hotels) | 1 credit |
+| [Scrape Google Flights results with prices and times](/api-reference/endpoint/google-flights) | 1 credit |
+| [Scrape Airbnb search results with prices](/api-reference/endpoint/airbnb-search) | 1 credit |
+| [Scrape an Airbnb listing's details, host, amenities, ratings and price](/api-reference/endpoint/airbnb-listing) | 1 credit |
+| [Scrape an Airbnb listing's guest reviews](/api-reference/endpoint/airbnb-reviews) | 1 credit |
+| [Scrape Booking.com search results with prices](/api-reference/endpoint/booking-search) | 1 credit |
+| [Scrape a Booking.com hotel page](/api-reference/endpoint/booking-hotel) | 1 credit |
+| [Scrape a Booking.com hotel's guest reviews](/api-reference/endpoint/booking-hotel-reviews) | 1 credit |
 
 ## More ways to call it
 
-### Search Google Hotels with prices, ratings and Google's own filters
+### Scrape Google Hotels results with prices and ratings
 
 <CodeGroup>
   <GoogleHotelsTs />
@@ -105,7 +111,7 @@ The response:
   <GoogleHotelsCli />
 </CodeGroup>
 
-### Search flights with prices and times
+### Scrape Google Flights results with prices and times
 
 <CodeGroup>
   <GoogleFlightsTs />
@@ -114,4 +120,4 @@ The response:
   <GoogleFlightsCli />
 </CodeGroup>
 
-<Tip>Google Maps search works without a key. Pass the place id from a Google Maps search, or the place link from a Tripadvisor search, into that source's other endpoints.</Tip>
+<Tip>Google Maps search and Google Maps reviews work without a key. Pass the place id from a Google Maps search, or the place link from a Tripadvisor search, into that source's other endpoints.</Tip>
