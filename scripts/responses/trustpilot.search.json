@@ -1,0 +1,27 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "total": 212,
+    "results": [
+      {
+        "companyId": "50489e6800006400051ae0d6",
+        "companyDomain": "stripe.com",
+        "companyUrl": "https://www.trustpilot.com/review/stripe.com",
+        "name": "Stripe",
+        "website": "https://stripe.com",
+        "trustScore": 1.6,
+        "stars": 1.5,
+        "reviews": 17537,
+        "categories": [
+          "Payment Service"
+        ],
+        "addressStreet": "510 Townsend Street",
+        "addressCity": "San Francisco",
+        "addressPostalCode": "94103",
+        "addressCountry": "United States"
+      }
+    ],
+    "page": 1
+  }
+}

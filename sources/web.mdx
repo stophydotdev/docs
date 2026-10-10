@@ -1,8 +1,8 @@
 ---
 title: 'Search and AI answers'
-description: 'Search Google, Google News, Images, Videos, Scholar and Patents, ask Google AI Mode a question, and read what people search for. Get results and cited sources as JSON.'
+description: 'Search Google, News, Images, Scholar and Patents, ask Google AI Mode a question, and read what people search for. You get results and cited sources.'
 og:title: 'Search and AI answers | Stophy'
-og:description: 'Search Google, Google News, Images, Videos, Scholar and Patents, ask Google AI Mode a question, and read what people search for. Get results and cited sources as JSON.'
+og:description: 'Search Google, News, Images, Scholar and Patents, ask Google AI Mode a question, and read what people search for. You get results and cited sources.'
 icon: 'magnifying-glass'
 ---
 
@@ -21,9 +21,9 @@ import GoogleScholarPython from '/snippets/examples/google.scholar/python.mdx';
 import GoogleScholarCurl from '/snippets/examples/google.scholar/curl.mdx';
 import GoogleScholarCli from '/snippets/examples/google.scholar/cli.mdx';
 
-Search Google, Google News, Images, Videos, Scholar and Patents, ask Google AI Mode a question, and read what people search for. Get results and cited sources as JSON. See every field in the [Search and AI answers reference](/api-reference/endpoint/google-search), or try it in the [playground](https://stophy.dev/playground).
+Search Google, News, Images, Scholar and Patents, ask Google AI Mode a question, and read what people search for. You get results and cited sources. See every field in the [Search and AI answers reference](/api-reference/endpoint/google-search), or try it in the [playground](https://stophy.dev/playground).
 
-## Search Google and get results, the AI Overview, the knowledge panel and related questions
+## Scrape Google Search results
 
 <CodeGroup>
   <GoogleSearchTs />
@@ -62,22 +62,21 @@ The response:
 
 | Endpoint | Cost |
 | --- | --- |
-| [Search Google and get results, the AI Overview, the knowledge panel and related questions](/api-reference/endpoint/google-search) | 1 credit (no key needed) |
-| [Search Google News by keyword, date, site and country, or read headlines by topic](/api-reference/endpoint/google-news) | 1 credit (no key needed) |
-| [Search Google Images and get each full-size image with the page it comes from](/api-reference/endpoint/google-images) | From 1 credit |
-| [Search Google's Videos tab for videos from every site, with duration and channel](/api-reference/endpoint/google-videos) | 1 credit |
-| [Search Google Scholar for papers, books and case law, with citations](/api-reference/endpoint/google-scholar) | 1 credit |
-| [Search Google Patents by words, inventor, assignee, office, dates and status](/api-reference/endpoint/google-patents) | 1 credit |
-| [Ask Google AI Mode a question and get its answer with the sources it cites](/api-reference/endpoint/google-aiMode) | 2 credits |
-| [Get Google search suggestions for a keyword](/api-reference/endpoint/google-suggest) | 1 credit |
-| [Get related searches for a keyword](/api-reference/endpoint/google-trends-related) | 1 credit |
-| [Get what is trending on Google now](/api-reference/endpoint/google-trends-trending) | 1 credit |
-| [Get Google Trends search interest over time, newest first, with one value per query](/api-reference/endpoint/google-trends-interest) | 1 credit |
-| [Get Google Trends search interest by region](/api-reference/endpoint/google-trends-regions) | 1 credit |
+| [Scrape Google Search results](/api-reference/endpoint/google-search) | From 1 credit (no key needed) |
+| [Scrape Google News results and headlines](/api-reference/endpoint/google-news) | 1 credit (no key needed) |
+| [Scrape Google Images results](/api-reference/endpoint/google-images) | From 1 credit |
+| [Scrape Google Scholar search results](/api-reference/endpoint/google-scholar) | 1 credit |
+| [Scrape Google Patents search results](/api-reference/endpoint/google-patents) | 1 credit (no key needed) |
+| [Scrape Google AI Mode answers with their sources](/api-reference/endpoint/google-aiMode) | 2 credits |
+| [Scrape Google search suggestions](/api-reference/endpoint/google-suggest) | 1 credit (no key needed) |
+| [Scrape Google Trends related searches](/api-reference/endpoint/google-trends-related) | 1 credit |
+| [Scrape what is trending on Google now](/api-reference/endpoint/google-trends-trending) | 1 credit |
+| [Scrape Google Trends interest over time](/api-reference/endpoint/google-trends-interest) | 1 credit |
+| [Scrape Google Trends interest by region](/api-reference/endpoint/google-trends-regions) | 1 credit |
 
 ## More ways to call it
 
-### Search Google News by keyword, date, site and country, or read headlines by topic
+### Scrape Google News results and headlines
 
 <CodeGroup>
   <GoogleNewsTs />
@@ -86,7 +85,7 @@ The response:
   <GoogleNewsCli />
 </CodeGroup>
 
-### Search Google Scholar for papers, books and case law, with citations
+### Scrape Google Scholar search results
 
 <CodeGroup>
   <GoogleScholarTs />
@@ -95,4 +94,4 @@ The response:
   <GoogleScholarCli />
 </CodeGroup>
 
-<Tip>Google search and Google News work without a key, with no paging. Google AI Mode costs 2 credits, Google Images costs 1 credit per 10 images, and every other endpoint costs 1 credit.</Tip>
+<Tip>Google search, News, suggestions and Patents work without a key, for the first page only. Google AI Mode costs 2 credits and Google Images costs 1 credit per 10 images. Turn on `scrapeResults` in Google search to read the top pages in the same call. Every other endpoint costs 1 credit.</Tip>

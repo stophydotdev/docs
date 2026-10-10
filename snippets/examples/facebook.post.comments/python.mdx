@@ -1,0 +1,7 @@
+```python Python icon="python"
+from stophy import Stophy
+
+stophy = Stophy()  # reads STOPHY_API_KEY
+result = stophy.facebook.post.comments(post_id="1652244896270880")
+print(result["data"]["results"])
+```

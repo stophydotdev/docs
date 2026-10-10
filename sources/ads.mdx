@@ -1,8 +1,8 @@
 ---
 title: 'Ads'
-description: 'Search the public ad libraries of Meta, Google, TikTok, LinkedIn, Microsoft, and Pinterest. Get each ad''s creative and copy, and find advertisers.'
+description: 'Search the public ad libraries of Meta, Google, TikTok and LinkedIn. Get each ad''s creative and copy, and find advertisers.'
 og:title: 'Ads | Stophy'
-og:description: 'Search the public ad libraries of Meta, Google, TikTok, LinkedIn, Microsoft, and Pinterest. Get each ad''s creative and copy, and find advertisers.'
+og:description: 'Search the public ad libraries of Meta, Google, TikTok and LinkedIn. Get each ad''s creative and copy, and find advertisers.'
 icon: 'bullhorn'
 ---
 
@@ -21,9 +21,9 @@ import GoogleAdsAdvertisersPython from '/snippets/examples/google.ads.advertiser
 import GoogleAdsAdvertisersCurl from '/snippets/examples/google.ads.advertisers/curl.mdx';
 import GoogleAdsAdvertisersCli from '/snippets/examples/google.ads.advertisers/cli.mdx';
 
-Search the public ad libraries of Meta, Google, TikTok, LinkedIn, Microsoft, and Pinterest. Get each ad's creative and copy, and find advertisers. See every field in the [Ads reference](/api-reference/endpoint/meta-ads-search), or try it in the [playground](https://stophy.dev/playground).
+Search the public ad libraries of Meta, Google, TikTok and LinkedIn. Get each ad's creative and copy, and find advertisers. See every field in the [Ads reference](/api-reference/endpoint/meta-ads-search), or try it in the [playground](https://stophy.dev/playground).
 
-## Search ads in the Meta ad library
+## Scrape ads from the Meta ad library
 
 <CodeGroup>
   <MetaAdsSearchTs />
@@ -97,7 +97,7 @@ The response:
     ]
   },
   "creditsUsed": 1,
-  "requestId": "7b4eec89-ee65-445f-afd7-89690bb5bc9d"
+  "requestId": "005b0fec-2906-4e8c-8c71-9acea1d4f304"
 }
 ```
 
@@ -105,25 +105,20 @@ The response:
 
 | Endpoint | Cost |
 | --- | --- |
-| [Search ads in the Meta ad library](/api-reference/endpoint/meta-ads-search) | 1 credit |
-| [Get a Meta ad's details](/api-reference/endpoint/meta-ads-ad) | 1 credit |
-| [Get the ads a Facebook page runs](/api-reference/endpoint/meta-ads-page) | 1 credit |
-| [Search ads in the Google ads library](/api-reference/endpoint/google-ads-search) | 1 credit |
-| [Get a Google ad's details](/api-reference/endpoint/google-ads-ad) | 1 credit |
-| [Find advertisers in the Google ads library](/api-reference/endpoint/google-ads-advertisers) | 1 credit |
-| [Search ads in the TikTok ad library](/api-reference/endpoint/tiktok-ads-search) | 1 credit |
-| [Get a TikTok ad's details and reach](/api-reference/endpoint/tiktok-ads-ad) | 1 credit |
-| [Search ads in the LinkedIn ad library](/api-reference/endpoint/linkedin-ads-search) | 1 credit |
-| [Get a LinkedIn ad's details](/api-reference/endpoint/linkedin-ads-ad) | 1 credit |
-| [Search ads in the Microsoft ads library](/api-reference/endpoint/microsoft-ads-search) | 1 credit |
-| [Get a Microsoft ad's details](/api-reference/endpoint/microsoft-ads-ad) | 1 credit |
-| [Find advertisers in the Microsoft ads library](/api-reference/endpoint/microsoft-ads-advertisers) | 1 credit |
-| [Search ads in the Pinterest ads library](/api-reference/endpoint/pinterest-ads-search) | 1 credit |
-| [Get a Pinterest ad's details](/api-reference/endpoint/pinterest-ads-ad) | 1 credit |
+| [Scrape ads from the Meta ad library](/api-reference/endpoint/meta-ads-search) | 1 credit |
+| [Scrape a Meta ad's details](/api-reference/endpoint/meta-ads-ad) | 1 credit |
+| [Scrape the ads a Facebook page runs](/api-reference/endpoint/meta-ads-page) | 1 credit |
+| [Scrape ads from the Google ads library](/api-reference/endpoint/google-ads-search) | 1 credit (no key needed) |
+| [Scrape a Google ad's details](/api-reference/endpoint/google-ads-ad) | 1 credit |
+| [Scrape advertisers from the Google ads library](/api-reference/endpoint/google-ads-advertisers) | 1 credit |
+| [Scrape ads from the TikTok ad library](/api-reference/endpoint/tiktok-ads-search) | 1 credit |
+| [Scrape a TikTok ad's details](/api-reference/endpoint/tiktok-ads-ad) | 1 credit |
+| [Scrape ads from the LinkedIn ad library](/api-reference/endpoint/linkedin-ads-search) | 1 credit |
+| [Scrape a LinkedIn ad's details](/api-reference/endpoint/linkedin-ads-ad) | 1 credit |
 
 ## More ways to call it
 
-### Search ads in the Google ads library
+### Scrape ads from the Google ads library
 
 <CodeGroup>
   <GoogleAdsSearchTs />
@@ -132,7 +127,7 @@ The response:
   <GoogleAdsSearchCli />
 </CodeGroup>
 
-### Find advertisers in the Google ads library
+### Scrape advertisers from the Google ads library
 
 <CodeGroup>
   <GoogleAdsAdvertisersTs />
@@ -141,4 +136,4 @@ The response:
   <GoogleAdsAdvertisersCli />
 </CodeGroup>
 
-<Tip>Each ad library has its own search, ad and, for Google and Microsoft, advertisers endpoints. Each library needs a keyword, an advertiser, or both. Pinterest takes an advertiser and no keyword. Google takes a domain or an advertiser, not a keyword. See each endpoint's reference for what it accepts.</Tip>
+<Tip>Google ad search works without a key. Each library has a search and an ad endpoint, and Google also has an advertisers endpoint. Each search needs a keyword, an advertiser or both, except Google, which takes a domain or an advertiser. Each endpoint's reference says what it accepts.</Tip>

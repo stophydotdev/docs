@@ -1,0 +1,32 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "location": "Lisbon, Portugal",
+    "results": [
+      {
+        "listingId": "2251675",
+        "listingUrl": "https://www.airbnb.com/rooms/2251675",
+        "title": "Alfama - Beco do Belo Studio",
+        "propertyType": "Apartment",
+        "area": "Santa Maria Maior",
+        "rating": 4.85,
+        "reviews": 651,
+        "priceTotal": 321.55,
+        "priceBeforeDiscount": 359.81,
+        "pricePerNight": 98.22,
+        "priceCurrency": "USD",
+        "badges": [
+          "Guest favorite"
+        ],
+        "imageUrls": [
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MjI1MTY3NQ%3D%3D/original/995699a0-d358-4cc…",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MjI1MTY3NQ%3D%3D/original/25bd02a7-7327-40c…"
+        ],
+        "latitude": 38.7117,
+        "longitude": -9.12667
+      }
+    ],
+    "cursor": "adlnUFS6eyJzZWN0aW9uX29mZnNldCI6MCwiaXRlbXNfb2Zmc2V0IjoxOCwidmVyc2lvbiI6MX0=~179a7970-cffb-43bf-9319-0a7b28091a6a~17916…"
+  }
+}

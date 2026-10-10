@@ -1,0 +1,22 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "userId": "11348282",
+    "username": "NASA",
+    "profileUrl": "https://x.com/NASA",
+    "name": "NASA",
+    "bio": "Making the seemingly impossible, possible. ✨",
+    "location": "Pale Blue Dot",
+    "website": "http://www.nasa.gov/",
+    "joinedAt": "2007-12-19T20:20:32.000Z",
+    "followers": 92329477,
+    "following": 115,
+    "posts": 74412,
+    "isVerified": true,
+    "verifiedType": "Government",
+    "isProtected": false,
+    "avatarUrl": "https://pbs.twimg.com/profile_images/1321163587679784960/0ZxKlEKB_400x400.jpg",
+    "bannerUrl": "https://pbs.twimg.com/profile_banners/11348282/1788992290"
+  }
+}

@@ -1,8 +1,8 @@
 ---
 title: 'Shopping'
-description: 'Compare prices and sellers on Google Shopping, search Amazon products and best sellers, and search TikTok Shop products, sellers and reviews.'
+description: 'Compare prices and sellers on Google Shopping, search Amazon products and best sellers, and search TikTok Shop products, sellers and reviews. Search eBay and Facebook Marketplace, and read Trustpilot reviews.'
 og:title: 'Shopping | Stophy'
-og:description: 'Compare prices and sellers on Google Shopping, search Amazon products and best sellers, and search TikTok Shop products, sellers and reviews.'
+og:description: 'Compare prices and sellers on Google Shopping, search Amazon products and best sellers, and search TikTok Shop products, sellers and reviews. Search eBay and Facebook Marketplace, and read Trustpilot reviews.'
 icon: 'cart-shopping'
 ---
 
@@ -21,9 +21,9 @@ import GoogleShoppingPython from '/snippets/examples/google.shopping/python.mdx'
 import GoogleShoppingCurl from '/snippets/examples/google.shopping/curl.mdx';
 import GoogleShoppingCli from '/snippets/examples/google.shopping/cli.mdx';
 
-Compare prices and sellers on Google Shopping, search Amazon products and best sellers, and search TikTok Shop products, sellers and reviews. See every field in the [Shopping reference](/api-reference/endpoint/amazon-search), or try it in the [playground](https://stophy.dev/playground).
+Compare prices and sellers on Google Shopping, search Amazon products and best sellers, and search TikTok Shop products, sellers and reviews. Search eBay and Facebook Marketplace, and read Trustpilot reviews. See every field in the [Shopping reference](/api-reference/endpoint/amazon-search), or try it in the [playground](https://stophy.dev/playground).
 
-## Search Amazon products
+## Scrape Amazon search results
 
 <CodeGroup>
   <AmazonSearchTs />
@@ -57,7 +57,7 @@ The response:
     "page": 1
   },
   "creditsUsed": 2,
-  "requestId": "ee81c546-e935-44c1-8876-409b6f8dc407"
+  "requestId": "e3c32e52-81d2-4fba-856c-1923affda334"
 }
 ```
 
@@ -65,19 +65,25 @@ The response:
 
 | Endpoint | Cost |
 | --- | --- |
-| [Compare product prices and sellers on Google Shopping by country](/api-reference/endpoint/google-shopping) | 2 credits |
-| [Search Amazon products](/api-reference/endpoint/amazon-search) | 2 credits |
-| [Get a product's price, details and rating](/api-reference/endpoint/amazon-product) | 2 credits |
-| [Get the best sellers in a category](/api-reference/endpoint/amazon-bestsellers) | 2 credits |
-| [Get Amazon search suggestions for a keyword](/api-reference/endpoint/amazon-suggest) | 1 credit |
-| [Search Shop products by keyword, with price and sales](/api-reference/endpoint/tiktok-shop-search) | 1 credit |
-| [A seller's products, name, rating and sales](/api-reference/endpoint/tiktok-shop-products) | 1 credit |
-| [A product's price, stock, seller, images and videos](/api-reference/endpoint/tiktok-shop-product) | 1 credit |
-| [The first page of a product's reviews](/api-reference/endpoint/tiktok-shop-reviews) | 1 credit |
+| [Scrape Google Shopping results](/api-reference/endpoint/google-shopping) | 2 credits |
+| [Scrape Amazon search results](/api-reference/endpoint/amazon-search) | 2 credits |
+| [Scrape an Amazon product page](/api-reference/endpoint/amazon-product) | 2 credits |
+| [Scrape Amazon Best Sellers lists](/api-reference/endpoint/amazon-bestsellers) | 2 credits |
+| [Scrape Amazon search suggestions](/api-reference/endpoint/amazon-suggest) | 1 credit |
+| [Scrape TikTok Shop search results](/api-reference/endpoint/tiktok-shop-search) | 1 credit |
+| [Scrape a TikTok Shop seller's products](/api-reference/endpoint/tiktok-shop-products) | 1 credit |
+| [Scrape a TikTok Shop product page](/api-reference/endpoint/tiktok-shop-product) | 1 credit |
+| [Scrape a TikTok Shop product's reviews](/api-reference/endpoint/tiktok-shop-reviews) | 1 credit |
+| [Scrape eBay search results](/api-reference/endpoint/ebay-search) | 1 credit |
+| [Scrape an eBay item page](/api-reference/endpoint/ebay-item) | 1 credit |
+| [Scrape Facebook Marketplace search results](/api-reference/endpoint/facebook-marketplace-search) | 1 credit |
+| [Scrape Trustpilot search results](/api-reference/endpoint/trustpilot-search) | 1 credit |
+| [Scrape a Trustpilot company page](/api-reference/endpoint/trustpilot-company) | 1 credit |
+| [Scrape a Trustpilot company's reviews](/api-reference/endpoint/trustpilot-company-reviews) | 1 credit |
 
 ## More ways to call it
 
-### Get a product's price, details and rating
+### Scrape an Amazon product page
 
 <CodeGroup>
   <AmazonProductTs />
@@ -86,7 +92,7 @@ The response:
   <AmazonProductCli />
 </CodeGroup>
 
-### Compare product prices and sellers on Google Shopping by country
+### Scrape Google Shopping results
 
 <CodeGroup>
   <GoogleShoppingTs />

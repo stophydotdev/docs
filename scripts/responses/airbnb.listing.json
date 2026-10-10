@@ -1,0 +1,38 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "listingId": "53888412",
+    "listingUrl": "https://www.airbnb.com/rooms/53888412",
+    "title": "Alfama - Historic Center II",
+    "description": "This small and charming apartament fully restored, offers a wonderful view over the old rooftops of Alfama, the most…",
+    "propertyType": "Entire rental unit",
+    "location": "Lisbon, Portugal",
+    "latitude": 38.71262,
+    "longitude": -9.12979,
+    "hostName": "António",
+    "hostIsSuperhost": true,
+    "guests": 2,
+    "bedrooms": 1,
+    "beds": 1,
+    "bathrooms": 1,
+    "amenities": [
+      "Hair dryer"
+    ],
+    "rating": 4.88,
+    "reviews": 337,
+    "isGuestFavorite": true,
+    "ratingAccuracy": 4.86,
+    "ratingCheckin": 4.89,
+    "ratingCleanliness": 4.97,
+    "ratingCommunication": 4.98,
+    "ratingLocation": 4.8,
+    "ratingValue": 4.78,
+    "houseRules": [
+      "Check-in after 3:00 PM"
+    ],
+    "imageUrls": [
+      "https://a0.muscache.com/im/pictures/168469e6-3f70-44d9-b4d2-850195140c0c.jpg"
+    ]
+  }
+}

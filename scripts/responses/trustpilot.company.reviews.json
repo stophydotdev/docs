@@ -1,0 +1,25 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "companyDomain": "stripe.com",
+    "companyName": "Stripe",
+    "total": 7019,
+    "results": [
+      {
+        "reviewId": "6ac9d8b3d55b885799b7fd12",
+        "reviewUrl": "https://www.trustpilot.com/reviews/6ac9d8b3d55b885799b7fd12",
+        "rating": 1,
+        "title": "Worst service ever",
+        "text": "Worst service ever! There automated system just suspended my account in two days of creation. No support nothing. I…",
+        "language": "en",
+        "publishedAt": "2026-10-10T08:18:30.000Z",
+        "experiencedDate": "2026-10-10",
+        "isVerified": false,
+        "authorName": "Sarmad Bashir",
+        "authorCountry": "PK"
+      }
+    ],
+    "page": 1
+  }
+}

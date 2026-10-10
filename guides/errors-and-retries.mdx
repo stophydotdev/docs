@@ -1,23 +1,33 @@
 ---
 title: "Handle errors and retries"
-description: "Handle Stophy API errors: read the error code, retry only when retryable is true, wait for Retry-After, and back off. Failed calls cost nothing."
+description: "Read the error code, retry only when retryable is true, wait for Retry-After, and back off. A failed call costs nothing. Retry loops for Node.js and Python."
 og:title: "Handle errors and retries | Stophy"
-og:description: "Handle Stophy API errors: read the error code, retry only when retryable is true, wait for Retry-After, and back off. Failed calls cost nothing."
+og:description: "Read the error code, retry only when retryable is true, wait for Retry-After, and back off. A failed call costs nothing. Retry loops for Node.js and Python."
 ---
 
-Every error has the same shape, and failed calls cost nothing.
+Send a bad call and see what an error looks like. No key needed.
 
+```bash
+curl -X POST https://api.stophy.dev/v1/google/search \
+  -H "content-type: application/json" \
+  -d '{"query":"bun runtime","foo":1}'
+```
+
+<Accordion title="Response">
 ```json
 {
-  "success": false,
   "error": {
-    "code": "sourceTimeout",
-    "message": "The source took too long to answer. Try again.",
-    "retryable": true,
-    "requestId": "..."
-  }
+    "code": "invalidRequest",
+    "message": "Unknown field `foo`. Fields: query, country, language, includeDomains, excludeDomains, time, safeSearch, page, scrapeResults, scrapeLimit",
+    "retryable": false,
+    "requestId": "fb79d36c-6041-4e7f-a934-ed72fef872c2"
+  },
+  "success": false
 }
 ```
+</Accordion>
+
+Every error has this shape, and a failed call costs nothing. Read `retryable` before you do anything else.
 
 ## Decide what to do
 
@@ -28,7 +38,7 @@ Every error has the same shape, and failed calls cost nothing.
 | `retryable` is `true` with no wait | Back off: 0.5 s, then 1 s, then 2 s. |
 | Still failing after a few tries | Stop, and log the `requestId`. |
 
-The full list of codes is in [Errors](/api-reference/errors).
+Every code is listed in [Errors](/api-reference/errors).
 
 ## A retry loop
 
@@ -85,12 +95,12 @@ def call(endpoint_id, payload, attempts=3):
 
 ## Common cases
 
-- **`401 unauthorized`:** the key is missing or wrong. Check the `Authorization: Bearer <key>` header.
-- **`402 insufficientCredits`:** your balance is too low. Nothing was charged, and the error says how many credits the call needs and how many you have. [Top up](/billing) and try again.
-- **`429 rateLimited` or `tooManyInFlight`:** you are over your [rate limits](/rate-limits). Wait, then retry.
-- **`400 invalidRequest`:** the input is not valid. The message names the field, or repeats the source's own complaint. Check the endpoint's input in the [API reference](/api-reference/introduction).
-- **`404 notFound`:** the thing you asked for does not exist. The message is the source's own, such as `YouTube says: This video is unavailable`. Don't retry.
+- **`401 unauthorized`** means the key is missing or wrong. Send `Authorization: Bearer <key>`.
+- **`402 insufficientCredits`** means your balance is too low. The error says how many credits the call needs and how many you have. [Add credits](/billing) and try again.
+- **`429 rateLimited` or `tooManyInFlight`** means you are over your [rate limits](/rate-limits). Wait, then retry.
+- **`400 invalidRequest`** means the input is not valid. The message names the field. Check the endpoint's input in the [API reference](/api-reference/introduction).
+- **`404 notFound`** means the thing you asked for does not exist. Don't retry.
 
 ## Timeouts
 
-Every call answers or fails within 25 seconds. Set your client timeout a little above that, for example 30 seconds.
+Every call answers or fails within 25 seconds. Set your client timeout a little above that, such as 30 seconds.

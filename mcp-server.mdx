@@ -1,61 +1,58 @@
 ---
 title: "MCP server"
 sidebarTitle: "Overview"
-description: "Connect Claude Code, Codex, Cursor or any MCP client to Stophy. Start with no key, add an API key, or sign in with your browser."
+description: "Connect Claude Code, Codex, Cursor or any MCP client to Stophy with no key, with your browser, or with an API key. One command per client."
 og:title: "MCP server | Stophy"
-og:description: "Connect Claude Code, Codex, Cursor or any MCP client to Stophy. Start with no key, add an API key, or sign in with your browser."
+og:description: "Connect Claude Code, Codex, Cursor or any MCP client to Stophy with no key, with your browser, or with an API key. One command per client."
 mode: "wide"
 ---
 
 import { McpClientSelector } from "/snippets/mcp-client-selector.jsx";
 
-Stophy is a remote MCP server. Your agent searches for the right endpoint, reads its input, and calls it.
+Connect your agent to Stophy in one command. Pick your client and run it.
+
+<McpClientSelector showSeeAll={false} />
+
+This needs no key. Your agent can use the free endpoints right away.
 
 ## Choose how to connect
 
 <CardGroup cols={3}>
   <Card title="No key" icon="bolt" href="/mcp-server/keyless">
-    Start right away. Search Google, YouTube, Reddit and Maps, within free limits.
+    Free endpoints only. Nothing to set up.
+  </Card>
+  <Card title="Browser sign-in" icon="right-to-bracket" href="/mcp-server/oauth">
+    Every endpoint. Approve the app in your browser.
   </Card>
   <Card title="API key" icon="key" href="/mcp-server/keyless#add-an-api-key">
-    Put your key in the client config. Every endpoint, no browser needed.
-  </Card>
-  <Card title="Sign in" icon="right-to-bracket" href="/mcp-server/oauth">
-    Sign in with your browser instead of pasting a key. Every endpoint.
+    Every endpoint. Your key goes in the client config.
   </Card>
 </CardGroup>
 
 | | URL |
 | --- | --- |
 | No key or API key | `https://api.stophy.dev/mcp` |
-| Sign in | `https://mcp.stophy.dev/mcp` |
+| Browser sign-in | `https://mcp.stophy.dev/mcp` |
 
-Both use the Streamable HTTP transport. They are server URLs for your MCP client, not pages to open in a browser.
+Both are server URLs for your client, not pages to open in a browser.
 
-Stophy is also listed on [Smithery](https://smithery.ai/servers/stophy/mcp).
+## What your agent sees
 
-## Set up your client
+Three tools. `stophy_search_endpoints` finds an endpoint, `stophy_describe_endpoint` shows its inputs, and `stophy_call` runs it. `stophy_call` takes `id`, `input` and optional `fields`, which keeps only the keys you name on each result.
 
-<McpClientSelector showSeeAll={false} />
+Ask *"What are people saying about Bun on Reddit?"* and your agent finds `reddit.search`, calls it, and answers. A call costs the same credits as over HTTP. See [Credits and billing](/billing).
 
-## How it works
-
-Ask your agent: *"What are people saying about Bun on Reddit?"*
-
-- It searches Stophy and finds **Reddit search**.
-- It checks what Reddit search needs: a query, plus optional sort and time range.
-- It gets the posts and answers you. The call used 1 credit.
-
-Behind this are three tools: `stophy_search_endpoints`, `stophy_describe_endpoint` and `stophy_call`. Endpoint ids are camelCase, such as `redditSearch` or `youtubeSearch`. `stophy_call` takes `id`, `input` and optional `fields`, which keeps only the keys you name on each result. Lists come back as `results`, one page per call.
-
-## Toolsets
-
-Add `?toolsets=reddit,youtube` to the URL to also get one tool for each Reddit and YouTube endpoint.
+To get one tool per endpoint for some sources, add `toolsets` to the URL.
 
 ```text
 https://api.stophy.dev/mcp?toolsets=reddit,youtube
 ```
 
-## Cost and limits
+## Client guides
 
-An MCP call costs the same credits as the same call over HTTP, and counts toward the same [rate limits](/rate-limits).
+<CardGroup cols={2}>
+  <Card title="Claude Code" icon="terminal" href="/quickstarts/claude-code" />
+  <Card title="Claude Desktop" icon="desktop" href="/quickstarts/claude-desktop" />
+  <Card title="Cursor" icon="arrow-pointer" href="/quickstarts/cursor" />
+  <Card title="Codex" icon="code" href="/quickstarts/codex" />
+</CardGroup>

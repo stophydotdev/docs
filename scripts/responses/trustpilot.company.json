@@ -1,0 +1,32 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "companyId": "50489e6800006400051ae0d6",
+    "companyDomain": "stripe.com",
+    "companyUrl": "https://www.trustpilot.com/review/stripe.com",
+    "name": "Stripe",
+    "website": "https://stripe.com",
+    "description": "Millions of businesses of all sizes—from startups to large enterprises—use Stripe’s software and APIs to accept…",
+    "trustScore": 1.6,
+    "stars": 1.5,
+    "reviews": 17537,
+    "ratingsOne": 9109,
+    "ratingsTwo": 512,
+    "ratingsThree": 469,
+    "ratingsFour": 725,
+    "ratingsFive": 6722,
+    "categories": [
+      "Payment Service"
+    ],
+    "isClaimed": true,
+    "isClosed": false,
+    "email": "https://support.stripe.com/contact",
+    "addressStreet": "510 Townsend Street",
+    "addressCity": "San Francisco",
+    "addressPostalCode": "94103",
+    "addressCountry": "United States",
+    "negativeReviewsRepliedPercent": 100,
+    "averageDaysToReply": 1.91
+  }
+}

@@ -1,0 +1,6 @@
+```bash cURL icon="terminal"
+curl -X POST https://api.stophy.dev/v1/airbnb/search \
+  -H "Authorization: Bearer $STOPHY_API_KEY" \
+  -H "content-type: application/json" \
+  -d '{"location":"Lisbon, Portugal","checkIn":"2026-11-20","checkOut":"2026-11-23","guests":2,"maxPrice":200,"roomType":"entireHome"}'
+```

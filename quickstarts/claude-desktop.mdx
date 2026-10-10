@@ -1,28 +1,35 @@
 ---
 title: "Claude Desktop"
-description: "Add Stophy to Claude Desktop with the local MCP package so it can query the web's major platforms."
-og:title: "Claude Desktop MCP setup | Stophy"
-og:description: "Add Stophy to Claude Desktop with the local MCP package so it can query the web's major platforms."
+description: "Add Stophy to Claude Desktop with the local MCP package. Use it with no key for free endpoints, or add an API key to open every endpoint."
+og:title: "Claude Desktop | Stophy"
+og:description: "Add Stophy to Claude Desktop with the local MCP package. Use it with no key for free endpoints, or add an API key to open every endpoint."
 ---
 
-## Prerequisites
+Add Stophy to [Claude Desktop](https://claude.ai/download). It needs Node.js 18 or later.
 
-- [Claude Desktop](https://claude.ai/download)
-- Node.js 18 or later
-- A Stophy API key in `STOPHY_API_KEY`. [Get one](https://stophy.dev/signup).
-
-No key yet? Leave `env` out below to start [without one](/mcp-server/keyless).
-
-## Add Stophy
-
-Claude Desktop cannot connect to a remote server directly, so use the local package. It runs on your computer and forwards every call to the hosted server.
-
-Open `claude_desktop_config.json`:
+Claude Desktop runs a local package that forwards calls to Stophy. Open `claude_desktop_config.json`.
 
 - macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
 - Windows: `%APPDATA%\Claude\claude_desktop_config.json`
 
-Add Stophy to `mcpServers`:
+Add this to `mcpServers`.
+
+```json
+{
+  "mcpServers": {
+    "stophy": {
+      "command": "npx",
+      "args": ["-y", "@stophy/mcp"]
+    }
+  }
+}
+```
+
+Quit Claude Desktop and open it again. Your agent can use the free endpoints right away.
+
+## Use an API key
+
+[Get a key](https://stophy.dev/signup) to open every endpoint. Add `env` to the same entry.
 
 ```json
 {
@@ -36,17 +43,12 @@ Add Stophy to `mcpServers`:
 }
 ```
 
-Save the file and restart Claude Desktop.
+## Try it
 
-## Check it
-
-Open the hammer icon in a new chat and check that `stophy` lists its three tools. Then try:
+Open a new chat and check that `stophy` lists its three tools. Then ask this.
 
 ```text
 Use Stophy to find the top Reddit posts about Bun this week and summarize them.
 ```
 
-## Troubleshooting
-
-- **No `stophy` server:** confirm the config file is valid JSON and restart Claude Desktop fully (quit, not just close the window).
-- **Tool calls fail with `unauthorized`:** check the key in `env` is correct and has no extra spaces.
+If `stophy` is missing, check the file is valid JSON and quit Claude Desktop fully. If calls say `unauthorized`, check the key has no extra spaces.

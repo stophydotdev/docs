@@ -1,0 +1,31 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "postId": "2107773105779167621",
+    "postUrl": "https://x.com/NASA/status/2107773105779167621",
+    "text": "LIVE: After nearly eight months aboard the @Space_Station, it’s time for Crew-12 to come home. Tune in as the…",
+    "publishedAt": "2026-10-07T10:00:43.000Z",
+    "language": "en",
+    "likes": 2021,
+    "replies": 106,
+    "reposts": 331,
+    "quotes": 29,
+    "bookmarks": 102,
+    "views": 2868815,
+    "authorId": "11348282",
+    "authorUsername": "NASA",
+    "authorName": "NASA",
+    "authorUrl": "https://x.com/NASA",
+    "authorAvatarUrl": "https://pbs.twimg.com/profile_images/1321163587679784960/0ZxKlEKB_400x400.jpg",
+    "authorIsVerified": true,
+    "links": [
+      "https://x.com/i/broadcasts/1aKbdEQgXAdJX"
+    ],
+    "mentions": [
+      "Space_Station"
+    ],
+    "isEdited": false,
+    "isSensitive": false
+  }
+}

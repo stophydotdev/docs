@@ -1,0 +1,35 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "postId": "1652244896270880",
+    "postUrl": "https://www.facebook.com/NASA/posts/pfbid0dPToN66CzcAHGMoaNe3jszH4FfBKvqkE5gogCNJkTxXDPsSGYrGvcVwsLgByyMQQl",
+    "text": "Brewing up baby stars ⭐\n\nNASA's James Webb Space Telescope's unique view reveals many previously hidden stars in this…",
+    "publishedAt": "2026-10-09T20:54:33.000Z",
+    "authorId": "100044561550831",
+    "authorName": "NASA - National Aeronautics and Space Administration",
+    "authorUrl": "https://www.facebook.com/NASA",
+    "media": [
+      {
+        "type": "photo",
+        "url": "https://www.facebook.com/photo/?fbid=1652244872937549&set=a.416661013162614",
+        "imageUrl": "https://scontent-phl2-1.xx.fbcdn.net/v/t39.99422-6/841844892_1454330573225436_3520855839134390984_n.png?stp=dst-jpg_tt6…",
+        "width": 552,
+        "height": 515,
+        "altText": "A young star cluster filled with many stars that display Webb’s unique eight-pronged diffraction pattern. At its…"
+      }
+    ],
+    "reactions": {
+      "total": 4111,
+      "like": 2401,
+      "love": 1550,
+      "care": 86,
+      "haha": 11,
+      "wow": 62,
+      "sad": 0,
+      "angry": 1
+    },
+    "comments": 79,
+    "shares": 443
+  }
+}

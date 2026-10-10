@@ -30,8 +30,6 @@ const FALLBACK_EXAMPLES: Record<string, JsonObject> = {
   "meta.ads.ad": { adUrl: "https://www.facebook.com/ads/library/?id=1234567890123456" },
   "tiktok.ads.ad": { adUrl: "https://library.tiktok.com/ads/detail?ad_id=1756783467412593" },
   "linkedin.ads.ad": { adUrl: "https://www.linkedin.com/ad-library/detail/1234567" },
-  "microsoft.ads.ad": { adId: "1234567890" },
-  "pinterest.ads.ad": { adUrl: "https://ads.pinterest.com/ads-repository/1234567890123456/" },
   "tiktok.shop.products": { shopUrl: "https://shop.tiktok.com/us/store/shop/7495291731420235534" },
   "tiktok.shop.product": { productUrl: "https://shop.tiktok.com/us/pdp/p/1729592969712207012" },
   "tiktok.shop.reviews": { productUrl: "https://shop.tiktok.com/us/pdp/p/1729592969712207012" },
@@ -44,6 +42,15 @@ const FALLBACK_EXAMPLES: Record<string, JsonObject> = {
   "tripadvisor.place": { placeUrl: "https://www.tripadvisor.com/Hotel_Review-g186338-d187591-Reviews-The_Ritz_London.html" },
   "tripadvisor.reviews": { placeUrl: "https://www.tripadvisor.com/Hotel_Review-g186338-d187591-Reviews-The_Ritz_London.html" },
   "amazon.product": { productUrl: "https://www.amazon.com/dp/B0CX23V2ZK" },
+  "facebook.post": { postId: "1652244896270880" },
+  "facebook.post.comments": { postId: "1652244896270880" },
+  "threads.post": { postCode: "DeKza99kXKb" },
+  "airbnb.listing": { listingId: "53888412" },
+  "airbnb.reviews": { listingId: "53888412" },
+  "booking.hotel": { hotelId: "15781550" },
+  "booking.hotel.reviews": { hotelId: "15781550" },
+  "ebay.item": { itemId: "820221984535" },
+  "careers.job": { jobUrl: "https://boards.greenhouse.io/figma/jobs/5813967004" },
 };
 
 // --- naming -----------------------------------------------------------

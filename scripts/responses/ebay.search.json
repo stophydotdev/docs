@@ -1,0 +1,30 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "total": 6400,
+    "results": [
+      {
+        "itemId": "326350933758",
+        "itemUrl": "https://www.ebay.com/itm/326350933758",
+        "title": "Nintendo Switch OLED 64GB White Joy-Con 2021 Newest - Japan Import with US plug",
+        "imageUrl": "https://i.ebayimg.com/images/g/Z94AAOSwTTJnQ-Bl/s-l500.jpg",
+        "price": 350.99,
+        "isPriceHidden": false,
+        "priceCurrency": "USD",
+        "shippingCost": 0,
+        "isPickupOnly": false,
+        "totalPrice": 350.99,
+        "condition": "Brand New",
+        "isAuction": false,
+        "hasBestOffer": false,
+        "itemLocation": "United States",
+        "quantitySold": 71,
+        "sellerName": "bestsellerssince1977",
+        "sellerFeedbackPercent": 99.7,
+        "sellerFeedbackScore": 4800
+      }
+    ],
+    "page": 1
+  }
+}

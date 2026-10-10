@@ -1,13 +1,13 @@
 ---
 title: "Quickstart"
-description: "Make your first Stophy call with no key, then add a key and make the same call from TypeScript, Python, cURL, or the CLI."
+description: "Make your first Stophy call with no key, then add a key to use every Stophy endpoint from TypeScript, Python, cURL or the CLI."
 og:title: "Quickstart | Stophy"
-og:description: "Make your first Stophy call with no key, then add a key and make the same call from TypeScript, Python, cURL, or the CLI."
+og:description: "Make your first Stophy call with no key, then add a key to use every Stophy endpoint from TypeScript, Python, cURL or the CLI."
 ---
 
-## 1. Try it with no key
+Make a call with no account, then add a key to get all 110 endpoints.
 
-Google search works without a key, within a small free limit.
+## Try it with no key
 
 ```bash
 curl -X POST https://api.stophy.dev/v1/google/search \
@@ -15,40 +15,40 @@ curl -X POST https://api.stophy.dev/v1/google/search \
   -d '{"query":"bun runtime"}'
 ```
 
-You should see JSON like this, with `creditsUsed` at `0`:
-
+<Accordion title="Response">
 ```json
 {
   "success": true,
   "data": {
+    "engine": "google",
     "results": [
       {
+        "type": "web",
         "url": "https://bun.com/",
         "title": "Bun — A fast all-in-one JavaScript runtime",
-        "description": "Bun is a fast JavaScript runtime & toolkit. All in one.",
+        "description": "Bun is a fast JavaScript runtime & toolkit. All in one. Runtime, package manager, test runner and bundler in a single binary.",
         "position": 1
       }
     ]
   },
   "creditsUsed": 0,
-  "requestId": "44eea069-e571-4dd8-95b4-cd56e641701a"
+  "requestId": "f09d5d15-c2b2-45d3-aa5e-9868563cc9c8"
 }
 ```
+</Accordion>
 
-`data.results` is one page of results, as the site shows it. To get more, some endpoints take `page`: send `page: 2`, then `3`, until `data.results` is empty. Others take `cursor`: send back the `cursor` from the response. See [Page through results](/guides/paging).
+`data.results` is one page of Google results, and `creditsUsed` is `0`. Without a key you get the first page only. The endpoints marked `keyless: true` in the [endpoint catalog](https://api.stophy.dev/v1/endpoints) work this way.
 
-## 2. Get an API key
+## Get a key
 
-Sign up at [stophy.dev/signup](https://stophy.dev/signup). New accounts start with 1,000 free credits. Create a key and store it as `STOPHY_API_KEY`. Never put it in code.
+Sign up at [stophy.dev/signup](https://stophy.dev/signup). You start with 1,000 free credits. Create a key and save it as `STOPHY_API_KEY`.
 
-## 3. Make the same call with a key
+## Call it with your key
 
 import WebSearchTs from '/snippets/examples/google.search/ts.mdx';
 import WebSearchPython from '/snippets/examples/google.search/python.mdx';
 import WebSearchCurl from '/snippets/examples/google.search/curl.mdx';
 import WebSearchCli from '/snippets/examples/google.search/cli.mdx';
-
-Send the key as a bearer token. This is the same call as step 1, now under your account.
 
 <CodeGroup>
   <WebSearchTs />
@@ -57,15 +57,21 @@ Send the key as a bearer token. This is the same call as step 1, now under your 
   <WebSearchCli />
 </CodeGroup>
 
-It returns the same shape as before. With a key, it costs 1 credit instead of being free. Most calls cost the same however many results they return. Five long lists charge 1 credit per 10 results, and transcripts depend on the video. See [Credits and billing](/billing).
+The response has the same shape and costs 1 credit. Send `page: 2` to get the next page. Every endpoint is a `POST` to `https://api.stophy.dev/v1/` and its id with dots as slashes, so `youtube.transcript` is `/v1/youtube/transcript`.
 
-## Next steps
+## Next
 
 <CardGroup cols={2}>
-  <Card title="Find the right endpoint" icon="magnifying-glass" href="/guides/find-endpoint">
-    Search the catalog for the data you need.
+  <Card title="Find an endpoint" icon="compass" href="/guides/find-endpoint">
+    Pick the right endpoint for what you need.
+  </Card>
+  <Card title="Page through results" icon="list" href="/guides/paging">
+    Get past the first page.
+  </Card>
+  <Card title="Credits and billing" icon="coins" href="/billing">
+    What each call costs.
   </Card>
   <Card title="Connect over MCP" icon="plug" href="/mcp-server">
-    Let your coding agent call Stophy.
+    Let your agent call Stophy.
   </Card>
 </CardGroup>

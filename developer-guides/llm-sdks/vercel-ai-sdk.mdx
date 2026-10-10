@@ -1,21 +1,15 @@
 ---
 title: "Vercel AI SDK"
-description: "Give any AI SDK model live web search with Stophy: define a tool with zod, call the API in execute, and return the results as JSON."
+description: "Give any AI SDK model live web search with Stophy. Save one search function, wrap it in tool() with zod, and let the model call it in generateText."
 og:title: "Vercel AI SDK tool with Stophy | Stophy"
-og:description: "Give any AI SDK model live web search with Stophy: define a tool with zod, call the API in execute, and return the results as JSON."
+og:description: "Give any AI SDK model live web search with Stophy. Save one search function, wrap it in tool() with zod, and let the model call it in generateText."
 ---
 
-## Setup
+Give any AI SDK model live web search. The model asks for a search, `execute` calls Stophy, and the model answers from the results.
 
-```bash
-npm install ai @ai-sdk/openai zod
-```
+## The search tool
 
-Set `OPENAI_API_KEY` in your environment. `STOPHY_API_KEY` is optional for this example.
-
-## The Stophy tool
-
-This function calls Google search and returns the results as JSON, limited to 5 so the model's context stays small. It reads your key from `STOPHY_API_KEY`, and works without one.
+Save this as `stophy.ts`. It calls Google search and returns the top 5 results as JSON. It works with no key. Set `STOPHY_API_KEY` to lift the free limit.
 
 ```ts stophy.ts
 export async function stophySearch(query: string): Promise<string> {
@@ -28,12 +22,19 @@ export async function stophySearch(query: string): Promise<string> {
   });
   const body = await response.json();
   if (!body.success) throw new Error(body.error.message);
-  return JSON.stringify(body.data.results);
+  return JSON.stringify(body.data.results.slice(0, 5));
 }
 ```
-## Use it as a tool
 
-Wrap the search in `tool()`. `stopWhen` lets the model search, read the results, and answer, in up to five steps.
+## Give it to the AI SDK
+
+```bash
+npm install ai @ai-sdk/openai zod
+```
+
+Set `OPENAI_API_KEY` in your environment.
+
+Wrap the search in `tool()`. `stopWhen` lets the model search, read the results and answer in up to five steps. Any AI SDK model works, so swap `openai(...)` for another provider.
 
 ```ts
 import { openai } from "@ai-sdk/openai";

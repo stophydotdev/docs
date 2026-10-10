@@ -1,8 +1,8 @@
 ---
 title: "Introduction"
-description: "Use the Stophy REST API: one base URL, bearer key authentication, a JSON body for every endpoint, and one response envelope for every call."
+description: "Stophy is a web scraping API for AI agents. One base URL, a bearer key, a JSON body for every endpoint, and one response shape for every call."
 og:title: "API reference | Stophy"
-og:description: "Use the Stophy REST API: one base URL, bearer key authentication, a JSON body for every endpoint, and one response envelope for every call."
+og:description: "Stophy is a web scraping API for AI agents. One base URL, a bearer key, a JSON body for every endpoint, and one response shape for every call."
 mode: "wide"
 ---
 
@@ -10,31 +10,37 @@ mode: "wide"
   **For AI agents:** use [llms.txt](https://docs.stophy.dev/llms.txt) for a full index of these docs.
 </Note>
 
-Every Stophy endpoint uses the same base URL and bearer key. Data endpoints take a JSON body and return a consistent response.
+Stophy is a web scraping API for AI agents. Every endpoint is a `POST` to the same base URL with a JSON body. No key needed for this one.
 
-## Features
+```bash
+curl -X POST https://api.stophy.dev/v1/google/search \
+  -H "content-type: application/json" \
+  -d '{"query":"bun runtime"}'
+```
+
+You get Google results back with `creditsUsed: 0`. The path is `/v1/` plus the endpoint id with dots as slashes, so `youtube.transcript` is `/v1/youtube/transcript`. A field the endpoint does not take returns `400`.
+
+## What you can get
 
 <CardGroup cols={3}>
   <Card title="Search and AI answers" icon="magnifying-glass" color="f5d90a" href="/sources/web">Google results, news, images, papers and trends, and Google AI Mode answers.</Card>
   <Card title="Video" icon="video" color="f5d90a" href="/sources/video">YouTube, TikTok and Instagram videos, transcripts and comments.</Card>
-  <Card title="Social" icon="users" color="f5d90a" href="/sources/social">Posts, profiles and comments from Reddit, Instagram, LinkedIn and Pinterest.</Card>
+  <Card title="Social" icon="users" color="f5d90a" href="/sources/social">Posts, profiles and comments from Reddit, X, Instagram, Facebook, LinkedIn, Threads and Pinterest.</Card>
   <Card title="Places and travel" icon="map-location-dot" color="f5d90a" href="/sources/places-and-travel">Google Maps and Tripadvisor places and reviews, hotels and flights.</Card>
   <Card title="Jobs" icon="briefcase" color="f5d90a" href="/sources/jobs">Job listings from Google Jobs, LinkedIn, Indeed and Upwork.</Card>
-  <Card title="Shopping" icon="cart-shopping" color="f5d90a" href="/sources/shopping">Amazon, Google Shopping and TikTok Shop products and prices.</Card>
+  <Card title="Shopping" icon="cart-shopping" color="f5d90a" href="/sources/shopping">Amazon, eBay, Google Shopping and TikTok Shop products and prices.</Card>
   <Card title="Apps" icon="mobile-screen" color="f5d90a" href="/sources/apps">App Store and Google Play apps, reviews and charts.</Card>
   <Card title="Real estate" icon="house" color="f5d90a" href="/sources/real-estate">Homes for sale, for rent and sold from Zillow.</Card>
-  <Card title="Ads" icon="bullhorn" color="f5d90a" href="/sources/ads">Ad libraries from Meta, Google, TikTok, LinkedIn, Microsoft and Pinterest.</Card>
+  <Card title="Ads" icon="bullhorn" color="f5d90a" href="/sources/ads">Ad libraries from Meta, Google, TikTok and LinkedIn.</Card>
 </CardGroup>
 
-See every endpoint in the sidebar, grouped the same way.
+Every endpoint is in the sidebar, grouped the same way.
 
 ## Base URL
 
 ```text
 https://api.stophy.dev
 ```
-
-Every endpoint is a `POST` with a JSON object body. The path is `/v1/` plus the endpoint id with dots as slashes: `google.search` is `/v1/google/search`, and `youtube.transcript` is `/v1/youtube/transcript`. Unknown input fields return `400`.
 
 ## Authentication
 
@@ -78,11 +84,11 @@ response = requests.post(
 
 </CodeGroup>
 
-An invalid or missing key returns `401` with code `unauthorized`.
+A missing or invalid key on an endpoint that needs one returns `401` with code `unauthorized`. The endpoints marked `keyless: true` in the [catalog](https://api.stophy.dev/v1/endpoints) work without a key, with [rate limits](/rate-limits).
 
 ## Responses
 
-A successful call returns exactly `success`, `data`, `creditsUsed`, and `requestId`:
+A successful call returns `success`, `data`, `creditsUsed` and `requestId`.
 
 ```json
 {
@@ -95,18 +101,16 @@ A successful call returns exactly `success`, `data`, `creditsUsed`, and `request
 }
 ```
 
-`data` is a single object. A list is returned in `data.results`, with `data.cursor` when another page exists. Fields are not nested by owner: a value that belongs to a related resource carries that resource in its name, such as `videoId`, `videoUrl`, `channelName` and `placeId`. Empty values are omitted.
+`data` is one object. A list comes back in `data.results`, with `data.cursor` when another page exists. A value that belongs to a related resource carries that resource in its name, such as `videoId`, `videoUrl`, `channelName` and `placeId`. Empty values are left out.
 
 A failed call returns an error status and `{ "success": false, "error": { ... } }`. See [Errors](/api-reference/errors).
 
 ## One call, one page, one price
 
-Each call returns one page. Most calls cost 1 credit and some cost 2. Five long lists cost 1 credit per 10 results. Instagram and TikTok transcripts cost more when the audio has to be transcribed. See [Credits and billing](/billing).
+Each call returns one page. Most calls cost 1 credit and a few cost 2. A few are priced by what comes back, such as long lists and transcripts. A call that fails or finds nothing costs nothing. See [Credits and billing](/billing).
 
-Some endpoints take `page`: send `page: 2`, then `3`, until `data.results` is empty. Others take `cursor`: send back the `cursor` from the response. The rest return everything in one call. See [Page through results](/guides/paging).
-
-Request parameters are top-level fields of the JSON body. The body is the only input, and the response format is fixed.
+Some endpoints take `page`, some take `cursor`, and the rest return everything in one call. See [Page through results](/guides/paging).
 
 ## Send a link or an id
 
-To point at one thing, a request names it the way the response does. Send its link or its id, never both: `videoUrl` or `videoId`, `placeUrl` or `placeId`, `userUrl` or `username`, `postUrl` or `postId` (Instagram: `postCode`), and so on. Each endpoint's reference lists the pair. Sending both, or neither, returns a `400`.
+To point at one thing, send its link or its id, never both. That is `videoUrl` or `videoId`, `placeUrl` or `placeId`, `userUrl` or `username`, and so on. Each endpoint's page lists the pair. Sending both, or neither, returns a `400`.

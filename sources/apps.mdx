@@ -1,8 +1,8 @@
 ---
 title: 'Apps'
-description: 'Search the App Store and Google Play. Get any app''s details and reviews, and the App Store top charts, as structured JSON.'
+description: 'Search the App Store and Google Play. Get any app''s details and reviews, and the App Store top charts.'
 og:title: 'Apps | Stophy'
-og:description: 'Search the App Store and Google Play. Get any app''s details and reviews, and the App Store top charts, as structured JSON.'
+og:description: 'Search the App Store and Google Play. Get any app''s details and reviews, and the App Store top charts.'
 icon: 'mobile-screen'
 ---
 
@@ -21,9 +21,9 @@ import AppstoreTopPython from '/snippets/examples/appstore.top/python.mdx';
 import AppstoreTopCurl from '/snippets/examples/appstore.top/curl.mdx';
 import AppstoreTopCli from '/snippets/examples/appstore.top/cli.mdx';
 
-Search the App Store and Google Play. Get any app's details and reviews, and the App Store top charts, as structured JSON. See every field in the [Apps reference](/api-reference/endpoint/appstore-search), or try it in the [playground](https://stophy.dev/playground).
+Search the App Store and Google Play. Get any app's details and reviews, and the App Store top charts. See every field in the [Apps reference](/api-reference/endpoint/appstore-search), or try it in the [playground](https://stophy.dev/playground).
 
-## Search App Store apps
+## Scrape App Store search results
 
 <CodeGroup>
   <AppstoreSearchTs />
@@ -81,7 +81,7 @@ The response:
     ]
   },
   "creditsUsed": 1,
-  "requestId": "3e96a2b2-2c1f-4d4e-87f8-cc5c64034c8b"
+  "requestId": "b2423fd6-b564-4c9a-8f57-aba599110553"
 }
 ```
 
@@ -89,17 +89,17 @@ The response:
 
 | Endpoint | Cost |
 | --- | --- |
-| [Get an app's details from the App Store](/api-reference/endpoint/appstore-app) | 1 credit |
-| [Search App Store apps](/api-reference/endpoint/appstore-search) | From 1 credit |
-| [Get an app's App Store reviews](/api-reference/endpoint/appstore-reviews) | 1 credit |
-| [Get App Store top charts](/api-reference/endpoint/appstore-top) | From 1 credit |
-| [Get an app's details from Google Play](/api-reference/endpoint/google-play-app) | 1 credit |
-| [Search Google Play apps](/api-reference/endpoint/google-play-search) | From 1 credit |
-| [Get an app's Google Play reviews](/api-reference/endpoint/google-play-reviews) | 1 credit |
+| [Scrape an App Store app page](/api-reference/endpoint/appstore-app) | 1 credit |
+| [Scrape App Store search results](/api-reference/endpoint/appstore-search) | From 1 credit |
+| [Scrape an App Store app's reviews](/api-reference/endpoint/appstore-reviews) | 1 credit (no key needed) |
+| [Scrape App Store top charts](/api-reference/endpoint/appstore-top) | From 1 credit |
+| [Scrape a Google Play app page](/api-reference/endpoint/google-play-app) | 1 credit |
+| [Scrape Google Play search results](/api-reference/endpoint/google-play-search) | From 1 credit |
+| [Scrape a Google Play app's reviews](/api-reference/endpoint/google-play-reviews) | 1 credit (no key needed) |
 
 ## More ways to call it
 
-### Get an app's Google Play reviews
+### Scrape a Google Play app's reviews
 
 <CodeGroup>
   <GooglePlayReviewsTs />
@@ -108,7 +108,7 @@ The response:
   <GooglePlayReviewsCli />
 </CodeGroup>
 
-### Get App Store top charts
+### Scrape App Store top charts
 
 <CodeGroup>
   <AppstoreTopTs />
@@ -117,4 +117,4 @@ The response:
   <AppstoreTopCli />
 </CodeGroup>
 
-<Tip>Pass an App Store app id or a Google Play package name from a search result into that store's other endpoints. Search and chart endpoints cost 1 credit per 10 apps, and `limit` returns fewer. Review endpoints page. See [Page through results](/guides/paging).</Tip>
+<Tip>App Store reviews and Google Play reviews work without a key. Pass an App Store app id or a Google Play package name from a search result into that store's other endpoints. Search and chart endpoints cost 1 credit per 10 apps, and `limit` returns fewer. Review endpoints page. See [Page through results](/guides/paging).</Tip>

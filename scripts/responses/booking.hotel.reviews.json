@@ -1,0 +1,26 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "hotelId": "15781550",
+    "total": 431,
+    "results": [
+      {
+        "reviewId": "0b8a3b075c0a095a",
+        "score": 10,
+        "title": "Très bon séjour",
+        "positiveText": "Tout était parfait",
+        "negativeText": "L’emplacement \nLa propreté\nLes équipements\nLe personnel",
+        "language": "fr",
+        "createdAt": "2026-10-10T07:13:54.000Z",
+        "travelerType": "Couple",
+        "authorCountryCode": "fr",
+        "roomName": "Superior Twin Room",
+        "nights": 5,
+        "checkIn": "2026-10-04",
+        "checkOut": "2026-10-09"
+      }
+    ],
+    "cursor": "HqSo8b3qeyJvZmZzZXQiOjI1LCJzZWVuIjpbIjBiOGEzYjA3NWMiLCI0Mzk2YjI2ZDI1IiwiMDY3OGQyZDg3YSIsImJlZTY4MTNkOWIiLCI4NTc5MTdjY2F…"
+  }
+}

@@ -1,31 +1,15 @@
 ---
 title: "Introduction"
-description: "The web access layer for AI agents. One interface between your agent and the web's major platforms."
+description: "Stophy is a web scraping API for AI agents. One API to search the web, read what people say, and look up products, places, jobs and homes."
 og:title: "Introduction | Stophy"
-og:description: "The web access layer for AI agents. One interface between your agent and the web's major platforms."
+og:description: "Stophy is a web scraping API for AI agents. One API to search the web, read what people say, and look up products, places, jobs and homes."
 ---
 
-Stophy is the web access layer for AI agents: one interface between your agent and the web's major platforms.
+Stophy is a web scraping API for AI agents. One API to search the web, read what people say, and look up products, places, jobs and homes. Pay only for answers.
 
-The API exposes search, video, social, maps, commerce, jobs, real estate, apps and ads as endpoints. Each endpoint has a fixed request schema, a fixed price and the same response envelope. Most requests consume 1 credit, some consume 2, and long lists consume 1 credit per 10 results.
+## Try it now
 
-## Three ways in
-
-<CardGroup cols={3}>
-  <Card title="API" icon="code" href="/api-reference/introduction">
-    Call any endpoint directly over HTTPS with a bearer key.
-  </Card>
-  <Card title="SDKs" icon="cube" href="/sdks/overview">
-    Use the TypeScript, Python, or command-line client.
-  </Card>
-  <Card title="MCP" icon="plug" href="/mcp-server">
-    Connect Claude Code, Cursor, Codex, or another MCP client.
-  </Card>
-</CardGroup>
-
-## Make your first request
-
-Google search works without a key, so you can run this as it is:
+No account, no key. Run this.
 
 ```bash
 curl -X POST https://api.stophy.dev/v1/google/search \
@@ -33,22 +17,100 @@ curl -X POST https://api.stophy.dev/v1/google/search \
   -d '{"query":"bun runtime"}'
 ```
 
+<Accordion title="Response">
 ```json
 {
   "success": true,
   "data": {
     "results": [
       {
+        "type": "web",
         "url": "https://bun.com/",
         "title": "Bun — A fast all-in-one JavaScript runtime",
-        "description": "Bun is a fast JavaScript runtime & toolkit. All in one.",
+        "description": "Bun is a fast JavaScript runtime & toolkit. All in one. Runtime, package manager, test runner and bundler in a single binary.",
         "position": 1
       }
     ]
   },
   "creditsUsed": 0,
-  "requestId": "44eea069-e571-4dd8-95b4-cd56e641701a"
+  "requestId": "5d8fa22c-6ed4-4690-b20f-5b6b92b160a6"
 }
 ```
+</Accordion>
 
-See [what you can get](/sources/web) for the full list, or follow the [quickstart](/quickstart) to get a key and call the rest.
+You get Google results with `creditsUsed: 0`. A key lifts the free limit, and a failed call costs nothing.
+
+## Connect your agent
+
+<CodeGroup>
+```bash Claude Code
+claude mcp add --transport http stophy https://api.stophy.dev/mcp
+```
+
+```bash Codex
+codex mcp add stophy --url https://api.stophy.dev/mcp
+```
+</CodeGroup>
+
+Your agent can use the free endpoints right away. To use every endpoint, sign in with your browser at `https://mcp.stophy.dev/mcp`. Every other client has its own page in [MCP server](/mcp-server).
+
+## What your agent can get
+
+<CardGroup cols={3}>
+  <Card title="Search and AI answers" icon="magnifying-glass" href="/sources/web">
+    Google results, news, Scholar papers and AI Mode answers.
+  </Card>
+  <Card title="Video" icon="video" href="/sources/video">
+    YouTube and TikTok videos, comments and transcripts.
+  </Card>
+  <Card title="Social" icon="users" href="/sources/social">
+    Reddit threads, X posts, and Instagram, Facebook, LinkedIn and Threads pages.
+  </Card>
+  <Card title="Places and travel" icon="map-location-dot" href="/sources/places-and-travel">
+    Google Maps reviews, hotels, flights, Airbnb and Booking.com.
+  </Card>
+  <Card title="Jobs" icon="briefcase" href="/sources/jobs">
+    LinkedIn, Indeed, Upwork, Google Jobs and company careers pages.
+  </Card>
+  <Card title="Shopping" icon="cart-shopping" href="/sources/shopping">
+    Amazon, eBay and Google Shopping prices, and Trustpilot reviews.
+  </Card>
+  <Card title="Apps" icon="mobile-screen" href="/sources/apps">
+    App Store and Google Play apps and their reviews.
+  </Card>
+  <Card title="Real estate" icon="house" href="/sources/real-estate">
+    Zillow homes for sale, for rent and sold.
+  </Card>
+  <Card title="Ads" icon="bullhorn" href="/sources/ads">
+    The Meta, Google, TikTok and LinkedIn ad libraries.
+  </Card>
+</CardGroup>
+
+## Search, then read
+
+Find posts with `reddit.search`, then open one with `reddit.post` to read its comments. Most sites work this way. Each call returns one page, and the response tells you how to get the next. `reddit.search` is free to try, and `reddit.post` needs a key. See [Page through results](/guides/paging).
+
+## What it costs
+
+- Most calls cost 1 credit.
+- New accounts get 1,000 free credits.
+- A call that fails or finds nothing costs nothing.
+
+See [Credits and billing](/billing) for the few that cost more.
+
+## Next
+
+<CardGroup cols={2}>
+  <Card title="Quickstart" icon="rocket" href="/quickstart">
+    Get a key and call Stophy from TypeScript, Python or the CLI.
+  </Card>
+  <Card title="Find an endpoint" icon="compass" href="/guides/find-endpoint">
+    Pick the right endpoint for what you need.
+  </Card>
+  <Card title="API reference" icon="code" href="/api-reference/introduction">
+    Every endpoint, with its inputs, outputs and price.
+  </Card>
+  <Card title="llms.txt" icon="robot" href="https://docs.stophy.dev/llms.txt">
+    These docs as one index your agent can read.
+  </Card>
+</CardGroup>

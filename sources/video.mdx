@@ -1,8 +1,8 @@
 ---
 title: 'Video'
-description: 'Search YouTube and TikTok, and open any video, channel, or playlist. Get transcripts from YouTube, TikTok and Instagram videos, read comments, and see the YouTube charts.'
+description: 'Search YouTube and TikTok, open any video, channel or playlist, and read comments. Get transcripts from YouTube, TikTok and Instagram videos.'
 og:title: 'Video | Stophy'
-og:description: 'Search YouTube and TikTok, and open any video, channel, or playlist. Get transcripts from YouTube, TikTok and Instagram videos, read comments, and see the YouTube charts.'
+og:description: 'Search YouTube and TikTok, open any video, channel or playlist, and read comments. Get transcripts from YouTube, TikTok and Instagram videos.'
 icon: 'video'
 ---
 
@@ -21,9 +21,9 @@ import TiktokProfilePython from '/snippets/examples/tiktok.profile/python.mdx';
 import TiktokProfileCurl from '/snippets/examples/tiktok.profile/curl.mdx';
 import TiktokProfileCli from '/snippets/examples/tiktok.profile/cli.mdx';
 
-Search YouTube and TikTok, and open any video, channel, or playlist. Get transcripts from YouTube, TikTok and Instagram videos, read comments, and see the YouTube charts. See every field in the [Video reference](/api-reference/endpoint/youtube-search), or try it in the [playground](https://stophy.dev/playground).
+Search YouTube and TikTok, open any video, channel or playlist, and read comments. Get transcripts from YouTube, TikTok and Instagram videos. See every field in the [Video reference](/api-reference/endpoint/youtube-search), or try it in the [playground](https://stophy.dev/playground).
 
-## Search YouTube videos, channels, playlists and shorts
+## Scrape YouTube search results
 
 <CodeGroup>
   <YoutubeSearchTs />
@@ -83,30 +83,26 @@ The response:
 
 | Endpoint | Cost |
 | --- | --- |
-| [Search YouTube videos, channels, playlists and shorts](/api-reference/endpoint/youtube-search) | 1 credit (no key needed) |
-| [Get YouTube search suggestions for a keyword](/api-reference/endpoint/youtube-suggest) | 1 credit |
-| [Get a video's stats, description, chapters and most replayed moments](/api-reference/endpoint/youtube-video) | 1 credit (no key needed) |
-| [Get what a YouTube video says, from its captions](/api-reference/endpoint/youtube-transcript) | 1 credit (no key needed) |
-| [Get a video's comments, or the replies to one comment](/api-reference/endpoint/youtube-comments) | 1 credit |
-| [Get the videos YouTube suggests next to a video, like its Up next list](/api-reference/endpoint/youtube-related) | 1 credit |
-| [Get a channel's profile and one tab of videos, shorts, live, playlists, podcasts or posts](/api-reference/endpoint/youtube-channel) | 1 credit |
-| [Search one channel's videos, like the search box on its YouTube page](/api-reference/endpoint/youtube-channel-search) | 1 credit |
-| [Get a playlist and a page of its videos](/api-reference/endpoint/youtube-playlist) | 1 credit |
-| [Get the videos on a YouTube hashtag page, like youtube.com/hashtag/sourdough](/api-reference/endpoint/youtube-hashtag) | 1 credit |
-| [Get a YouTube community post and its comments](/api-reference/endpoint/youtube-post) | 1 credit |
-| [Get YouTube Charts: top songs, videos, artists, Shorts songs, podcasts or trending](/api-reference/endpoint/youtube-charts) | From 1 credit |
-| [Get a profile's bio, stats and a page of its videos](/api-reference/endpoint/tiktok-profile) | 1 credit |
-| [Get a video's caption, stats and music](/api-reference/endpoint/tiktok-video) | 1 credit |
-| [Get what a TikTok video says, from captions or its own audio](/api-reference/endpoint/tiktok-transcript) | From 1 credit |
-| [Get a page of videos for a hashtag](/api-reference/endpoint/tiktok-hashtag) | 1 credit |
-| [Get a sound and a page of videos that use it](/api-reference/endpoint/tiktok-sound) | 1 credit |
-| [Get a video's comments, or the replies to one comment](/api-reference/endpoint/tiktok-comments) | 1 credit |
-| [Search TikTok videos and users](/api-reference/endpoint/tiktok-search) | 1 credit |
-| [Get what an Instagram video says, from its audio](/api-reference/endpoint/instagram-transcript) | From 1 credit |
+| [Scrape YouTube search results](/api-reference/endpoint/youtube-search) | 1 credit (no key needed) |
+| [Scrape YouTube search suggestions](/api-reference/endpoint/youtube-suggest) | 1 credit |
+| [Scrape a YouTube video page](/api-reference/endpoint/youtube-video) | 1 credit (no key needed) |
+| [Scrape a YouTube video's transcript](/api-reference/endpoint/youtube-transcript) | 1 credit (no key needed) |
+| [Scrape the comments of a YouTube video](/api-reference/endpoint/youtube-comments) | 1 credit (no key needed) |
+| [Scrape a YouTube channel and its videos](/api-reference/endpoint/youtube-channel) | 1 credit (no key needed) |
+| [Scrape a YouTube playlist and its videos](/api-reference/endpoint/youtube-playlist) | 1 credit |
+| [Scrape a YouTube community post and its comments](/api-reference/endpoint/youtube-post) | 1 credit |
+| [Scrape a TikTok profile and its videos](/api-reference/endpoint/tiktok-profile) | 1 credit (no key needed) |
+| [Scrape a TikTok video](/api-reference/endpoint/tiktok-video) | 1 credit |
+| [Scrape a TikTok video's transcript](/api-reference/endpoint/tiktok-transcript) | From 1 credit (no key needed) |
+| [Scrape TikTok videos for a hashtag](/api-reference/endpoint/tiktok-hashtag) | 1 credit |
+| [Scrape a TikTok sound and its videos](/api-reference/endpoint/tiktok-sound) | 1 credit |
+| [Scrape the comments of a TikTok video](/api-reference/endpoint/tiktok-comments) | 1 credit |
+| [Scrape TikTok search results](/api-reference/endpoint/tiktok-search) | 1 credit |
+| [Scrape an Instagram video's transcript](/api-reference/endpoint/instagram-transcript) | From 1 credit |
 
 ## More ways to call it
 
-### Get what a YouTube video says, from its captions
+### Scrape a YouTube video's transcript
 
 <CodeGroup>
   <YoutubeTranscriptTs />
@@ -115,7 +111,7 @@ The response:
   <YoutubeTranscriptCli />
 </CodeGroup>
 
-### Get a profile's bio, stats and a page of its videos
+### Scrape a TikTok profile and its videos
 
 <CodeGroup>
   <TiktokProfileTs />
@@ -124,4 +120,4 @@ The response:
   <TiktokProfileCli />
 </CodeGroup>
 
-<Tip>YouTube search, video details and transcripts work without a key. A YouTube transcript costs 1 credit and comes from the captions. TikTok and Instagram transcripts cost 1 credit when the video has captions and 2 credits plus 1 credit per 10 seconds of audio when it does not: see [Credits and billing](/billing). TikTok videos over 3 minutes can't be transcribed. YouTube charts cost 1 credit per 10 results.</Tip>
+<Tip>YouTube search, video, transcript, comments and channel work without a key, and so do TikTok profiles and TikTok transcripts. A YouTube transcript costs 1 credit. TikTok and Instagram transcripts are priced by the video, so see [Credits and billing](/billing). TikTok videos over 3 minutes can't be transcribed.</Tip>

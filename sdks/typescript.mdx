@@ -1,31 +1,21 @@
 ---
 title: "TypeScript SDK"
-description: "Install the Stophy TypeScript SDK, authenticate, call an endpoint with typed inputs, page through results, and handle errors and retries."
+description: "Install the Stophy TypeScript SDK, make your first call with no key, then add a key to page through results, handle errors and read your usage."
 sidebarTitle: "TypeScript"
 icon: "node-js"
 og:title: "TypeScript SDK | Stophy"
-og:description: "Install the Stophy TypeScript SDK, authenticate, call an endpoint with typed inputs, page through results, and handle errors and retries."
+og:description: "Install the Stophy TypeScript SDK, make your first call with no key, then add a key to page through results, handle errors and read your usage."
 ---
 
-## Install
+The `stophy` package gives you typed calls to Stophy from Node.js, Bun, Deno and the browser.
 
 ```bash
 npm install stophy
 ```
 
-The package has no runtime dependencies and ships ESM, CommonJS and type definitions. It runs on Node.js, Bun, Deno and in the browser.
+## Make a call
 
-## Authenticate
-
-`apiKey` defaults to the `STOPHY_API_KEY` environment variable, so a bare `new Stophy()` picks it up. Pass a key directly with `new Stophy("your key")` or `new Stophy({ apiKey: "your key" })`.
-
-```ts
-import { Stophy } from "stophy";
-
-const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
-```
-
-Without a key, Google search, Google News, YouTube search, video details and transcripts, Reddit search and Google Maps search still work. Here is Google search:
+No account, no key.
 
 ```ts
 import { Stophy } from "stophy";
@@ -34,44 +24,47 @@ const result = await new Stophy().google.search({ query: "bun runtime" });
 console.log(result.data.results);
 ```
 
-Every other endpoint throws `StophyError` with code `unauthorized` and status `401` when called without a key.
+<Accordion title="Response">
+```json
+{
+  "success": true,
+  "data": {
+    "engine": "google",
+    "results": [
+      {
+        "type": "web",
+        "url": "https://bun.com/",
+        "title": "Bun — A fast all-in-one JavaScript runtime",
+        "description": "Bun is a fast JavaScript runtime & toolkit. All in one. Runtime, package manager, test runner and bundler in a single binary. Use bun install or bun test in an ...",
+        "position": 1
+      }
+    ]
+  },
+  "creditsUsed": 0,
+  "requestId": "9532e2f9-ea3d-4ba4-8bc2-8ee5685668ee"
+}
+```
+</Accordion>
 
-## Make a call
+Every response has `success`, `data`, `creditsUsed` and `requestId`. A list is in `data.results`.
+
+Methods follow the endpoint id. `google.search` is `stophy.google.search(...)`, and `reddit.search` is `stophy.reddit.search(...)`. The inputs and results are typed, so a missing required field is a compile error. The [API reference](/api-reference/introduction) lists every endpoint.
+
+## Use a key
+
+Without a key you can call the endpoints marked `keyless: true` in the catalog, and you get the first page only. Every other call throws a `StophyError` with code `unauthorized`.
+
+Set `STOPHY_API_KEY` and `new Stophy()` picks it up. Or pass it in:
 
 ```ts
 import { Stophy } from "stophy";
 
 const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
-
 const posts = await stophy.reddit.search({ query: "bun runtime" });
-console.log(posts.data.results, posts.creditsUsed);
-
-const transcript = await stophy.youtube.transcript({ videoUrl: "https://youtu.be/dQw4w9WgXcQ" });
-console.log(transcript.data.text);
-
-const ads = await stophy.meta.ads.search({ query: "running shoes" });
-console.log(ads.data.results);
+console.log(posts.data.results.length, posts.creditsUsed);
 ```
 
-Methods follow the endpoint id. Nested ids are nested properties: `reddit.search` is `stophy.reddit.search(...)`, and `google.maps.search` is `stophy.google.maps.search(...)`. Inputs and responses are typed from the [API reference](/api-reference/introduction), so a missing required field is a compile error.
-
-To point at one thing, send its link or its id, never both: `videoUrl` or `videoId`, `placeUrl` or `placeId`, `userUrl` or `username`. The types show the pair.
-
-Every response is `{ success, data, creditsUsed, requestId }`. `data` is a single object, and lists are in `data.results`.
-
-## Paging
-
-```ts
-import { Stophy } from "stophy";
-
-const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
-let cursor: string | undefined;
-do {
-  const page = await stophy.reddit.search({ query: "bun runtime", cursor });
-  console.log(page.data.results);
-  cursor = page.data.cursor;
-} while (cursor);
-```
+`new Stophy("your key")` works too.
 
 ## Find endpoints
 
@@ -79,18 +72,36 @@ do {
 import { Stophy } from "stophy";
 
 const catalog = await new Stophy().endpoints();
-console.log(catalog.endpoints.length);
+const free = catalog.endpoints.filter((endpoint) => endpoint.keyless);
+console.log(catalog.endpoints.length, free.length);
 ```
 
-## Handle errors and retries
+## Page through results
+
+A list call returns one page. When there is more, `data.cursor` is set. Pass it back to get the next page. This needs a key.
+
+```ts
+import { Stophy } from "stophy";
+
+const stophy = new Stophy();
+let cursor: string | undefined;
+for (let page = 1; page <= 2; page++) {
+  const result = await stophy.reddit.search({ query: "bun runtime", cursor });
+  console.log(result.data.results.length);
+  cursor = result.data.cursor;
+  if (!cursor) break;
+}
+```
+
+Some endpoints take a `page` number instead, like `google.search`. See [Page through results](/guides/paging).
+
+## Handle errors
 
 ```ts
 import { Stophy, StophyError } from "stophy";
 
-const stophy = new Stophy();
-
 try {
-  await stophy.reddit.search({ query: "bun runtime" });
+  await new Stophy().reddit.search({ query: "bun runtime", cursor: "next" });
 } catch (error) {
   if (error instanceof StophyError) {
     console.log(error.status, error.code, error.message);
@@ -99,9 +110,7 @@ try {
 }
 ```
 
-`StophyError` has `status`, `code`, `message`, `retryable`, `retryAfterSeconds` and `requestId`. See [Errors](/api-reference/errors) for every code.
-
-The SDK retries network errors and `429`/`5xx` responses on its own, honoring `Retry-After`, before it throws. Set `maxRetries: 0` to turn that off. `StophyError` only reaches your code after retries are exhausted.
+The SDK retries network errors and the statuses 429, 500, 502, 503 and 504 for you, and waits as long as the API asks. If the API asks for more than 60 seconds, it throws at once with `retryAfterSeconds` set. A failed call costs nothing. See [Errors](/api-reference/errors) for every code.
 
 ## Options
 
@@ -123,32 +132,30 @@ await stophy.google.search({ query: "bun runtime" }, { signal: controller.signal
 
 | Option | Default | What it does |
 | --- | --- | --- |
-| `apiKey` | `STOPHY_API_KEY` | Your API key. Leave it unset to use Google search only. |
+| `apiKey` | `STOPHY_API_KEY` | Your API key |
 | `baseUrl` | `STOPHY_BASE_URL` or `https://api.stophy.dev` | Where requests go |
-| `timeoutMs` | `30000` | Timeout for each attempt. A timeout is not retried. |
-| `maxRetries` | `2` | Retries for network errors and `429`/`5xx`. `0` turns them off. |
-| `retryInitialDelayMs` | `500` | Base backoff delay. Each retry waits longer than the last. |
+| `timeoutMs` | `30000` | Time limit for each attempt. A timed-out attempt is not retried. |
+| `maxRetries` | `2` | Retries per request. `0` turns them off. |
+| `retryInitialDelayMs` | `500` | Base delay before a retry. Each retry waits longer. |
 | `headers` | none | Extra headers on every request |
 | `fetch` | global `fetch` | Your own `fetch` |
 
-Per call, pass `{ signal }` to cancel a request.
+## Check your usage
 
-## Usage and logs
-
-These need an API key.
+These need a key.
 
 ```ts
 import { Stophy } from "stophy";
 
-const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
+const stophy = new Stophy();
 
 const usage = await stophy.usage();
-console.log(usage.balanceMicros, usage.creditsUsed, usage.requestCount);
+console.log(usage.balanceMicros / 1500, usage.creditsUsed, usage.requestCount);
 
-const logs = await stophy.logs({ days: 7, page: 0, endpoint: "google.search" });
+const logs = await stophy.logs({ days: 7, endpoint: "reddit.search" });
 for (const entry of logs.logs) {
   console.log(entry.createdAt, entry.endpoint, entry.credits);
 }
 ```
 
-`balanceMicros` is your balance in millionths of a dollar. One credit is `1500`, so divide by 1,500 to get credits.
+`balanceMicros` is your balance in millionths of a dollar. One credit is 1,500, so divide by 1,500 to get credits. See [Usage](/api-reference/usage) and [Logs](/api-reference/logs).

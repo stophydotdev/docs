@@ -1,0 +1,34 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "place": "Lisbon",
+    "checkIn": "2026-11-23",
+    "checkOut": "2026-11-24",
+    "total": 1886,
+    "results": [
+      {
+        "position": 1,
+        "hotelId": "16673871",
+        "hotelUrl": "https://www.booking.com/hotel/pt/varandas-da-bica-room.html",
+        "name": "Varandas da Bica room",
+        "reviewScore": 7.7,
+        "reviews": 40,
+        "price": 51.39,
+        "taxesAndFees": 8.96,
+        "originalPrice": 85.65,
+        "priceCurrency": "USD",
+        "address": "Travessa da Laranjeira 29",
+        "city": "Lisboa",
+        "countryCode": "pt",
+        "area": "Misericordia, Lisbon",
+        "distanceText": "0.5 miles from downtown",
+        "latitude": 38.7100533,
+        "longitude": -9.1465548,
+        "imageUrl": "https://cf.bstatic.com/xdata/images/hotel/square600/886948570.jpg?k=86334b99abc0f00afa920678a67992ab39820df3198e0419842…",
+        "hasFreeCancellation": false
+      }
+    ],
+    "cursor": "-VNPCx2jeyJvZmZzZXQiOjI1LCJzZWVuIjpbMTY2NzM4NzEsMzk3MTksNDc4MzgsMTIwNjM1MDksNTA4MjUyMywzMTU0NDIsMTI2MzQ3OSwyMDIxMjMxLDE…"
+  }
+}

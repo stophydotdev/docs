@@ -1,21 +1,15 @@
 ---
 title: "OpenAI"
-description: "Give an OpenAI model live web search with Stophy: define a tool, run the call when the model asks for it, and return the results as JSON."
+description: "Give an OpenAI model live web search with Stophy. Save one search function, pass it as a tool, and send the results back when the model asks."
 og:title: "OpenAI tool calling with Stophy | Stophy"
-og:description: "Give an OpenAI model live web search with Stophy: define a tool, run the call when the model asks for it, and return the results as JSON."
+og:description: "Give an OpenAI model live web search with Stophy. Save one search function, pass it as a tool, and send the results back when the model asks."
 ---
 
-## Setup
+Give an OpenAI model live web search. The model asks for a search, your code calls Stophy, and the model answers from the results.
 
-```bash
-npm install openai
-```
+## The search tool
 
-Set `OPENAI_API_KEY` in your environment. `STOPHY_API_KEY` is optional for this example.
-
-## The Stophy tool
-
-This function calls Google search and returns the results as JSON, limited to 5 so the model's context stays small. It reads your key from `STOPHY_API_KEY`, and works without one.
+Save this as `stophy.ts`. It calls Google search and returns the top 5 results as JSON. It works with no key. Set `STOPHY_API_KEY` to lift the free limit.
 
 ```ts stophy.ts
 export async function stophySearch(query: string): Promise<string> {
@@ -28,12 +22,19 @@ export async function stophySearch(query: string): Promise<string> {
   });
   const body = await response.json();
   if (!body.success) throw new Error(body.error.message);
-  return JSON.stringify(body.data.results);
+  return JSON.stringify(body.data.results.slice(0, 5));
 }
 ```
-## Use it as a tool
 
-Pass the function as a tool to the Responses API. When the model calls it, run the search and send the result back.
+## Give it to an OpenAI model
+
+```bash
+npm install openai
+```
+
+Set `OPENAI_API_KEY` in your environment.
+
+Pass the search as a function tool to the Responses API. While the model keeps calling it, run the search and send the result back.
 
 ```ts
 import OpenAI from "openai";

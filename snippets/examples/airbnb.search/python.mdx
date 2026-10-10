@@ -1,0 +1,7 @@
+```python Python icon="python"
+from stophy import Stophy
+
+stophy = Stophy()  # reads STOPHY_API_KEY
+result = stophy.airbnb.search(location="Lisbon, Portugal", check_in="2026-11-20", check_out="2026-11-23", guests=2, max_price=200, room_type="entireHome")
+print(result["data"]["results"])
+```
