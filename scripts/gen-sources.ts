@@ -36,11 +36,11 @@ const AREAS: Area[] = [
     slug: "web",
     icon: "magnifying-glass",
     description:
-      "Search Google, News, Images, Scholar and Patents, ask Google AI Mode a question, and read what people search for. You get results and cited sources.",
+      "Search Google, News, Images, Scholar and Patents, and read what people search for. You get results and cited sources.",
     endpoints: ["google.search", "google.news", "google.images", "google.scholar", "google.patents", "google.suggest", "google.trends.related", "google.trends.trending", "google.trends.interest", "google.trends.regions", "web.search", "web.news", "web.images", "web.scrape", "web.parse", "web.map", "web.contacts", "web.crawl", "web.crawl.start", "web.crawl.status", "web.crawl.cancel", "web.batch", "web.batch.status", "web.batch.cancel"],
     example: "google.search",
     variations: ["google.news", "google.scholar"],
-    tip: "Google search, News, suggestions and Patents work without a key, for the first page only. Google AI Mode costs 2 credits and Google Images costs 1 credit per 10 images. Turn on `scrapeResults` in Google search to read the top pages in the same call. Every other endpoint costs 1 credit.",
+    tip: "Google search, News, suggestions and Patents work without a key, for the first page only. Google Images costs 1 credit per 10 images. Turn on `scrapeResults` in Google search to read the top pages in the same call. Every other endpoint costs 1 credit.",
   },
   {
     title: "Video",
@@ -80,7 +80,7 @@ const AREAS: Area[] = [
     slug: "jobs",
     icon: "briefcase",
     description:
-      "Search job listings on Google Jobs, LinkedIn, Indeed, Upwork and company careers pages. Get the full posting, pay and requirements for any job.",
+      "Search job listings on LinkedIn, Indeed, Upwork and company careers pages. Get the full posting, pay and requirements for any job.",
     endpoints: ["linkedin.jobs.search", "linkedin.jobs.job", "upwork.search", "upwork.job", "indeed.search", "indeed.job", "careers.jobs", "careers.job", "glassdoor.company", "glassdoor.company.reviews", "glassdoor.company.salaries"],
     example: "linkedin.jobs.search",
     variations: ["indeed.search", "upwork.search"],
@@ -91,11 +91,11 @@ const AREAS: Area[] = [
     slug: "shopping",
     icon: "cart-shopping",
     description:
-      "Compare prices and sellers on Google Shopping, search Amazon products and best sellers, and search TikTok Shop products, sellers and reviews. Search eBay and Facebook Marketplace, and read Trustpilot reviews.",
+      "Search Amazon products and best sellers, and search TikTok Shop products, sellers and reviews. Search eBay and Facebook Marketplace, and read Trustpilot reviews.",
     endpoints: ["amazon.search", "amazon.product", "amazon.bestsellers", "amazon.suggest", "tiktok.shop.search", "tiktok.shop.products", "tiktok.shop.product", "tiktok.shop.reviews", "ebay.search", "ebay.item", "facebook.marketplace.search", "trustpilot.search", "trustpilot.company", "trustpilot.company.reviews", "amazon.reviews"],
     example: "amazon.search",
     variations: ["amazon.product", "amazon.reviews"],
-    tip: "Amazon search, product and best sellers, and Google Shopping cost 2 credits. Pass the product link from an Amazon search result into `amazon.product`.",
+    tip: "Amazon search, product and best sellers cost 2 credits. Pass the product link from an Amazon search result into `amazon.product`.",
   },
   {
     title: "Apps",
