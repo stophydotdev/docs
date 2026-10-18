@@ -22,7 +22,10 @@
     "booking": "Booking.com",
     "ebay": "eBay",
     "trustpilot": "Trustpilot",
-    "careers": "Company careers"
+    "careers": "Company careers",
+    "web": "Web",
+    "glassdoor": "Glassdoor",
+    "yelp": "Yelp"
   },
   "titles": {
     "google.search": "Google Search",
@@ -30,7 +33,6 @@
     "google.images": "Google Images",
     "google.scholar": "Google Scholar",
     "google.patents": "Google Patents",
-    "google.aiMode": "Google AI Mode",
     "google.suggest": "Google Suggestions",
     "google.trends.related": "Google Trends Related",
     "google.trends.trending": "Google Trends Trending",
@@ -77,14 +79,12 @@
     "tripadvisor.reviews": "Tripadvisor Reviews",
     "google.hotels": "Google Hotels",
     "google.flights": "Google Flights",
-    "google.jobs": "Google Jobs",
     "linkedin.jobs.search": "LinkedIn Jobs Search",
     "linkedin.jobs.job": "LinkedIn Job",
     "upwork.search": "Upwork Search",
     "upwork.job": "Upwork Job",
     "indeed.search": "Indeed Search",
     "indeed.job": "Indeed Job",
-    "google.shopping": "Google Shopping",
     "amazon.search": "Amazon Search",
     "amazon.product": "Amazon Product",
     "amazon.bestsellers": "Amazon Best Sellers",
@@ -134,7 +134,29 @@
     "facebook.marketplace.search": "Facebook Marketplace Search",
     "trustpilot.search": "Trustpilot Search",
     "trustpilot.company": "Trustpilot Company",
-    "trustpilot.company.reviews": "Trustpilot Company Reviews"
+    "trustpilot.company.reviews": "Trustpilot Company Reviews",
+    "web.search": "Web Search",
+    "web.news": "Web News",
+    "web.images": "Web Images",
+    "web.scrape": "Web Scrape",
+    "web.parse": "Web Parse",
+    "web.map": "Web Map",
+    "web.contacts": "Web Contacts",
+    "web.crawl": "Web Crawl",
+    "web.crawl.start": "Web Crawl Start",
+    "web.crawl.status": "Web Crawl Status",
+    "web.crawl.cancel": "Web Crawl Cancel",
+    "web.batch": "Web Batch",
+    "web.batch.status": "Web Batch Status",
+    "web.batch.cancel": "Web Batch Cancel",
+    "glassdoor.company": "Glassdoor Company",
+    "glassdoor.company.reviews": "Glassdoor Company Reviews",
+    "glassdoor.company.salaries": "Glassdoor Company Salaries",
+    "yelp.search": "Yelp Search",
+    "yelp.business": "Yelp Business",
+    "yelp.business.reviews": "Yelp Business Reviews",
+    "amazon.reviews": "Amazon Reviews",
+    "x.profile.posts": "X Profile Posts"
   },
   "areas": [
     {
@@ -147,12 +169,25 @@
         "google.images",
         "google.scholar",
         "google.patents",
-        "google.aiMode",
         "google.suggest",
         "google.trends.related",
         "google.trends.trending",
         "google.trends.interest",
-        "google.trends.regions"
+        "google.trends.regions",
+        "web.search",
+        "web.news",
+        "web.images",
+        "web.scrape",
+        "web.parse",
+        "web.map",
+        "web.contacts",
+        "web.crawl",
+        "web.crawl.start",
+        "web.crawl.status",
+        "web.crawl.cancel",
+        "web.batch",
+        "web.batch.status",
+        "web.batch.cancel"
       ]
     },
     {
@@ -208,7 +243,8 @@
         "x.post",
         "threads.profile",
         "threads.profile.posts",
-        "threads.post"
+        "threads.post",
+        "x.profile.posts"
       ]
     },
     {
@@ -229,7 +265,10 @@
         "airbnb.reviews",
         "booking.search",
         "booking.hotel",
-        "booking.hotel.reviews"
+        "booking.hotel.reviews",
+        "yelp.search",
+        "yelp.business",
+        "yelp.business.reviews"
       ]
     },
     {
@@ -237,7 +276,6 @@
       "slug": "jobs",
       "icon": "briefcase",
       "endpoints": [
-        "google.jobs",
         "linkedin.jobs.search",
         "linkedin.jobs.job",
         "upwork.search",
@@ -245,7 +283,10 @@
         "indeed.search",
         "indeed.job",
         "careers.jobs",
-        "careers.job"
+        "careers.job",
+        "glassdoor.company",
+        "glassdoor.company.reviews",
+        "glassdoor.company.salaries"
       ]
     },
     {
@@ -253,7 +294,6 @@
       "slug": "shopping",
       "icon": "cart-shopping",
       "endpoints": [
-        "google.shopping",
         "amazon.search",
         "amazon.product",
         "amazon.bestsellers",
@@ -267,7 +307,8 @@
         "facebook.marketplace.search",
         "trustpilot.search",
         "trustpilot.company",
-        "trustpilot.company.reviews"
+        "trustpilot.company.reviews",
+        "amazon.reviews"
       ]
     },
     {
@@ -319,14 +360,11 @@
     "google.search": "`data` has the web results in `results`, Google's AI Overview when it shows one, related questions and related searches.",
     "google.news": "`data.results` lists the articles, each with its publisher and time.",
     "google.images": "`data.results` lists the images, each with its full-size link and the page it comes from.",
-    "google.aiMode": "`data` has Google's answer in `answer` and the pages it cites in `sources`.",
-    "google.shopping": "`data.results` lists the products with price and seller, and `filters` lists the choices Google offers to narrow them.",
     "google.suggest": "`data.results` lists the suggestions, best first.",
     "google.ads.search": "`data.results` lists the ads, each with its advertiser and the days it ran.",
     "google.ads.ad": "`data` has the ad's advertiser, format and creative, and the countries it ran in.",
     "google.ads.advertisers": "`data.results` lists the advertisers that match, each with a range for how many ads it runs.",
     "google.scholar": "`data.results` lists the papers, books and cases, each with its authors, year and the number of works that cite it.",
-    "google.jobs": "`data.results` lists the openings, each with its company, location and links to apply.",
     "google.patents": "`data.results` lists the patents, each with its owner, inventor, dates and link.",
     "youtube.suggest": "`data.results` lists the suggestions, best first.",
     "youtube.search": "`data.results` lists videos, channels and playlists, and each row has a `type`.",
@@ -425,7 +463,29 @@
     "trustpilot.company": "`data` has the company's TrustScore, stars, review count and the number of reviews at each star rating.",
     "trustpilot.company.reviews": "`data.results` lists a page of the company's reviews, each with its rating, title, text and date.",
     "careers.jobs": "`data.results` lists a page of the company's open jobs, each with its title, department, location and date.",
-    "careers.job": "`data` has the job's title, department, location, description, pay range when the company shows one, and apply link."
+    "careers.job": "`data` has the job's title, department, location, description, pay range when the company shows one, and apply link.",
+    "web.search": "`data` has `results`.",
+    "web.news": "`data` has `results`.",
+    "web.images": "`data` has `results`.",
+    "web.scrape": "`data` has `markdown`, `html`, `rawHtml`, `links`, `screenshot`, `isTruncated` and `metadata`.",
+    "web.parse": "`data` has `markdown`, `isTruncated` and `metadata`.",
+    "web.map": "`data` has `results`, `page` and `totalPages`.",
+    "web.contacts": "`data` has `url`, `emails`, `phones` and `socials`.",
+    "web.crawl": "`data` has `pagesRead`, `results` and `cursor`.",
+    "web.crawl.start": "`data` has `id`, `status` and `total`.",
+    "web.crawl.status": "`data` has `id`, `status`, `total`, `completed`, `failed`, `creditsUsed`, `message`, `errors`, `results` and `cursor`.",
+    "web.crawl.cancel": "`data` has `id`, `status`, `total`, `completed`, `failed`, `creditsUsed` and `message`.",
+    "web.batch": "`data` has `id`, `status` and `total`.",
+    "web.batch.status": "`data` has `id`, `status`, `total`, `completed`, `failed`, `creditsUsed`, `message`, `errors`, `results` and `cursor`.",
+    "web.batch.cancel": "`data` has `id`, `status`, `total`, `completed`, `failed`, `creditsUsed` and `message`.",
+    "glassdoor.company": "`data` has `companyId`, `companyUrl`, `name`, `rating`, `reviews`, `cultureRating`, `workLifeBalanceRating`, `payRating`, `managementRating`, `careerOpportunitiesRating`, `recommendPercent`, `ceoApprovalPercent`, `size`, `industry`, `headquarters` and `website`.",
+    "glassdoor.company.reviews": "`data` has `companyId`, `total`, `totalAllLanguages`, `results` and `page`.",
+    "glassdoor.company.salaries": "`data` has `companyId`, `country`, `total`, `results` and `page`.",
+    "yelp.search": "`data` has `results`.",
+    "yelp.business": "`data` has `businessId`, `businessAlias`, `businessUrl`, `name`, `rating`, `reviews`, `priceLevel`, `categories`, `addressFull`, `addressStreet`, `addressCity`, `addressRegion`, `addressPostalCode`, `addressCountry`, `neighborhoods`, `latitude`, `longitude`, `phone`, `website`, `hours`, `photosAndVideos` and `isClaimed`.",
+    "yelp.business.reviews": "`data` has `businessId`, `businessName`, `businessUrl`, `total`, `results` and `page`.",
+    "amazon.reviews": "`data` has `productId`, `results` and `cursor`.",
+    "x.profile.posts": "`data` has `order`, `results` and `cursor`."
   },
   "requests": {
     "google.news": "Exactly one of `query` or `topic` is required.",
@@ -525,22 +585,11 @@
     "google.news": {
       "source": ""
     },
-    "google.shopping": {
-      "filters": "Google's choices for narrowing the search. Send one back as `filter`.",
-      "price": "",
-      "seller": "",
-      "originalPrice": ""
-    },
     "google.scholar": {
       "citesId": "",
       "citations": "How many works cite this one.",
       "format": "",
       "publication": ""
-    },
-    "google.jobs": {
-      "via": "",
-      "salary": "",
-      "publishedAt": ""
     },
     "google.patents": {
       "patentId": ""
@@ -703,18 +752,8 @@
     ],
     "google.search": [
       [
-        "google.aiMode",
-        "Send a question from `peopleAlsoAsk` as `query` to get Google's AI answer."
-      ],
-      [
         "google.search",
         "Send an entry from `relatedSearches` as `query` to search it."
-      ]
-    ],
-    "google.aiMode": [
-      [
-        "google.search",
-        "Send the same `query` to see the web results for the question."
       ]
     ],
     "google.suggest": [
@@ -731,16 +770,6 @@
         "Send a suggestion as `queries` to see its interest over time."
       ]
     ],
-    "google.shopping": [
-      [
-        "google.shopping",
-        "Send a `filter` from `filters` to narrow the products."
-      ],
-      [
-        "amazon.search",
-        "Send a product's `title` as `query` to compare prices on Amazon."
-      ]
-    ],
     "google.patents": [
       [
         "google.patents",
@@ -751,16 +780,6 @@
       [
         "google.scholar",
         "Send a result's `citesId` as `citesId` to list the works that cite it."
-      ]
-    ],
-    "google.jobs": [
-      [
-        "linkedin.jobs.search",
-        "Send a job's `title` as `query`, with its `location`, to see the same role on LinkedIn."
-      ],
-      [
-        "indeed.search",
-        "Send a job's `title` as `query`, with its `location`, to see the same role on Indeed."
       ]
     ],
     "google.ads.ad": [

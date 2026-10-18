@@ -76,8 +76,8 @@ For every field, see the response schema on this page.
 | `includeDomains` | string[] | Restricts results to results from these domains. Accepts up to 10 values. |
 | `excludeDomains` | string[] | Leave out results from these domains. Accepts up to 10 values. |
 | `time` | string | Restricts results to results from this period. Leave it out for any time. Acceptable values are `pastHour`, `past24Hours`, `pastWeek`, `pastMonth` and `pastYear`. |
-| `sort` | string | Order by relevance or newest first. Acceptable values are `relevance` and `newest`. If unset, defaults to `relevance`. |
-| `page` | integer | The page to return. Pages are numbered from 1. Must be between 1 and 20. If unset, defaults to `1`. |
+| `sort` | string | By relevance, or newest first. Acceptable values are `relevance` and `newest`. If unset, defaults to `relevance`. |
+| `page` | integer | The page to return. Pages are numbered from 1. Must be between 1 and 10. If unset, defaults to `1`. |
 
 ## Billing
 
@@ -85,4 +85,4 @@ Each successful request consumes 1 credit, regardless of the number of items ret
 
 ## Pagination
 
-Results are paginated. To retrieve the next page, increment `page`. An empty `data.results` indicates the last page. The maximum value of `page` is 20.
+Results are paginated. To retrieve the next page, increment `page`. An empty `data.results` indicates the last page. The maximum value of `page` is 10.

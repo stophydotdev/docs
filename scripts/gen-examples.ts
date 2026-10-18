@@ -51,6 +51,15 @@ const FALLBACK_EXAMPLES: Record<string, JsonObject> = {
   "booking.hotel.reviews": { hotelId: "15781550" },
   "ebay.item": { itemId: "820221984535" },
   "careers.job": { jobUrl: "https://boards.greenhouse.io/figma/jobs/5813967004" },
+  "web.crawl.start": { url: "https://bun.com/docs", goal: "sqlite", maxPages: 4 },
+  "web.crawl.status": { id: "job_Ab3dE5gH7jK9mN1pQ3sT5v" },
+  "web.crawl.cancel": { id: "job_Ab3dE5gH7jK9mN1pQ3sT5v" },
+  "web.batch": { urls: ["https://bun.com/docs", "https://bun.com/blog"] },
+  "web.batch.status": { id: "job_Ab3dE5gH7jK9mN1pQ3sT5v" },
+  "web.batch.cancel": { id: "job_Ab3dE5gH7jK9mN1pQ3sT5v" },
+  "yelp.business": { businessUrl: "https://www.yelp.com/biz/franklin-barbecue-austin" },
+  "yelp.business.reviews": { businessUrl: "https://www.yelp.com/biz/franklin-barbecue-austin" },
+  "amazon.reviews": { productUrl: "https://www.amazon.com/dp/B0CX23V2ZK" },
 };
 
 // --- naming -----------------------------------------------------------

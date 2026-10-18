@@ -1,0 +1,7 @@
+```python Python icon="python"
+from stophy import Stophy
+
+stophy = Stophy()  # reads STOPHY_API_KEY
+result = stophy.yelp.business(business_url="https://www.yelp.com/biz/franklin-barbecue-austin")
+print(result["data"])
+```

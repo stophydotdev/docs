@@ -143,12 +143,30 @@
                   "api-reference/endpoint/google-images",
                   "api-reference/endpoint/google-scholar",
                   "api-reference/endpoint/google-patents",
-                  "api-reference/endpoint/google-aiMode",
                   "api-reference/endpoint/google-suggest",
                   "api-reference/endpoint/google-trends-related",
                   "api-reference/endpoint/google-trends-trending",
                   "api-reference/endpoint/google-trends-interest",
                   "api-reference/endpoint/google-trends-regions"
+                ]
+              },
+              {
+                "group": "Web",
+                "pages": [
+                  "api-reference/endpoint/web-search",
+                  "api-reference/endpoint/web-news",
+                  "api-reference/endpoint/web-images",
+                  "api-reference/endpoint/web-scrape",
+                  "api-reference/endpoint/web-parse",
+                  "api-reference/endpoint/web-map",
+                  "api-reference/endpoint/web-contacts",
+                  "api-reference/endpoint/web-crawl",
+                  "api-reference/endpoint/web-crawl-start",
+                  "api-reference/endpoint/web-crawl-status",
+                  "api-reference/endpoint/web-crawl-cancel",
+                  "api-reference/endpoint/web-batch",
+                  "api-reference/endpoint/web-batch-status",
+                  "api-reference/endpoint/web-batch-cancel"
                 ]
               }
             ]
@@ -244,7 +262,8 @@
                 "group": "X",
                 "pages": [
                   "api-reference/endpoint/x-profile",
-                  "api-reference/endpoint/x-post"
+                  "api-reference/endpoint/x-post",
+                  "api-reference/endpoint/x-profile-posts"
                 ]
               },
               {
@@ -294,6 +313,14 @@
                   "api-reference/endpoint/booking-hotel",
                   "api-reference/endpoint/booking-hotel-reviews"
                 ]
+              },
+              {
+                "group": "Yelp",
+                "pages": [
+                  "api-reference/endpoint/yelp-search",
+                  "api-reference/endpoint/yelp-business",
+                  "api-reference/endpoint/yelp-business-reviews"
+                ]
               }
             ]
           },
@@ -301,12 +328,6 @@
             "group": "Jobs",
             "icon": "briefcase",
             "pages": [
-              {
-                "group": "Google",
-                "pages": [
-                  "api-reference/endpoint/google-jobs"
-                ]
-              },
               {
                 "group": "LinkedIn",
                 "pages": [
@@ -334,6 +355,14 @@
                   "api-reference/endpoint/careers-jobs",
                   "api-reference/endpoint/careers-job"
                 ]
+              },
+              {
+                "group": "Glassdoor",
+                "pages": [
+                  "api-reference/endpoint/glassdoor-company",
+                  "api-reference/endpoint/glassdoor-company-reviews",
+                  "api-reference/endpoint/glassdoor-company-salaries"
+                ]
               }
             ]
           },
@@ -342,18 +371,13 @@
             "icon": "cart-shopping",
             "pages": [
               {
-                "group": "Google",
-                "pages": [
-                  "api-reference/endpoint/google-shopping"
-                ]
-              },
-              {
                 "group": "Amazon",
                 "pages": [
                   "api-reference/endpoint/amazon-search",
                   "api-reference/endpoint/amazon-product",
                   "api-reference/endpoint/amazon-bestsellers",
-                  "api-reference/endpoint/amazon-suggest"
+                  "api-reference/endpoint/amazon-suggest",
+                  "api-reference/endpoint/amazon-reviews"
                 ]
               },
               {
@@ -838,7 +862,19 @@
     },
     {
       "source": "/api-reference/endpoint/ai-answer",
-      "destination": "/api-reference/endpoint/google-aiMode"
+      "destination": "/sources/web"
+    },
+    {
+      "source": "/api-reference/endpoint/google-aiMode",
+      "destination": "/sources/web"
+    },
+    {
+      "source": "/api-reference/endpoint/google-jobs",
+      "destination": "/sources/jobs"
+    },
+    {
+      "source": "/api-reference/endpoint/google-shopping",
+      "destination": "/sources/shopping"
     },
     {
       "source": "/api-reference/endpoint/airbnb-calendar",

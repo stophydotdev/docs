@@ -1,0 +1,26 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "url": "https://plausible.io/",
+    "emails": [
+      {
+        "email": "name@example.com",
+        "pages": [
+          "https://plausible.io/contact"
+        ]
+      }
+    ],
+    "socials": [
+      {
+        "network": "x",
+        "username": "PlausibleHQ",
+        "url": "https://x.com/PlausibleHQ",
+        "pages": [
+          "https://plausible.io/",
+          "https://plausible.io/contact"
+        ]
+      }
+    ]
+  }
+}

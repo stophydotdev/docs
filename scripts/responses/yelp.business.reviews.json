@@ -1,0 +1,22 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "businessId": "MGzro82Fi4LYvc86acoONQ",
+    "businessName": "Franklin Barbecue",
+    "businessUrl": "https://www.yelp.com/biz/franklin-barbecue-austin",
+    "total": 6477,
+    "results": [
+      {
+        "reviewId": "Q1kUFPnl5j3_0xrsLfLRYg",
+        "reviewUrl": "https://www.yelp.com/biz/franklin-barbecue-austin?hrid=Q1kUFPnl5j3_0xrsLfLRYg",
+        "rating": 5,
+        "text": "Finally got back to Franklin bbq. Was here last year for a conference in round rock and made it there now back here…",
+        "language": "en",
+        "createdAt": "2026-10-04T00:58:20.000Z",
+        "authorName": "Mike S."
+      }
+    ],
+    "page": 1
+  }
+}

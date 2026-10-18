@@ -1,0 +1,18 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "markdown": "`bunfig.toml` is Bun's configuration file.\n\nBun relies on pre-existing configuration files like `package.json` and…",
+    "isTruncated": false,
+    "metadata": {
+      "title": "bunfig.toml | Bun Docs",
+      "description": "Configure Bun's behavior using its configuration file bunfig.toml",
+      "language": "en",
+      "ogImage": "https://bun.com/og/docs/runtime/bunfig.png",
+      "sourceURL": "https://bun.com/docs/runtime/bunfig",
+      "statusCode": 200,
+      "contentType": "text/html",
+      "cacheState": "miss"
+    }
+  }
+}

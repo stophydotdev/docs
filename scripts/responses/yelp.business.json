@@ -1,0 +1,39 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "businessId": "MGzro82Fi4LYvc86acoONQ",
+    "businessAlias": "franklin-barbecue-austin",
+    "businessUrl": "https://www.yelp.com/biz/franklin-barbecue-austin",
+    "name": "Franklin Barbecue",
+    "rating": 4.5,
+    "reviews": 6492,
+    "priceLevel": "$$$",
+    "categories": [
+      "Barbeque"
+    ],
+    "addressFull": "900 E 11th St, Austin, TX 78702",
+    "addressStreet": "900 E 11th St",
+    "addressCity": "Austin",
+    "addressRegion": "TX",
+    "addressPostalCode": "78702",
+    "addressCountry": "US",
+    "neighborhoods": [
+      "East Austin"
+    ],
+    "latitude": 30.2701348,
+    "longitude": -97.73134511,
+    "phone": "+1 555 0100",
+    "website": "https://franklinbbq.com",
+    "hours": [
+      {
+        "day": "Mon",
+        "times": [
+          "Closed"
+        ]
+      }
+    ],
+    "photosAndVideos": 8631,
+    "isClaimed": true
+  }
+}

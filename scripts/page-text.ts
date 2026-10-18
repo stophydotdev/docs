@@ -373,8 +373,12 @@ const GENERIC_TEXT: [RegExp, string][] = [
   [/^Page number, starting at 1\.$/, "Page number, starting at 1."],
 ];
 
-// "citesId" in a sentence becomes `citesId`.
-const backtickNames = (text: string) => text.replace(/(?<![`\w])([a-z]+[A-Z]\w*)(?![`\w])/g, "`$1`");
+// "citesId" in a sentence becomes `citesId`, and a { ... } example becomes code, since MDX reads a bare brace as an expression.
+const backtickNames = (text: string) =>
+  text
+    .split(/(\{[^{}]*\})/)
+    .map((part, index) => (index % 2 === 1 ? code(part) : part.replace(/(?<![`\w])([a-z]+[A-Z]\w*)(?![`\w])/g, "`$1`")))
+    .join("");
 
 function optionText(op: CatalogEndpoint, name: string, schema: JsonObject, config: TextConfig): string {
   const override = config.optionText[`${op.id}.${name}`];

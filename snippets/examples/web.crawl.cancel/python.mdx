@@ -1,0 +1,7 @@
+```python Python icon="python"
+from stophy import Stophy
+
+stophy = Stophy()  # reads STOPHY_API_KEY
+result = stophy.web.crawl.cancel(id="job_Ab3dE5gH7jK9mN1pQ3sT5v")
+print(result["data"])
+```

@@ -1,0 +1,20 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "results": [
+      {
+        "businessId": "TVHztfQAJUIaJDgdJuke-g",
+        "businessAlias": "blue-dragon-plumbing-austin-2",
+        "businessUrl": "https://www.yelp.com/biz/blue-dragon-plumbing-austin-2",
+        "name": "Blue Dragon Plumbing",
+        "rating": 4.9,
+        "reviews": 532,
+        "categories": [
+          "Plumbing"
+        ],
+        "addressCity": "Austin"
+      }
+    ]
+  }
+}

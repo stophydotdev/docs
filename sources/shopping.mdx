@@ -16,10 +16,10 @@ import AmazonProductTs from '/snippets/examples/amazon.product/ts.mdx';
 import AmazonProductPython from '/snippets/examples/amazon.product/python.mdx';
 import AmazonProductCurl from '/snippets/examples/amazon.product/curl.mdx';
 import AmazonProductCli from '/snippets/examples/amazon.product/cli.mdx';
-import GoogleShoppingTs from '/snippets/examples/google.shopping/ts.mdx';
-import GoogleShoppingPython from '/snippets/examples/google.shopping/python.mdx';
-import GoogleShoppingCurl from '/snippets/examples/google.shopping/curl.mdx';
-import GoogleShoppingCli from '/snippets/examples/google.shopping/cli.mdx';
+import AmazonReviewsTs from '/snippets/examples/amazon.reviews/ts.mdx';
+import AmazonReviewsPython from '/snippets/examples/amazon.reviews/python.mdx';
+import AmazonReviewsCurl from '/snippets/examples/amazon.reviews/curl.mdx';
+import AmazonReviewsCli from '/snippets/examples/amazon.reviews/cli.mdx';
 
 Compare prices and sellers on Google Shopping, search Amazon products and best sellers, and search TikTok Shop products, sellers and reviews. Search eBay and Facebook Marketplace, and read Trustpilot reviews. See every field in the [Shopping reference](/api-reference/endpoint/amazon-search), or try it in the [playground](https://stophy.dev/playground).
 
@@ -57,7 +57,7 @@ The response:
     "page": 1
   },
   "creditsUsed": 2,
-  "requestId": "e3c32e52-81d2-4fba-856c-1923affda334"
+  "requestId": "24e8e3de-f7b0-4e55-bdce-02fb0ffc66cb"
 }
 ```
 
@@ -65,7 +65,6 @@ The response:
 
 | Endpoint | Cost |
 | --- | --- |
-| [Scrape Google Shopping results](/api-reference/endpoint/google-shopping) | 2 credits |
 | [Scrape Amazon search results](/api-reference/endpoint/amazon-search) | 2 credits |
 | [Scrape an Amazon product page](/api-reference/endpoint/amazon-product) | 2 credits |
 | [Scrape Amazon Best Sellers lists](/api-reference/endpoint/amazon-bestsellers) | 2 credits |
@@ -80,6 +79,7 @@ The response:
 | [Scrape Trustpilot search results](/api-reference/endpoint/trustpilot-search) | 1 credit |
 | [Scrape a Trustpilot company page](/api-reference/endpoint/trustpilot-company) | 1 credit |
 | [Scrape a Trustpilot company's reviews](/api-reference/endpoint/trustpilot-company-reviews) | 1 credit |
+| [Scrape an Amazon product's US reviews](/api-reference/endpoint/amazon-reviews) | 1 credit |
 
 ## More ways to call it
 
@@ -92,13 +92,13 @@ The response:
   <AmazonProductCli />
 </CodeGroup>
 
-### Scrape Google Shopping results
+### Scrape an Amazon product's US reviews
 
 <CodeGroup>
-  <GoogleShoppingTs />
-  <GoogleShoppingPython />
-  <GoogleShoppingCurl />
-  <GoogleShoppingCli />
+  <AmazonReviewsTs />
+  <AmazonReviewsPython />
+  <AmazonReviewsCurl />
+  <AmazonReviewsCli />
 </CodeGroup>
 
 <Tip>Amazon search, product and best sellers, and Google Shopping cost 2 credits. Pass the product link from an Amazon search result into `amazon.product`.</Tip>

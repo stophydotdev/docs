@@ -1,0 +1,7 @@
+```python Python icon="python"
+from stophy import Stophy
+
+stophy = Stophy()  # reads STOPHY_API_KEY
+result = stophy.web.crawl(url="https://bun.com/docs", goal="sqlite", max_pages=4)
+print(result["data"]["results"])
+```
