@@ -29,7 +29,7 @@ Exactly one of `productUrl` or `productId` is required. A request that sets both
 
 ## Response
 
-If successful, the response body contains the standard envelope. `data` contains `productId`, `results` and `cursor`.
+If successful, the response body contains the standard envelope. `data.results[]` contains the reviews, each with its rating, text and whether the purchase is verified.
 
 The following example is a real response, truncated: each list shows one item and long strings are cut.
 

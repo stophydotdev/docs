@@ -29,7 +29,7 @@ Exactly one of `businessUrl` or `businessId` is required. A request that sets bo
 
 ## Response
 
-If successful, the response body contains the standard envelope. `data` contains `businessId`, `businessName`, `businessUrl`, `total`, `results` and `page`.
+If successful, the response body contains the standard envelope. `data.results[]` contains the reviews, each with its rating, text and any reply from the owner.
 
 The following example is a real response, truncated: each list shows one item and long strings are cut.
 
