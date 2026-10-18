@@ -29,7 +29,7 @@ Exactly one of `companyUrl` or `companyId` is required. A request that sets both
 
 ## Response
 
-If successful, the response body contains the standard envelope. `data` contains `companyId`, `total`, `totalAllLanguages`, `results` and `page`.
+If successful, the response body contains the standard envelope. `data.results[]` contains the reviews, each with its rating, pros, cons and the reviewer's job title.
 
 The following example is a real response, truncated: each list shows one item and long strings are cut.
 

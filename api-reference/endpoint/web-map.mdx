@@ -31,7 +31,7 @@ Scrape the list of pages on a website.
 
 ## Response
 
-If successful, the response body contains the standard envelope. `data` contains `results`, `page` and `totalPages`.
+If successful, the response body contains the standard envelope. `data.results[]` contains the site's pages, each with its address and title.
 
 The following example is a real response, truncated: each list shows one item and long strings are cut.
 

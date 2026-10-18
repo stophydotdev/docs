@@ -29,7 +29,7 @@ Crawl a website and scrape its pages as markdown.
 
 ## Response
 
-If successful, the response body contains the standard envelope. `data` contains `pagesRead`, `results` and `cursor`.
+If successful, the response body contains the standard envelope. `data.results[]` contains the pages read, each with its depth and its text as markdown.
 
 The following example is a real response, truncated: each list shows one item and long strings are cut.
 

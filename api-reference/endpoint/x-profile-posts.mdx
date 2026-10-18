@@ -29,7 +29,7 @@ Exactly one of `profileUrl` or `username` is required. A request that sets both,
 
 ## Response
 
-If successful, the response body contains the standard envelope. `data` contains `order`, `results` and `cursor`.
+If successful, the response body contains the standard envelope. `data.results[]` contains the account's posts, each with its text, time, likes, replies and reposts.
 
 The following example is a real response, truncated: each list shows one item and long strings are cut.
 
