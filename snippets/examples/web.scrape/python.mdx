@@ -1,0 +1,7 @@
+```python Python icon="python"
+from stophy import Stophy
+
+stophy = Stophy()  # reads STOPHY_API_KEY
+result = stophy.web.scrape(url="https://bun.com/docs/runtime/bunfig")
+print(result["data"])
+```

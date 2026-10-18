@@ -1,0 +1,21 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "productId": "B0CX23V2ZK",
+    "results": [
+      {
+        "authorName": "MWW",
+        "rating": 1,
+        "title": "Trash",
+        "text": "Apple has really gone down hill. They will eventually intentionally stop supporting the latest operating system, which…",
+        "publishedAt": "2026-07-23T00:00:00.000Z",
+        "country": "United States",
+        "isVerified": true,
+        "isVine": false,
+        "helpfulVotes": 0
+      }
+    ],
+    "cursor": "9XB9OW7DMjAyNi0xMC0xOFQyMDowMDo1MC43NDc5NjM0MTRaADEw"
+  }
+}

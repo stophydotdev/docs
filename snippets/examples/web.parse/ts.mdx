@@ -1,0 +1,7 @@
+```typescript TypeScript icon="/images/icons/typescript.svg"
+import { Stophy } from "stophy";
+
+const stophy = new Stophy({ apiKey: process.env.STOPHY_API_KEY });
+const result = await stophy.web.parse({ file: "PGh0bWw+PGhlYWQ+PHRpdGxlPkhvdyB0aWRlcyB3b3JrPC90aXRsZT48L2hlYWQ+PGJvZHk+PG1haW4+PGgxPkhvdyB0aWRlcyB3b3JrPC9oMT48cD5UaGUgTW9vbiBwdWxscyBvbiB0aGUgb2NlYW5zIGFuZCBtYWtlcyB0d28gYnVsZ2VzIG9mIHdhdGVyIHRoYXQgbW92ZSBhcm91bmQgdGhlIEVhcnRoIGFzIGl0IHR1cm5zLCBzbyBtb3N0IGNvYXN0cyBzZWUgdHdvIGhpZ2ggdGlkZXMgYW5kIHR3byBsb3cgdGlkZXMgZXZlcnkgZGF5LjwvcD48L21haW4+PC9ib2R5PjwvaHRtbD4=", filename: "tides.html" });
+console.log(result.data);
+```

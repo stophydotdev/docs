@@ -1,0 +1,14 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "results": [
+      {
+        "url": "https://bun.com/docs/runtime/sqlite",
+        "title": "SQLite | Bun Docs"
+      }
+    ],
+    "page": 1,
+    "totalPages": 1
+  }
+}

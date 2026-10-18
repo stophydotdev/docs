@@ -1,0 +1,20 @@
+{
+  "live": true,
+  "creditsUsed": 0,
+  "data": {
+    "id": "job_Qg9km6Ss5DAJktZgPYOUkA",
+    "status": "completed",
+    "total": 4,
+    "completed": 4,
+    "failed": 0,
+    "creditsUsed": 4,
+    "results": [
+      {
+        "url": "https://bun.com/docs",
+        "title": "Welcome to Bun | Bun Docs",
+        "depth": 0,
+        "markdown": "[Bun RuntimeA fast JavaScript runtime designed as a drop-in replacement for Node.jsGet started with `bun…"
+      }
+    ]
+  }
+}

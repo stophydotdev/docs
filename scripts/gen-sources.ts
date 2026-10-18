@@ -37,7 +37,7 @@ const AREAS: Area[] = [
     icon: "magnifying-glass",
     description:
       "Search Google, News, Images, Scholar and Patents, ask Google AI Mode a question, and read what people search for. You get results and cited sources.",
-    endpoints: ["google.search", "google.news", "google.images", "google.scholar", "google.patents", "google.aiMode", "google.suggest", "google.trends.related", "google.trends.trending", "google.trends.interest", "google.trends.regions"],
+    endpoints: ["google.search", "google.news", "google.images", "google.scholar", "google.patents", "google.suggest", "google.trends.related", "google.trends.trending", "google.trends.interest", "google.trends.regions", "web.search", "web.news", "web.images", "web.scrape", "web.parse", "web.map", "web.contacts", "web.crawl", "web.crawl.start", "web.crawl.status", "web.crawl.cancel", "web.batch", "web.batch.status", "web.batch.cancel"],
     example: "google.search",
     variations: ["google.news", "google.scholar"],
     tip: "Google search, News, suggestions and Patents work without a key, for the first page only. Google AI Mode costs 2 credits and Google Images costs 1 credit per 10 images. Turn on `scrapeResults` in Google search to read the top pages in the same call. Every other endpoint costs 1 credit.",
@@ -59,7 +59,7 @@ const AREAS: Area[] = [
     icon: "users",
     description:
       "Search and read posts, profiles and comments on Reddit, Instagram, LinkedIn, Pinterest, Facebook, X and Threads. Get a LinkedIn profile, a company, or its latest posts.",
-    endpoints: ["reddit.search", "reddit.post", "reddit.subreddit", "reddit.user", "reddit.discussions", "reddit.subreddits", "instagram.profile", "instagram.profile.reels", "instagram.post", "instagram.comments", "linkedin.company", "linkedin.profile", "linkedin.posts", "pinterest.search", "pinterest.pin", "pinterest.board", "pinterest.profile", "facebook.page", "facebook.page.posts", "facebook.post", "facebook.post.comments", "x.profile", "x.post", "threads.profile", "threads.profile.posts", "threads.post"],
+    endpoints: ["reddit.search", "reddit.post", "reddit.subreddit", "reddit.user", "reddit.discussions", "reddit.subreddits", "instagram.profile", "instagram.profile.reels", "instagram.post", "instagram.comments", "linkedin.company", "linkedin.profile", "linkedin.posts", "pinterest.search", "pinterest.pin", "pinterest.board", "pinterest.profile", "facebook.page", "facebook.page.posts", "facebook.post", "facebook.post.comments", "x.profile", "x.post", "threads.profile", "threads.profile.posts", "threads.post", "x.profile.posts"],
     example: "reddit.search",
     variations: ["instagram.profile", "linkedin.profile"],
     tip: "Reddit search, Pinterest pins, X profiles and X posts work without a key. Instagram profile and LinkedIn profile cost 2 credits. Endpoints that return a `cursor` or take a `page` give you more pages. See [Page through results](/guides/paging).",
@@ -70,7 +70,7 @@ const AREAS: Area[] = [
     icon: "map-location-dot",
     description:
       "Find places on Google Maps and Tripadvisor with their reviews, and search stays on Google Hotels, Airbnb and Booking.com. Search flights on Google. Filter by rating, traveler type, dates and more.",
-    endpoints: ["google.maps.search", "google.maps.place", "google.maps.reviews", "tripadvisor.search", "tripadvisor.place", "tripadvisor.reviews", "google.hotels", "google.flights", "airbnb.search", "airbnb.listing", "airbnb.reviews", "booking.search", "booking.hotel", "booking.hotel.reviews"],
+    endpoints: ["google.maps.search", "google.maps.place", "google.maps.reviews", "tripadvisor.search", "tripadvisor.place", "tripadvisor.reviews", "google.hotels", "google.flights", "airbnb.search", "airbnb.listing", "airbnb.reviews", "booking.search", "booking.hotel", "booking.hotel.reviews", "yelp.search", "yelp.business", "yelp.business.reviews"],
     example: "google.maps.search",
     variations: ["google.hotels", "google.flights"],
     tip: "Google Maps search and Google Maps reviews work without a key. Pass the place id from a Google Maps search, or the place link from a Tripadvisor search, into that source's other endpoints.",
@@ -81,8 +81,8 @@ const AREAS: Area[] = [
     icon: "briefcase",
     description:
       "Search job listings on Google Jobs, LinkedIn, Indeed, Upwork and company careers pages. Get the full posting, pay and requirements for any job.",
-    endpoints: ["google.jobs", "linkedin.jobs.search", "linkedin.jobs.job", "upwork.search", "upwork.job", "indeed.search", "indeed.job", "careers.jobs", "careers.job"],
-    example: "google.jobs",
+    endpoints: ["linkedin.jobs.search", "linkedin.jobs.job", "upwork.search", "upwork.job", "indeed.search", "indeed.job", "careers.jobs", "careers.job", "glassdoor.company", "glassdoor.company.reviews", "glassdoor.company.salaries"],
+    example: "linkedin.jobs.search",
     variations: ["indeed.search", "upwork.search"],
     tip: "Pass the job link from a search result into that site's job endpoint to get the full posting.",
   },
@@ -92,9 +92,9 @@ const AREAS: Area[] = [
     icon: "cart-shopping",
     description:
       "Compare prices and sellers on Google Shopping, search Amazon products and best sellers, and search TikTok Shop products, sellers and reviews. Search eBay and Facebook Marketplace, and read Trustpilot reviews.",
-    endpoints: ["google.shopping", "amazon.search", "amazon.product", "amazon.bestsellers", "amazon.suggest", "tiktok.shop.search", "tiktok.shop.products", "tiktok.shop.product", "tiktok.shop.reviews", "ebay.search", "ebay.item", "facebook.marketplace.search", "trustpilot.search", "trustpilot.company", "trustpilot.company.reviews"],
+    endpoints: ["amazon.search", "amazon.product", "amazon.bestsellers", "amazon.suggest", "tiktok.shop.search", "tiktok.shop.products", "tiktok.shop.product", "tiktok.shop.reviews", "ebay.search", "ebay.item", "facebook.marketplace.search", "trustpilot.search", "trustpilot.company", "trustpilot.company.reviews", "amazon.reviews"],
     example: "amazon.search",
-    variations: ["amazon.product", "google.shopping"],
+    variations: ["amazon.product", "amazon.reviews"],
     tip: "Amazon search, product and best sellers, and Google Shopping cost 2 credits. Pass the product link from an Amazon search result into `amazon.product`.",
   },
   {

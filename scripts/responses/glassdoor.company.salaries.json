@@ -1,0 +1,24 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "companyId": "9079",
+    "country": "United States",
+    "total": 9187,
+    "results": [
+      {
+        "jobTitle": "Software Engineer",
+        "reports": 51206,
+        "totalPayMin": 251389,
+        "totalPayMedian": 311696,
+        "totalPayMax": 396274,
+        "basePayMin": 156159,
+        "basePayMedian": 184723,
+        "basePayMax": 218512,
+        "payCurrency": "USD",
+        "payPeriod": "year"
+      }
+    ],
+    "page": 1
+  }
+}

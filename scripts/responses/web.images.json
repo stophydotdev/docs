@@ -1,0 +1,18 @@
+{
+  "live": true,
+  "creditsUsed": 2,
+  "data": {
+    "results": [
+      {
+        "imageUrl": "https://cdn.britannica.com/33/136133-004-3385F6F5/golden-retriever.jpg",
+        "title": "Golden retriever with mouth open and tongue out, looking forward against a blurred green background.",
+        "pageUrl": "https://www.britannica.com/animal/golden-retriever-dog",
+        "source": "britannica.com",
+        "width": 548,
+        "height": 450,
+        "thumbnailUrl": "https://imgs.search.brave.com/ybCZuLmHHiIie1YZ44e-HZSORZ-qb69Y_RMxKlUlGG0/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4u/YnJpdG…",
+        "position": 1
+      }
+    ]
+  }
+}

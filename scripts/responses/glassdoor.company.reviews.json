@@ -1,0 +1,23 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "companyId": "9079",
+    "total": 66022,
+    "totalAllLanguages": 71507,
+    "results": [
+      {
+        "reviewId": "106005473",
+        "rating": 5,
+        "title": "Good place to work at",
+        "pros": "Pay and benefits are good, WLB is good.",
+        "cons": "Some bureaucracy, report chain is long.",
+        "jobTitle": "Software Engineer",
+        "location": "Waterloo, ON",
+        "employmentStatus": "regular",
+        "createdDate": "2026-10-17"
+      }
+    ],
+    "page": 1
+  }
+}

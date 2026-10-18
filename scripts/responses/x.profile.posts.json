@@ -1,0 +1,49 @@
+{
+  "live": true,
+  "creditsUsed": 1,
+  "data": {
+    "order": "newest",
+    "results": [
+      {
+        "postId": "2111180963661435219",
+        "postUrl": "https://x.com/NASA/status/2111180963661435219",
+        "text": "The aircraft lineup just keeps getting bigger. ✈️\n\nMAX POWER, a new aerospace expo, is set for Nov. 7-8 @NASAKennedy —…",
+        "publishedAt": "2026-10-16T19:42:20.000Z",
+        "language": "en",
+        "likes": 1540,
+        "replies": 145,
+        "reposts": 211,
+        "quotes": 24,
+        "bookmarks": 62,
+        "views": 359353,
+        "authorId": "11348282",
+        "authorUsername": "NASA",
+        "authorName": "NASA",
+        "authorUrl": "https://x.com/NASA",
+        "authorAvatarUrl": "https://pbs.twimg.com/profile_images/1321163587679784960/0ZxKlEKB_400x400.jpg",
+        "authorIsVerified": true,
+        "media": [
+          {
+            "type": "video",
+            "url": "https://video.twimg.com/amplify_video/2111180787802370048/vid/avc1/1080x1920/xLb-yr9GVdddx5sY.mp4?tag=29",
+            "thumbnailUrl": "https://pbs.twimg.com/amplify_video_thumb/2111180787802370048/img/0nbyTdS0MRg5JqXk.jpg",
+            "width": 1080,
+            "height": 1920,
+            "durationSeconds": 17.751
+          }
+        ],
+        "links": [
+          "https://www.nasa.gov/maxpower/"
+        ],
+        "mentions": [
+          "NASAKennedy"
+        ],
+        "isEdited": false,
+        "isSensitive": false,
+        "isPinned": false,
+        "isRepost": false
+      }
+    ],
+    "cursor": "NDk5Mcxn11348282.DAAHCgABHU8DUlr__-wLAAIAAAATMjEwOTMyMDYyMjg4Mjg3MzQ2NAgAAwAAAAIAAA"
+  }
+}
